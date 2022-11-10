@@ -8,3 +8,12 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+node_modules
+
+public/build
+
+.local
+dist/
+legacy-build/
+legacy-build-rollup-options/

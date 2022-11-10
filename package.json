@@ -1,0 +1,28 @@
+{
+  "name": "vite-bundle-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "watch": "vite build --watch",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^2.3.0",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "terser": "^5.15.1",
+    "vite": "^3.0.7",
+    "vite-plugin-symfony": "file:extra/vite-plugin-symfony",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "sass": "^1.54.4"
+  },
+  "volta": {
+    "node": "18.12.1"
+  }
+}

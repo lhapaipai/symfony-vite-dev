@@ -16,7 +16,8 @@ framework:
     #fragments: true
     php_errors:
         log: true
-
+    assets:
+        version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
 when@test:
     framework:
         test: true

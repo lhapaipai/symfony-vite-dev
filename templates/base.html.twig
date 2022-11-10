@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block stylesheets %}
+    {{ vite_entry_link_tags('app', { attr: { ca: 'marche link' }}) }}
+    {{ vite_entry_link_tags('theme') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ vite_entry_script_tags('app', { attr: { ca: 'marche script' }, dependency: 'react'}) }}
+    {{ vite_entry_script_tags('theme') }}
+    {% endblock %}
+</head>
+
+<body>
+    <nav>
+        <a href="{{ path('welcome') }}">welcome</a>
+        <a href="{{ path('user_name', {name: 'hugues'}) }}">user hugues</a>
+    </nav>
+    <div id="box"></div>
+    {% block body %}{% endblock %}
+</body>
+
+</html>
