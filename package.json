@@ -4,9 +4,16 @@
   "description": "",
   "main": "vite.config.js",
   "scripts": {
-    "dev": "vite",
-    "watch": "vite build --watch",
-    "build": "vite build"
+    "dev:minimal": "vite -c vite.minimal.config.js",
+    "build:minimal": "vite build -c vite.minimal.config.js",
+    "dev:legacy": "vite -c vite.legacy.config.js",
+    "build:legacy": "vite build -c vite.legacy.config.js",
+    "dev:full": "vite -c vite.full.config.js",
+    "build:full": "vite build -c vite.full.config.js",
+    "dev:simple": "vite",
+    "build:simple": "vite build",
+    "dev": "vite -c vite.default.config.js",
+    "build": "vite build -c vite.default.config.js"
   },
   "keywords": [],
   "author": "Lhapaipai",
