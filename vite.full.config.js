@@ -13,16 +13,16 @@ export default defineConfig({
       // viteDevServerHostname: 'localhost'
     }),
     vue(),
-    legacy({
-      targets: ['defaults', 'not IE 11']
-    }),
+    // legacy({
+    //   targets: ['defaults', 'not IE 11']
+    // }),
   ],
 
   build: {
     manifest: true,
     rollupOptions: {
       input: {
-        "app": "./assets/app.js",
+        "welcome": "./assets/welcome.js",
         "theme": "./assets/theme.scss",
       },
     },

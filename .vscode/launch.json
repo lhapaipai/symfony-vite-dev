@@ -5,8 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Vite dev server",
+      "name": "Vite dev",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "-c",
+        "vite.default.config.js"
+      ],
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -21,10 +25,94 @@
       ]
     },
     {
-      "name": "Launch Vite build",
+      "name": "Vite build",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [
-        "build"
+        "build",
+        "-c",
+        "vite.default.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
+      "name": "Minimal Vite dev",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "-c",
+        "vite.minimal.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
+      "name": "Minimal Vite build",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "build",
+        "-c",
+        "vite.minimal.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
+      "name": "Legacy Vite dev",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "-c",
+        "vite.legacy.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
+      "name": "Legacy Vite build",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "build",
+        "-c",
+        "vite.legacy.config.js"
       ],
       "request": "launch",
       "skipFiles": [
@@ -58,25 +146,6 @@
       "env": {
         "XDEBUG_MODE": "debug,develop",
         "XDEBUG_CONFIG": "client_port=${port}"
-      }
-    },
-    {
-      "name": "Launch Built-in web server",
-      "type": "php",
-      "request": "launch",
-      "runtimeArgs": [
-        "-dxdebug.mode=debug",
-        "-dxdebug.start_with_request=yes",
-        "-S",
-        "localhost:0"
-      ],
-      "program": "",
-      "cwd": "${workspaceRoot}",
-      "port": 9003,
-      "serverReadyAction": {
-        "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-        "uriFormat": "http://localhost:%s",
-        "action": "openExternally"
       }
     }
   ]

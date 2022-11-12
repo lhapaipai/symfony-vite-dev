@@ -28,7 +28,7 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "app": "./assets/app.js",
+        "welcome": "./assets/welcome.js",
         "theme": "./assets/theme.scss",
       },
     },
