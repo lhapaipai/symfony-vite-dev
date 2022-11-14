@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path';
 
 import symfonyPlugin from 'vite-plugin-symfony';
 import legacy from '@vitejs/plugin-legacy';
@@ -6,9 +7,9 @@ import legacy from '@vitejs/plugin-legacy';
 export default defineConfig({
   plugins: [
     // symfonyPlugin(),
-    // legacy({
-    //   targets: ['defaults', 'not IE 11']
-    // }),
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    }),
   ],
 
   publicDir: false,
@@ -17,4 +18,9 @@ export default defineConfig({
     manifest: true,
     outDir: '.local/vite-simple-build'
   },
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'assets'),
+    }
+  }
 });

@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path';
 import symfonyPlugin from 'vite-plugin-symfony';
 
 export default defineConfig({
@@ -10,9 +11,14 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        // "welcome": "./assets/welcome.js",
+        // "welcome": "./assets/page/welcome/index.js",
         "theme": "./assets/theme.scss",
       },
     },
+  },
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'assets'),
+    }
   }
 });

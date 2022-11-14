@@ -28,7 +28,10 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "welcome": "./assets/welcome.js",
+        "pageAssets": "./assets/page/assets/index.js",
+        "pageImports": "./assets/page/imports/index.js",
+        "pageVue": "./assets/page/vue/index.js",
+        "welcome": "./assets/page/welcome/index.js",
         "theme": "./assets/theme.scss",
       },
     },
@@ -41,4 +44,9 @@ export default defineConfig({
     // port: 23456, // local port listened by Vite and proxied by NGINX
     // origin: 'https://example.com', // HTTPS & WSS served by NGINX
   },
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'assets'),
+    }
+  }
 });

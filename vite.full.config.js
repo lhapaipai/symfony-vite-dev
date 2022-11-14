@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path';
 import vue from "@vitejs/plugin-vue";
 
 import symfonyPlugin from 'vite-plugin-symfony';
@@ -22,7 +23,7 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "welcome": "./assets/welcome.js",
+        "welcome": "./assets/page/welcome/index.js",
         "theme": "./assets/theme.scss",
       },
     },
@@ -35,4 +36,9 @@ export default defineConfig({
     // port: 23456, // local port listened by Vite and proxied by NGINX
     // origin: 'https://example.com', // HTTPS & WSS served by NGINX
   },
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'assets'),
+    }
+  }
 });
