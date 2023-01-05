@@ -8,7 +8,9 @@ import { splitVendorChunkPlugin } from 'vite'
 export default defineConfig({
   plugins: [
     vue(),
-    symfonyPlugin(),
+    symfonyPlugin({
+      // verbose: true
+    }),
     splitVendorChunkPlugin()
   ],
 
@@ -23,7 +25,7 @@ export default defineConfig({
         "pageImports": "./assets/page/imports/index.js",
         "pageVue": "./assets/page/vue/index.js",
         "welcome": "./assets/page/welcome/index.js",
-        "theme": "./assets/theme.scss",
+        "theme": "./assets/theme.scss"
       },
       output: {
         // manualChunks: undefined
@@ -31,8 +33,10 @@ export default defineConfig({
     },
 
     // sourcemap: true,
-    minify: false
+    minify: false,
+
   },
+
   resolve: {
     alias: {
       '~': resolve(__dirname, 'assets'),
