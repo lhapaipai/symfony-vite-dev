@@ -4,21 +4,21 @@ import { resolve } from 'path';
 import symfonyPlugin from 'vite-plugin-symfony';
 import vue from "@vitejs/plugin-vue";
 import { splitVendorChunkPlugin } from 'vite'
+import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
   plugins: [
+    // Inspect({}),
     vue(),
-    symfonyPlugin({
-      // verbose: true
-    }),
-    splitVendorChunkPlugin()
+    symfonyPlugin(),
+    splitVendorChunkPlugin(),
   ],
 
   publicDir: false,
 
 
   build: {
-    // manifest: true,
+    manifest: true,
     rollupOptions: {
       input: {
         "pageAssets": "./assets/page/assets/index.js",
@@ -29,12 +29,10 @@ export default defineConfig({
       },
       output: {
         // manualChunks: undefined
-      }
+      },
     },
 
-    // sourcemap: true,
     minify: false,
-
   },
 
   resolve: {

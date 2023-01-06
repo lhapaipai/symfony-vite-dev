@@ -20,16 +20,18 @@
   "author": "Lhapaipai",
   "license": "ISC",
   "dependencies": {
-    "@vitejs/plugin-legacy": "^2.3.1",
-    "@vitejs/plugin-vue": "^3.2.0",
-    "terser": "^5.15.1",
-    "vite": "^3.2.3",
+    "@vitejs/plugin-legacy": "^3.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "terser": "^5.16.1",
+    "vite": "^4.0.4",
+    "vite-plugin-inspect": "^0.7.12",
     "vite-plugin-symfony": "file:extra/vite-plugin-symfony",
     "vue": "^3.2.45"
   },
   "devDependencies": {
-    "sass": "^1.56.1",
-    "vitest": "^0.25.1"
+    "laravel-vite-plugin": "^0.7.3",
+    "sass": "^1.57.1",
+    "vitest": "^0.26.3"
   },
   "volta": {
     "node": "18.12.1"
