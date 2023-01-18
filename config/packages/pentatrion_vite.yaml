@@ -6,3 +6,25 @@ pentatrion_vite:
     link_attributes:
         # you can define your attributes that you want to apply
         # for all your link tags
+
+    builds:
+        build1:
+            base: /build1/
+            script_attributes:
+                foo: build1
+                bar: build1
+
+            link_attributes:
+                boo: build1
+                bar: build1
+
+        build2:
+            base: /build2/
+            script_attributes:
+                foo: build2
+                bar: build2
+            link_attributes:
+                boo: build1
+                bar: build1
+
+    default_build: build1

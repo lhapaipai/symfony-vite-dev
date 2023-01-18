@@ -22,3 +22,19 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    pentatrion_vite.asset_strategy_build1:
+        class: Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy
+        arguments:
+            - "%kernel.project_dir%%pentatrion_vite.public_dir%"
+            - build1
+            - "%pentatrion_vite.builds%"
+            - true
+
+    pentatrion_vite.asset_strategy_build2:
+        class: Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy
+        arguments:
+            - "%kernel.project_dir%%pentatrion_vite.public_dir%"
+            - build2
+            - "%pentatrion_vite.builds%"
+            - true

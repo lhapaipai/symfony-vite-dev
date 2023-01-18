@@ -25,4 +25,10 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/page_imports.html.twig');
     }
+
+    #[Route('/multiple', name: 'page_multiple')]
+    public function multiple(): Response
+    {
+        return $this->render('default/page_multiple.html.twig');
+    }
 }

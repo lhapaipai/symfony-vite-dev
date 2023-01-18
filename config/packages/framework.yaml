@@ -18,6 +18,13 @@ framework:
         log: true
     assets:
         version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+        packages:
+            build1:
+                version_strategy: 'pentatrion_vite.asset_strategy_build1'
+
+            build2:
+                version_strategy: 'pentatrion_vite.asset_strategy_build2'
+
 when@test:
     framework:
         test: true

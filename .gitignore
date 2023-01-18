@@ -12,6 +12,9 @@
 node_modules
 
 public/build
+public/build1
+public/build2
+public/infos
 
 .local
 

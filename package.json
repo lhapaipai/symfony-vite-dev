@@ -4,6 +4,8 @@
   "description": "",
   "main": "vite.config.js",
   "scripts": {
+    "dev:multiple": "vite -c vite.build1.config.js & vite -c vite.build2.config.js",
+    "build:multiple": "vite build -c vite.build1.config.js && vite build -c vite.build2.config.js",
     "dev:minimal": "vite -c vite.minimal.config.js",
     "build:minimal": "vite build -c vite.minimal.config.js",
     "dev:legacy": "vite -c vite.legacy.config.js",
@@ -13,6 +15,7 @@
     "dev:simple": "vite -c vite.simple.config.js",
     "build:simple": "vite build -c vite.simple.config.js",
     "dev": "vite -c vite.default.config.js",
+    "dev:watch": "vite build -w -c vite.default.config.js",
     "build": "vite build -c vite.default.config.js",
     "watch:vite-plugin-symfony": "cd extra/vite-plugin-symfony && npm run dev"
   },
