@@ -10,7 +10,9 @@ export default defineConfig({
   plugins: [
     // Inspect({}),
     vue(),
-    symfonyPlugin(),
+    symfonyPlugin({
+      refresh: false
+    }),
     splitVendorChunkPlugin(),
   ],
 

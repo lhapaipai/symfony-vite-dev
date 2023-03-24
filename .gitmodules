@@ -1,6 +1,6 @@
 [submodule "extra/vite-bundle"]
 	path = extra/vite-bundle
-	url = git@github.com:lhapaipai/vite-bundle
+	url = https://github.com/lhapaipai/vite-bundle.git
 [submodule "extra/vite-plugin-symfony"]
 	path = extra/vite-plugin-symfony
-	url = git@github.com:lhapaipai/vite-plugin-symfony
+	url = https://github.com/lhapaipai/vite-plugin-symfony.git
