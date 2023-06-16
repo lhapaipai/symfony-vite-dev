@@ -18,6 +18,12 @@ framework:
         log: true
     assets:
         version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+
+        # packages:
+        #     vite:
+        #         version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+        #     nelmio:
+        #         version_strategy: null
         # packages:
         #     build1:
         #         version_strategy: 'pentatrion_vite.asset_strategy_build1'

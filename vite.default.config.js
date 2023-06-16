@@ -11,13 +11,13 @@ export default defineConfig({
     // Inspect({}),
     vue(),
     symfonyPlugin({
-      refresh: false
+      refresh: false,
+      verbose: true
     }),
     splitVendorChunkPlugin(),
   ],
 
   publicDir: false,
-
 
   build: {
     manifest: true,

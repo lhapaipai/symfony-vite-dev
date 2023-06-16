@@ -23,7 +23,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -60,6 +61,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "check-compatibility": [
+            "php -dxdebug.mode=off vendor/bin/phpcs -p extra/vite-bundle/src --standard=PHPCompatibility --runtime-set testVersion 7.4"
         ]
     },
     "conflict": {
@@ -78,6 +82,9 @@
         }
     ],
     "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "squizlabs/php_codesniffer": "^3.7",
         "symfony/maker-bundle": "^1.45",
         "symfony/stopwatch": "6.1.*",
         "symfony/web-profiler-bundle": "6.1.*"

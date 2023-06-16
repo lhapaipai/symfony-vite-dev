@@ -7,6 +7,7 @@ pentatrion_vite:
         # you can define your attributes that you want to apply
         # for all your link tags
 
+    throw_on_missing_entry: true
 
     # default_build: build1
     # builds:

@@ -15,6 +15,7 @@
     "dev": "vite -c vite.default.config.js",
     "dev:watch": "vite build -w -c vite.default.config.js",
     "build": "vite build -c vite.default.config.js",
+    "build:ssr": "vite build --ssr -c vite.default.config.js",
     "watch:vite-plugin-symfony": "cd extra/vite-plugin-symfony && npm run dev"
   },
   "keywords": [],
@@ -23,11 +24,13 @@
   "dependencies": {
     "@vitejs/plugin-legacy": "^3.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/runtime-core": "^3.3.1",
+    "@vue/runtime-dom": "^3.3.1",
     "terser": "^5.16.1",
     "vite": "^4.0.4",
     "vite-plugin-inspect": "^0.7.12",
     "vite-plugin-symfony": "file:extra/vite-plugin-symfony",
-    "vue": "^3.2.45"
+    "vue": "^3.3.1"
   },
   "devDependencies": {
     "laravel-vite-plugin": "^0.7.3",
