@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path';
 
-import legacy from '@vitejs/plugin-legacy';
+// import legacy from '@vitejs/plugin-legacy';
 
 import vue from "@vitejs/plugin-vue";
 // import Inspect from 'vite-plugin-inspect'
@@ -10,15 +10,23 @@ export default defineConfig({
   plugins: [
     // Inspect({}),
     vue(),
-    legacy({
-      targets: ['defaults', 'not IE 11']
-    }),
+    // legacy({
+    //   targets: ['defaults', 'not IE 11']
+    // }),
   ],
 
   publicDir: false,
 
   build: {
     manifest: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+        },
+      },
+    },
+
     minify: false,
   },
 

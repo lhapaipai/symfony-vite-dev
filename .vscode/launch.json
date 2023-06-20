@@ -46,6 +46,27 @@
       ]
     },
     {
+      "name": "ssr:vite:build:server",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "build",
+        "-c",
+        "${workspaceFolder}/playground/ssr/vite.ssr.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/playground/ssr",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/extra/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
       "name": "Vite dev",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [

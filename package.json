@@ -3,18 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "vite.config.js",
-  "scripts": {
-    "dev:minimal": "vite -c vite.minimal.config.js",
-    "build:minimal": "vite build -c vite.minimal.config.js",
-    "dev:full": "vite -c vite.full.config.js",
-    "build:full": "vite build -c vite.full.config.js",
-    "dev": "vite -c vite.default.config.js",
-    "dev:watch": "vite build -w -c vite.default.config.js",
-    "build": "vite build -c vite.default.config.js",
-    "build:index": "vite build",
-    "build:ssr": "vite build --ssr -c vite.default.config.js",
-    "watch:vite-plugin-symfony": "cd extra/vite-plugin-symfony && npm run dev"
-  },
   "keywords": [],
   "author": "Lhapaipai",
   "license": "ISC",
