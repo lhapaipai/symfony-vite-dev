@@ -1,0 +1,11 @@
+pentatrion_vite:
+    script_attributes:
+        # you can define your attributes that you want to apply
+        # for all your script tags
+
+    link_attributes:
+        # you can define your attributes that you want to apply
+        # for all your link tags
+
+    throw_on_missing_entry: true
+

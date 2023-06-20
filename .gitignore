@@ -9,13 +9,26 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+/playground/sandbox/
+
+/playground/*/.env.local
+/playground/*/.env.local.php
+/playground/*/.env.*.local
+/playground/*/config/secrets/prod/prod.decrypt.private.php
+/playground/*/public/bundles/
+/playground/*/var/
+/playground/*/vendor/
+
 node_modules
 
-public/build
-public/build1
-public/build2
-public/infos
+/playground/*/public/build
+/playground/*/public/build1
+/playground/*/public/build2
+/playground/*/public/infos
+
+/public/build
+/public/build1
+/public/build2
+/public/infos
 
 .local
-
-/extra/vite/

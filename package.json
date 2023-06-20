@@ -4,17 +4,14 @@
   "description": "",
   "main": "vite.config.js",
   "scripts": {
-    "dev:multiple": "vite -c vite.build1.config.js & vite -c vite.build2.config.js",
-    "build:multiple": "vite build -c vite.build1.config.js && vite build -c vite.build2.config.js",
     "dev:minimal": "vite -c vite.minimal.config.js",
     "build:minimal": "vite build -c vite.minimal.config.js",
-    "dev:legacy": "vite -c vite.legacy.config.js",
-    "build:legacy": "vite build -c vite.legacy.config.js",
     "dev:full": "vite -c vite.full.config.js",
     "build:full": "vite build -c vite.full.config.js",
     "dev": "vite -c vite.default.config.js",
     "dev:watch": "vite build -w -c vite.default.config.js",
     "build": "vite build -c vite.default.config.js",
+    "build:index": "vite build",
     "build:ssr": "vite build --ssr -c vite.default.config.js",
     "watch:vite-plugin-symfony": "cd extra/vite-plugin-symfony && npm run dev"
   },
@@ -27,7 +24,7 @@
     "@vue/runtime-core": "^3.3.1",
     "@vue/runtime-dom": "^3.3.1",
     "terser": "^5.16.1",
-    "vite": "^4.0.4",
+    "vite": "^4.3.9",
     "vite-plugin-inspect": "^0.7.12",
     "vite-plugin-symfony": "file:extra/vite-plugin-symfony",
     "vue": "^3.3.1"

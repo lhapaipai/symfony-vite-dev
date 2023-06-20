@@ -3,3 +3,7 @@
 </p>
 
 Vite Bundle Dev Repository
+
+## composer
+
+you need to install dependencies from one playground

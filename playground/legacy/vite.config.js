@@ -1,23 +1,21 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path';
+import { resolve } from "path";
+import vue from "@vitejs/plugin-vue";
 
 import symfonyPlugin from 'vite-plugin-symfony';
-import vue from "@vitejs/plugin-vue";
-// import { splitVendorChunkPlugin } from 'vite'
-// import Inspect from 'vite-plugin-inspect'
+import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
   plugins: [
-    // Inspect({}),
+    symfonyPlugin(),
     vue(),
-    symfonyPlugin({
-      refresh: false,
-      verbose: true
+    legacy({
+      targets: ['defaults', 'not IE 11']
     }),
-    // splitVendorChunkPlugin(),
   ],
 
   publicDir: false,
+
 
   build: {
     manifest: true,
@@ -26,15 +24,10 @@ export default defineConfig({
         // "pageAssets": "./assets/page/assets/index.js",
         // "pageImports": "./assets/page/imports/index.js",
         // "pageVue": "./assets/page/vue/index.js",
-        // "welcome": "./assets/page/welcome/index.js",
-        "theme": "./assets/theme.scss"
-      },
-      output: {
-        // manualChunks: undefined
+        "welcome": "./assets/page/welcome/index.js",
+        // "theme": "./assets/theme.scss",
       },
     },
-
-    minify: false,
   },
 
   resolve: {
