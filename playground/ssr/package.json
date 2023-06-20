@@ -1,0 +1,21 @@
+{
+  "name": "vite-bundle-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build:client": "vite build -c vite.config.js",
+    "build:server": "vite build --ssr -c vite.ssr.config.js"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "18.12.1"
+  },
+  "dependencies": {
+    "@vue/runtime-core": "^3.3.4",
+    "@vue/runtime-dom": "^3.3.4"
+  }
+}
