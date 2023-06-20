@@ -1,0 +1,31 @@
+pentatrion_vite:
+    script_attributes:
+        # you can define your attributes that you want to apply
+        # for all your script tags
+
+    link_attributes:
+        # you can define your attributes that you want to apply
+        # for all your link tags
+
+    throw_on_missing_entry: true
+
+    default_build: build1
+    builds:
+        build1:
+            base: /build1/
+            script_attributes:
+                foo: build1
+                bar: build1
+
+            link_attributes:
+                boo: build1
+                bar: build1
+
+        build2:
+            base: /build2/
+            script_attributes:
+                foo: build2
+                bar: build2
+            link_attributes:
+                boo: build1
+                bar: build1

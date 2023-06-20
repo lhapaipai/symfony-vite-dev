@@ -1,0 +1,1 @@
+console.log('inside module1-legacy.js')

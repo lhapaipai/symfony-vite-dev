@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:;base64,iBORw0KGgo=">
+    {% block stylesheets %}
+    {{ vite_entry_link_tags('theme') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ vite_entry_script_tags('theme') }}
+    {% endblock %}
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="{{ path('welcome') }}">Welcome ViteBundle !</a>
+        <a href="{{ path('page_assets') }}">Page assets</a>
+        <a href="{{ path('page_imports') }}">Page imports</a>
+        <a href="{{ path('page_multiple') }}">Page multiple</a>
+    </nav>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

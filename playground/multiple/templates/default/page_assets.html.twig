@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page assets{% endblock %}
+
+{% block content %}
+
+<div class="example-wrapper">
+    <h1>Page assets</h1>
+    <div class="asset-box">
+        <p>image imported via asset twig function, referenced by vite</p>
+        <img src="{{ asset('assets/images/violin.jpg')}}" alt="">
+    </div>
+    <div class="asset-box">
+        <p>image 1 imported via js</p>
+        <div id="vite-asset-js-container-1"></div>
+    </div>
+    <div class="asset-box">
+        <p>image 2 imported via js</p>
+        <div id="vite-asset-js-container-2"></div>
+    </div>
+    <div class="asset-box">
+        <p>image imported via css</p>
+        <div id="vite-asset-scss-container"></div>
+    </div>
+    <div class="asset-box">
+        <p>image imported via nested css</p>
+        <div id="vite-asset-scss-nested-container"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageAssets', { attr: { 'data-foo': 'bar' }}) }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageAssets', { attr: { 'data-hello': 'world' }}) }}
+{% endblock %}
