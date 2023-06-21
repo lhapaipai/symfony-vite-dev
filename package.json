@@ -5,14 +5,24 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:fr:dev": "vitepress dev fr",
-    "docs:fr:build": "vitepress build fr",
-    "docs:fr:preview": "vitepress preview fr"
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "lint": "eslint --ignore-pattern=.vitepress/cache .vitepress ."
   },
   "keywords": [],
   "author": "Hugues Tavernier",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-define-config": "^1.21.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.15.0",
+    "prettier": "^2.8.8",
+    "typescript": "5.0.x",
     "vitepress": "1.0.0-beta.3"
   }
 }

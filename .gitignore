@@ -1,5 +1,7 @@
 
 node_modules/
 
-fr/.vitepress/cache/
-fr/.vitepress/dist/
+.vitepress/cache/
+.vitepress/dist/
+.vscode/
+.local/

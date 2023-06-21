@@ -3,8 +3,8 @@
    version="1.1"
    x="0px"
    y="0px"
-   width="100"
-   height="100"
+   width="250"
+   height="250"
    viewBox="0 0 100 100"
    enable-background="new 0 0 202 223.666"
    xml:space="preserve"
@@ -22,14 +22,14 @@
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
    id="defs38">
-	
-	
 
-		
-		
-	
-			
-			
+
+
+
+
+
+
+
 		<linearGradient
    id="paint0_linear"
    x1="6.0001702"
