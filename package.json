@@ -1,0 +1,18 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:fr:dev": "vitepress dev fr",
+    "docs:fr:build": "vitepress build fr",
+    "docs:fr:preview": "vitepress preview fr"
+  },
+  "keywords": [],
+  "author": "Hugues Tavernier",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "1.0.0-beta.3"
+  }
+}
