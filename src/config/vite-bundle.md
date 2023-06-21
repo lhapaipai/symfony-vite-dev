@@ -1,49 +1,49 @@
 # Vite bundle Options
 
-La configuration du bundle se fait dans le fichier `config/packages/pentatrion_vite.yaml`.
+The configuration of the bundle is located in the file `config/packages/pentatrion_vite.yaml`.
 
 ```yaml
 pentatrion_vite:
-  public_dir: public
-  base: /build/
+  public_directory: public
+  build_directory: build
   throw_on_missing_entry: true
   # etc...
 ```
 
 ## public_directory
 
-- **Type :** `string`
-- **Valeur par défaut :** `public`
+- **Type:** `string`
+- **Default value:** `public`
 
-Chemin relatif depuis le dossier racine de votre projet vers le dossier public de votre serveur web. Dans certains cas il peut s'agir de `www` ou `public_html`.
+Path to the web root relative to the Symfony project root directory. In some cases it may be `www` or `public_html`.
 
 ## build_directory
 
-- **Type :** `string`
-- **Valeur par défaut :** `build`
+- **Type:** `string`
+- **Default value:** `build`
 
-Chemin relatif depuis votre dossier public dans lequel ont été compilés vos fichiers à la suite d'un `vite build`.
+Path to your compiled files relative to the web root directory.
 
 ## proxy_origin
 
-- **Type :** `null | string`
-- **Valeur par défaut :** `null`
+- **Type:** `null | string`
+- **Default value:** `null`
 
-Lors d'une utilisation avec Docker, vous pouvez désirer spécifier une origine différente si vous démarrer votre serveur de développement Vite en dehors de votre conteneur Docker. (ex: `http://host.docker.internal:5173`).
+When using Docker, you may want to specify a different origin if you start your Vite development server outside of your Docker container. (eg. `http://host.docker.internal:5173`).
 
 ## throw_on_missing_entry
 
-- **Type :** `boolean`
-- **Valeur par défaut :** `false`
+- **Type:** `boolean`
+- **Default value:** `false`
 
-Par défaut, vite-bundle ignorera silencieusement vos appels à des points d'entrée qui ne sont pas présents dans votre `entrypoints.json`. En définissant cette option à `true`, Symfony lèvera une exception dans de tels cas.
+By default, vite-bundle will silently ignore your calls to entry points that are not present in your `entrypoints.json`. By setting this option to `true`, Symfony will throw an exception in such cases.
 
 ## script_attributes
 
-- **Type :** `associative array`
-- **Valeur par défaut :** `[]`
+- **Type:** `associative array`
+- **Default value:** `[]`
 
-Précisez ici vos attributs que vous souhaiterez faire apparaître sur toutes vos balises HTML `<script>`.
+Specify here your attributes that you want to appear on all your HTML `<script>` tags.
 
 ```yaml
 pentatrion_vite:
@@ -54,10 +54,10 @@ pentatrion_vite:
 
 ## link_attributes
 
-- **Type :** `associative array`
-- **Valeur par défaut :** `[]`
+- **Type:** `associative array`
+- **Default value:** `[]`
 
-Précisez ici vos attributs que vous souhaiterez faire apparaître sur toutes vos balises HTML `<style>`.
+Specify here your attributes that you want to appear on all your HTML `<style>` tags.
 
 ```yaml
 pentatrion_vite:
@@ -67,19 +67,19 @@ pentatrion_vite:
 
 ## default_build
 
-- **Type :** `null | string`
-- **Valeur par défaut :** `null`
+- **Type:** `null | string`
+- **Default value:** `null`
 
-Si vous avez défini plusieurs configurations de vite.
+If you have defined several Vite configurations.
 
 ::: warning
-Dans le cas d'une configuration multiple, il faudra laisser les options `build_directory`, `script_attributes` et `link_attributes` vides et les définir dans l'option `build` qui va suivre.
+In the case of a multiple configuration, it will be necessary to leave the `build_directory`, `script_attributes` and `link_attributes` options empty and define them in the `builds` option which will follow.
 :::
 
 ## builds
 
-- **Type :** `associative array of build config`
-- **Valeur par défaut :** `[]`
+- **Type:** `associative array of build config`
+- **Default value:** `[]`
 
 ```yaml
 pentatrion_vite:

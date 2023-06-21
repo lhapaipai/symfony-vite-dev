@@ -19,7 +19,7 @@ export default defineConfig({
 
       themeConfig: {
         nav: [
-          { text: 'Guide', link: '/guide/getting-started' },
+          { text: 'Guide', link: '/guide/installation' },
           {
             text: 'Configuration',
             items: [
@@ -42,7 +42,16 @@ export default defineConfig({
         sidebar: [
           {
             text: 'Guide',
-            items: [{ text: 'Getting started', link: '/guide/getting-started' }]
+            items: [
+              { text: 'Installation', link: '/guide/installation' },
+              { text: 'Configuration', link: '/guide/configuration' },
+              { text: 'Twig functions', link: '/guide/twig-functions' },
+              { text: 'Assets', link: '/guide/assets' },
+              { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
+              { text: 'Tips', link: '/guide/tips' },
+              // { text: 'Getting started', link: '/guide/getting-started' },
+              { text: 'Troubleshouting', link: '/guide/troubleshouting' }
+            ]
           },
           {
             text: 'Configuration',
@@ -56,7 +65,7 @@ export default defineConfig({
                 link: '/config/vite-plugin-symfony'
               }
             ]
-          }
+          },
           // {
           //   text: 'Examples',
           //   items: [
@@ -66,80 +75,89 @@ export default defineConfig({
           //     }
           //   ]
           // }
+          {
+            text: 'Extra',
+            items: [
+              { text: 'Compatibility', link: '/extra/compatibility' },
+              { text: 'In depth', link: '/extra/in-depth' },
+              { text: 'Manual installation', link: '/extra/manual-installation' },
+              { text: 'Migration Webpack Encore', link: '/extra/migration-webpack-encore' }
+            ]
+          }
         ],
         footer: {
           message: 'Released under the MIT License.'
         }
       }
-    },
-    fr: {
-      label: 'Français',
-      lang: 'fr',
-      description: 'Guide du développeur',
-      themeConfig: {
-        docFooter: {
-          prev: 'Page précédente',
-          next: 'Page suivante'
-        },
-        nav: [
-          { text: 'Guide', link: '/fr/guide/getting-started' },
-          {
-            text: 'Configuration',
-            items: [
-              {
-                text: 'Vite Bundle',
-                link: '/fr/config/vite-bundle'
-              },
-              {
-                text: 'Vite plugin Symfony',
-                link: '/fr/config/vite-plugin-symfony'
-              }
-            ]
-          }
-          // {
-          //   text: 'Exemples',
-          //   link: '/fr/examples/basic'
-          // }
-        ],
-
-        sidebar: [
-          {
-            text: 'Guide',
-            items: [{ text: 'Bien démarrer', link: '/fr/guide/getting-started' }]
-          },
-          {
-            text: 'Configuration',
-            items: [
-              {
-                text: 'Vite Bundle',
-                link: '/fr/config/vite-bundle'
-              },
-              {
-                text: 'Vite plugin Symfony',
-                link: '/fr/config/vite-plugin-symfony'
-              }
-            ]
-          }
-          // {
-          //   text: 'Exemples',
-          //   items: [
-          //     {
-          //       text: 'Basique',
-          //       link: '/fr/examples/basic'
-          //     }
-          //   ]
-          // }
-        ],
-        footer: {
-          message: 'Publié sous la licence MIT.'
-        },
-
-        darkModeSwitchLabel: 'Apparence',
-        returnToTopLabel: 'Retour en haut',
-        lastUpdatedText: 'Dernière mise à jour',
-        outlineTitle: 'Sur cette page'
-      }
     }
+    // fr: {
+    //   label: 'Français',
+    //   lang: 'fr',
+    //   description: 'Guide du développeur',
+    //   themeConfig: {
+    //     docFooter: {
+    //       prev: 'Page précédente',
+    //       next: 'Page suivante'
+    //     },
+    //     nav: [
+    //       { text: 'Guide', link: '/fr/guide/getting-started' },
+    //       {
+    //         text: 'Configuration',
+    //         items: [
+    //           {
+    //             text: 'Vite Bundle',
+    //             link: '/fr/config/vite-bundle'
+    //           },
+    //           {
+    //             text: 'Vite plugin Symfony',
+    //             link: '/fr/config/vite-plugin-symfony'
+    //           }
+    //         ]
+    //       }
+    //       // {
+    //       //   text: 'Exemples',
+    //       //   link: '/fr/examples/basic'
+    //       // }
+    //     ],
+
+    //     sidebar: [
+    //       {
+    //         text: 'Guide',
+    //         items: [{ text: 'Bien démarrer', link: '/fr/guide/getting-started' }]
+    //       },
+    //       {
+    //         text: 'Configuration',
+    //         items: [
+    //           {
+    //             text: 'Vite Bundle',
+    //             link: '/fr/config/vite-bundle'
+    //           },
+    //           {
+    //             text: 'Vite plugin Symfony',
+    //             link: '/fr/config/vite-plugin-symfony'
+    //           }
+    //         ]
+    //       }
+    //       // {
+    //       //   text: 'Exemples',
+    //       //   items: [
+    //       //     {
+    //       //       text: 'Basique',
+    //       //       link: '/fr/examples/basic'
+    //       //     }
+    //       //   ]
+    //       // }
+    //     ],
+    //     footer: {
+    //       message: 'Publié sous la licence MIT.'
+    //     },
+
+    //     darkModeSwitchLabel: 'Apparence',
+    //     returnToTopLabel: 'Retour en haut',
+    //     lastUpdatedText: 'Dernière mise à jour',
+    //     outlineTitle: 'Sur cette page'
+    //   }
+    // }
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

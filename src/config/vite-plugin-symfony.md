@@ -2,59 +2,58 @@
 
 ## publicDirectory
 
-- **Type :** `string`
-- **Valeur par défaut :** `public`
+- **Type:** `string`
+- **Default value:** `public`
 
-Chemin relatif depuis le dossier racine de votre projet vers le dossier public de votre serveur web. Dans certains cas il peut s'agir de `www` ou `public_html`.
+Relative path from your project's root folder to your web server's public folder. In some cases it may be `www` or `public_html`.
 
 ::: warning
-Si vous définissez les options `publicDirectory` et `buildDirectory` de l'extension vous n'avez pas besoin de définir les options `base` et `build.outDir` de Vite.
+If you set the extension's `publicDirectory` and `buildDirectory` options you don't need to set Vite's `base` and `build.outDir` options.
 :::
 
 ## buildDirectory
 
-- **Type :** `string`
-- **Valeur par défaut :** `public`
+- **Type:** `string`
+- **Default value:** `public`
 
-Chemin relatif depuis votre dossier public dans lequel ont été compilés vos fichiers à la suite d'un `vite build`.
+Relative path from your public folder where your files were compiled following a `vite build`.
 
 ::: warning
-Voir remarque plus haut.
+See note above.
 :::
 
 ## servePublic
 
-- **Type :** `boolean`
-- **Valeur par défaut :** `true`
+- **Type:** `boolean`
+- **Default value:** `true`
 
-Par défaut l'extension désactive l'option `publicDir` de la configuration de vite. Nous ne souhaitons pas que le contenu complet du dossier public (point d'entrée index.php, etc...) soit copié dans le dossier de build. (voir [discussion](https://github.com/lhapaipai/vite-bundle/issues/17)). En activant cette option l'extension active tout de même un serveur local pour que le serveur de développement de Vite puisse renvoyer les fichiers présents dans le dossier public.
+By default the extension disables the `publicDir` option of the vite configuration. We don't want the full contents of the public folder (index.php entry point, etc.) to be copied into the build folder. (see [discussion](https://github.com/lhapaipai/vite-bundle/issues/17)). By activating this option the extension still activates a local server so that the Vite development server can return the files present in the public folder.
 
-Si vous souhaitez tout de même utiliser l'option `publicDir` de vite, désactivez d'abord cette option.
+If you still want to use the `publicDir` option quickly, disable this option first.
 
-::: tip
-Cette option sera supprimée dès que l'option `build.copyPublicDir` de Vite sera définitivement adoptée.
+:::tip
+This option will be removed as soon as Vite's `build.copyPublicDir` option is definitively adopted.
 :::
 
 ## refresh
 
-- **Type :** `boolean | string[]`
-- **Valeur par défaut :** `false`
+- **Type:** `boolean | string[]`
+- **Default value:** `false`
 
-Permet de relancer le serveur de développement de Vite lorsque vos fichiers sont modifiés. En mettant cette valeur à `true`, le serveur vérifiera les modifications sur vos fichiers Twig (équivalent à la valeur `["templates/**/*.twig"]`). Vous pouvez également définir votre propre tableau de motif.
+Allows you to restart the Vite development server when your files are modified. By setting this value to `true`, the server will check for modifications on your Twig files (equivalent to the value `["templates/**/*.twig"]`). You can also define your own pattern table.
 
-Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) pour interpréter les motifs.
+Vite uses the [picomatch](https://github.com/micromatch/picomatch) library to interpret the patterns.
 
 ## viteDevServerHostname
 
-- **Type :** `null | string`
-- **Valeur par défaut :** `null`
+- **Type:** `null | string`
+- **Default value:** `null`
 
-Si vous avez spécifié l'option Vite `server.host` à `0.0.0.0` (pour Docker notamment) vous aurez probablement besoin de configurer `viteDevServerHostname` à 'localhost'. Voir [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
+If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `viteDevServerHostname` to 'localhost'. See [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
 
 ## debug
 
-- **Type :** `boolean`
-- **Valeur par défaut :** `false`
+- **Type:** `boolean`
+- **Default value:** `false`
 
-Affiche dans la console la configuration complète de Vite lorsqu'elle a été complètement résolue (`configResolved`).
-
+Displays in the console the complete configuration of Vite when it has been completely resolved (`configResolved`).

@@ -4,8 +4,8 @@ La configuration du bundle se fait dans le fichier `config/packages/pentatrion_v
 
 ```yaml
 pentatrion_vite:
-  public_dir: public
-  base: /build/
+  public_directory: public
+  build_directory: build
   throw_on_missing_entry: true
   # etc...
 ```
@@ -73,7 +73,7 @@ pentatrion_vite:
 Si vous avez défini plusieurs configurations de vite.
 
 ::: warning
-Dans le cas d'une configuration multiple, il faudra laisser les options `build_directory`, `script_attributes` et `link_attributes` vides et les définir dans l'option `build` qui va suivre.
+Dans le cas d'une configuration multiple, il faudra laisser les options `build_directory`, `script_attributes` et `link_attributes` vides et les définir dans l'option `builds` qui va suivre.
 :::
 
 ## builds
