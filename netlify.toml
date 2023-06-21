@@ -1,0 +1,3 @@
+[build]
+command = "pnpm docs:build"
+publish = ".vitepress/dist"
