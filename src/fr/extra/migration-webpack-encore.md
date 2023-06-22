@@ -33,7 +33,7 @@ vérifiez le [package.json](https://github.com/symfony/recipes/blob/main/symfony
 
 Après avoir ajouté manuellement les dépendances de développement `vite` et `vite-plugin-symfony` et les `scripts` dans votre `package.json` existant. vérifiez le fichier de référence [package.json](https://github.com/lhapaipai/vite-bundle/blob/main/install/package.json).
 
-Continuez votre configuration en suivant la page [installation](/guide/installation.html#installation).
+Continuez votre configuration en suivant la page [installation](/fr/guide/installation.html#installation).
 
 
 ## Configuration

@@ -1,7 +1,7 @@
 
 # Conseils d'utilisation
 
-Si vous souhaitez installer le bundle sans la recette de la communauté, consultez [l'installation manuelle](/extra/manual-installation.html).
+Si vous souhaitez installer le bundle sans la recette de la communauté, consultez [l'installation manuelle](/fr/extra/manual-installation.html).
 
 ## Fichiers CSS comme point d'entrée
 

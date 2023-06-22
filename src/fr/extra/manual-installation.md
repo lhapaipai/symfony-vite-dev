@@ -38,4 +38,4 @@ _pentatrion_vite:
 + node_modules/
 ```
 
-- continuez votre configuration en suivant la page [installation](/guide/installation.html#installation).
+- continuez votre configuration en suivant la page [installation](/fr/guide/installation.html#installation).

@@ -13,7 +13,7 @@ export type InputOption = {
 };
 ```
 
-si vous avez un thème contenant uniquement des règles css (pas de js) il peut être intéressant de définir un point d'entrée avec un fichier \[s\]css. cela permettra notamment d'[empêcher le FOUC](/guide/tips#css-files-as-entrypoint) lors du développement.
+si vous avez un thème contenant uniquement des règles css (pas de js) il peut être intéressant de définir un point d'entrée avec un fichier \[s\]css. cela permettra notamment d'[empêcher le FOUC](/fr/guide/tips#css-files-as-entrypoint) lors du développement.
 
 ```js
 // vite.config.js
@@ -76,7 +76,7 @@ export function resolveOutDir(config: VitePluginSymfonyOptions): string {
 ```
 :::
 
-Pour toutes les options disponibles, vous pouvez consulter la page [Configuration : Vite plugin Symfony](/config/vite-plugin-symfony).
+Pour toutes les options disponibles, vous pouvez consulter la page [Configuration : Vite plugin Symfony](/fr/config/vite-plugin-symfony).
 
 
 ## Vite Bundle
@@ -100,4 +100,4 @@ pentatrion_vite:
   # etc...
 ```
 
-Pour toutes les options disponibles, vous pouvez consulter la page [Configuration : Vite Bundle](/config/vite-bundle).
+Pour toutes les options disponibles, vous pouvez consulter la page [Configuration : Vite Bundle](/fr/config/vite-bundle).

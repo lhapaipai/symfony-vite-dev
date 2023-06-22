@@ -18,7 +18,7 @@ composer require --dev symfony/maker-bundle
 
 # Installation
 
-Si votre application Symfony utilise actuellement le bundle Webpack Encore, consultez la documentation de [migration](/extra/migration-webpack-encore) avant de commencer.
+Si votre application Symfony utilise actuellement le bundle Webpack Encore, consultez la documentation de [migration](/fr/extra/migration-webpack-encore) avant de commencer.
 
 
 Installez le bundle et la recette associée :
