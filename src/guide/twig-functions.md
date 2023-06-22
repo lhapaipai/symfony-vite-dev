@@ -9,7 +9,7 @@ arguments details:
 - `<entryName>` **type: string** Name of your entrypoint defined in your `vite.config.js` file.
 - `options` (optionnal) **type: associative array**
   - dependency **type: `"react"` | `null`** if your code use ReactJS, you need to specify this dependency to allow Vite to be able to modify the HTML during development. [More details on Vite documentation](https://vitejs.dev/guide/backend-integration.html#backend-integration)
-  - attr: Array (an array of extra attributes)
+  - attr: Array (an associative array of extra attributes)
 - `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
 
 ```twig
@@ -30,7 +30,7 @@ arguments details:
 arguments details:
 - `<entryName>` **type: string** Name of your entrypoint defined in your `vite.config.js` file.
 - `options` (optionnal) **type: associative array**
-  - attr: Array (an array of extra attributes)
+  - attr: Array (an associative array of extra attributes)
 - `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
 
 

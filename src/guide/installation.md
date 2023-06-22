@@ -1,4 +1,4 @@
-# Pré-requis
+# Prerequisites
 
 In order to test the implementation you must have a Symfony application with at least the Twig bundle installed.
 
@@ -67,7 +67,7 @@ Open your developer tools console you'll see : `Happy coding !!`.
 # Usage in production environment
 
 ```bash
-# build your js files
+# build your js/css files
 npm run build
 ```
 

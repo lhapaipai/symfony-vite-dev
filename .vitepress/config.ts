@@ -122,11 +122,20 @@ export default defineConfig({
               { text: 'Vite Bundle', link: '/fr/config/vite-bundle' },
               { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
             ]
-          }
+          },
           // {
           //   text: 'Exemples',
           //   items: [{ text: 'Basique', link: '/fr/examples/basic' }]
           // }
+          {
+            text: 'Extra',
+            items: [
+              { text: 'Compatibilité', link: '/fr/extra/compatibility' },
+              { text: 'En profondeur', link: '/fr/extra/in-depth' },
+              { text: 'Installation manuelle', link: '/fr/extra/manual-installation' },
+              { text: 'Migration Webpack Encore', link: '/fr/extra/migration-webpack-encore' }
+            ]
+          }
         ],
         footer: {
           message: 'Publié sous la licence MIT.'

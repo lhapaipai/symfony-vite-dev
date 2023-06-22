@@ -1,7 +1,8 @@
 
-# Multiple Vite Configurations
+# Configurations multiples avec Vite
 
-It's possible to combine multiple Vite configuration files. Here is a possible configuration model.
+Il est possible de combiner plusieurs fichiers de configuration Vite. Voici un modèle de configuration possible.
+
 
 `package.json`
 ```json
@@ -13,9 +14,9 @@ It's possible to combine multiple Vite configuration files. Here is a possible c
 }
 ```
 
-## Vite configuration
+## Configuration de Vite
 
-define 2 vite config files `vite.build1.config.js` and `vite.build2.config.js`.
+définir 2 fichiers de configuration vite `vite.build1.config.js` et `vite.build2.config.js`.
 
 ```js
 // vite.build1.config.js
@@ -70,9 +71,9 @@ export default defineConfig({
 });
 ```
 
-## Bundle configuration
+## Configuration du Bundle
 
-in your `config/packages/pentatrion_vite.yaml` file
+dans votre fichier `config/packages/pentatrion_vite.yaml`
 
 ```yaml
 pentatrion_vite:
@@ -82,12 +83,12 @@ pentatrion_vite:
         build1:
             build_directory: build1
             script_attributes:
-                # you can define your attributes that you want to apply
-                # for all your script tags
+                 # vous pouvez définir vos attributs que vous souhaitez
+                 # appliquer pour toutes vos balises script
 
             link_attributes:
-                # you can define your attributes that you want to apply
-                # for all your link tags
+                 # vous pouvez définir vos attributs que vous souhaitez
+                 # appliquer pour toutes vos balises lien
 
         build2:
             build_directory: build2
@@ -99,37 +100,37 @@ pentatrion_vite:
 
 ```
 
-in your templates
+dans vos modèles
 
 ```twig
 {% block stylesheets %}
-    {# define your build in the 3rd parameter #}
+    {# definissez votre nom de build dans le 3e paramètre #}
     {{ vite_entry_link_tags('multiple', [], 'build2') }}
 
-    {# no 3rd parameters it will be default_build -> build1 #}
+    {# pas de 3e paramètre, ce sera default_build -> build1 #}
     {{ vite_entry_link_tags('welcome') }}
 {% endblock %}
 
 {% block javascripts %}
-    {# define your build in the 3rd parameter #}
+    {# definissez votre nom de build dans le 3e paramètre #}
     {{ vite_entry_script_tags('multiple', [], 'build2') }}
 
-    {# no 3rd parameters it will be default_build -> build1 #}
+    {# pas de 3e paramètre, ce sera default_build -> build1 #}
     {{ vite_entry_script_tags('welcome') }}
 {% endblock %}
 ```
 
-to show your assets in dev mode
+pour afficher vos ressources en mode dev
 
 ```yaml
 # config/routes/dev/pentatrion_vite.yaml
 
-# remove this default config
+# supprimer cette configuration par défaut
 _pentatrion_vite: // [!code --]
     prefix: /build // [!code --]
     resource: "@PentatrionViteBundle/Resources/config/routing.yaml" // [!code --]
 
-# add one route by build path
+# ajouter une route par chemin de build
 _pentatrion_vite_build1: // [!code ++]
     path: /build1/{path} #same as your build1 base // [!code ++]
     defaults: // [!code ++]
@@ -147,9 +148,9 @@ _pentatrion_vite_build2: // [!code ++]
         path: ".+" // [!code ++]
 ```
 
-## Symfony Asset component configuration
+## Configuration du composant Symfony Asset
 
-Optional : if you want to use asset symfony component with custom strategy you need to add extra config...
+Facultatif : si vous souhaitez utiliser le composant Symfony Asset avec une stratégie personnalisée, vous devez ajouter une configuration supplémentaire...
 
 ```yaml
 # config/services.yaml
@@ -179,7 +180,7 @@ framework:
 
 ```
 
-after you can use your assets like this:
+après vous pouvez faire référence à vos ressources comme ceci :
 ```twig
 <img src="{{ asset('assets/images/violin.jpg', 'build1')}}" alt="">
 ```

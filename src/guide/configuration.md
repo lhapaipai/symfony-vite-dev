@@ -2,7 +2,7 @@
 
 ## Vite Plugin Symfony
 
-In order to maintain maximum flexibility, I decided not to create an overlay of the config file `vite.config.js`.
+In order to maintain maximum flexibility, I decided not to create an abstraction layer on top of the `vite.config.js` configuration file.
 
 The only required option is `build.rollupOptions.input`. With `vite-plugin-symfony` this option must be set as an object.
 

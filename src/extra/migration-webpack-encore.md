@@ -11,7 +11,7 @@ mv package-lock.json package-lock.json.bak
 composer remove symfony/webpack-encore-bundle
 ```
 
-You can safely rename your backup and install the ViteBundle
+You can safely rename your backup and install the Vite Bundle.
 ```bash
 mv assets.bak assets
 mv package.json.bak package.json
