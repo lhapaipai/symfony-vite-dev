@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Symfony & Vite"
   text: "Documentation"
-  tagline: Give wings to your Symfony application
+  tagline: Give wings to your Sym[ph]on[ie] application.
   image:
     src: /symfony-vite.svg
     alt: Symfony & Vite

@@ -24,5 +24,6 @@
     "prettier": "^2.8.8",
     "typescript": "5.0.x",
     "vitepress": "1.0.0-beta.3"
-  }
+  },
+  "type": "module"
 }

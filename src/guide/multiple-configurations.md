@@ -13,6 +13,8 @@ It's possible to combine multiple vite configuration files. Here is a possible c
 }
 ```
 
+## Vite configuration
+
 define 2 vite config files `vite.build1.config.js` and `vite.build2.config.js`.
 
 ```js
@@ -68,6 +70,8 @@ export default defineConfig({
 });
 ```
 
+## Bundle configuration
+
 in your `config/packages/pentatrion_vite.yaml` file
 
 ```yaml
@@ -76,7 +80,7 @@ pentatrion_vite:
     default_build: build1
     builds:
         build1:
-            base: /build1/
+            build_directory: build1
             script_attributes:
                 # you can define your attributes that you want to apply
                 # for all your script tags
@@ -86,7 +90,7 @@ pentatrion_vite:
                 # for all your link tags
 
         build2:
-            base: /build2/
+            build_directory: build2
             script_attributes:
                 # etc
 
@@ -121,28 +125,29 @@ to show your assets in dev mode
 # config/routes/dev/pentatrion_vite.yaml
 
 # remove this default config
-# _pentatrion_vite:
-#     prefix: /build
-#     resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+_pentatrion_vite: // [!code --]
+    prefix: /build // [!code --]
+    resource: "@PentatrionViteBundle/Resources/config/routing.yaml" // [!code --]
 
 # add one route by build path
-_pentatrion_vite_build1:
-    path: /build1/{path} #same as your build1 base
-    defaults:
-        _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
-        buildName: build1
-    requirements:
-        path: ".+"
+_pentatrion_vite_build1: // [!code ++]
+    path: /build1/{path} #same as your build1 base // [!code ++]
+    defaults: // [!code ++]
+        _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+        buildName: build1 // [!code ++]
+    requirements: // [!code ++]
+        path: ".+" // [!code ++]
 
-_pentatrion_vite_build2:
-    path: /build2/{path} #same as your build2 base
-    defaults:
-        _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
-        buildName: build2
-    requirements:
-        path: ".+"
+_pentatrion_vite_build2: // [!code ++]
+    path: /build2/{path} #same as your build2 base // [!code ++]
+    defaults: // [!code ++]
+        _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+        buildName: build2 // [!code ++]
+    requirements: // [!code ++]
+        path: ".+" // [!code ++]
 ```
 
+## Symfony Asset component configuration
 
 Optional : if you want to use asset symfony component with custom strategy you need to add extra config...
 

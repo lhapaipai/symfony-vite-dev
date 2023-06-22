@@ -1,21 +1,41 @@
+# Pré-requis
+
+In order to test the implementation you must have a Symfony application with at least the Twig bundle installed.
+
+```bash
+symfony new symphonie-app
+
+cd symphonie-app
+composer install
+
+composer require symfony/twig-bundle
+composer require --dev symfony/maker-bundle
+
+./bin/console make:controller
+# Choose a name for your controller class (e.g. FierceElephantController):
+# > WelcomeController
+```
+
 # Installation
 
-This bundle helping you render all of the dynamic `script` and `link` tags needed.
-Essentially, he provides two twig functions to load the correct scripts into your templates.
+If you come from Webpack Encore, check the [migration](/extra/migration-webpack-encore) documentation before starting.
 
-Before you start, make sure you don't have a package.json file otherwise, or if you come from Webpack Encore, check the [migration](/extra/migration-webpack-encore) documentation.
-
-Install the bundle with :
+Install the bundle and the recipe associated :
 
 ```bash
 composer require pentatrion/vite-bundle
+# Review the recipe at https://github.com/symfony/recipes-contrib/tree/main/pentatrion/vite-bundle/1.0
+# Do you want to execute this recipe?
+# [y] Yes
+# (defaults to n): y
 ```
 
+if you already have a `package.json` in your project before the installation of the bundle, the recipe will have kept your file without modifying it, so you will need to update it by referring to the [package.json](https://github.com/lhapaipai/vite-bundle/blob/main/install/package.json) reference file (sections `scripts` and `devDependencies`).
+
 ```bash
+# install your js dependencies (vite and vite-plugin-symfony)
 npm install
 
-# start your vite dev server
-npm run dev
 ```
 
 Add this twig functions in any template or base layout where you need to include a JavaScript entry.
@@ -30,9 +50,28 @@ Add this twig functions in any template or base layout where you need to include
 {% endblock %}
 ```
 
-if you are using React, you have to add this option in order to have FastRefresh.
+# Usage in development environment
 
-```twig
-{{ vite_entry_script_tags('app', { dependency: 'react' }) }}
+```bash
+# start your Symfony local Web server (listening port 8000 by default)
+symfony serve
+
+# start your vite dev server (listening port 5173 by default)
+npm run dev
 ```
+
+You can go to: `https://127.0.0.1:8000/welcome`.
+
+Open your developer tools console you'll see : `Happy coding !!`.
+
+# Usage in production environment
+
+```bash
+# build your js files
+npm run build
+```
+
+You can go to: `https://<your-domain>/welcome`.
+
+
 

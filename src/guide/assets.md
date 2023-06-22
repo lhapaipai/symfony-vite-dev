@@ -48,3 +48,22 @@ import.meta.glob([
     './images/**'
 ]);
 ```
+
+## Multiple asset strategies
+
+if you want to use the asset twig function to serve assets from Vite but you want to serve other assets that come from another source you can define multiple strategies.
+
+```yaml
+framework:
+    assets:
+        packages:
+            vite:
+                version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+```
+
+```twig
+{{ asset('assets/images/avatar.jpg', 'vite') }}
+
+{# default strategy #}
+{{ asset('other-location/logo.svg')}}
+```

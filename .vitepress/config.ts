@@ -1,7 +1,18 @@
 import { defineConfig } from 'vitepress';
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPHero.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPHero.vue', import.meta.url))
+        }
+      ]
+    }
+  },
   srcDir: 'src',
   lang: 'fr',
   title: 'Symfony & Vite',
@@ -19,62 +30,42 @@ export default defineConfig({
 
       themeConfig: {
         nav: [
-          { text: 'Guide', link: '/guide/installation' },
+          { text: 'Guide', link: '/guide/getting-started' },
           {
             text: 'Configuration',
             items: [
-              {
-                text: 'Vite Bundle',
-                link: '/config/vite-bundle'
-              },
-              {
-                text: 'Vite plugin Symfony',
-                link: '/config/vite-plugin-symfony'
-              }
+              { text: 'Vite Bundle', link: '/config/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
             ]
           }
-          // {
-          //   text: 'Examples',
-          //   link: '/examples/basic'
-          // }
+          // { text: 'Examples', link: '/examples/basic' }
         ],
 
         sidebar: [
           {
             text: 'Guide',
             items: [
+              { text: 'Getting started', link: '/guide/getting-started' },
               { text: 'Installation', link: '/guide/installation' },
               { text: 'Configuration', link: '/guide/configuration' },
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Tips', link: '/guide/tips' },
-              // { text: 'Getting started', link: '/guide/getting-started' },
               { text: 'Troubleshouting', link: '/guide/troubleshouting' }
             ]
           },
           {
             text: 'Configuration',
             items: [
-              {
-                text: 'Vite Bundle',
-                link: '/config/vite-bundle'
-              },
-              {
-                text: 'Vite plugin Symfony',
-                link: '/config/vite-plugin-symfony'
-              }
+              { text: 'Vite Bundle', link: '/config/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
             ]
           },
           // {
           //   text: 'Examples',
-          //   items: [
-          //     {
-          //       text: 'Basic',
-          //       link: '/examples/basic'
-          //     }
-          //   ]
-          // }
+          //   items: [{ text: 'Basic', link: '/examples/basic' }]
+          // },
           {
             text: 'Extra',
             items: [
@@ -89,75 +80,64 @@ export default defineConfig({
           message: 'Released under the MIT License.'
         }
       }
+    },
+    fr: {
+      label: 'Français',
+      lang: 'fr',
+      description: 'Guide du développeur',
+      themeConfig: {
+        docFooter: {
+          prev: 'Page précédente',
+          next: 'Page suivante'
+        },
+        nav: [
+          { text: 'Guide', link: '/fr/guide/getting-started' },
+          {
+            text: 'Configuration',
+            items: [
+              { text: 'Vite Bundle', link: '/fr/config/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
+            ]
+          }
+          // { text: 'Exemples', link: '/fr/examples/basic' }
+        ],
+
+        sidebar: [
+          {
+            text: 'Guide',
+            items: [
+              { text: 'Bien démarrer', link: '/fr/guide/getting-started' },
+              { text: 'Installation', link: '/fr/guide/installation' },
+              { text: 'Configuration', link: '/fr/guide/configuration' },
+              { text: 'fonctions Twig', link: '/fr/guide/twig-functions' },
+              { text: 'Assets', link: '/fr/guide/assets' },
+              { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
+              { text: 'Conseils', link: '/fr/guide/tips' },
+              { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshouting' }
+            ]
+          },
+          {
+            text: 'Configuration',
+            items: [
+              { text: 'Vite Bundle', link: '/fr/config/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
+            ]
+          }
+          // {
+          //   text: 'Exemples',
+          //   items: [{ text: 'Basique', link: '/fr/examples/basic' }]
+          // }
+        ],
+        footer: {
+          message: 'Publié sous la licence MIT.'
+        },
+
+        darkModeSwitchLabel: 'Apparence',
+        returnToTopLabel: 'Retour en haut',
+        lastUpdatedText: 'Dernière mise à jour',
+        outlineTitle: 'Sur cette page'
+      }
     }
-    // fr: {
-    //   label: 'Français',
-    //   lang: 'fr',
-    //   description: 'Guide du développeur',
-    //   themeConfig: {
-    //     docFooter: {
-    //       prev: 'Page précédente',
-    //       next: 'Page suivante'
-    //     },
-    //     nav: [
-    //       { text: 'Guide', link: '/fr/guide/getting-started' },
-    //       {
-    //         text: 'Configuration',
-    //         items: [
-    //           {
-    //             text: 'Vite Bundle',
-    //             link: '/fr/config/vite-bundle'
-    //           },
-    //           {
-    //             text: 'Vite plugin Symfony',
-    //             link: '/fr/config/vite-plugin-symfony'
-    //           }
-    //         ]
-    //       }
-    //       // {
-    //       //   text: 'Exemples',
-    //       //   link: '/fr/examples/basic'
-    //       // }
-    //     ],
-
-    //     sidebar: [
-    //       {
-    //         text: 'Guide',
-    //         items: [{ text: 'Bien démarrer', link: '/fr/guide/getting-started' }]
-    //       },
-    //       {
-    //         text: 'Configuration',
-    //         items: [
-    //           {
-    //             text: 'Vite Bundle',
-    //             link: '/fr/config/vite-bundle'
-    //           },
-    //           {
-    //             text: 'Vite plugin Symfony',
-    //             link: '/fr/config/vite-plugin-symfony'
-    //           }
-    //         ]
-    //       }
-    //       // {
-    //       //   text: 'Exemples',
-    //       //   items: [
-    //       //     {
-    //       //       text: 'Basique',
-    //       //       link: '/fr/examples/basic'
-    //       //     }
-    //       //   ]
-    //       // }
-    //     ],
-    //     footer: {
-    //       message: 'Publié sous la licence MIT.'
-    //     },
-
-    //     darkModeSwitchLabel: 'Apparence',
-    //     returnToTopLabel: 'Retour en haut',
-    //     lastUpdatedText: 'Dernière mise à jour',
-    //     outlineTitle: 'Sur cette page'
-    //   }
-    // }
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

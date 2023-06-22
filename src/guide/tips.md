@@ -89,7 +89,7 @@ export default defineConfig({
 
 ## https / http in Development
 
-By default, your Vite dev server don't use https and can cause unwanted reload if you serve your application with https (probably due to invalid certificates ). Configuration is easier if you develop your application without https.
+Your Vite dev server can cause unwanted reload if used in http and your Symfony application uses https (probably due to invalid certificates ). Configuration is easier if you develop your application without https.
 
 ```bash
 npm run dev

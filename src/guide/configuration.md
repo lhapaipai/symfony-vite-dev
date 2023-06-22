@@ -2,19 +2,26 @@
 
 ## Vite Plugin Symfony
 
-For the transparency, I decided not to create an overlay of the config file `vite.config.js`. You can check the full documentation of the `vite-plugin-symfony` in the github repository [github.com/lhapaipai/vite-plugin-symfony](https://github.com/lhapaipai/vite-plugin-symfony).
+In order to maintain maximum flexibility, I decided not to create an overlay of the config file `vite.config.js`.
+
+The only required option is `build.rollupOptions.input`. With `vite-plugin-symfony` this option must be set as an object.
+
+```ts
+export type InputOption = {
+  // entryAlias will be used by our Twig functions
+  [entryAlias: string]: string;
+};
+```
+
+if you have a theme containing only css rules (no js) it may be interesting to define an entry point with a \[s\]css file. this will in particular [prevent FOUC](/guide/tips#css-files-as-entrypoint) during development.
 
 ```js
 // vite.config.js
 import {defineConfig} from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
 
-/* if you're using React */
-// import react from '@vitejs/plugin-react';
-
 export default defineConfig({
     plugins: [
-        /* react(), // if you're using React */
         symfonyPlugin(),
     ],
 
@@ -24,14 +31,72 @@ export default defineConfig({
                 /* relative to the root option */
                 app: "./assets/app.ts",
 
-                /* you can also provide css files to prevent FOUC */
-                theme: "./assets/theme.css"
+                /* you can also provide [s]css files */
+                theme: "./assets/theme.scss"
             },
         }
     },
 });
 ```
 
+In order to allow use Vite without configuration, the extension preconfigures some options of Vite if these have not yet been defined. (view [source code](https://github.com/lhapaipai/vite-plugin-symfony/blob/main/src/index.ts))
+
+::: code-group
+```ts{4-15} [vite-plugin-symfony config()]
+// vite-plugin-symfony/src/index.ts
+config(userConfig) {
+
+  const extraConfig: UserConfig = {
+    base: userConfig.base ?? resolveBase(pluginOptions),
+    publicDir: false,
+    build: {
+      manifest: true,
+      outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
+    },
+    optimizeDeps: {
+      //Set to true to force dependency pre-bundling.
+      force: true,
+    },
+  };
+
+  return extraConfig;
+}
+```
+```ts{5-13} [resolveBase()]
+// vite-plugin-symfony/src/pluginOptions.ts
+export function resolveBase(config: VitePluginSymfonyOptions): string {
+  return "/" + config.buildDirectory + "/";
+}
+```
+```ts{5-13} [resolveOutDir()]
+// vite-plugin-symfony/src/pluginOptions.ts
+export function resolveOutDir(config: VitePluginSymfonyOptions): string {
+  return join(config.publicDirectory, config.buildDirectory);
+}
+```
+:::
+
+For all available options, you can check the [Vite plugin Symfony Options](/config/vite-plugin-symfony) page.
+
 ## Vite Bundle
 
-If you change some properties in your `vite.config.js` file, you probably need to create a `config/packages/pentatrion_vite.yaml` file to postpone these changes. it concerns `server.host`, `server.port`, `server.https` and `build.outdir` (and also `base`).
+If you change some properties in your `vite.config.js` file, you probably need to create a `pentatrion_vite.yaml` config file for your bundle to sync these modifications. it concerns:
+
+- `vite-plugin-symfony` options
+  - `publicDirectory`
+  - `buildDirectory`
+- `vite` options
+  - `base`
+  - `build.outdir`
+
+
+```yaml{3,4}
+#config/packages/pentatrion_vite.yaml
+pentatrion_vite:
+  public_directory: public
+  build_directory: build
+
+  # etc...
+```
+
+For all available options, you can check the [Vite Bundle Options](/config/vite-bundle) page.
