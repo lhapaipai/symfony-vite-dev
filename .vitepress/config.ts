@@ -29,6 +29,10 @@ export default defineConfig({
       description: 'Developper guide',
 
       themeConfig: {
+        editLink: {
+          pattern: 'https://github.com/lhapaipai/symfony-vite-docs/edit/main/src/:path',
+          text: 'Edit this page'
+        },
         nav: [
           { text: 'Guide', link: '/guide/getting-started' },
           {
@@ -86,6 +90,11 @@ export default defineConfig({
       lang: 'fr',
       description: 'Guide du développeur',
       themeConfig: {
+        editLink: {
+          pattern: 'https://github.com/lhapaipai/symfony-vite-docs/edit/main/src/:path',
+          text: 'Éditer cette page'
+        },
+
         docFooter: {
           prev: 'Page précédente',
           next: 'Page suivante'
@@ -109,7 +118,7 @@ export default defineConfig({
               { text: 'Bien démarrer', link: '/fr/guide/getting-started' },
               { text: 'Installation', link: '/fr/guide/installation' },
               { text: 'Configuration', link: '/fr/guide/configuration' },
-              { text: 'fonctions Twig', link: '/fr/guide/twig-functions' },
+              { text: 'Fonctions Twig', link: '/fr/guide/twig-functions' },
               { text: 'Assets', link: '/fr/guide/assets' },
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Conseils', link: '/fr/guide/tips' },
