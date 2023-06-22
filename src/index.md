@@ -14,6 +14,9 @@ hero:
       text: Getting started
       link: /guide/getting-started
     - theme: alt
+      text: Installation
+      link: /guide/installation
+    - theme: alt
       text: Bundle Options
       link: /config/vite-bundle
     - theme: alt
