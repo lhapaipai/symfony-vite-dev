@@ -4,3 +4,6 @@
 [submodule "extra/vite-plugin-symfony"]
 	path = extra/vite-plugin-symfony
 	url = https://github.com/lhapaipai/vite-plugin-symfony.git
+[submodule "extra/symfony-vite-docs"]
+	path = extra/symfony-vite-docs
+	url = https://github.com/lhapaipai/symfony-vite-docs

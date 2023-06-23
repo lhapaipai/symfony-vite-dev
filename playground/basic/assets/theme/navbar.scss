@@ -1,0 +1,43 @@
+#nav {
+  position: sticky;
+  top: 0px;
+  height: var(--nav-height);
+  transition: all .3s;
+
+  &.stuck {
+    box-shadow: 0 0 5px #0003;
+    background-color: white;
+  }
+
+  .navbar {
+    padding: 0 2rem;
+    display: flex;
+    height: 100%;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    height: 100%;
+  }
+
+  .links {
+    margin-left: auto;
+    display: flex;
+    height: 100%;
+  }
+
+  .logo {
+    margin-right: .5rem;
+  }
+
+
+  a {
+    padding: 0 1rem;
+    height: 100%;
+    line-height: var(--nav-height);
+    font-weight: bold;
+  }
+}

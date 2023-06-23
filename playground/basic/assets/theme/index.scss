@@ -1,0 +1,10 @@
+@import "./_variables.scss";
+@import "./layout.scss";
+@import "./components/card.scss";
+@import "./typography.scss";
+@import "./navbar.scss";
+@import "./pages/welcome.scss";
+
+* {
+  box-sizing: border-box;
+}

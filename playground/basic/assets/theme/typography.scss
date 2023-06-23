@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: #777;
+  text-decoration: none;
+  transition: color .3s;
+
+  &.active,
+  &:hover {
+    color: #333;
+  }
+}
+
+
+h1 {
+  background: var(--home-hero-name-background);
+  background-clip: text;
+  color: var(--home-hero-name-color);
+  font-size: 3rem;
+}
+
+code {
+  padding: 1rem;
+  background-color: #eee;
+  box-shadow: 1px 1px 5px #ddd;
+  width: 300px;
+  max-width: 100%;
+  display: inline-block;
+}

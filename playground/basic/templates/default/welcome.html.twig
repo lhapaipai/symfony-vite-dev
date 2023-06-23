@@ -2,18 +2,18 @@
 
 {% block title %}HelloController!{% endblock %}
 
+{% block html_class %}page-welcome{% endblock %}
+
 {% block content %}
-<div>
-    <h1>Welcome vite !</h1>
-</div>
+<h1>Symfony & Vite</h1>
 {% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
-{{ vite_entry_link_tags('welcome') }}
+{{ vite_entry_link_tags('pageWelcome') }}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
-{{ vite_entry_script_tags('welcome') }}
+{{ vite_entry_script_tags('pageWelcome') }}
 {% endblock %}

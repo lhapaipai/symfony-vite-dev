@@ -1,0 +1,28 @@
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #ddd;
+  width: 500px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  margin: 1rem 0;
+
+  p {
+    min-height: 4rem;
+  }
+
+  img {
+    width: 300px;
+    max-width: 100%;
+  }
+}

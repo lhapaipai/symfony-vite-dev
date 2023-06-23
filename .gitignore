@@ -9,6 +9,9 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+
+node_modules
+
 /playground/sandbox/
 
 /playground/*/.env.local
@@ -19,16 +22,12 @@
 /playground/*/var/
 /playground/*/vendor/
 
-node_modules
-
 /playground/*/public/build
 /playground/*/public/build1
 /playground/*/public/build2
 /playground/*/public/infos
 
-/public/build
-/public/build1
-/public/build2
-/public/infos
-
 .local
+
+/docs/*/.vitepress/cache/
+/docs/*/.vitepress/dist/
