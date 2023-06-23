@@ -31,7 +31,7 @@ composer require pentatrion/vite-bundle
 # (defaults to n): y
 ```
 
-Si vous avez déjà un `package.json` dans votre projet avant l'installation du bundle, la recette aura conservé votre fichier sans le modifier, vous devrez donc le mettre à jour en vous référant au fichier [package.json](https: //github.com/lhapaipai/vite-bundle/blob/main/install/package.json) de référence (sections `scripts` et `devDependencies`).
+Si vous avez déjà un `package.json` dans votre projet avant l'installation du bundle, la recette aura conservé votre fichier sans le modifier, vous devrez donc le mettre à jour en vous référant au fichier [package.json](https://github.com/lhapaipai/vite-bundle/blob/main/install/package.json) de référence (sections `scripts` et `devDependencies`).
 
 ```bash
 #  installez vos dépendances js (vite et vite-plugin-symfony)
