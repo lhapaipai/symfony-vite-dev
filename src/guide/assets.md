@@ -54,6 +54,7 @@ import.meta.glob([
 if you want to use the asset twig function to serve assets from Vite but you want to serve other assets that come from another source you can define multiple strategies.
 
 ```yaml
+# config/packages/framework.yaml
 framework:
     assets:
         packages:

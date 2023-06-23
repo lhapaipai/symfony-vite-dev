@@ -58,6 +58,7 @@ Si vous souhaitez utiliser la fonction Twig `asset()` pour servir des ressources
 
 
 ```yaml
+# config/packages/framework.yaml
 framework:
     assets:
         packages:
