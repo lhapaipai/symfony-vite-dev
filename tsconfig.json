@@ -8,7 +8,12 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "strict": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "~theme/*": [
+        "./.vitepress/theme/*"
+      ]
+    }
   },
   "include": [
     "env.d.ts",

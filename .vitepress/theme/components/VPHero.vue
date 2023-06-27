@@ -1,16 +1,46 @@
 <script setup lang="ts">
 import { type Ref, inject } from 'vue'
 import type { DefaultTheme } from 'vitepress/theme'
-import VPButton from 'vitepress/dist/client/theme-default/components/VPButton.vue'
-import VPImage from 'vitepress/dist/client/theme-default/components/VPImage.vue'
+import VPButton from './VPButton.vue'
+import VPImage from './VPImage.vue'
 
 export interface HeroAction {
   theme?: 'brand' | 'alt'
   text: string
   link: string
 }
+export interface Dependency {
+  icon: {
+    src: string;
+    width: number;
+    height: number;
+  };
+  prefix: string;
+  name: string;
+}
 
-defineProps<{
+const dependencies: Dependency[] = [
+  {
+    icon: {
+      src: "/images/packagist-logo.svg",
+      width: 30,
+      height: 35
+    },
+    prefix: "composer require",
+    name: "pentatrion/vite-bundle"
+  },
+  {
+    icon: {
+      src: "/images/npm-logo.svg",
+      width: 50,
+      height: 19.45
+    },
+    prefix: "npm i -D",
+    name: "vite-plugin-symfony"
+  }
+];
+
+const props = defineProps<{
   name?: string
   text?: string
   tagline?: string
@@ -31,17 +61,13 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
           </h1>
           <p v-if="text" class="text">{{ text }}</p>
           <p v-if="tagline" class="tagline">{{ tagline }}</p>
-          <div class="dependencies">
-            <p class="dependency">
-              <span class="dependency-image-container">
-                <img src="/images/packagist-logo.svg" alt="packagist logo" width="30" height="35">
-              </span>
-              pentatrion/vite-bundle</p>
-            <p class="dependency">
-              <span class="dependency-image-container">
-                <img src="/images/npm-logo.svg" alt="npm logo" width="50" height="19.45">
-              </span>
-              vite-plugin-symfony</p>
+          <div class="dependencies" v-if="dependencies">
+            <div class="dependency" v-for="dependency in dependencies" :key="dependency.name">
+              <div class="dependency-image-container">
+                <img :src="dependency.icon.src" :alt="dependency.name" :width="dependency.icon.width" :height="dependency.icon.height">
+              </div>
+              <pre><code><span class="prefix">{{ dependency.prefix }}</span> {{ dependency.name }}</code></pre>
+            </div>
           </div>
         </slot>
 
@@ -70,7 +96,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .VPHero {
   margin-top: calc((var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1);
   padding: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 64px) 24px 48px;
@@ -140,29 +166,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   white-space: pre-wrap;
 }
 
-.dependencies {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--vp-c-text-2);
-  margin: 1rem auto;
-}
-@media (max-width: 960px) {
-  .dependencies {
-    width: 210px;
-  }
-}
 
-.dependency {
-  display: flex;
-  align-items: center;
-}
-.dependency-image-container {
-  width: 50px;
-  margin-right: .5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 
 .VPHero.has-image .name,
@@ -361,6 +365,64 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   :deep(.image-src) {
     max-width: 320px;
     max-height: 320px;
+  }
+}
+
+.dependencies {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  margin: 1rem 0;
+  width: 440px;
+    max-width: 100%;
+
+}
+
+
+.dependency {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.dependency-image-container {
+  width: 50px;
+  margin-right: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+pre {
+  background-color: var(--vp-code-block-bg);
+  min-width: 380px;
+  margin: 0;
+  padding: 10px 0;
+  border-radius: 8px;
+  text-align: left;
+  code {
+    padding: 0 24px;
+    color: var(--vp-code-tab-active-text-color);
+
+    .prefix {
+      color: #A6ACCD;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .dependencies {
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .dependencies {
+    width: 100%;
+  }
+  pre {
+    flex: 1;
+    min-width: auto;
+    overflow: auto;
   }
 }
 </style>

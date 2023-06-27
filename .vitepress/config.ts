@@ -9,6 +9,18 @@ export default defineConfig({
         {
           find: /^.*\/VPHero.vue$/,
           replacement: fileURLToPath(new URL('./theme/components/VPHero.vue', import.meta.url))
+        },
+        {
+          find: /^.*\/VPButton.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPButton.vue', import.meta.url))
+        },
+        {
+          find: /^.*\/VPImage.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPImage.vue', import.meta.url))
+        },
+        {
+          find: '~theme',
+          replacement: fileURLToPath(new URL('./theme', import.meta.url))
         }
       ]
     }

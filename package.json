@@ -8,7 +8,7 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "lint": "eslint --ignore-pattern=.vitepress/cache  --ignore-pattern=.vitepress/dist .vitepress ."
+    "lint": "eslint .vitepress ."
   },
   "keywords": [],
   "author": "Hugues Tavernier",
@@ -22,6 +22,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.15.0",
     "prettier": "^2.8.8",
+    "sass": "^1.63.6",
     "typescript": "5.0.x",
     "vitepress": "1.0.0-beta.3"
   },

@@ -9,13 +9,12 @@ module.exports = {
     browser: true,
     es6: true
   },
-  plugins: ['prettier', '@typescript-eslint'],
+  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
-  // ignorePatterns: ['fr/.vitepress/cache'],
   extends: [
     'eslint:recommended',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
   ],
   overrides: [
     {
@@ -23,6 +22,9 @@ module.exports = {
       env: {
         node: true
       }
+    },
+    {
+      files: ['src/**/*', '.vitepress/config.ts', '.vitepress/theme/**/*']
     }
   ]
 };

@@ -16,12 +16,6 @@ hero:
     - theme: alt
       text: Installation
       link: /fr/guide/installation
-    - theme: alt
-      text: Bundle Options
-      link: /config/vite-bundle
-    - theme: alt
-      text: Vite plugin Options
-      link: /config/vite-plugin-symfony
 
 features:
   - icon: ⚡️

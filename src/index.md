@@ -7,6 +7,17 @@ hero:
   name: "Symfony & Vite"
   text: "Documentation"
   tagline: Give wings to your Sym[ph]on[ie] application.
+  dependencies:
+    - icon:
+        src: /images/packagist-logo.svg
+        width: 30
+        height: 35
+      name: pentatrion/vite-bundle
+    - icon:
+        src: /images/npm-logo.svg
+        width: 50
+        height: 19.45
+      name: vite-plugin-symfony
   image:
     src: /symfony-vite.svg
     alt: Symfony & Vite
@@ -17,12 +28,6 @@ hero:
     - theme: alt
       text: Installation
       link: /guide/installation
-    - theme: alt
-      text: Bundle Options
-      link: /config/vite-bundle
-    - theme: alt
-      text: Vite plugin Options
-      link: /config/vite-plugin-symfony
 
 features:
   - icon: ⚡️
