@@ -13,7 +13,7 @@
 node_modules
 
 /playground/sandbox/
-# /playground/ssr/
+/playground/ssr/
 
 /playground/*/.env.local
 /playground/*/.env.local.php
