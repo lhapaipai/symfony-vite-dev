@@ -7,8 +7,11 @@ Il est possible de combiner plusieurs fichiers de configuration Vite. Voici un m
 `package.json`
 ```json
 {
+  "dependencies": {
+    "concurrently": "^8",
+  },
   "scripts": {
-    "dev": "vite -c vite.build1.config.js & vite -c vite.build2.config.js",
+    "dev": "concurrently \"vite -c vite.build1.config.js\" \"vite -c vite.build2.config.js\"",
     "build": "vite build -c vite.build1.config.js && vite build -c vite.build2.config.js"
   }
 }
@@ -26,7 +29,7 @@ import symfonyPlugin from 'vite-plugin-symfony';
 export default defineConfig({
   plugins: [
     symfonyPlugin({
-      buildDirectory: 'build1'
+      buildDirectory: 'build-1'
     }),
   ],
 
@@ -53,7 +56,7 @@ import symfonyPlugin from 'vite-plugin-symfony';
 export default defineConfig({
   plugins: [
     symfonyPlugin({
-      buildDirectory: 'build2'
+      buildDirectory: 'build-2'
     }),
   ],
 
@@ -81,7 +84,7 @@ pentatrion_vite:
     default_build: build1
     builds:
         build1:
-            build_directory: build1
+            build_directory: build-1
             script_attributes:
                  # vous pouvez définir vos attributs que vous souhaitez
                  # appliquer pour toutes vos balises script
@@ -91,7 +94,7 @@ pentatrion_vite:
                  # appliquer pour toutes vos balises lien
 
         build2:
-            build_directory: build2
+            build_directory: build-2
             script_attributes:
                 # etc
 
@@ -132,7 +135,7 @@ _pentatrion_vite: // [!code --]
 
 # ajouter une route par chemin de build
 _pentatrion_vite_build1: // [!code ++]
-    path: /build1/{path} #same as your build1 base // [!code ++]
+    path: /build-1/{path} #same as your build1 base // [!code ++]
     defaults: // [!code ++]
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
         buildName: build1 // [!code ++]
@@ -140,7 +143,7 @@ _pentatrion_vite_build1: // [!code ++]
         path: ".+" // [!code ++]
 
 _pentatrion_vite_build2: // [!code ++]
-    path: /build2/{path} #same as your build2 base // [!code ++]
+    path: /build-2/{path} #same as your build2 base // [!code ++]
     defaults: // [!code ++]
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
         buildName: build2 // [!code ++]
