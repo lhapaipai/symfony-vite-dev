@@ -31,6 +31,18 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
           </h1>
           <p v-if="text" class="text">{{ text }}</p>
           <p v-if="tagline" class="tagline">{{ tagline }}</p>
+          <div class="dependencies">
+            <p class="dependency">
+              <span class="dependency-image-container">
+                <img src="/images/packagist-logo.svg" alt="packagist logo" width="30" height="35">
+              </span>
+              pentatrion/vite-bundle</p>
+            <p class="dependency">
+              <span class="dependency-image-container">
+                <img src="/images/npm-logo.svg" alt="npm logo" width="50" height="19.45">
+              </span>
+              vite-plugin-symfony</p>
+          </div>
         </slot>
 
         <div v-if="actions" class="actions">
@@ -128,6 +140,31 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   white-space: pre-wrap;
 }
 
+.dependencies {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  margin: 1rem auto;
+}
+@media (max-width: 960px) {
+  .dependencies {
+    width: 210px;
+  }
+}
+
+.dependency {
+  display: flex;
+  align-items: center;
+}
+.dependency-image-container {
+  width: 50px;
+  margin-right: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .VPHero.has-image .name,
 .VPHero.has-image .text {
   margin: 0 auto;
@@ -147,7 +184,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
 @media (min-width: 640px) {
   .name,
   .text {
-    max-width: 576px;
+    max-width: 600px;
     line-height: 56px;
     font-size: 48px;
   }
@@ -183,7 +220,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
 @media (min-width: 640px) {
   .tagline {
     padding-top: 12px;
-    max-width: 576px;
+    max-width: 600px;
     line-height: 32px;
     font-size: 20px;
   }

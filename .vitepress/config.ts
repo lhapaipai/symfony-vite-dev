@@ -42,7 +42,6 @@ export default defineConfig({
               { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
             ]
           }
-          // { text: 'Examples', link: '/examples/basic' }
         ],
 
         sidebar: [
@@ -56,7 +55,8 @@ export default defineConfig({
               { text: 'Assets', link: '/guide/assets' },
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Tips', link: '/guide/tips' },
-              { text: 'Troubleshouting', link: '/guide/troubleshouting' }
+              { text: 'Troubleshouting', link: '/guide/troubleshouting' },
+              { text: 'Examples', link: '/guide/examples' }
             ]
           },
           {
@@ -66,17 +66,14 @@ export default defineConfig({
               { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
             ]
           },
-          // {
-          //   text: 'Examples',
-          //   items: [{ text: 'Basic', link: '/examples/basic' }]
-          // },
           {
             text: 'Extra',
             items: [
               { text: 'Compatibility', link: '/extra/compatibility' },
               { text: 'In depth', link: '/extra/in-depth' },
               { text: 'Manual installation', link: '/extra/manual-installation' },
-              { text: 'Migration Webpack Encore', link: '/extra/migration-webpack-encore' }
+              { text: 'Migration Webpack Encore', link: '/extra/migration-webpack-encore' },
+              { text: 'Contribute', link: '/extra/contribute' }
             ]
           }
         ],
@@ -108,7 +105,6 @@ export default defineConfig({
               { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
             ]
           }
-          // { text: 'Exemples', link: '/fr/examples/basic' }
         ],
 
         sidebar: [
@@ -122,7 +118,8 @@ export default defineConfig({
               { text: 'Assets', link: '/fr/guide/assets' },
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Conseils', link: '/fr/guide/tips' },
-              { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshouting' }
+              { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshouting' },
+              { text: 'Exemples', link: '/fr/guide/examples' }
             ]
           },
           {
@@ -132,17 +129,14 @@ export default defineConfig({
               { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
             ]
           },
-          // {
-          //   text: 'Exemples',
-          //   items: [{ text: 'Basique', link: '/fr/examples/basic' }]
-          // }
           {
             text: 'Extra',
             items: [
               { text: 'Compatibilité', link: '/fr/extra/compatibility' },
               { text: 'En profondeur', link: '/fr/extra/in-depth' },
               { text: 'Installation manuelle', link: '/fr/extra/manual-installation' },
-              { text: 'Migration Webpack Encore', link: '/fr/extra/migration-webpack-encore' }
+              { text: 'Migration Webpack Encore', link: '/fr/extra/migration-webpack-encore' },
+              { text: 'Contribuez', link: '/fr/extra/contribute' }
             ]
           }
         ],
