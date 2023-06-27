@@ -2,18 +2,21 @@
 
 {% block title %}HelloController!{% endblock %}
 
-{% block html_class %}page-welcome{% endblock %}
+{% block html_class %}page-build-1{% endblock %}
 
 {% block content %}
-<h1>Symfony & Vite</h1>
+<div>
+  <h1>Symfony & Vite</h1>
+  <p>Build 1</p>
+</div>
 {% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
-{{ vite_entry_link_tags('pageWelcome') }}
+{{ vite_entry_link_tags('pageBuild1') }}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
-{{ vite_entry_script_tags('pageWelcome') }}
+{{ vite_entry_script_tags('pageBuild1') }}
 {% endblock %}

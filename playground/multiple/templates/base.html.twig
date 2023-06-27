@@ -1,25 +1,35 @@
+{% set body_class = '' %}
 <!DOCTYPE html>
-<html>
+<html class="{% block html_class %}{% endblock %}">
 
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon" href="data:;base64,iBORw0KGgo=">
     {% block stylesheets %}
+    {{ vite_entry_link_tags('app') }}
     {{ vite_entry_link_tags('theme') }}
     {% endblock %}
 
     {% block javascripts %}
+    {{ vite_entry_script_tags('app') }}
     {{ vite_entry_script_tags('theme') }}
     {% endblock %}
 </head>
 
 <body>
-    <nav id="navbar">
-        <a href="{{ path('welcome') }}">Welcome ViteBundle !</a>
-        <a href="{{ path('page_assets') }}">Page assets</a>
-        <a href="{{ path('page_imports') }}">Page imports</a>
-        <a href="{{ path('page_multiple') }}">Page multiple</a>
+    <nav id="nav">
+        <div class="navbar">
+            <div class="title">
+                <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg" /> Symfony & Vite
+            </div>
+            <div class="links">
+                <a class="{{ currentPage == 'page-build-1' ? 'active' : '' }}" href="{{ path('page-build-1') }}">Build
+                    1</a>
+                <a class="{{ currentPage == 'page-build-2' ? 'active' : '' }}" href="{{ path('page-build-2') }}">Build
+                    2</a>
+            </div>
+        </div>
     </nav>
     <div id="content">
         {% block content %}{% endblock %}

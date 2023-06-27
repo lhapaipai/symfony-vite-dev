@@ -3,7 +3,7 @@ _pentatrion_vite:
     resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
 
 _pentatrion_vite_build1:
-    path: /build1/{path}
+    path: /build-1/{path}
     defaults:
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
         buildName: build1
@@ -11,7 +11,7 @@ _pentatrion_vite_build1:
         path: ".+"
 
 _pentatrion_vite_build2:
-    path: /build2/{path}
+    path: /build-2/{path}
     defaults:
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
         buildName: build2

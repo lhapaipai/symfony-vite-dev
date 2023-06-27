@@ -8,27 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'welcome')]
-    public function welcome(): Response
+    #[Route('/', name: 'page-build-1')]
+    public function build1(): Response
     {
-        return $this->render('default/welcome.html.twig');
+        return $this->render('default/build-1.html.twig', [
+            'currentPage' => 'build-1',
+        ]);
     }
 
-    #[Route('/assets', name: 'page_assets')]
-    public function assets(): Response
+    #[Route('/page-2', name: 'page-build-2')]
+    public function build2(): Response
     {
-        return $this->render('default/page_assets.html.twig');
-    }
-
-    #[Route('/imports', name: 'page_imports')]
-    public function imports(): Response
-    {
-        return $this->render('default/page_imports.html.twig');
-    }
-
-    #[Route('/multiple', name: 'page_multiple')]
-    public function multiple(): Response
-    {
-        return $this->render('default/page_multiple.html.twig');
+        return $this->render('default/build-2.html.twig', [
+            'currentPage' => 'build-2',
+        ]);
     }
 }

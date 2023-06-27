@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
 
 import symfonyPlugin from 'vite-plugin-symfony';
+import { fileURLToPath } from 'url';
+
+const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
+const sharedDir = resolve(basicPlaygroundDir, '../../shared')
 
 export default defineConfig({
   plugins: [
     symfonyPlugin({
-      buildDirectory: 'build2'
+      buildDirectory: 'build-2'
     }),
   ],
 
@@ -16,7 +20,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        "multiple": "./assets/page/multiple/build2.js",
+        "pageBuild2": "./assets/page/build-2/index.js",
       },
     },
 
@@ -24,12 +28,19 @@ export default defineConfig({
   },
 
   server: {
-    port: 19876
+    port: 19876,
+    fs: {
+      allow: [
+        '.',
+        sharedDir
+      ]
+    }
   },
 
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'assets'),
+      '~': resolve(basicPlaygroundDir, 'assets'),
+      '~shared': sharedDir
     }
   }
 });

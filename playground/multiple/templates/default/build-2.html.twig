@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-build-2{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Welcome vite with multiple builds !</h1>
+    <p>Build 2</p>
+</div>
+
+<div class="example-wrapper">
+    <h2>Assets section</h2>
+
+    <div class="cards">
+        <div class="card">
+            <p>image imported via js with alias</p>
+            <div id="vite-asset-js-img-1"></div>
+            <code id="vite-asset-js-url-1"></code>
+        </div>
+        <div class="card">
+            <p>image imported via js with relative path</p>
+            <div id="vite-asset-js-img-2"></div>
+            <code id="vite-asset-js-url-2"></code>
+        </div>
+        <div class="card">
+            <p>image imported via js with absolute path (from vite root)</p>
+            <div id="vite-asset-js-img-3"></div>
+            <code id="vite-asset-js-url-3"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (relative path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-1"></div>
+            <code id="vite-asset-scss-url-1"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (alias path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-2"></div>
+            <code id="vite-asset-scss-url-2"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (absolute path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-3"></div>
+            <code id="vite-asset-scss-url-3"></code>
+        </div>
+        <div class="card">
+            <p>image imported via asset twig function, ViteAssetVersionStrategy</p>
+            <img src="{{ asset('assets/images/logo-vite.svg', 'build2')}}" alt="">
+            <code>{{ asset('assets/images/logo-vite.svg', 'build2')}}</code>
+        </div>
+        <div class="card">
+            <p>image imported via asset twig function, Default Strategy</p>
+            <img src="{{ asset('/images/symfony-vite.svg')}}" alt="">
+            <code>{{ asset('/images/symfony-vite.svg')}}</code>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageBuild2', {}, 'build2') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageBuild2', {}, 'build2') }}
+{% endblock %}

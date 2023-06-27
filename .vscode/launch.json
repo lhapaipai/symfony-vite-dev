@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "sandbox:vite:dev",
+      "name": "basic:vite:dev",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [
         "-c",
-        "${workspaceFolder}/playground/sandbox/vite.config.js"
+        "${workspaceFolder}/playground/basic/vite.config.js"
       ],
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
       ],
       "type": "node",
-      "cwd": "${workspaceFolder}/playground/sandbox",
+      "cwd": "${workspaceFolder}/playground/basic",
       "env": {
         "NODE_ENV": "development"
       },
@@ -25,19 +25,19 @@
       ]
     },
     {
-      "name": "sandbox:vite:build",
+      "name": "basic:vite:build",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [
         "build",
         "-c",
-        "${workspaceFolder}/playground/sandbox/vite.config.js"
+        "${workspaceFolder}/playground/basic/vite.config.js"
       ],
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
       ],
       "type": "node",
-      "cwd": "${workspaceFolder}/playground/sandbox",
+      "cwd": "${workspaceFolder}/playground/basic",
       "env": {
         "NODE_ENV": "development"
       },

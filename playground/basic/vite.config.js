@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
 
 import symfonyPlugin from 'vite-plugin-symfony';
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
+import { fileURLToPath } from 'url';
+
+const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
+const sharedDir = resolve(basicPlaygroundDir, '../../shared')
 
 export default defineConfig({
   plugins: [
@@ -25,20 +29,29 @@ export default defineConfig({
         "pageWelcome": "./assets/page/welcome/index.js",
 
         "app": "./assets/app.js",
-        "theme": "./assets/theme/index.scss"
+        "theme": "./assets/theme.scss"
       }
     },
 
     minify: false,
   },
 
-  // server: {
-  //   origin: 'http://localhost:5173'
-  // },
+  server: {
+    // origin: 'http://localhost:5173',
+    fs: {
+      allow: [
+        '.',
+        sharedDir
+      ]
+    }
+  },
 
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'assets'),
+      '~': resolve(basicPlaygroundDir, 'assets'),
+      '~shared': sharedDir
     }
-  }
+  },
+
+
 });

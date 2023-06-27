@@ -13,6 +13,7 @@
 node_modules
 
 /playground/sandbox/
+# /playground/ssr/
 
 /playground/*/.env.local
 /playground/*/.env.local.php
@@ -23,8 +24,8 @@ node_modules
 /playground/*/vendor/
 
 /playground/*/public/build
-/playground/*/public/build1
-/playground/*/public/build2
+/playground/*/public/build-1
+/playground/*/public/build-2
 /playground/*/public/infos
 
 .local
