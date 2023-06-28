@@ -2,6 +2,7 @@
 titleTemplate: ':title'
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+description: Documentation to integrate Vite into your Symfony application.
 
 hero:
   name: "Symfony & Vite"

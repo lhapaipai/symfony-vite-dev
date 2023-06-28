@@ -90,3 +90,18 @@
   --docsearch-primary-color: var(--vp-c-brand) !important;
 }
 
+
+
+:root:not(.dark) .vp-adaptive-theme,
+:root:not(.dark) .dependency {
+  --vp-code-block-bg: #f8f8f8;
+}
+
+.vp-doc div[class*='language-'] {
+  box-shadow: 0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08);
+}
+
+.dark .vp-doc div[class*='language-'] {
+  box-shadow: none;
+
+}

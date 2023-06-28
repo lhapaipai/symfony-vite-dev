@@ -25,6 +25,12 @@ export default defineConfig({
       ]
     }
   },
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark'
+    }
+  },
   srcDir: 'src',
   lang: 'fr',
   title: 'Symfony & Vite',
