@@ -8,8 +8,8 @@ Un troisième paramètre optionnel "buildName" est disponible si vous avez plusi
 détails des arguments :
 - `<entryName>` **type: string** Nom de votre point d'entrée défini dans votre fichier `vite.config.js`.
 - `options` (optionnel) **type: associative array**
-  - dependency **type: `"react"` | `null`**  si votre code utilise ReactJS, vous devez spécifier cette dépendance pour permettre à Vite de pouvoir modifier le HTML pendant le développement. [Plus de détails sur la documentation de Vite](https://vitejs.dev/guide/backend-integration.html#backend-integration)
-  - attr: Array (un tableau associatif d'attributs supplémentaires)
+  - `dependency` **type: `"react"` | `null`**  si votre code utilise ReactJS, vous devez spécifier cette dépendance pour permettre à Vite de pouvoir modifier le HTML pendant le développement. [Plus de détails sur la documentation de Vite](https://vitejs.dev/guide/backend-integration.html#backend-integration)
+  - `attr`: Array (un tableau associatif d'attributs supplémentaires).
 - `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
 
 ```twig
@@ -30,7 +30,8 @@ détails des arguments :
 détails des arguments :- `<entryName>` **type: string** Name of your entrypoint defined in your `vite.config.js` file.
 - `<entryName>` **type: string** Nom de votre point d'entrée défini dans votre fichier `vite.config.js`.
 - `options` (optionnel) **type: associative array**
-  - attr: Array (un tableau associatif d'attributs supplémentaires)
+  - `attr`: Array (un tableau associatif d'attributs supplémentaires).
+  - `preloadDynamicImports`: **type: boolean, default: false** Précharge dans des balises `<link rel="modulepreload">` les imports dynamiques.
 - `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
 
 ```twig
