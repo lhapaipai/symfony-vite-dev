@@ -41,17 +41,16 @@ export default defineConfig({
 
 Afin de faciliter l'utilisation de Vite sans configuration, l'extension préconfigure certaines options de Vite si celles-ci n'ont pas encore été définies. (voir [code source](https://github.com/lhapaipai/vite-plugin-symfony/blob/main/src/index.ts))
 
-::: code-group
-```ts{4-15} [vite-plugin-symfony config()]
+```ts{4-15}
 // vite-plugin-symfony/src/index.ts
 config(userConfig) {
 
   const extraConfig: UserConfig = {
-    base: userConfig.base ?? resolveBase(pluginOptions),
+    base: userConfig.base ?? "/build/",
     publicDir: false,
     build: {
       manifest: true,
-      outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
+      outDir: userConfig.build?.outDir ?? "public/build",
     },
     optimizeDeps: {
       // Définir sur true pour anticiper le chargement des dépendances.
@@ -62,19 +61,6 @@ config(userConfig) {
   return extraConfig;
 }
 ```
-```ts{5-13} [resolveBase()]
-// vite-plugin-symfony/src/pluginOptions.ts
-export function resolveBase(config: VitePluginSymfonyOptions): string {
-  return "/" + config.buildDirectory + "/";
-}
-```
-```ts{5-13} [resolveOutDir()]
-// vite-plugin-symfony/src/pluginOptions.ts
-export function resolveOutDir(config: VitePluginSymfonyOptions): string {
-  return join(config.publicDirectory, config.buildDirectory);
-}
-```
-:::
 
 Pour toutes les options disponibles, vous pouvez consulter la page [Configuration : Vite plugin Symfony](/fr/config/vite-plugin-symfony).
 
@@ -83,9 +69,6 @@ Pour toutes les options disponibles, vous pouvez consulter la page [Configuratio
 
 Si vous modifiez certaines propriétés dans votre fichier `vite.config.js`, vous devrez probablement créer un fichier de configuration `pentatrion_vite.yaml` pour que votre bundle synchronise ces modifications. ça concerne:
 
-- Options du plugins `vite-plugin-symfony`
-  - `publicDirectory`
-  - `buildDirectory`
 - Options de base de `vite`
   - `base`
   - `build.outdir`

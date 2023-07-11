@@ -1,26 +1,5 @@
 # Vite plugin Symfony Options
 
-## publicDirectory
-
-- **Type :** `string`
-- **Valeur par défaut :** `public`
-
-Chemin relatif depuis le dossier racine de votre projet vers le dossier public de votre serveur web. Dans certains cas il peut s'agir de `www` ou `public_html`.
-
-::: warning
-Si vous définissez les options `publicDirectory` et `buildDirectory` de l'extension vous n'avez pas besoin de définir les options `base` et `build.outDir` de Vite.
-:::
-
-## buildDirectory
-
-- **Type :** `string`
-- **Valeur par défaut :** `public`
-
-Chemin relatif depuis votre dossier public dans lequel ont été compilés vos fichiers à la suite d'un `vite build`.
-
-::: warning
-Voir remarque plus haut.
-:::
 
 ## servePublic
 
@@ -44,6 +23,13 @@ Permet de relancer le serveur de développement de Vite lorsque vos fichiers son
 
 Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) pour interpréter les motifs.
 
+## sriAlgorithm
+
+- **Type :** `false | "sha256" | "sha384" | "sha512"`
+- **Valeur par défaut :**
+
+Génère des clés de hachage lors de la génération de vos fichiers. À utiliser si vous souhaitez déployer vos ressources sur un CDN.
+
 ## viteDevServerHostname
 
 - **Type :** `null | string`
@@ -58,3 +44,40 @@ Si vous avez spécifié l'option Vite `server.host` à `0.0.0.0` (pour Docker no
 
 Affiche dans la console la configuration complète de Vite lorsqu'elle a été complètement résolue (`configResolved`).
 
+## <del>publicDirectory</del>
+
+- **Type :** `string`
+- **Valeur par défaut :** `"public"`
+- **Déprécié**
+
+Chemin relatif depuis le dossier racine de votre projet vers le dossier public de votre serveur web. Dans certains cas il peut s'agir de `www` ou `public_html`.
+
+::: warning
+`publicDirectory` est déprécié, vous devrez configurer `base` et `build.outDir` directement depuis la configuration de vite. Ceci permet d'éviter les confusions entre des options du plugin et de vite et également de permettre l'utilisation d'un CDN.
+```js
+export default defineConfig({
+  plugins: [
+    symfonyPlugin({
+      buildDirectory: "build", // [!code --]
+      publicDirectory: "public", // [!code --]
+    }),
+  ],
+  base: "/build/" // [!code ++]
+  build: {
+    outDir: "public/build" // [!code ++]
+  },
+});
+```
+:::
+
+## <del>buildDirectory</del>
+
+- **Type :** `string`
+- **Valeur par défaut :** `"build"`
+- **Déprécié**
+
+Chemin relatif depuis votre dossier public dans lequel ont été compilés vos fichiers à la suite d'un `vite build`.
+
+::: warning
+Voir remarque plus haut.
+:::

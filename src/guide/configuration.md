@@ -41,17 +41,16 @@ export default defineConfig({
 
 In order to allow use Vite without configuration, the extension preconfigures some options of Vite if these have not yet been defined. (view [source code](https://github.com/lhapaipai/vite-plugin-symfony/blob/main/src/index.ts))
 
-::: code-group
-```ts{4-15} [vite-plugin-symfony config()]
+```ts{4-15}
 // vite-plugin-symfony/src/index.ts
 config(userConfig) {
 
   const extraConfig: UserConfig = {
-    base: userConfig.base ?? resolveBase(pluginOptions),
+    base: userConfig.base ?? "/build/",
     publicDir: false,
     build: {
       manifest: true,
-      outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
+      outDir: userConfig.build?.outDir ?? "public/build",
     },
     optimizeDeps: {
       //Set to true to force dependency pre-bundling.
@@ -62,19 +61,6 @@ config(userConfig) {
   return extraConfig;
 }
 ```
-```ts{5-13} [resolveBase()]
-// vite-plugin-symfony/src/pluginOptions.ts
-export function resolveBase(config: VitePluginSymfonyOptions): string {
-  return "/" + config.buildDirectory + "/";
-}
-```
-```ts{5-13} [resolveOutDir()]
-// vite-plugin-symfony/src/pluginOptions.ts
-export function resolveOutDir(config: VitePluginSymfonyOptions): string {
-  return join(config.publicDirectory, config.buildDirectory);
-}
-```
-:::
 
 For all available options, you can check the [Vite plugin Symfony Options](/config/vite-plugin-symfony) page.
 
@@ -82,9 +68,6 @@ For all available options, you can check the [Vite plugin Symfony Options](/conf
 
 If you change some properties in your `vite.config.js` file, you probably need to create a `pentatrion_vite.yaml` config file for your bundle to sync these modifications. it concerns:
 
-- `vite-plugin-symfony` options
-  - `publicDirectory`
-  - `buildDirectory`
 - `vite` options
   - `base`
   - `build.outdir`
