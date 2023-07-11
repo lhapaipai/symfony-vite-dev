@@ -32,11 +32,17 @@ export default defineConfig({
 
         "app": "./assets/app.js",
         "theme": "./assets/theme.scss"
+      },
+      output: {
+        manualChunks: {
+          vue: ['vue']
+        }
       }
     },
-
+    
     minify: false,
   },
+
 
   server: {
     // origin: 'http://localhost:5173',

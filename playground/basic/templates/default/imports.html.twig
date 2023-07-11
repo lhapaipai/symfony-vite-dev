@@ -12,6 +12,7 @@
 {% block stylesheets %}
 {{ parent() }}
 {{ vite_entry_link_tags('pageImports', { attr: { 'data-foo': 'bar' }}) }}
+{# {{ vite_entry_link_tags('pageImports', { attr: { 'data-foo': 'bar' }, preloadDynamicImports: true}) }} #}
 {% endblock %}
 
 {% block javascripts %}
