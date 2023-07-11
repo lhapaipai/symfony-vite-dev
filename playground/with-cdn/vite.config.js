@@ -14,9 +14,11 @@ export default defineConfig({
     vuePlugin(),
     reactPlugin(),
     symfonyPlugin({
-      // debug: true,
+      sriAlgorithm: "sha256"
     }),
   ],
+
+  base: 'http://cdn.with-cdn.symfony-vite-dev.localhost',
 
   publicDir: false,
 

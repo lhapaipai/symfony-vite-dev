@@ -2,9 +2,11 @@ pentatrion_vite:
     script_attributes:
         # you can define your attributes that you want to apply
         # for all your script tags
+        crossorigin: anonymous
     link_attributes:
         # you can define your attributes that you want to apply
         # for all your link tags
+        crossorigin: anonymous
 
     throw_on_missing_entry: true
 

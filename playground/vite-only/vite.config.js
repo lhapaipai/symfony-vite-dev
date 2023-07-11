@@ -5,9 +5,11 @@ import { resolve } from 'path';
 
 import vue from "@vitejs/plugin-vue";
 // import Inspect from 'vite-plugin-inspect'
+import sri from '@small-tech/vite-plugin-sri';
 
 export default defineConfig({
   plugins: [
+    sri(),
     // Inspect({}),
     vue(),
     // legacy({

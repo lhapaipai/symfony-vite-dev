@@ -7,6 +7,7 @@
   "author": "Lhapaipai",
   "license": "ISC",
   "dependencies": {
+    "@small-tech/vite-plugin-sri": "^1.0.1",
     "@vitejs/plugin-legacy": "^3.0.1",
     "@vitejs/plugin-react": "^4.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
