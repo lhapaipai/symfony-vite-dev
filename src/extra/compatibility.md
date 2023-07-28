@@ -7,6 +7,7 @@ In order to facilitate the versionning between the symfony bundle and the vite p
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 3.x  | 2.x                    | 0.6.0 - 0.7.1       |
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | \>=3.0.x \<3.3.0       | ~0.7.2              |
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | 3.3.x                  | 3.3.x               |
+| ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | 4.0.x                  | 4.0.x               |
 
 
 ## Vite-Bundle migration from v0.2.x to v1.x
