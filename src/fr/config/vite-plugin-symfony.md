@@ -1,5 +1,27 @@
 # Vite plugin Symfony Options
 
+## debug
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `false`
+
+Affiche dans la console la configuration complète de Vite lorsqu'elle a été complètement résolue (`configResolved`).
+
+## originOverride
+
+- **Type:** `null | string`
+- **Valeur par défaut:** `null`
+
+Remplace l'origine pour les points d'entrée avec le serveur de développement. Utile lorsque vous utilisez un serveur proxy. Si vous avez spécifié l'option Vite `server.host` à `0.0.0.0` (pour Docker notamment) vous aurez probablement besoin de configurer `viteDevServerHostname` à `http://localhost`.
+
+## refresh
+
+- **Type :** `boolean | string[]`
+- **Valeur par défaut :** `false`
+
+Permet de relancer le serveur de développement de Vite lorsque vos fichiers sont modifiés. En mettant cette valeur à `true`, le serveur vérifiera les modifications sur vos fichiers Twig (équivalent à la valeur `["templates/**/*.twig"]`). Vous pouvez également définir votre propre tableau de motif.
+
+Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) pour interpréter les motifs.
 
 ## servePublic
 
@@ -14,14 +36,6 @@ Si vous souhaitez tout de même utiliser l'option `publicDir` de vite, désactiv
 Cette option sera supprimée dès que l'option `build.copyPublicDir` de Vite sera définitivement adoptée.
 :::
 
-## refresh
-
-- **Type :** `boolean | string[]`
-- **Valeur par défaut :** `false`
-
-Permet de relancer le serveur de développement de Vite lorsque vos fichiers sont modifiés. En mettant cette valeur à `true`, le serveur vérifiera les modifications sur vos fichiers Twig (équivalent à la valeur `["templates/**/*.twig"]`). Vous pouvez également définir votre propre tableau de motif.
-
-Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) pour interpréter les motifs.
 
 ## sriAlgorithm
 
@@ -30,25 +44,12 @@ Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) p
 
 Génère des clés de hachage lors de la génération de vos fichiers. À utiliser si vous souhaitez déployer vos ressources sur un CDN.
 
-## viteDevServerHostname
-
-- **Type :** `null | string`
-- **Valeur par défaut :** `null`
-
-Si vous avez spécifié l'option Vite `server.host` à `0.0.0.0` (pour Docker notamment) vous aurez probablement besoin de configurer `viteDevServerHostname` à 'localhost'. Voir [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
-
-## debug
-
-- **Type :** `boolean`
-- **Valeur par défaut :** `false`
-
-Affiche dans la console la configuration complète de Vite lorsqu'elle a été complètement résolue (`configResolved`).
 
 ## <del>publicDirectory</del>
 
 - **Type :** `string`
 - **Valeur par défaut :** `"public"`
-- **Déprécié**
+- **Déprécié** (sera retiré dans les versions 5.x)
 
 Chemin relatif depuis le dossier racine de votre projet vers le dossier public de votre serveur web. Dans certains cas il peut s'agir de `www` ou `public_html`.
 
@@ -74,10 +75,19 @@ export default defineConfig({
 
 - **Type :** `string`
 - **Valeur par défaut :** `"build"`
-- **Déprécié**
+- **Déprécié** (sera retiré dans les versions 5.x)
 
 Chemin relatif depuis votre dossier public dans lequel ont été compilés vos fichiers à la suite d'un `vite build`.
 
 ::: warning
 Voir remarque plus haut.
 :::
+
+
+## <del>viteDevServerHostname</del>
+
+- **Type :** `null | string`
+- **Valeur par défaut :** `null`
+- **Déprécié** (sera retiré dans les versions 5.x)
+
+Si vous avez spécifié l'option Vite `server.host` à `0.0.0.0` (pour Docker notamment) vous aurez probablement besoin de configurer `viteDevServerHostname` à 'localhost'. Voir [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).

@@ -1,5 +1,28 @@
 # Vite plugin Symfony Options
 
+## debug
+
+- **Type:** `boolean`
+- **Default value:** `false`
+
+Displays in the console the complete configuration of Vite when it has been completely resolved (`configResolved`).
+
+## originOverride
+
+- **Type:** `null | string`
+- **Default value:** `null`
+
+Override the origin for every dev entrypoint. Useful when you use a proxy server. If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `originOverride` to `http://localhost`.
+
+## refresh
+
+- **Type:** `boolean | string[]`
+- **Default value:** `false`
+
+Allows you to restart the Vite development server when your files are modified. By setting this value to `true`, the server will check for modifications on your Twig files (equivalent to the value `["templates/**/*.twig"]`). You can also define your own pattern table.
+
+Vite uses the [picomatch](https://github.com/micromatch/picomatch) library to interpret the patterns.
+
 ## servePublic
 
 - **Type:** false | string
@@ -13,14 +36,6 @@ If you still want to use the Vite `publicDir` option, disable this option first.
 This option will be removed as soon as Vite's `build.copyPublicDir` option is definitively adopted.
 :::
 
-## refresh
-
-- **Type:** `boolean | string[]`
-- **Default value:** `false`
-
-Allows you to restart the Vite development server when your files are modified. By setting this value to `true`, the server will check for modifications on your Twig files (equivalent to the value `["templates/**/*.twig"]`). You can also define your own pattern table.
-
-Vite uses the [picomatch](https://github.com/micromatch/picomatch) library to interpret the patterns.
 
 ## sriAlgorithm
 
@@ -29,25 +44,13 @@ Vite uses the [picomatch](https://github.com/micromatch/picomatch) library to in
 
 Generates hash keys when generating your files. Use if you want to deploy your assets to a CDN.
 
-## viteDevServerHostname
 
-- **Type:** `null | string`
-- **Default value:** `null`
-
-If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `viteDevServerHostname` to 'localhost'. See [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
-
-## debug
-
-- **Type:** `boolean`
-- **Default value:** `false`
-
-Displays in the console the complete configuration of Vite when it has been completely resolved (`configResolved`).
 
 ## <del>publicDirectory</del>
 
 - **Type:** `string`
 - **Default value:** `"public"`
-- **Deprecated**
+- **Deprecated** (will be removed in v5.x)
 
 Relative path from your project's root folder to your web server's public folder. In some cases it may be `www` or `public_html`.
 
@@ -73,10 +76,18 @@ export default defineConfig({
 
 - **Type:** `string`
 - **Default value:** `"build"`
-- **Deprecated**
+- **Deprecated** (will be removed in v5.x)
 
 Relative path from your public folder where your files were compiled following a `vite build`.
 
 ::: warning
 See note above.
 :::
+
+## <del>viteDevServerHostname</del>
+
+- **Type:** `null | string`
+- **Default value:** `null`
+- **Deprecated** (will be removed in v5.x)
+
+If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `viteDevServerHostname` to 'localhost'. See [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
