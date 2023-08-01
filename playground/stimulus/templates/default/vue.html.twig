@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vue !{% endblock %}
+
+{% block html_class %}page-vue{% endblock %}
+
+{% block content %}
+<div id="app"></div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageVue') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageVue') }}
+{% endblock %}

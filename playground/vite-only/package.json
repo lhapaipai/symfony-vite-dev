@@ -1,5 +1,5 @@
 {
-  "name": "vite-bundle-basic",
+  "name": "vite-playground-vite-only",
   "version": "1.0.0",
   "description": "",
   "main": "vite.config.js",
