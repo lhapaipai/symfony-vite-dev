@@ -49,7 +49,7 @@ arguments details:
 
 ## vite_mode
 
-certains plugins nécessitent de savoir si le serveur de développement est lancé pour exécuter des scripts. cette fonction permet de résoudre cette problématique.
+Some plugins require knowing if the development server is running to run scripts. This function solves this problem.
 
 arguments details:
 - `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
