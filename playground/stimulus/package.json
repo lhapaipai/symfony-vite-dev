@@ -12,5 +12,9 @@
   "license": "ISC",
   "volta": {
     "node": "18.12.1"
+  },
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@symfony/stimulus-bridge": "^3.2.0"
   }
 }

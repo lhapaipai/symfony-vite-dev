@@ -9,6 +9,7 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+/extra/vite
 
 node_modules
 
