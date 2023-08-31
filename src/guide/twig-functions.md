@@ -46,3 +46,30 @@ arguments details:
   '<custom-build-name-1>'
 ) }}
 ```
+
+## vite_mode
+
+certains plugins nécessitent de savoir si le serveur de développement est lancé pour exécuter des scripts. cette fonction permet de résoudre cette problématique.
+
+arguments details:
+- `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
+
+return value : `"dev"` | `"prod"` | `null`
+
+```twig
+{{ vite_mode('<custom-build-name-1>') }}
+```
+
+example:
+```twig
+{% block stylesheets %}
+  {{ vite_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ vite_entry_script_tags('app') }}
+  {% if vite_mode() == 'dev' %}
+    <script type="module" src="http://localhost:5173/@vite-plugin-checker-runtime-entry"></script>
+  {% endif %}
+{% endblock %}
+```
