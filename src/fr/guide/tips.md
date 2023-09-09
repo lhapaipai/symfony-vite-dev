@@ -71,9 +71,9 @@ export default defineConfig({
     },
 });
 ```
-## Un fichier par point d'entrée
+## Configurer le fractionnement des fichier
 
-Vite essaie de diviser vos fichiers js en plusieurs fichiers plus petits partagés entre les points d'entrée. Dans certains cas, ce n'est pas un bon choix et vous pouvez préférer produire un fichier js par point d'entrée.
+Vite essaie de diviser vos fichiers js en plusieurs fichiers plus petits partagés entre les points d'entrée. Pour configurer le fractionnement exact, vous pouvez définir une fonction `manualChunks` dans `rollupOptions`, reportez-vous à la [documentation rollup](https://rollupjs.org/configuration-options/#output-manualchunks) pour plus de détails.
 
 ```js
 // vite.config.js
@@ -82,7 +82,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: (id: string, {getModuleInfo, getModuleIds}) => {
+          // your code
+        },
       },
     },
   },

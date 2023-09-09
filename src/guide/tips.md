@@ -73,8 +73,8 @@ export default defineConfig({
 ```
 ## Configure splitting files per entry point
 
-Vite tries to split your js files into multiple smaller files shared between entry points. 
-To configure the exact splitting one can define a `manualChunks` function in rollupOptions, refer to [rollup docs on manual chunks](https://rollupjs.org/configuration-options/#output-manualchunks) for more details.
+Vite tries to split your js files into multiple smaller files shared between entry points.
+To configure the exact splitting one can define a `manualChunks` function in `rollupOptions`, refer to [rollup docs on manual chunks](https://rollupjs.org/configuration-options/#output-manualchunks) for more details.
 
 ```js
 // vite.config.js
@@ -83,7 +83,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: (id: string, {getModuleInfo, getModuleIds}) => {
+          // your code
+        },
       },
     },
   },
