@@ -26,7 +26,7 @@ If the domain of your CDN is different from the domain hosting your site you wil
 export default defineConfig({
    plugins: [
      symfonyPlugin({
-       sriAlgorithm: "sha256" // [!hl code]
+       sriAlgorithm: "sha256" // [!code hl]
      }),
    ],
 });

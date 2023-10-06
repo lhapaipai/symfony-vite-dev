@@ -40,10 +40,17 @@ This option will be removed as soon as Vite's `build.copyPublicDir` option is de
 ## sriAlgorithm
 
 - **Type:** `false | "sha256" | "sha384" | "sha512"`
-- **Default value:**
+- **Default value:** `false`
 
 Generates hash keys when generating your files. Use if you want to deploy your assets to a CDN.
 
+
+## enforcePluginOrderingPosition
+
+- **Type:** `boolean`
+- **Default value:** `true`
+
+Forces the plugin to be executed at the end. This guarantees that all files will be processed and in particular allows us to generate the correct hashes of our files if we wish to add integrity attributes to our scripts. if you deactivate this option the symfony plugin will be executed in the order where it was declared.
 
 
 ## <del>publicDirectory</del>

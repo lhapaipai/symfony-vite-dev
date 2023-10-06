@@ -40,10 +40,16 @@ Cette option sera supprimée dès que l'option `build.copyPublicDir` de Vite ser
 ## sriAlgorithm
 
 - **Type :** `false | "sha256" | "sha384" | "sha512"`
-- **Valeur par défaut :**
+- **Valeur par défaut :** `false`
 
 Génère des clés de hachage lors de la génération de vos fichiers. À utiliser si vous souhaitez déployer vos ressources sur un CDN.
 
+## enforcePluginOrderingPosition
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `true`
+
+Force l'exécution du plugin à la fin. Cela nous garanti que tous les fichiers seront traités et permet notamment de générer les bon hachages de nos fichiers si l'on souhaite ajouter des attributs d'intégrité à nos scripts. si vous désactivez cette option le plugin symfony sera exécuté à l'emplacement où il a été déclaré.
 
 ## <del>publicDirectory</del>
 
