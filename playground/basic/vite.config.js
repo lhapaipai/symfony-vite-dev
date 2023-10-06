@@ -13,14 +13,13 @@ export default defineConfig({
   plugins: [
     vuePlugin(),
     reactPlugin(),
-    symfonyPlugin({
-      // debug: true,
-    }),
+    symfonyPlugin(),
   ],
 
   publicDir: false,
 
   build: {
+    assetsInlineLimit: 2048,
     manifest: true,
     rollupOptions: {
       input: {
