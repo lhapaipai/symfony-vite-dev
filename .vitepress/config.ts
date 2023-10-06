@@ -74,7 +74,7 @@ export default defineConfig({
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Using a CDN', link: '/guide/cdn' },
               { text: 'Tips', link: '/guide/tips' },
-              { text: 'Troubleshouting', link: '/guide/troubleshouting' },
+              { text: 'Troubleshooting', link: '/guide/troubleshooting' },
               { text: 'Examples', link: '/guide/examples' }
             ]
           },
@@ -138,7 +138,7 @@ export default defineConfig({
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Utiliser un CDN', link: '/fr/guide/cdn' },
               { text: 'Conseils', link: '/fr/guide/tips' },
-              { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshouting' },
+              { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshooting' },
               { text: 'Exemples', link: '/fr/guide/examples' }
             ]
           },

@@ -29,6 +29,8 @@ You can also use the `asset()` twig function by specifing your asset file path r
 </body>
 ```
 
+Please note, by default Vite will make all its assets smaller than 4kb inline, so you will not be able to reference these files. (see explanations and solution in [troubleshooting](/guide/troubleshooting.html#troubleshooting)).
+
 You can use this `asset()` function only with assets referenced by JavaScript or CSS files. If you want to make Vite aware of others assets you can import directory of assets into your application's entry point. For example il you want to version all images stored in `assets/images` you could add the following in your `app` entrypoint. (I do not really recommend this method but rather the following one by defining multiple strategies)
 
 ```

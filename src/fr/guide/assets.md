@@ -31,6 +31,8 @@ Vous pouvez également utiliser la fonction Twig `asset()` en spécifiant le che
 
 Vous pouvez utiliser cette fonction `asset()` uniquement avec des ressources référencées par des fichiers JavaScript ou CSS.
 
+Attention, par défaut Vite rendra en ligne tous ses assets de taille inférieure à 4kb, vous ne pourrez donc faire référence à ces fichiers. (voir explications et solution dans [résolutions de problèmes](/fr/guide/troubleshooting.html#resolution-de-problemes)).
+
 Si vous souhaitez que Vite connaisse d'autres ressources, vous pouvez importer un répertoire de ressources dans le point d'entrée de votre application. Par exemple, si vous souhaitez versionner toutes les images stockées dans `assets/images`, vous pouvez ajouter ce qui suit dans votre point d'entrée `app`. (je ne vous recommande pas vraiment cette méthode mais plutôt celle qui suit en définissant plusieurs stratégies)
 
 ```
