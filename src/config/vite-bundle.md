@@ -31,6 +31,13 @@ Path to your compiled files relative to the web root directory.
 
 When using Docker, you may want to specify a different origin if you start your Vite development server outside of your Docker container. (eg. `http://host.docker.internal:5173`).
 
+## absolute_url
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `false`
+
+Generates full URLs of your generated js/css/assets files (schema + domain + path).
+
 ## throw_on_missing_entry
 
 - **Type:** `boolean`

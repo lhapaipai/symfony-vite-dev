@@ -10,6 +10,7 @@ détails des arguments :
 - `options` (optionnel) **type: associative array**
   - `dependency` **type: `"react"` | `null`**  si votre code utilise ReactJS, vous devez spécifier cette dépendance pour permettre à Vite de pouvoir modifier le HTML pendant le développement. [Plus de détails sur la documentation de Vite](https://vitejs.dev/guide/backend-integration.html#backend-integration)
   - `attr`: Array (un tableau associatif d'attributs supplémentaires).
+  - `absolute_url`: **type: `boolean`** Génère des URL complètes de vos fichiers js
 - `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
 
 ```twig
@@ -32,6 +33,8 @@ détails des arguments :- `<entryName>` **type: string** Name of your entrypoint
 - `options` (optionnel) **type: associative array**
   - `attr`: Array (un tableau associatif d'attributs supplémentaires).
   - `preloadDynamicImports`: **type: boolean, default: false** Précharge dans des balises `<link rel="modulepreload">` les imports dynamiques.
+  - `absolute_url`: **type: `boolean`** Génère des URL complètes de vos fichiers css
+
 - `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
 
 ```twig

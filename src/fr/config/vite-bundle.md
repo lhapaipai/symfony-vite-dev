@@ -31,6 +31,13 @@ Chemin relatif depuis votre dossier public dans lequel ont été compilés vos f
 
 Lors d'une utilisation avec Docker, vous pouvez désirer spécifier une origine différente si vous démarrer votre serveur de développement Vite en dehors de votre conteneur Docker. (ex: `http://host.docker.internal:5173`).
 
+## absolute_url
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `false`
+
+Génère des URL complètes de vos fichiers js/css/assets générés (schema + domaine + chemin).
+
 ## throw_on_missing_entry
 
 - **Type :** `boolean`
