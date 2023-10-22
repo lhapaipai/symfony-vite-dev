@@ -71,7 +71,7 @@ export default defineConfig({
               { text: 'Configuration', link: '/guide/configuration' },
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
-              { text: 'Custom attributes', link: '/fr/guide/custom-attributes'},
+              { text: 'Custom attributes', link: '/guide/custom-attributes'},
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Using a CDN', link: '/guide/cdn' },
               { text: 'Tips', link: '/guide/tips' },
