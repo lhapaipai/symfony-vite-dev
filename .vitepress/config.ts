@@ -92,6 +92,7 @@ export default defineConfig({
               { text: 'Compatibility', link: '/extra/compatibility' },
               { text: 'In depth', link: '/extra/in-depth' },
               { text: 'Manual installation', link: '/extra/manual-installation' },
+              { text: 'Migration', link: '/extra/migration' },
               { text: 'Migration Webpack Encore', link: '/extra/migration-webpack-encore' },
               { text: 'Contribute', link: '/extra/contribute' }
             ]
@@ -157,6 +158,7 @@ export default defineConfig({
               { text: 'Compatibilité', link: '/fr/extra/compatibility' },
               { text: 'En profondeur', link: '/fr/extra/in-depth' },
               { text: 'Installation manuelle', link: '/fr/extra/manual-installation' },
+              { text: 'Migration', link: '/fr/extra/migration' },
               { text: 'Migration Webpack Encore', link: '/fr/extra/migration-webpack-encore' },
               { text: 'Contribuez', link: '/fr/extra/contribute' }
             ]
