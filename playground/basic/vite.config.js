@@ -50,6 +50,9 @@ export default defineConfig({
         '.',
         sharedDir
       ]
+    },
+    watch: {
+      ignored: ['**/.idea/**', '**/tests/**', '**/var/**', '**/vendor/**'],
     }
   },
 

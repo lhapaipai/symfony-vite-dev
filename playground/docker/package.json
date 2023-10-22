@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "keywords": [],
+    "author": "Lhapaipai",
+    "license": "ISC",
+    "volta": {
+        "node": "18.12.1"
+    },
+    "dependencies": {
+        "vite": "^4.5.0",
+        "vite-plugin-symfony": "^4.3.4"
+    }
+}

@@ -1,0 +1,21 @@
+services:
+  php:
+    build:
+      context: .
+      target: php_dev
+    volumes:
+      - ../../extra/vite-bundle:/extra/vite-bundle
+      - ./:/srv/app
+      - ./docker/php/conf.d/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:ro
+    environment:
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  caddy:
+    build:
+      context: .
+      target: caddy_base
+    volumes:
+      - ./public:/srv/app/public:ro
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
