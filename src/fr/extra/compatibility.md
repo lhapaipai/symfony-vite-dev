@@ -8,6 +8,7 @@ Afin de faciliter le versionning entre le bundle symfony et le plugin vite, j'ai
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | \>=3.0.x \<3.3.0       | ~0.7.2              |
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | 3.3.x                  | 3.3.x               |
 | ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | 4.0.x                  | 4.0.x               |
+| ^4.4 \|\| ^5.0 \|\| ^6.0 | 4.x  | 5.0.x                  | 5.0.x               |
 
 
 ## Migration Vite-Bundle de la v0.2.x à la v1.x

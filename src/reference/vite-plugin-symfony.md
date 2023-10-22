@@ -7,12 +7,21 @@
 
 Displays in the console the complete configuration of Vite when it has been completely resolved (`configResolved`).
 
+
+## enforcePluginOrderingPosition
+
+- **Type:** `boolean`
+- **Default value:** `true`
+
+Forces the plugin to be executed at the end. This guarantees that all files will be processed and in particular allows us to generate the correct hashes of our files if we wish to add integrity attributes to our scripts. if you deactivate this option the symfony plugin will be executed in the order where it was declared.
+
+
 ## originOverride
 
 - **Type:** `null | string`
 - **Default value:** `null`
 
-Override the origin for every dev entrypoint. Useful when you use a proxy server. If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `originOverride` to `http://localhost`.
+Override the origin for every dev entrypoint. Useful when you use a proxy server. If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `originOverride` to `http://localhost`. If you want to specify the scheme, host and port, use `originOverride` otherwise prefer `viteDevServerHostname`.
 
 ## refresh
 
@@ -45,56 +54,9 @@ This option will be removed as soon as Vite's `build.copyPublicDir` option is de
 Generates hash keys when generating your files. Use if you want to deploy your assets to a CDN.
 
 
-## enforcePluginOrderingPosition
-
-- **Type:** `boolean`
-- **Default value:** `true`
-
-Forces the plugin to be executed at the end. This guarantees that all files will be processed and in particular allows us to generate the correct hashes of our files if we wish to add integrity attributes to our scripts. if you deactivate this option the symfony plugin will be executed in the order where it was declared.
-
-
-## <del>publicDirectory</del>
-
-- **Type:** `string`
-- **Default value:** `"public"`
-- **Deprecated** (will be removed in v5.x)
-
-Relative path from your project's root folder to your web server's public folder. In some cases it may be `www` or `public_html`.
-
-::: warning
-`publicDirectory` is deprecated, you need to set `base` and `build.outDir` directly from Vite config.
-```js
-export default defineConfig({
-  plugins: [
-    symfonyPlugin({
-      buildDirectory: "build", // [!code --]
-      publicDirectory: "public", // [!code --]
-    }),
-  ],
-  base: "/build/" // [!code ++]
-  build: {
-    outDir: "public/build" // [!code ++]
-  },
-});
-```
-:::
-
-## <del>buildDirectory</del>
-
-- **Type:** `string`
-- **Default value:** `"build"`
-- **Deprecated** (will be removed in v5.x)
-
-Relative path from your public folder where your files were compiled following a `vite build`.
-
-::: warning
-See note above.
-:::
-
-## <del>viteDevServerHostname</del>
+## viteDevServerHostname
 
 - **Type:** `null | string`
 - **Default value:** `null`
-- **Deprecated** (will be removed in v5.x)
 
 If you have specified the Vite `server.host` option to `0.0.0.0` (especially for Docker) you will probably need to set `viteDevServerHostname` to 'localhost'. See [discussion](https://github.com/lhapaipai/vite-bundle/issues/26).

@@ -57,7 +57,7 @@ détails des arguments :
 - `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
 
 
-valeur de retour : `"dev"` | `"prod"` | `null`
+valeur de retour : `"dev"` | `"build"` | `null`
 
 ```twig
 {{ vite_mode('<custom-build-name-1>') }}

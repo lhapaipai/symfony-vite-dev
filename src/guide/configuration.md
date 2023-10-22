@@ -62,7 +62,7 @@ config(userConfig) {
 }
 ```
 
-For all available options, you can check the [Vite plugin Symfony Options](/config/vite-plugin-symfony) page.
+For all available options, you can check the [Vite plugin Symfony Reference](/reference/vite-plugin-symfony) page.
 
 ## Vite Bundle
 
@@ -82,4 +82,4 @@ pentatrion_vite:
   # etc...
 ```
 
-For all available options, you can check the [Vite Bundle Options](/config/vite-bundle) page.
+For all available options, you can check the [Vite Bundle Reference](/reference/vite-bundle) page.

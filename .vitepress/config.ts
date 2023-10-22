@@ -54,10 +54,10 @@ export default defineConfig({
         nav: [
           { text: 'Guide', link: '/guide/getting-started' },
           {
-            text: 'Configuration',
+            text: 'Reference',
             items: [
-              { text: 'Vite Bundle', link: '/config/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
+              { text: 'Vite Bundle', link: '/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/reference/vite-plugin-symfony' }
             ]
           }
         ],
@@ -71,6 +71,7 @@ export default defineConfig({
               { text: 'Configuration', link: '/guide/configuration' },
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
+              { text: 'Custom attributes', link: '/fr/guide/custom-attributes'},
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Using a CDN', link: '/guide/cdn' },
               { text: 'Tips', link: '/guide/tips' },
@@ -79,10 +80,10 @@ export default defineConfig({
             ]
           },
           {
-            text: 'Configuration',
+            text: 'Reference',
             items: [
-              { text: 'Vite Bundle', link: '/config/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/config/vite-plugin-symfony' }
+              { text: 'Vite Bundle', link: '/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/reference/vite-plugin-symfony' }
             ]
           },
           {
@@ -118,10 +119,10 @@ export default defineConfig({
         nav: [
           { text: 'Guide', link: '/fr/guide/getting-started' },
           {
-            text: 'Configuration',
+            text: 'Référence',
             items: [
-              { text: 'Vite Bundle', link: '/fr/config/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
+              { text: 'Vite Bundle', link: '/fr/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/fr/reference/vite-plugin-symfony' }
             ]
           }
         ],
@@ -135,6 +136,7 @@ export default defineConfig({
               { text: 'Configuration', link: '/fr/guide/configuration' },
               { text: 'Fonctions Twig', link: '/fr/guide/twig-functions' },
               { text: 'Assets', link: '/fr/guide/assets' },
+              { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes'},
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Utiliser un CDN', link: '/fr/guide/cdn' },
               { text: 'Conseils', link: '/fr/guide/tips' },

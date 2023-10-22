@@ -56,7 +56,7 @@ Some plugins require knowing if the development server is running to run scripts
 arguments details:
 - `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
 
-return value : `"dev"` | `"prod"` | `null`
+return value : `"dev"` | `"build"` | `null`
 
 ```twig
 {{ vite_mode('<custom-build-name-1>') }}
