@@ -1,0 +1,3 @@
+{
+  "php-cs-fixer.executablePath": "${workspaceFolder}/bin/php-cs-fixer",
+}

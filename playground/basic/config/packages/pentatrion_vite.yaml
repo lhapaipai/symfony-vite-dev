@@ -2,6 +2,7 @@ pentatrion_vite:
     # absolute_url: true
 
     script_attributes:
+        foo: bar
         # you can define your attributes that you want to apply
         # for all your script tags
     link_attributes:

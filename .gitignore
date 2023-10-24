@@ -10,6 +10,7 @@
 ###< symfony/framework-bundle ###
 
 /extra/vite
+/extra/webpack-encore-bundle
 
 node_modules
 
