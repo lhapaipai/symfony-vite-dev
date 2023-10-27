@@ -15,7 +15,7 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
         $event->setAttribute('foo', 'bar-modified');
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             RenderAssetTagEvent::class => 'onRenderAssetTag',
