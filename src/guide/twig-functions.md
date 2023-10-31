@@ -1,7 +1,7 @@
 # Twig functions
 
 The bundle provide 2 twig functions both of which accept an optional second parameter of options.
-An optional third parameter `buildName` si available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page if you want more details.
+An optional third parameter `configName` si available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page if you want more details.
 
 ## vite_entry_script_tags
 
@@ -11,7 +11,7 @@ arguments details:
   - `dependency` **type: `"react"` | `null`** if your code use ReactJS, you need to specify this dependency to allow Vite to be able to modify the HTML during development. [More details on Vite documentation](https://vitejs.dev/guide/backend-integration.html#backend-integration)
   - `attr`: Array (an associative array of extra attributes).
   - `absolute_url`: **type: `boolean`** Generates full URLs of your js files
-- `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
+- `configName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 ```twig
 {{ vite_entry_script_tags(
@@ -34,7 +34,7 @@ arguments details:
   - `attr`: Array (an associative array of extra attributes).
   - `preloadDynamicImports`: **type: boolean, default: false** Preload dynamic imports in `<link rel="modulepreload">` tags.
   - `absolute_url`: **type: `boolean`** Generates full URLs of your css files
-- `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
+- `configName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 
 ```twig
@@ -54,7 +54,7 @@ arguments details:
 Some plugins require knowing if the development server is running to run scripts. This function solves this problem.
 
 arguments details:
-- `buildName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_build` if not specified.
+- `configName` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 return value : `"dev"` | `"build"` | `null`
 

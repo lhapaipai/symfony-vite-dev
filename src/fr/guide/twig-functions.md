@@ -1,7 +1,7 @@
 # Fonctions Twig
 
 Le bundle fournit 2 fonctions twig qui acceptent toutes deux un deuxième paramètre optionnel d'options.
-Un troisième paramètre optionnel "buildName" est disponible si vous avez plusieurs builds. Regardez la page [configurations multiples](/fr/guide/multiple-configurations) si vous voulez plus de détails.
+Un troisième paramètre optionnel "configName" est disponible si vous avez plusieurs builds. Regardez la page [configurations multiples](/fr/guide/multiple-configurations) si vous voulez plus de détails.
 
 ## vite_entry_script_tags
 
@@ -11,7 +11,7 @@ détails des arguments :
   - `dependency` **type: `"react"` | `null`**  si votre code utilise ReactJS, vous devez spécifier cette dépendance pour permettre à Vite de pouvoir modifier le HTML pendant le développement. [Plus de détails sur la documentation de Vite](https://vitejs.dev/guide/backend-integration.html#backend-integration)
   - `attr`: Array (un tableau associatif d'attributs supplémentaires).
   - `absolute_url`: **type: `boolean`** Génère des URL complètes de vos fichiers js
-- `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
+- `configName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_config` si non spécifié.
 
 ```twig
 {{ vite_entry_script_tags(
@@ -35,7 +35,7 @@ détails des arguments :- `<entryName>` **type: string** Name of your entrypoint
   - `preloadDynamicImports`: **type: boolean, default: false** Précharge dans des balises `<link rel="modulepreload">` les imports dynamiques.
   - `absolute_url`: **type: `boolean`** Génère des URL complètes de vos fichiers css
 
-- `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
+- `configName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_config` si non spécifié.
 
 ```twig
 {{ vite_entry_link_tags(
@@ -54,7 +54,7 @@ détails des arguments :- `<entryName>` **type: string** Name of your entrypoint
 Certains plugins nécessitent de savoir si le serveur de développement est lancé pour exécuter des scripts. cette fonction permet de résoudre cette problématique.
 
 détails des arguments :
-- `buildName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_build` si non spécifié.
+- `configName` (optionnel) **type: string** laissez vide si vous n'avez qu'un seul fichier `vite.config.js`, sinon `default_config` si non spécifié.
 
 
 valeur de retour : `"dev"` | `"build"` | `null`

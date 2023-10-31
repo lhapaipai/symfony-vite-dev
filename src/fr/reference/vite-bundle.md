@@ -72,7 +72,7 @@ pentatrion_vite:
     referrerpolicy: origin
 ```
 
-## default_build
+## default_config
 
 - **Type :** `null | string`
 - **Valeur par défaut :** `null`
@@ -90,11 +90,11 @@ Dans le cas d'une configuration multiple, il faudra laisser les options `build_d
 
 ```yaml
 pentatrion_vite:
-  default_build: <custom-build-name-1>
+  default_config: <custom-build-name-1>
   builds:
     <custom-build-name-1>:
 
-      build_directory: build1
+      build_directory: config1
 
       script_attributes:
         # etc
