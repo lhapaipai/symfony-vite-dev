@@ -18,6 +18,11 @@ framework:
         log: true
 
     assets:
+
+        # default strategy
+        # version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+
+
         packages:
             vite:
                 version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'

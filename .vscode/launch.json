@@ -5,6 +5,32 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch phpunit",
+      "type": "php",
+      "request": "launch",
+      "program": "${workspaceFolder}/extra/vite-bundle/bin/phpunit",
+      "cwd": "${workspaceFolder}/extra/vite-bundle",
+      "port": 9003,
+      "runtimeArgs": [
+        "-dxdebug.start_with_request=yes"
+      ]
+    },
+    {
+      "name": "Launch phpunit multiple config",
+      "type": "php",
+      "request": "launch",
+      "program": "${workspaceFolder}/extra/vite-bundle/bin/phpunit",
+      "args": [
+        "--filter",
+        "testMultipleConfig"
+      ],
+      "cwd": "${workspaceFolder}/extra/vite-bundle",
+      "port": 9003,
+      "runtimeArgs": [
+        "-dxdebug.start_with_request=yes"
+      ]
+    },
+    {
       "name": "basic:vite:dev",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [

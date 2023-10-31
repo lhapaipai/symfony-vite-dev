@@ -13,7 +13,9 @@ export default defineConfig({
   plugins: [
     vuePlugin(),
     reactPlugin(),
-    symfonyPlugin(),
+    symfonyPlugin({
+      debug: true
+    }),
   ],
 
   publicDir: false,
