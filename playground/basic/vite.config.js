@@ -14,7 +14,7 @@ export default defineConfig({
     vuePlugin(),
     reactPlugin(),
     symfonyPlugin({
-      debug: true
+      debug: false
     }),
   ],
 

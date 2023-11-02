@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - with-cdn.symfony-vite

@@ -2,7 +2,7 @@ pentatrion_vite:
     # absolute_url: true
 
     preload: link-header
-    cache: true
+    cache: false
     
     script_attributes:
         foo: bar

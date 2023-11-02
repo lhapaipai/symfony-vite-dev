@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - docker.symfony-vite

@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - multiple.symfony-vite

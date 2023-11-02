@@ -16,6 +16,20 @@
       ]
     },
     {
+      "name": "php basic cache:clear",
+      "type": "php",
+      "request": "launch",
+      "program": "${workspaceFolder}/playground/basic/bin/console",
+      "cwd": "${workspaceFolder}/playground/basic",
+      "args": [
+        "cache:clear"
+      ],
+      "port": 9003,
+      "runtimeArgs": [
+        "-dxdebug.start_with_request=yes"
+      ]
+    },
+    {
       "name": "Launch phpunit multiple config",
       "type": "php",
       "request": "launch",
