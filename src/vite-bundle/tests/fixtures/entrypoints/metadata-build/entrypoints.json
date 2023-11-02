@@ -1,0 +1,22 @@
+{
+  "base": "/build/",
+  "entryPoints": {
+    "app": {
+      "assets": [],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/app.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {
+    "/build/assets/app.js": {
+      "hash": "sha256-XYZ"
+    }
+  },
+  "viteServer": null
+}

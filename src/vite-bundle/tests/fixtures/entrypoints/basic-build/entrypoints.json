@@ -1,0 +1,60 @@
+{
+  "base": "/build/",
+  "entryPoints": {
+    "app": {
+      "assets": [],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/app.js"
+      ],
+      "legacy": false,
+      "preload": []
+    },
+    "theme": {
+      "assets": [],
+      "css": [
+        "/build/assets/theme.css"
+      ],
+      "dynamic": [],
+      "js": [],
+      "legacy": false,
+      "preload": []
+    },
+    "with-dep": {
+      "assets": [],
+      "css": [
+        "/build/assets/main.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/build/assets/main.js"
+      ],
+      "legacy": false,
+      "preload": [
+        "/build/assets/vue.js",
+        "/build/assets/react.js"
+      ]
+    },
+    "with-async": {
+      "assets": [],
+      "css": [
+        "/build/assets/main.css"
+      ],
+      "dynamic": [
+        "/build/assets/async-script.js"
+      ],
+      "js": [
+        "/build/assets/main.js"
+      ],
+      "legacy": false,
+      "preload": [
+        "/build/assets/vue.js",
+        "/build/assets/react.js"
+      ]
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "viteServer": null
+}

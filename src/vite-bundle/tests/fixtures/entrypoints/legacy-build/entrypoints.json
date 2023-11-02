@@ -1,0 +1,60 @@
+{
+  "base": "/build/",
+  "entryPoints": {
+    "app-legacy": {
+      "assets": [],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/app-legacy.js"
+      ],
+      "legacy": false,
+      "preload": []
+    },
+    "app": {
+      "assets": [],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/app.js"
+      ],
+      "legacy": "app-legacy",
+      "preload": []
+    },
+    "theme-legacy": {
+      "assets": [
+        "/build/assets/topography-svg"
+      ],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/theme-legacy.js"
+      ],
+      "legacy": false,
+      "preload": []
+    },
+    "theme": {
+      "assets": [],
+      "css": [
+        "/build/assets/theme.css"
+      ],
+      "dynamic": [],
+      "js": [],
+      "legacy": "theme-legacy",
+      "preload": []
+    },
+    "polyfills-legacy": {
+      "assets": [],
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/build/assets/polyfills-legacy.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": true,
+  "metadatas": {},
+  "viteServer": null
+}
