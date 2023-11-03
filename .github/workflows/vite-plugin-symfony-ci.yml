@@ -1,5 +1,13 @@
 name: 'vite-plugin-symfony CI'
-on: [push]
+on:
+  push:
+    branches: ['main']
+  pull_request:
+
+defaults:
+  run:
+    working-directory: ./src/vite-plugin-symfony
+
 jobs:
   lint:
     name: Eslint and Tsc
