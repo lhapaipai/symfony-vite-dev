@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+contact_links:
+    - name: vite-bundle Issue/Feature request.
+      url: https://github.com/lhapaipai/vite-bundle/issues
+    - name: vite-plugin-symfony Issue/Feature request.
+      url: https://github.com/lhapaipai/vite-plugin-symfony/issues
