@@ -21,6 +21,7 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest",
+    "test-run": "vitest run",
     "tsc:check": "tsc --noEmit",
     "lint:check": "eslint -c .eslintrc ./src"
   },

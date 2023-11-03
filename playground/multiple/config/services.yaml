@@ -23,13 +23,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    pentatrion_vite.asset_strategy_build1:
+    pentatrion_vite.asset_strategy_config1:
         parent: Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy
         calls:
-            - [setBuildName, ['build1']]
+            - [setConfig, ['config1']]
 
-    pentatrion_vite.asset_strategy_build2:
+    pentatrion_vite.asset_strategy_config2:
         parent: Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy
         calls:
-            - [setBuildName, ['build2']]
+            - [setConfig, ['config2']]
 

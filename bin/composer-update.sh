@@ -7,6 +7,5 @@ PLAYGROUNDS_DIR="$PROJECT_DIR/playground"
 for PLAYGROUND_DIR in $PLAYGROUNDS_DIR/*
 do
   cd "$PLAYGROUND_DIR"
-  npm i
-  npm run build
+  composer install
 done

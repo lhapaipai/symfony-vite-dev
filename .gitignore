@@ -9,8 +9,7 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-/extra/vite
-/extra/webpack-encore-bundle
+/extra
 
 node_modules
 
@@ -18,6 +17,7 @@ node_modules
 /playground/ssr/
 
 /playground/*/.env.local
+/playground/*/composer.lock
 /playground/*/.env.local.php
 /playground/*/.env.*.local
 /playground/*/config/secrets/prod/prod.decrypt.private.php
@@ -29,6 +29,8 @@ node_modules
 /playground/*/public/build-1
 /playground/*/public/build-2
 /playground/*/public/infos
+
+/playground/vite-only/dist
 
 .local
 

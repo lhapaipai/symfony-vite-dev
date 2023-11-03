@@ -9,23 +9,23 @@ pentatrion_vite:
 
     throw_on_missing_entry: true
 
-    default_build: build1
-    builds:
-        build1:
-            build_directory: build-1
+    default_config: config1
+    configs:
+        config1:
+            build_directory: config-1
             script_attributes:
-                foo: build1
-                bar: build1
+                foo: config1
+                bar: config1
 
             link_attributes:
-                boo: build1
-                bar: build1
+                boo: config1
+                bar: config1
 
-        build2:
-            build_directory: build-2
+        config2:
+            build_directory: config-2
             script_attributes:
-                foo: build2
-                bar: build2
+                foo: config2
+                bar: config2
             link_attributes:
-                boo: build1
-                bar: build1
+                boo: config1
+                bar: config1

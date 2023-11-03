@@ -21,10 +21,10 @@ framework:
 
         packages:
             build1:
-                version_strategy: 'pentatrion_vite.asset_strategy_build1'
+                version_strategy: 'pentatrion_vite.asset_strategy_config1'
 
             build2:
-                version_strategy: 'pentatrion_vite.asset_strategy_build2'
+                version_strategy: 'pentatrion_vite.asset_strategy_config2'
 
 when@test:
     framework:

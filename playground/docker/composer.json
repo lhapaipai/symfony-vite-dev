@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../../extra/vite-bundle"
+            "url": "../../src/vite-bundle"
         }
     ],
     "require-dev": {
