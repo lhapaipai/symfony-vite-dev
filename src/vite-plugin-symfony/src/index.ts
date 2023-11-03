@@ -142,11 +142,17 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
           const entryPoints = getDevEntryPoints(viteConfig, viteDevServerUrl);
 
           const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsBasename);
+
+          const pluginVersion = process.env.VITEST
+            ? "test"
+            : JSON.parse(readFileSync(join(pluginDir, "package.json")).toString())?.version;
+
           writeJson(entryPointsPath, {
             base: viteConfig.base,
             entryPoints,
             legacy: false,
             metadatas: {},
+            version: pluginVersion,
             viteServer: viteDevServerUrl,
           });
         }
@@ -244,6 +250,9 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
       if (outputCount >= outputLength) {
         const entryPoints = getBuildEntryPoints(generatedFiles, viteConfig, inputRelPath2outputRelPath);
 
+        const pluginVersion = process.env.VITEST
+          ? "test"
+          : JSON.parse(readFileSync(join(pluginDir, "package.json")).toString())?.version;
         this.emitFile({
           fileName: entryPointsBasename,
           source: JSON.stringify(
@@ -252,6 +261,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
               entryPoints,
               legacy: typeof entryPoints["polyfills-legacy"] !== "undefined",
               metadatas: getFilesMetadatas(viteConfig.base, generatedFiles),
+              version: pluginVersion,
               viteServer: null,
             },
             null,

@@ -3,7 +3,11 @@
 # inspired from
 # https://github.com/laravel/framework/blob/7.x/bin/release.sh
 
-PROJECT_DIR="$(dirname "$(readlink -f "$BASH_SOURCE")")"
+SCRIPT_DIR="$(dirname "$(readlink -f "$BASH_SOURCE")")"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+set -e
+
 VERSION="$1"
 RELEASE_BRANCH=main
 TMP_DIR=$PROJECT_DIR/.local/splitted-repo
@@ -21,13 +25,34 @@ then
     exit 1
 fi
 
+if egrep '^[0-9]+\.[0-9]+\.[0-9]+' <<< "$VERSION" > /dev/null 2>&1
+then
+    n=${VERSION//[!0-9]/ }
+    a=(${n//\./ })
+    MAJOR_VERSION=${a[0]}
+    MINOR_VERSION=${a[1]}
+    PATCH_VERSION=${a[2]}
+else
+    echo "Invalid version number x.y.z"
+    exit 1
+fi
+
+# echo $MAJOR_VERSION
+# echo $MINOR_VERSION
+# echo $PATCH_VERSION
+
+BUNDLE_FILE="$PROJECT_DIR/src/vite-bundle/src/PentatrionViteBundle.php"
+
+sed -i -e "s/const VERSION = '[\.0-9]\+';/const VERSION = '$VERSION';/g" "$BUNDLE_FILE"
+sed -i -e "s/const MAJOR_VERSION = [\.0-9]\+;/const MAJOR_VERSION = $MAJOR_VERSION;/g" "$BUNDLE_FILE"
+
+
 git fetch origin
 
 # Make sure current branch and release branch match.
 if [[ "$RELEASE_BRANCH" != "$CURRENT_BRANCH" ]]
 then
     echo "Release branch ($RELEASE_BRANCH) does not match the current active branch ($CURRENT_BRANCH)."
-
     exit 1
 fi
 
@@ -35,7 +60,6 @@ fi
 if [[ ! -z "$(git status --porcelain)" ]]
 then
     echo "Your working directory is dirty. Did you forget to commit your changes?"
-
     exit 1
 fi
 

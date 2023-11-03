@@ -5,11 +5,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Vitest dev",
+      "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "args": [
+        "index"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
+      "env": {
+        "NODE_ENV": "development"
+      },
+    },
+    {
       "name": "Launch phpunit",
       "type": "php",
       "request": "launch",
-      "program": "${workspaceFolder}/extra/vite-bundle/bin/phpunit",
-      "cwd": "${workspaceFolder}/extra/vite-bundle",
+      "program": "${workspaceFolder}/src/vite-bundle/bin/phpunit",
+      "cwd": "${workspaceFolder}/src/vite-bundle",
       "port": 9003,
       "runtimeArgs": [
         "-dxdebug.start_with_request=yes"
@@ -33,12 +49,12 @@
       "name": "Launch phpunit multiple config",
       "type": "php",
       "request": "launch",
-      "program": "${workspaceFolder}/extra/vite-bundle/bin/phpunit",
+      "program": "${workspaceFolder}/src/vite-bundle/bin/phpunit",
       "args": [
         "--filter",
         "testMultipleConfig"
       ],
-      "cwd": "${workspaceFolder}/extra/vite-bundle",
+      "cwd": "${workspaceFolder}/src/vite-bundle",
       "port": 9003,
       "runtimeArgs": [
         "-dxdebug.start_with_request=yes"
@@ -82,7 +98,7 @@
         "NODE_ENV": "development"
       },
       "outFiles": [
-        "${workspaceFolder}/extra/vite-plugin-symfony/dist/*.js"
+        "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
       ]
     },
     {
@@ -123,7 +139,7 @@
         "NODE_ENV": "development"
       },
       "outFiles": [
-        "${workspaceFolder}/extra/vite-plugin-symfony/dist/*.js"
+        "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
       ]
     },
     {
@@ -144,7 +160,7 @@
         "NODE_ENV": "development"
       },
       "outFiles": [
-        "${workspaceFolder}/extra/vite-plugin-symfony/dist/*.js"
+        "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
       ]
     },
     {
@@ -170,7 +186,7 @@
     {
       "name": "Vite build",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
-      // "program": "${workspaceFolder}/extra/vite/packages/vite/dist/node/cli.js",
+      // "program": "${workspaceFolder}/src/vite/packages/vite/dist/node/cli.js",
       "args": [
         "build",
         "-c",
@@ -186,7 +202,7 @@
         "NODE_ENV": "development"
       },
       "outFiles": [
-        "${workspaceFolder}/extra/vite-plugin-symfony/dist/*.js"
+        "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
       ]
     },
     {

@@ -52,7 +52,7 @@ export const emptyDir = (dir: string) => {
   }
 };
 
-/* not imported from vite because we don't want vite in package.json dependancy */
+/* not imported from vite because we don't want vite in package.json dependencies */
 const FS_PREFIX = `/@fs/`;
 const VALID_ID_PREFIX = `/@id/`;
 const CLIENT_PUBLIC_PATH = `/@vite/client`;
