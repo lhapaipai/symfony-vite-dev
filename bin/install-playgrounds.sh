@@ -13,13 +13,13 @@ do
 
   echo '  > npm i'
   npm i 1> /dev/null \
-    && echo '    [ok]' || echo '    [ko]'
+    && echo '    [ok]' || echo '    [failed]'
 
   echo '  > npm run build'
   npm run build 1> /dev/null \
-    && echo '    [ok]' || echo '    [ko]'
+    && echo '    [ok]' || echo '    [failed]'
 
   echo '  > symfony composer install'
   symfony composer install 1> /dev/null 2>&1 \
-    && echo '    [ok]' || echo '    [ko]'
+    && echo '    [ok]' || echo '    [failed]'
 done

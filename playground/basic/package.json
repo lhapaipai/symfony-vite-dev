@@ -2,7 +2,7 @@
   "name": "vite-playground-basic",
   "version": "1.0.0",
   "description": "",
-  "main": "vite.config.js",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

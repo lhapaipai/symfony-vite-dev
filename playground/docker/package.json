@@ -4,6 +4,7 @@
         "dev": "vite",
         "build": "vite build"
     },
+    "type": "module",
     "keywords": [],
     "author": "Lhapaipai",
     "license": "ISC",

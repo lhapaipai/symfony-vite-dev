@@ -1,0 +1,1 @@
+<link global-attributes="???" rel="modulepreload" href="/dependency.js">

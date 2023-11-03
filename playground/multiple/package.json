@@ -2,7 +2,7 @@
   "name": "vite-playground-multiple",
   "version": "1.0.0",
   "description": "",
-  "main": "vite.config.js",
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"vite -c vite.build1.config.js\" \"vite -c vite.build2.config.js\"",
     "build": "vite build -c vite.build1.config.js && vite build -c vite.build2.config.js"
