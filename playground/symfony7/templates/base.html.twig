@@ -1,16 +1,40 @@
+{% set body_class = '' %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html class="{% block html_class %}{% endblock %}">
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:;base64,iBORw0KGgo=">
+    {% block stylesheets %}
+    {{ vite_entry_link_tags('app') }}
+    {{ vite_entry_link_tags('theme') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ vite_entry_script_tags('app', { attr: { hello: 'world' }}) }}
+    {{ vite_entry_script_tags('theme') }}
+    {% endblock %}
+</head>
+
+<body>
+    <nav id="nav">
+        <div class="navbar">
+            <div class="title">
+                <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg" /> Symfony & Vite
+            </div>
+            <div class="links">
+                <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
+                <a class="{{ currentPage == 'assets' ? 'active' : '' }}" href="{{ path('assets') }}">Assets</a>
+                <a class="{{ currentPage == 'imports' ? 'active' : '' }}" href="{{ path('imports') }}">Imports</a>
+                <a class="{{ currentPage == 'vue' ? 'active' : '' }}" href="{{ path('vue') }}">Vue</a>
+                <a class="{{ currentPage == 'react' ? 'active' : '' }}" href="{{ path('react') }}">React</a>
+            </div>
+        </div>
+    </nav>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
 </html>

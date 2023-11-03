@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}React !{% endblock %}
+
+{% block html_class %}page-react{% endblock %}
+
+{% block content %}
+<div id="root"></div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageReact') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageReact', {dependency: 'react'}) }}
+{% endblock %}

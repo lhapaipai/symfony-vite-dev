@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page assets{% endblock %}
+
+{% block content %}
+
+<div class="example-wrapper">
+    <div class="cards">
+        <div class="card">
+            <p>image imported via js with alias</p>
+            <div id="vite-asset-js-img-1"></div>
+            <code id="vite-asset-js-url-1"></code>
+        </div>
+        <div class="card">
+            <p>image imported via js with relative path</p>
+            <div id="vite-asset-js-img-2"></div>
+            <code id="vite-asset-js-url-2"></code>
+        </div>
+        <div class="card">
+            <p>image imported via js with absolute path (from vite root)</p>
+            <div id="vite-asset-js-img-3"></div>
+            <code id="vite-asset-js-url-3"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (relative path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-1"></div>
+            <code id="vite-asset-scss-url-1"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (alias path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-2"></div>
+            <code id="vite-asset-scss-url-2"></code>
+        </div>
+        <div class="card">
+            <p>image imported via css (absolute path)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-3"></div>
+            <code id="vite-asset-scss-url-3"></code>
+        </div>
+        <div class="card">
+            <p>image imported via nested css (nested not rebased bug)</p>
+            <div class="vite-asset-scss" id="vite-asset-scss-img-4"></div>
+            <code id="vite-asset-scss-url-4"></code>
+        </div>
+        <div class="card">
+            <p>image imported via asset twig function, ViteAssetVersionStrategy</p>
+            <img src="{{ asset('assets/images/logo-vite.svg', 'vite')}}" alt="">
+            <code>{{ asset('assets/images/logo-vite.svg', 'vite')}}</code>
+        </div>
+        <div class="card">
+            <p>image imported via asset twig function, Default Strategy (not vite)</p>
+            <img src="{{ asset('/images/symfony-vite.svg')}}" alt="">
+            <code>{{ asset('/images/symfony-vite.svg')}}</code>
+        </div>
+        <div class="card">
+            <p>png image imported via asset twig function, less 4kb</p>
+            <img src="{{ asset('assets/images/logo-symfony-less-4kb.png', 'vite') }}" alt="">
+            <code>{{ asset('assets/images/logo-symfony-less-4kb.png') }}</code>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageAssets', { attr: { 'data-foo': 'bar' }}) }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageAssets', { attr: { 'data-hello': 'world' }, absolute_url: true}) }}
+{% endblock %}

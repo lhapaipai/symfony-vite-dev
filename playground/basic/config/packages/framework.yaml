@@ -23,9 +23,9 @@ framework:
         # version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
 
 
-        packages:
-            vite:
-                version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+        # packages:
+        #     vite:
+        #         version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
 
 when@test:
     framework:
