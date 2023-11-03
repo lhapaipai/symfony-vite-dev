@@ -7,6 +7,8 @@ A Vite plugin to integrate easily Vite in your Symfony application..
 
 This package is intended for use with the Symfony Bundle : [pentatrion/vite-bundle](https://github.com/lhapaipai/vite-bundle).
 
+⚠️ This repository is a "subtree split": a read-only subset of that main repository [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev).
+
 ## Installation
 
 ```console
