@@ -1,0 +1,13 @@
+@import "./nested/index.scss";
+
+#vite-asset-scss-img-1 {
+  background-image: url(../../images/logo-react.svg);
+}
+
+#vite-asset-scss-img-2 {
+  background-image: url(~/images/logo-vue.svg);
+}
+
+#vite-asset-scss-img-3 {
+  background-image: url(/assets/images/logo-svelte.svg);
+}

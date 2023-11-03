@@ -2,7 +2,6 @@ pentatrion_vite:
     # absolute_url: true
 
     preload: link-header
-    cache: false
     
     script_attributes:
         foo: bar
@@ -14,3 +13,6 @@ pentatrion_vite:
 
     throw_on_missing_entry: true
 
+when@prod:
+    pentatrion_vite:
+        cache: true

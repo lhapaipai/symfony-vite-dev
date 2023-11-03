@@ -1,0 +1,16 @@
+{
+  "name": "vite-playground-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "18.12.1"
+  }
+}
