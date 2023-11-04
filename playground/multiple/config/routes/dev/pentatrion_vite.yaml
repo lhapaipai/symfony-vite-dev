@@ -1,12 +1,8 @@
-_pentatrion_vite:
-    prefix: /build
-    resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
-
 _pentatrion_vite_build1:
     path: /build-1/{path}
     defaults:
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
-        buildName: build1
+        configName: config1
     requirements:
         path: ".+"
 
@@ -14,6 +10,6 @@ _pentatrion_vite_build2:
     path: /build-2/{path}
     defaults:
         _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild
-        buildName: build2
+        configName: config2
     requirements:
         path: ".+"

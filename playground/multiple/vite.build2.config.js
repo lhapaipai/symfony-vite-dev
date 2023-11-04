@@ -8,16 +8,13 @@ const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
 const sharedDir = resolve(basicPlaygroundDir, '../../shared')
 
 export default defineConfig({
+  base: '/build-2/',
   plugins: [
-    symfonyPlugin({
-      buildDirectory: 'build-2'
-    }),
+    symfonyPlugin(),
   ],
 
-  publicDir: false,
-
-
   build: {
+    outDir: 'public/build-2',
     rollupOptions: {
       input: {
         "pageBuild2": "./assets/page/build-2/index.js",
@@ -28,7 +25,6 @@ export default defineConfig({
   },
 
   server: {
-    port: 19876,
     fs: {
       allow: [
         '.',

@@ -3,9 +3,9 @@
 In order to test the implementation you must have a Symfony application with at least the Twig bundle installed.
 
 ```bash
-symfony new symphonie-app
+symfony new symfony-app
 
-cd symphonie-app
+cd symfony-app
 composer install
 
 composer require symfony/twig-bundle

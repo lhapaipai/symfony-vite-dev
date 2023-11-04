@@ -20,57 +20,53 @@ It's possible to combine multiple Vite configuration files. Here is a possible c
 
 define 2 vite config files `vite.config1.config.js` and `vite.config2.config.js`.
 
-```js
+```js{6,13}
 // vite.config1.config.js
 import { defineConfig } from 'vite'
 import symfonyPlugin from 'vite-plugin-symfony';
 
 export default defineConfig({
+  base: '/build-1/',
+
   plugins: [
-    symfonyPlugin({
-      buildDirectory: 'build-1'
-    }),
+    symfonyPlugin(),
   ],
 
   build: {
+    outDir: 'public/build-1',
+
     rollupOptions: {
       input: {
         "welcome": "./assets/page/welcome/index.js",
         "theme": "./assets/theme.scss"
       },
     },
-  },
-
-  server: {
-    port: 19875
-  },
+  }
 });
 ```
 
-```js
+```js{6,13}
 // vite.config2.config.js
 import { defineConfig } from 'vite'
 import symfonyPlugin from 'vite-plugin-symfony';
 
 export default defineConfig({
+  base: '/build-2/',
+
   plugins: [
-    symfonyPlugin({
-      buildDirectory: 'build-2'
-    }),
+    symfonyPlugin(),
   ],
 
   build: {
+    outDir: 'public/build-2',
     rollupOptions: {
       input: {
         "multiple": "./assets/page/multiple/config2.js",
       },
     },
-  },
-
-  server: {
-    port: 19876
-  },
+  }
 });
+
 ```
 
 ## Bundle configuration
@@ -85,11 +81,11 @@ pentatrion_vite:
         config1:
             build_directory: build-1
             script_attributes:
-                # you can define your attributes that you want to apply
+                # you can define attributes that you want to apply
                 # for all your script tags
 
             link_attributes:
-                # you can define your attributes that you want to apply
+                # you can define attributes that you want to apply
                 # for all your link tags
 
         config2:
@@ -106,7 +102,7 @@ in your templates
 
 ```twig
 {% block stylesheets %}
-    {# define your build in the 3rd parameter #}
+    {# define your config name in the 3rd parameter #}
     {{ vite_entry_link_tags('multiple', [], 'config2') }}
 
     {# no 3rd parameters it will be default_config -> config1 #}
@@ -114,7 +110,7 @@ in your templates
 {% endblock %}
 
 {% block javascripts %}
-    {# define your build in the 3rd parameter #}
+    {# define your config name in the 3rd parameter #}
     {{ vite_entry_script_tags('multiple', [], 'config2') }}
 
     {# no 3rd parameters it will be default_config -> config1 #}

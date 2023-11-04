@@ -1,12 +1,12 @@
 # Attributs personnalisés sur les balises `<script>` et `<link>`
 
-Des attributs personnalisés peuvent être ajoutés aux balises `<script>` et aux balises `<link>` de 3 manières différentes :
+Des attributs personnalisés peuvent être ajoutés aux balises `<script>` et aux balises `<link>` de 3 manières différentes (par ordre de priorité) :
 
-- Depuis la configuration globale (`script_attributes` et `link_attributes`) : voir dans la [référence Vite bundle](/fr/reference/vite-bundle#script-attributes).
+- Depuis la configuration globale (`script_attributes`, `link_attributes`, `preload_attributes`, `crossorigin`) : voir dans la [référence Vite bundle](/fr/reference/vite-bundle#script-attributes).
 
 - Dans les fonctions de rendu Twig : voir la documentation des [Fonctions Twig](/fr/guide/twig-functions).
 
-- En écoutant l'événement `Pentatrion\ViteBundle\Event\RenderAssetTagEvent`.
+- En écoutant l'événement `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` [(code source)](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php).
 
 Voici un exemple complet de configuration :
 
@@ -36,11 +36,16 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
 {
     public function onRenderAssetTag(RenderAssetTagEvent $event)
     {
-        if ($event->isScriptTag() && $event->isBuild()) {
-            $event->setAttribute('nonce', 'lookup nonce');
+        $tag = $event->getTag();
+        if ($tag->isInternal()) {
+            return;
         }
-        $event->setAttribute('foo', 'bar-modified');
+        if ($tag->isScriptTag() && $event->isBuild()) {
+            $tag->setAttribute('nonce', 'lookup nonce');
+        }
+        $tag->setAttribute('foo', 'bar-modified');
     }
+
 
     public static function getSubscribedEvents()
     {

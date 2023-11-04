@@ -9,8 +9,9 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
 {
     public function onRenderAssetTag(RenderAssetTagEvent $event)
     {
-        if ($event->isScriptTag()) {
-            $event->setAttribute('nonce', 'lookup nonce');
+        $tag = $event->getTag();
+        if ($tag->isScriptTag()) {
+            $tag->setAttribute('nonce', 'lookup nonce');
         }
     }
 

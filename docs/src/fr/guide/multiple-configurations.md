@@ -21,19 +21,21 @@ Il est possible de combiner plusieurs fichiers de configuration Vite. Voici un m
 
 définir 2 fichiers de configuration vite `vite.config1.config.js` et `vite.config2.config.js`.
 
-```js
+```js{6,13}
 // vite.config1.config.js
 import { defineConfig } from 'vite'
 import symfonyPlugin from 'vite-plugin-symfony';
 
 export default defineConfig({
+  base: '/build-1/',
+
   plugins: [
-    symfonyPlugin({
-      buildDirectory: 'build-1'
-    }),
+    symfonyPlugin(),
   ],
 
   build: {
+    outDir: 'public/build-1',
+
     rollupOptions: {
       input: {
         "welcome": "./assets/page/welcome/index.js",
@@ -41,35 +43,28 @@ export default defineConfig({
       },
     },
   },
-
-  server: {
-    port: 19875
-  },
 });
 ```
 
-```js
+```js{6,13}
 // vite.config2.config.js
 import { defineConfig } from 'vite'
 import symfonyPlugin from 'vite-plugin-symfony';
 
 export default defineConfig({
+  base: '/build-2/',
+
   plugins: [
-    symfonyPlugin({
-      buildDirectory: 'build-2'
-    }),
+    symfonyPlugin(),
   ],
 
   build: {
+    outDir: 'public/build-2',
     rollupOptions: {
       input: {
         "multiple": "./assets/page/multiple/config2.js",
       },
     },
-  },
-
-  server: {
-    port: 19876
   },
 });
 ```
@@ -82,15 +77,15 @@ dans votre fichier `config/packages/pentatrion_vite.yaml`
 pentatrion_vite:
 
     default_config: config1
-    builds:
+    configs:
         config1:
             build_directory: build-1
             script_attributes:
-                 # vous pouvez définir vos attributs que vous souhaitez
+                 # vous pouvez définir les attributs que vous souhaitez
                  # appliquer pour toutes vos balises script
 
             link_attributes:
-                 # vous pouvez définir vos attributs que vous souhaitez
+                 # vous pouvez définir les attributs que vous souhaitez
                  # appliquer pour toutes vos balises lien
 
         config2:
@@ -107,7 +102,7 @@ dans vos modèles
 
 ```twig
 {% block stylesheets %}
-    {# definissez votre nom de build dans le 3e paramètre #}
+    {# definissez le nom de votre config dans le 3e paramètre #}
     {{ vite_entry_link_tags('multiple', [], 'config2') }}
 
     {# pas de 3e paramètre, ce sera default_config -> config1 #}
@@ -115,7 +110,7 @@ dans vos modèles
 {% endblock %}
 
 {% block javascripts %}
-    {# definissez votre nom de build dans le 3e paramètre #}
+    {# definissez le nom de votre config dans le 3e paramètre #}
     {{ vite_entry_script_tags('multiple', [], 'config2') }}
 
     {# pas de 3e paramètre, ce sera default_config -> config1 #}

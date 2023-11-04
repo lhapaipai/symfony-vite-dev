@@ -265,7 +265,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
               viteServer: null,
             },
             null,
-            pluginOptions.debug ? 2 : null,
+            2,
           ),
           type: "asset",
         });

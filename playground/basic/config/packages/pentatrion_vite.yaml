@@ -12,7 +12,7 @@ pentatrion_vite:
         # for all your link tags
 
     throw_on_missing_entry: true
-
+    
 when@prod:
     pentatrion_vite:
         cache: true

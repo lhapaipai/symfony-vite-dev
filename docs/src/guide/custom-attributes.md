@@ -1,12 +1,12 @@
 # Custom attributes on `<script>` and `<link>` tags
 
-Custom attributes can be added to rendered `<script>` or `<link>` in 3 different ways :
+Custom attributes can be added to rendered `<script>` or `<link>` in 3 different ways (by order of priority):
 
 - Via global config (`script_attributes` et `link_attributes`) : see the [Vite bundle reference](/reference/vite-bundle#script-attributes).
 
 - When rendering in Twig - see the [Twig functions](/guide/twig-functions).
 
-- By listening to the `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` event.
+- By listening to the `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` ([source code](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php)) event.
 
 Here is a complete example configuration :
 
@@ -36,11 +36,16 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
 {
     public function onRenderAssetTag(RenderAssetTagEvent $event)
     {
-        if ($event->isScriptTag() && $event->isBuild()) {
-            $event->setAttribute('nonce', 'lookup nonce');
+        $tag = $event->getTag();
+        if ($tag->isInternal()) {
+            return;
         }
-        $event->setAttribute('foo', 'bar-modified');
+        if ($tag->isScriptTag() && $event->isBuild()) {
+            $tag->setAttribute('nonce', 'lookup nonce');
+        }
+        $tag->setAttribute('foo', 'bar-modified');
     }
+
 
     public static function getSubscribedEvents()
     {

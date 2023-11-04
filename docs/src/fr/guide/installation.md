@@ -3,9 +3,9 @@
 Afin de tester l'implémentation, vous devez avoir une application Symfony avec au moins le bundle Twig installé.
 
 ```bash
-symfony new symphonie-app
+symfony new symfony-app
 
-cd symphonie-app
+cd symfony-app
 composer install
 
 composer require symfony/twig-bundle

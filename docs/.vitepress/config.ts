@@ -73,6 +73,7 @@ export default defineConfig({
               { text: 'Assets', link: '/guide/assets' },
               { text: 'Custom attributes', link: '/guide/custom-attributes'},
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
+              { text: 'Performances', link: '/guide/performances' },
               { text: 'Using a CDN', link: '/guide/cdn' },
               { text: 'Tips', link: '/guide/tips' },
               { text: 'Troubleshooting', link: '/guide/troubleshooting' },
@@ -139,6 +140,7 @@ export default defineConfig({
               { text: 'Assets', link: '/fr/guide/assets' },
               { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes'},
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
+              { text: 'Performances', link: '/fr/guide/performances' },
               { text: 'Utiliser un CDN', link: '/fr/guide/cdn' },
               { text: 'Conseils', link: '/fr/guide/tips' },
               { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshooting' },
@@ -148,8 +150,8 @@ export default defineConfig({
           {
             text: 'Configuration',
             items: [
-              { text: 'Vite Bundle', link: '/fr/config/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/fr/config/vite-plugin-symfony' }
+              { text: 'Vite Bundle', link: '/fr/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/fr/reference/vite-plugin-symfony' }
             ]
           },
           {

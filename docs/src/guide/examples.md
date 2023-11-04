@@ -33,28 +33,18 @@ This is the example that presents the majority of use cases.
 ```bash
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
-git submodule init
-git submodule update
 
-# install vite-plugin-symfony locally
-# go to the folder <project-dir>/extra/vite-plugin-symfony
-cd extra/vite-plugin-symfony
-npm i
-npm run build
-cd ../..
 
-# install common dependencies to all examples
-# in the <project-dir> folder
-npm install
+## Install vite-bundle/vite-plugin-symfony dependencies
+make install
 
-# install composer dependencies for the `basic` example.
+
+## Install playgrounds (npm i/composer i for each of them)
+make install-playgrounds
+
+# launch the development environment for the `basic` playground.
 cd playground/basic
-composer install
-
-# launch the development environment for the `basic` example.
-# always in the <project-dir>/playground/basic folder
-npm run dev
 symfony local:server:start
-
+npm run dev
 # from your browser go to: https://127.0.0.1:8000/
 ```

@@ -37,15 +37,17 @@ else
     exit 1
 fi
 
-# echo $MAJOR_VERSION
-# echo $MINOR_VERSION
-# echo $PATCH_VERSION
-
 BUNDLE_FILE="$PROJECT_DIR/src/vite-bundle/src/PentatrionViteBundle.php"
 
 sed -i -e "s/const VERSION = '[\.0-9]\+';/const VERSION = '$VERSION';/g" "$BUNDLE_FILE"
 sed -i -e "s/const MAJOR_VERSION = [\.0-9]\+;/const MAJOR_VERSION = $MAJOR_VERSION;/g" "$BUNDLE_FILE"
 
+PACKAGE_JSON_FILE="$PROJECT_DIR/src/vite-bundle/install/package.json"
+
+sed -i -e "s/\"vite-plugin-symfony\": \"\^[\.0-9]\+\"/\"vite-plugin-symfony\": \"^$MAJOR_VERSION.0\"/g" "$PACKAGE_JSON_FILE"
+
+
+exit
 
 git fetch origin
 

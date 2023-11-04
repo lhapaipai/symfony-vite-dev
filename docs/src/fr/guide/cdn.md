@@ -35,10 +35,7 @@ export default defineConfig({
 ```yaml
 # config/packages/pentatrion_vite.yaml
 pentatrion_vite:
-    script_attributes:
-        crossorigin: anonymous // [!code hl]
-    link_attributes:
-        crossorigin: anonymous // [!code hl]
+    crossorigin: anonymous // [!code hl]
 ```
 
 ## Conseils
@@ -47,24 +44,26 @@ En suivant cette configuration votre fichier `public/build/entrypoints.json` ser
 
 ```json
 {
+  "base": "http://cdn.your-cdn-provider.com/",
+
   "entryPoints": {
 
     "app": {
       "assets": [],
       "css": [],
-      "js": [
-        {
-          "path": "http://cdn.your-cdn-provider.com/assets/app-dc399f15.js",
-          "hash": "sha256-k/0PccRNhijyiBqBUXa8Uw3GQdPxOk1iPIfqarKGEY0="
-        }
-      ],
+      "js": ["http://cdn.your-cdn-provider.com/assets/app-dc399f15.js"],
       "legacy": false,
       "preload": []
     }
   },
-  "isProd": true,
   "legacy": false,
-  "viteServer": false
+  "metadatas": {
+    "http://cdn.your-cdn-provider.com/assets/app-dc399f15.js": {
+      "hash": "sha256-k/0PccRNhijyiBqBUXa8Uw3GQdPxOk1iPIfqarKGEY0="
+    }
+  },
+  "version": "6.0.0",
+  "viteServer": null,
 }
 ```
 

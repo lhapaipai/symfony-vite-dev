@@ -6,12 +6,15 @@ Lorsque vous référencez des fichiers de ressources dans vos fichiers js ou css
 
 ## Composant Symfony Asset
 
-Chaque fois que vous lancez un `build` avec Vite, deux fichiers de configuration sont générés dans votre dossier de sortie (emplacement par défaut : public/build/) : `manifest.json` (généré par le plugin Manifest interne à Vite), entrypoints.json (généré par vite-plugin-symfony).
+Chaque fois que vous lancez un `build` avec Vite, deux fichiers de configuration sont générés dans votre dossier de sortie (emplacement par défaut : public/build/) :
+
+- `manifest.json` : généré par le plugin Manifest interne à Vite
+- `entrypoints.json` : généré par vite-plugin-symfony.
 
 Le fichier `manifest.json` est nécessaire pour obtenir le nom des ressources versionnées, tels que les fichiers de police de caractère ou les fichiers image.
 
-vous pouvez donc utiliser le composant asset de Symfony et sa fonction asset pour tirer parti de ce fichier.
-Pour pouvoir l'utiliser pendant le développement, vous devrez utiliser `ViteAssetVersionStrategy`.
+vous pouvez utiliser le [composant Asset de Symfony](https://symfony.com/doc/current/components/asset.html) et sa fonction `asset` pour référencer vos assets dans vos fichiers `twig`.
+Pour permettre cette association entre Symfony et votre fichier `manifest.json`, vous devrez utiliser `ViteAssetVersionStrategy`.
 
 ```yaml
 # config/packages/framework.yaml
@@ -21,7 +24,7 @@ framework:
 
 ```
 
-Vous pouvez également utiliser la fonction Twig `asset()` en spécifiant le chemin de votre fichier d'asset par rapport à votre chemin racine (pour des raisons de compatibilité avec le fichier `manifest.json` généré par vite) spécifié dans votre `vite.config.js`.
+Vous pourrez alors utiliser la fonction Twig `asset()` en spécifiant le chemin de votre fichier d'asset relativement à votre dossier `root` spécifié dans votre `vite.config.js`. (pour des raisons de compatibilité avec le fichier `manifest.json` généré par vite)
 
 ```twig
 <body>
@@ -29,11 +32,12 @@ Vous pouvez également utiliser la fonction Twig `asset()` en spécifiant le che
 </body>
 ```
 
-Vous pouvez utiliser cette fonction `asset()` uniquement avec des ressources référencées par des fichiers JavaScript ou CSS.
+Vous pouvez utiliser cette fonction `asset()` **uniquement avec des ressources référencées dans vos fichiers JavaScript ou CSS**. Le fichier `manifest.json` est généré pendant l'étape de compilation de votre code JavaScript par Vite. C'est une sorte de résumé des fichiers qu'il a traité. Si votre fichier n'est référencé nulle part il n'apparaitra donc pas dans le `manifest.json`.
+
+Si vous souhaitez que Vite connaisse d'autres ressources, vous pouvez importer un répertoire de ressources dans le point d'entrée de votre application. Par exemple, si vous souhaitez versionner toutes les images stockées dans `assets/images`, vous pouvez ajouter ce qui suit dans votre point d'entrée `app`. (je ne vous recommande pas vraiment cette méthode mais plutôt celle qui suit en définissant plusieurs stratégies)
 
 Attention, par défaut Vite rendra en ligne tous ses assets de taille inférieure à 4kb, vous ne pourrez donc faire référence à ces fichiers. (voir explications et solution dans [résolutions de problèmes](/fr/guide/troubleshooting.html#resolution-de-problemes)).
 
-Si vous souhaitez que Vite connaisse d'autres ressources, vous pouvez importer un répertoire de ressources dans le point d'entrée de votre application. Par exemple, si vous souhaitez versionner toutes les images stockées dans `assets/images`, vous pouvez ajouter ce qui suit dans votre point d'entrée `app`. (je ne vous recommande pas vraiment cette méthode mais plutôt celle qui suit en définissant plusieurs stratégies)
 
 ```
 ├──assets
@@ -69,8 +73,9 @@ framework:
 ```
 
 ```twig
+{# stratégie personnalisée avec Vite #}
 {{ asset('assets/images/avatar.jpg', 'vite') }}
 
-{# strategie par défaut #}
+{# stratégie par défaut #}
 {{ asset('other-location/logo.svg')}}
 ```
