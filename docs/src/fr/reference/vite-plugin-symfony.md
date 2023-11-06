@@ -16,6 +16,25 @@ Affiche dans la console la configuration complète de Vite lorsqu'elle a été c
 Force l'exécution du plugin à la fin. Cela nous garanti que tous les fichiers seront traités et permet notamment de générer les bon hachages de nos fichiers si l'on souhaite ajouter des attributs d'intégrité à nos scripts. si vous désactivez cette option le plugin symfony sera exécuté à l'emplacement où il a été déclaré.
 
 
+## enforceServerOriginAfterListening
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `true`
+
+par défaut tout import de resource dans un fichier est résolu le serveur de Vite sans spécifier l'origine.
+
+```js
+import logo from './assets/logo.svg'
+// voir https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/asset.ts#L289
+
+console.log(logo);
+// '/build/assets/logo.svg'
+```
+cela se révèle problèmatique avec une utilisation sous Symfony car c'est le serveur php de Symfony qui sera à l'origine de la requête et celui-ci ne sera pas capable de résoudre le chemin. Jusqu'à la v5, `pentatrion/vite-bundle` transmettait la requête à vite par proxy. Avec cette option, vos assets seront résolus plus rapidement car ne transiteront pas par Symfony.
+
+Si vous rencontrez des problèmes d'affichage de resources car vous êtes dans des environnements spécifiques (Docker par exemple), vous pourriez être amené à désactiver cette option.
+
+
 ## originOverride
 
 - **Type:** `null | string`

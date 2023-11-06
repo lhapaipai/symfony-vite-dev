@@ -102,6 +102,47 @@
       ]
     },
     {
+      "name": "sandbox:vite:dev",
+      "program": "${workspaceFolder}/playground/sandbox/node_modules/.bin/vite",
+      "args": [
+        "-c",
+        "${workspaceFolder}/playground/sandbox/vite.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/playground/sandbox",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
+      "name": "sandbox:vite:build",
+      "program": "${workspaceFolder}/node_modules/.bin/vite",
+      "args": [
+        "build",
+        "-c",
+        "${workspaceFolder}/playground/sandbox/vite.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/playground/sandbox",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outFiles": [
+        "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
+      ]
+    },
+    {
       "name": "with-cdn:vite:dev",
       "program": "${workspaceFolder}/node_modules/.bin/vite",
       "args": [

@@ -39,6 +39,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
     enforcePluginOrderingPosition: userConfig.enforcePluginOrderingPosition === false ? false : true,
+    enforceServerOriginAfterListening: userConfig.enforceServerOriginAfterListening === false ? false : true,
   };
 }
 

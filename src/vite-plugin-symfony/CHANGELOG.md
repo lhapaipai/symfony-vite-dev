@@ -1,3 +1,7 @@
+## v6.0.1
+
+- add `enforceServerOriginAfterListening`
+
 ## v5.0.0
 
 - change `entrypoints.json` property `isProd` to `isBuild` because you can be in dev env and want to build your js files.

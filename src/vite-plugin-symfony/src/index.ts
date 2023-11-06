@@ -141,6 +141,9 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
           }
 
           viteDevServerUrl = resolveDevServerUrl(address, devServer.config, pluginOptions);
+          if (pluginOptions.enforceServerOriginAfterListening) {
+            viteConfig.server.origin = viteDevServerUrl;
+          }
 
           const entryPoints = getDevEntryPoints(viteConfig, viteDevServerUrl);
 

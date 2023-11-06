@@ -3,6 +3,8 @@ import logoVite from '~/images/logo-vite.svg';
 import logoSymfony from '../../images/logo-symfony.svg';
 import logoPentatrion from '/assets/images/logo-pentatrion.svg';
 
+console.log(logoVite, logoSymfony, logoPentatrion);
+
 import '~/images/logo-symfony-less-4kb.png'
 
 window.addEventListener('DOMContentLoaded', () => {

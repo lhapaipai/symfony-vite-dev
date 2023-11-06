@@ -195,4 +195,12 @@ export type VitePluginSymfonyOptions = {
    * @default true
    */
   enforcePluginOrderingPosition: boolean;
+
+  /**
+   * force the vite dev server to reassign his `server.origin` Vite config after vite dev server is listening.
+   * relating to https://github.com/vitejs/vite/issues/12597
+   * with this option activated we no longer need to pass Vite asset requests through the symfony proxy
+   * @default true
+   */
+  enforceServerOriginAfterListening: boolean;
 };
