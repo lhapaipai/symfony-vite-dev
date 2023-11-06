@@ -45,7 +45,7 @@ fi
 #     exit 1
 # fi
 
-# git fetch origin
+git pull origin
 
 
 BUNDLE_FILE="$PROJECT_DIR/src/vite-bundle/src/PentatrionViteBundle.php"
@@ -68,12 +68,11 @@ fi
 
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
-npm --no-git-tag-version version $VERSION
+npm --no-git-tag-version --allow-same-version version $VERSION
 
-
-exit
 
 cd "$PROJECT_DIR"
+
 
 git add .
 git commit -m 'change vite-plugin-symfony package.json version'
@@ -82,6 +81,7 @@ git tag -a $VERSION -m $VERSION
 
 git push origin
 
+exit
 
 # vite-bundle
 rm -rf $TMP_DIR
