@@ -101,4 +101,4 @@ pentatrion_vite:
   build_directory: custom-build // [!code ++]
 ```
 
-To consult the list of all the available options, you can go to the page [Reference: Vite Bundle](/fr/reference/vite-bundle).
+To consult the list of all the available options, you can go to the page [Reference: Vite Bundle](/reference/vite-bundle).
