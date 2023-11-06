@@ -10,11 +10,14 @@ const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
 const sharedDir = resolve(basicPlaygroundDir, '../../shared')
 
 export default defineConfig({
+  base: 'https://basic.symfony-vite-dev.localhost/build/',
+
   plugins: [
     vuePlugin(),
     reactPlugin(),
     symfonyPlugin({
-      debug: false
+      debug: false,
+      servePublic: false
     }),
   ],
 

@@ -11,6 +11,11 @@ import { BinaryLike, createHash } from "node:crypto";
 
 export const isWindows = os.platform() === "win32";
 
+export function parseVersionString(str: string) {
+  const [major, minor, patch] = str.split(".").map((nb) => parseInt(nb));
+  return [str, major ?? 0, minor ?? 0, patch ?? 0];
+}
+
 export function slash(p: string): string {
   return p.replace(/\\/g, "/");
 }

@@ -22,8 +22,10 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('vite-asset-js-url-3').innerText = logoPentatrion;
 
 
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById(`vite-asset-scss-url-${i}`).innerText = getComputedStyle(document.getElementById(`vite-asset-scss-img-${i}`)).backgroundImage;
+  for (let i = 1; i <= 5; i++) {
+    let bgSrc = getComputedStyle(document.getElementById(`vite-asset-scss-img-${i}`)).backgroundImage
+    let match = /url\("([^\"]+)"\)/.exec(bgSrc)
+    document.getElementById(`vite-asset-scss-url-${i}`).innerText = (new URL(match[1])).pathname;
   }
 });
 

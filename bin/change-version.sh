@@ -25,6 +25,7 @@ then
     exit 1
 fi
 
+
 if egrep '^[0-9]+\.[0-9]+\.[0-9]+' <<< "$VERSION" > /dev/null 2>&1
 then
     n=${VERSION//[!0-9]/ }
@@ -37,19 +38,25 @@ else
     exit 1
 fi
 
+# # Make sure the working directory is clear.
+# if [[ ! -z "$(git status --porcelain)" ]]
+# then
+#     echo "Your working directory is dirty. Did you forget to commit your changes?"
+#     exit 1
+# fi
+
+# git fetch origin
+
+
 BUNDLE_FILE="$PROJECT_DIR/src/vite-bundle/src/PentatrionViteBundle.php"
 
-sed -i -e "s/const VERSION = '[\.0-9]\+';/const VERSION = '$VERSION';/g" "$BUNDLE_FILE"
-sed -i -e "s/const MAJOR_VERSION = [\.0-9]\+;/const MAJOR_VERSION = $MAJOR_VERSION;/g" "$BUNDLE_FILE"
+BUNDLE_VERSION_STRING="['$VERSION', $MAJOR_VERSION, $MINOR_VERSION, $PATCH_VERSION]"
+sed -i -e "s/const VERSION = [^;]\+;/const VERSION = $BUNDLE_VERSION_STRING;/g" "$BUNDLE_FILE"
+
 
 PACKAGE_JSON_FILE="$PROJECT_DIR/src/vite-bundle/install/package.json"
+sed -i -e "s/\"vite-plugin-symfony\": \"\^[\.0-9]\+\"/\"vite-plugin-symfony\": \"^$MAJOR_VERSION.$MINOR_VERSION\"/g" "$PACKAGE_JSON_FILE"
 
-sed -i -e "s/\"vite-plugin-symfony\": \"\^[\.0-9]\+\"/\"vite-plugin-symfony\": \"^$MAJOR_VERSION.0\"/g" "$PACKAGE_JSON_FILE"
-
-
-exit
-
-git fetch origin
 
 # Make sure current branch and release branch match.
 if [[ "$RELEASE_BRANCH" != "$CURRENT_BRANCH" ]]
@@ -58,16 +65,13 @@ then
     exit 1
 fi
 
-# Make sure the working directory is clear.
-if [[ ! -z "$(git status --porcelain)" ]]
-then
-    echo "Your working directory is dirty. Did you forget to commit your changes?"
-    exit 1
-fi
 
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
 npm --no-git-tag-version version $VERSION
+
+
+exit
 
 cd "$PROJECT_DIR"
 

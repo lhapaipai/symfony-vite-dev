@@ -24,6 +24,7 @@ import {
   isCssEntryPoint,
   getFileInfos,
   getInputRelPath,
+  parseVersionString,
 } from "./utils";
 import { resolvePluginOptions, resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "./pluginOptions";
 
@@ -31,6 +32,8 @@ import { VitePluginSymfonyOptions, StringMapping, GeneratedFiles, ResolvedConfig
 
 // src and dist directory are in the same level;
 const pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
+const packageJson = JSON.parse(readFileSync(join(pluginDir, "package.json")).toString());
+const pluginVersion = process.env.VITEST ? "test" : parseVersionString(packageJson?.version);
 
 export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin {
   const pluginOptions = resolvePluginOptions(userOptions);
@@ -143,10 +146,6 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
           const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsBasename);
 
-          const pluginVersion = process.env.VITEST
-            ? "test"
-            : JSON.parse(readFileSync(join(pluginDir, "package.json")).toString())?.version;
-
           writeJson(entryPointsPath, {
             base: viteConfig.base,
             entryPoints,
@@ -250,9 +249,6 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
       if (outputCount >= outputLength) {
         const entryPoints = getBuildEntryPoints(generatedFiles, viteConfig, inputRelPath2outputRelPath);
 
-        const pluginVersion = process.env.VITEST
-          ? "test"
-          : JSON.parse(readFileSync(join(pluginDir, "package.json")).toString())?.version;
         this.emitFile({
           fileName: entryPointsBasename,
           source: JSON.stringify(
