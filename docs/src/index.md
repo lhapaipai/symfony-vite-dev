@@ -39,7 +39,7 @@ features:
     details: Fast installation with Bundle Flex recipe and preconfigured Vite plugin.
   - icon: 🛠️
     title: Twig functions
-    details: Associate your entrypoints in your twig templates with twig functions.
+    details: Associate your entrypoints in your Twig templates with Twig functions.
   - icon: 📦
     title: Assets management
     details: Integrate your assets into Symfony with custom Asset version Strategy.

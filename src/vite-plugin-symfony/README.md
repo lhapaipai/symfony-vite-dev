@@ -73,9 +73,8 @@ and your package.json :
 
 | Package                                                                 | Description               |
 | ----------------------------------------------------------------------- | :------------------------ |
-| [vite-bundle](https://github.com/lhapaipai/vite-bundle)                 | Symfony Bundle            |
-| [vite-plugin-symfony](https://github.com/lhapaipai/vite-plugin-symfony) | Vite plugin               |
-| [symfony-vite-docs](https://github.com/lhapaipai/symfony-vite-docs)     | Documentation             |
+| [vite-bundle](https://github.com/lhapaipai/vite-bundle)                 | Symfony Bundle (read-only)|
+| [vite-plugin-symfony](https://github.com/lhapaipai/vite-plugin-symfony) | Vite plugin (read-only)   |
 | [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev)       | Package for contributors  |
 
 ## License

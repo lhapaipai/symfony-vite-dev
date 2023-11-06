@@ -100,6 +100,6 @@ mkdir --parents "$TMP_DIR"
 cd $TMP_DIR
 git clone git@github.com:lhapaipai/vite-plugin-symfony.git .
 git checkout "$RELEASE_BRANCH"
-git tag -a "$VERSION" -m "$VERSION"
+git tag -a "v$VERSION" -m "v$VERSION"
 git push origin --tags
 

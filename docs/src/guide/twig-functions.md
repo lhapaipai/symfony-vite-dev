@@ -1,7 +1,7 @@
 # Twig functions
 
-The bundle provide 2 twig functions both of which accept an optional second parameter of options.
-An optional third parameter `configName` si available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page if you want more details.
+The bundle provides two Twig functions both of which accept an optional second parameter of options.
+An optional third parameter `configName` is available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page if you want more details.
 
 ## vite_entry_script_tags
 

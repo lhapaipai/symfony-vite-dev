@@ -147,7 +147,7 @@ framework:
 
 Veuillez à mettre à jour votre Bundle `pentatrion/vite-bundle` à la version 5.x avec composer mais aussi votre paquet node `vite-plugin-symfony` vers une version 5.x.
 
-Si vous utilisez la fonction twig `vite_mode`, les 3 valeurs possibles sont désormais : `"dev"` | `"build"` | `null`.
+Si vous utilisez la fonction Twig `vite_mode`, les 3 valeurs possibles sont désormais : `"dev"` | `"build"` | `null`.
 
 C'est terminé !
 
@@ -162,7 +162,7 @@ Dans la version v0.2.x, vous devez spécifier vos points d'entrée dans un table
 +},
 ```
 
-de cette façon, vous devez spécifier le point d'entrée nommé dans vos fonctions twig.
+de cette façon, vous devez spécifier le point d'entrée nommé dans vos fonctions Twig.
 
 ```diff
 -{{ vite_entry_script_tags('app.js') }}

@@ -95,7 +95,7 @@ Link: \
 
 ## Caching configuration files
 
-When you call the twig functions `vite_entry_link_tags('app')` or `vite_entry_script_tags('app')` or `asset('assets/image.jpg')`, the bundle will look for `public/build/entrypoints files. json` and `manifest.json` to fill your html tags with the correct `src` or `href` attributes.
+When you call the Twig functions `vite_entry_link_tags('app')` or `vite_entry_script_tags('app')` or `asset('assets/image.jpg')`, the bundle will look for `public/build/entrypoints files. json` and `manifest.json` to fill your html tags with the correct `src` or `href` attributes.
 
 If you have specified multiple configurations, even more files will be opened and processed.
 

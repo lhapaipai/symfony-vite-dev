@@ -26,7 +26,7 @@ export default defineConfig({
 ```
 
 ::: tip
-still add the 2 twig functions vite_entry_link_tags / vite_entry_script_tags
+still add the two Twig functions vite_entry_link_tags / vite_entry_script_tags
 even if the entry point is a css file because in development mode Vite will need to insert its js code to activate the HMR.
 :::
 

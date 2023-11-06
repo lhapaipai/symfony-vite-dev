@@ -150,7 +150,7 @@ The main function of `vite-plugin-symfony` is to generate an `entrypoints.json` 
 ```
 :::
 
-The `pentatrion/vite-bundle` Symfony bundle will mainly provide the 2 twig functions `vite_entry_script_tags` and `vite_entry_link_tags`. Under the hood these 2 functions will parse the generated `entrypoints.json` file and return the appropriate `<script>` and `<link>` tags.
+The `pentatrion/vite-bundle` Symfony bundle will mainly provide the two Twig functions `vite_entry_script_tags` and `vite_entry_link_tags`. Under the hood these 2 functions will parse the generated `entrypoints.json` file and return the appropriate `<script>` and `<link>` tags.
 
 
 ::: code-group

@@ -67,7 +67,7 @@ Enfin, lorsque vous lancez la compilation de votre code, Vite s'appuiera sur Rol
 
 ## Comment intégrer Vite dans un application Symfony ?
 
-Le fonctionnement de Vite est piloté par la réécriture des balises `<script>` et `<link>`, il serait donc intéressant de déplacer cette logique dans des fonctions twig.
+Le fonctionnement de Vite est piloté par la réécriture des balises `<script>` et `<link>`, il serait donc intéressant de déplacer cette logique dans des fonctions Twig.
 
 Dans le fichier de configuration de Vite, on définit le point d'entrée `app` de notre application.
 
@@ -99,7 +99,7 @@ Et faisons ensuite référence à ce point d'entrée dans nos modèles `twig`.
 </html>
 ```
 
-En fonction du contexte d'utilisation (développement ou production) les fonctions twig renverront soit une référence au serveur de développement de Vite ou bien à des fichiers statiques générés après une étape de compilation.
+En fonction du contexte d'utilisation (développement ou production) les fonctions Twig renverront soit une référence au serveur de développement de Vite ou bien à des fichiers statiques générés après une étape de compilation.
 
 Pour plus d'infos sur l'intégration voir [Backend integration](https://vitejs.dev/guide/backend-integration.html).
 
@@ -150,7 +150,7 @@ La fonction principale de `vite-plugin-symfony` est de générer un fichier `ent
 ```
 :::
 
-Quant à lui, le bundle Symfony `pentatrion/vite-bundle` se chargera principalement de mettre à disposition les 2 fonctions twig `vite_entry_script_tags` et `vite_entry_link_tags`. Sous le capot ces 2 fonctions vont analyser le fichier `entrypoints.json` généré et renverront les balises `<script>` et `<link>` appropriées.
+Quant à lui, le bundle Symfony `pentatrion/vite-bundle` se chargera principalement de mettre à disposition les 2 fonctions Twig `vite_entry_script_tags` et `vite_entry_link_tags`. Sous le capot ces 2 fonctions vont analyser le fichier `entrypoints.json` généré et renverront les balises `<script>` et `<link>` appropriées.
 
 ::: code-group
 ```twig [index.html.twig]

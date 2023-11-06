@@ -26,7 +26,7 @@ export default defineConfig({
 ```
 
 ::: tip
-Ajoutez tout de même les 2 fonctions twig vite_entry_link_tags / vite_entry_script_tags
+Ajoutez tout de même les 2 fonctions Twig vite_entry_link_tags / vite_entry_script_tags
 même si le point d'entrée est un fichier css car en mode développement ViteJs aura besoin d'insérer son code js pour activer le HMR.
 :::
 

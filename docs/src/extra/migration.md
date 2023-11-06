@@ -148,7 +148,7 @@ framework:
 
 Please update your Bundle `pentatrion/vite-bundle` to version 5.x with composer but also your node package `vite-plugin-symfony` to 5.x.
 
-If you use the `vite_mode` twig function, the 3 possible values are now: `"dev"` | `"build"` | `null`.
+If you use the `vite_mode` Twig function, the 3 possible values are now: `"dev"` | `"build"` | `null`.
 
 It's over !
 
@@ -163,7 +163,7 @@ In version v0.2.x, you have to specify your entry points in an array in your `vi
 +},
 ```
 
-this way you need to specify the named entry point in your twig functions.
+this way you need to specify the named entry point in your Twig functions.
 
 ```diff
 -{{ vite_entry_script_tags('app.js') }}

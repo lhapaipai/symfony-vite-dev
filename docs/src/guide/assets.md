@@ -13,7 +13,7 @@ Whenever you run a `build` with Vite, two configuration files are generated in y
 
 The `manifest.json` file is needed to get the versioned filename of assets files, like font files or image files.
 
-so you can use [Symfony's Asset component](https://symfony.com/doc/current/components/asset.html) and its `asset` function to reference your assets in your twig files.
+so you can use [Symfony's Asset component](https://symfony.com/doc/current/components/asset.html) and its `asset` function to reference your assets in your Twig files.
 To enable this association between Symfony and your `manifest.json` file, you will need to use `ViteAssetVersionStrategy`.
 
 ```yaml
@@ -24,7 +24,7 @@ framework:
 
 ```
 
-You can then use the `asset()` twig function by specifing your asset file path relative to your `root` path specified in your `vite.config.js`. (for compatibility reason with vite generated `manifest.json` file)
+You can then use the `asset()` Twig function by specifing your asset file path relative to your `root` path specified in your `vite.config.js`. (for compatibility reason with vite generated `manifest.json` file)
 
 ```twig
 <body>
@@ -33,7 +33,7 @@ You can then use the `asset()` twig function by specifing your asset file path r
 ```
 You can use this `asset()` function **only with assets referenced by JavaScript or CSS files**. The `manifest.json` file is generated during the compilation step of your JavaScript code by Vite. It's a kind of summary of the files it processed. If your file is not referenced anywhere it will not appear in the `manifest.json`.
 
-If you want to make Vite aware of others assets you can import directory of assets into your application's entry point. For example il you want to version all images stored in `assets/images` you could add the following in your `app` entrypoint. (I do not really recommend this method but rather the following one by defining multiple strategies)
+If you want to make Vite aware of others assets you can import a directory of assets into your application's entry point. For example il you want to version all images stored in `assets/images` you could add the following in your `app` entrypoint. (I do not really recommend this method but rather the following one by defining multiple strategies)
 
 Please note, by default Vite will make all its assets smaller than 4kb inline, so you will not be able to reference these files. (see explanations and solution in [troubleshooting](/guide/troubleshooting.html#troubleshooting)).
 
@@ -57,7 +57,7 @@ import.meta.glob([
 
 ## Multiple asset strategies
 
-if you want to use the asset twig function to serve assets from Vite but you want to serve other assets that come from another source you can define multiple strategies.
+if you want to use the [Twig asset function](https://symfony.com/doc/current/reference/twig_reference.html#asset) to serve assets from Vite but you want to serve other assets that come from another source you can define multiple strategies.
 
 ```yaml
 # config/packages/framework.yaml

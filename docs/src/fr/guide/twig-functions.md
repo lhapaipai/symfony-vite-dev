@@ -1,6 +1,6 @@
 # Fonctions Twig
 
-Le bundle fournit 2 fonctions twig qui acceptent toutes deux un deuxième paramètre optionnel d'options.
+Le bundle fournit 2 fonctions Twig qui acceptent toutes deux un deuxième paramètre optionnel d'options.
 Un troisième paramètre optionnel "configName" est disponible si vous avez plusieurs builds. Regardez la page [configurations multiples](/fr/guide/multiple-configurations) si vous voulez plus de détails.
 
 ## vite_entry_script_tags

@@ -94,7 +94,7 @@ Link: \
 
 ## Mise en cache des fichiers de configuration
 
-Lorsque vous appelez les fonctions twig `vite_entry_link_tags('app')` ou `vite_entry_script_tags('app')` ou `asset('assets/image.jpg')`, le bundle va chercher des fichiers `public/build/entrypoints.json` et `manifest.json` pour remplir vos balises html avec les bons attributs `src` ou `href`.
+Lorsque vous appelez les fonctions Twig `vite_entry_link_tags('app')` ou `vite_entry_script_tags('app')` ou `asset('assets/image.jpg')`, le bundle va chercher des fichiers `public/build/entrypoints.json` et `manifest.json` pour remplir vos balises html avec les bons attributs `src` ou `href`.
 
 Si vous avez spécifié des configurations multiples, ce sera d'autant plus de fichiers qui seront ouverts et traités.
 

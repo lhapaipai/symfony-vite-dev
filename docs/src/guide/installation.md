@@ -38,7 +38,7 @@ npm install
 
 ```
 
-Add this twig functions in any template or base layout where you need to include a JavaScript entry.
+Add these Twig functions in any template or base layout where you need to include a style sheet or JavaScript entry.
 
 ```twig
 {% block stylesheets %}

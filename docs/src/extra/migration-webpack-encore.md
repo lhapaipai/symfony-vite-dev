@@ -35,7 +35,7 @@ Continue your configuration following the [installation](/guide/installation.htm
 
 ## Configuration
 
-There is some minor differences with the twig functions
+There is some minor differences with the Twig functions
 
 ```diff
 // webpack.config.js
