@@ -47,6 +47,54 @@ rendera
 ```
 during development.
 
+## Docker
+
+Si vous utilisez Docker pour votre développement Symfony et que vous exécutez vos commandes node dans un conteneur, vous aurez besoin de faire quelques ajustements dans la configuration.
+
+prenons l'exemple avec une image `node:21-alpine`.
+
+```bash
+docker run
+  --rm \
+  -ti \
+  --user $(id -u):$(id -g) \
+  -v $(pwd):/app \
+  -p 5173:5173 \
+  -w /app \
+  node:21-alpine \
+  npm run dev
+```
+
+
+```js
+// vite.config.js
+export default defineConfig({
+    server: {
+        // nous avons besoin que vite écoute sur toutes les interfaces
+        host: '0.0.0.0'
+    },
+    plugins: [
+        symfonyPlugin({
+            // comme nous avons spécifié un `server.host` = 0.0.0.
+            // nous devons explicitement nommer le server host name
+            // à utiliser.
+            viteDevServerHostname: 'localhost'
+        }),
+    ],
+    build: {
+        rollupOptions: {
+            input: {
+                app: "./assets/app.js"
+            },
+        }
+    },
+});
+```
+
+Un exemple de configuration avec Docker peut-être trouvée de les [bacs à sable Symfony Vite Dev](https://github.com/lhapaipai/symfony-vite-dev/tree/main/playground).
+
+Vous pourrez en savoir plus en suivant cette [discussion Github](https://github.com/lhapaipai/vite-bundle/issues/26).
+
 ## Préparation des dépendances
 
 Initialement dans un projet Vite, `index.html` est le point d'entrée de votre application. Lorsque vous exécutez votre serveur de développement, Vite analyse votre code source et découvre automatiquement les dépendances dont il aura besoin.

@@ -47,6 +47,56 @@ will render
 ```
 during development.
 
+## Docker
+
+If you are using Docker for your Symfony development and running your node commands in a container, you will need to make some configuration adjustments.
+
+Let's take the example with an image `node:21-alpine`.
+
+```bash
+docker run
+  --rm \
+  -ti \
+  --user $(id -u):$(id -g) \
+  -v $(pwd):/app \
+  -p 5173:5173 \
+  -w /app \
+  node:21-alpine \
+  npm run dev
+```
+
+
+```js
+// vite.config.js
+export default defineConfig({
+    server: {
+        // nous avons besoin que vite écoute sur toutes les interfaces
+        host: '0.0.0.0'
+    },
+    plugins: [
+        symfonyPlugin({
+            // comme nous avons spécifié un `server.host` = 0.0.0.
+            // nous devons explicitement nommer le server host name
+            // à utiliser.
+            viteDevServerHostname: 'localhost'
+        }),
+    ],
+    build: {
+        rollupOptions: {
+            input: {
+                app: "./assets/app.js"
+            },
+        }
+    },
+});
+```
+
+An example configuration with Docker can be found in the [Symfony Vite Dev sandboxes](https://github.com/lhapaipai/symfony-vite-dev/tree/main/playground).
+
+You can learn more by following this [Github discussion](https://github.com/lhapaipai/vite-bundle/issues/26).
+
+
+
 ## Dependency Pre-Bundling
 
 Initially in a Vite project, `index.html` is the entry point to your application. When you run your dev serve, Vite will crawl your source code and automatically discover dependency imports.
