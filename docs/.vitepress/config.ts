@@ -48,7 +48,7 @@ export default defineConfig({
 
       themeConfig: {
         editLink: {
-          pattern: 'https://github.com/lhapaipai/symfony-vite-docs/edit/main/src/:path',
+          pattern: 'https://github.com/lhapaipai/symfony-vite-dev/edit/main/docs/src/:path',
           text: 'Edit this page'
         },
         nav: [
@@ -72,6 +72,7 @@ export default defineConfig({
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
               { text: 'Custom attributes', link: '/guide/custom-attributes'},
+              { text: 'Dependency injection', link: '/guide/dependency-injection'},
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Performances', link: '/guide/performances' },
               { text: 'Using a CDN', link: '/guide/cdn' },
@@ -110,7 +111,7 @@ export default defineConfig({
       description: 'Guide du développeur',
       themeConfig: {
         editLink: {
-          pattern: 'https://github.com/lhapaipai/symfony-vite-docs/edit/main/src/:path',
+          pattern: 'https://github.com/lhapaipai/symfony-vite-dev/edit/main/docs/src/:path',
           text: 'Éditer cette page'
         },
 
@@ -139,6 +140,7 @@ export default defineConfig({
               { text: 'Fonctions Twig', link: '/fr/guide/twig-functions' },
               { text: 'Assets', link: '/fr/guide/assets' },
               { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes'},
+              { text: 'Injection de dépendances', link: '/fr/guide/dependency-injection'},
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Performances', link: '/fr/guide/performances' },
               { text: 'Utiliser un CDN', link: '/fr/guide/cdn' },
