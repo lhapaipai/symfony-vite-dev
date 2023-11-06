@@ -7,7 +7,7 @@ composer outdated
 
 # at the time of writing this, it was the version 6.0
 # so update your bundle to this version
-composer update pentatrion/vite-bundle:^6.0
+composer require pentatrion/vite-bundle:^6.0
 
 # Important ! update your vite-plugin-symfony npm package
 # to the same Major and version.

@@ -81,8 +81,6 @@ git tag -a $VERSION -m $VERSION
 
 git push origin
 
-exit
-
 # vite-bundle
 rm -rf $TMP_DIR
 mkdir --parents "$TMP_DIR"
@@ -92,6 +90,7 @@ git clone git@github.com:lhapaipai/vite-bundle.git .
 git checkout "$RELEASE_BRANCH"
 # prepend with "v"
 git tag -a "v$VERSION" -m "v$VERSION"
+
 git push origin --tags
 
 # vite-plugin-symfony
@@ -103,3 +102,4 @@ git clone git@github.com:lhapaipai/vite-plugin-symfony.git .
 git checkout "$RELEASE_BRANCH"
 git tag -a "$VERSION" -m "$VERSION"
 git push origin --tags
+

@@ -17,6 +17,7 @@ node_modules
 /playground/ssr/
 /playground/stimulus/
 /playground/vite-only/
+/playground/basic-real/
 
 /playground/*/.env.local
 /playground/*/composer.lock
