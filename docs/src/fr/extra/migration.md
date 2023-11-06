@@ -7,7 +7,7 @@ composer outdated
 
 # à l'heure de l'écriture de ces lignes c'était la version 6.0
 # Mettez à jour votre bundle en conséquence
-composer update pentatrion/vite-bundle:^6.0
+composer require pentatrion/vite-bundle:^6.0
 
 # Important ! Mettez à jour votre package npm vite-plugin-symfony
 # avec la même version majeure et mineure.
