@@ -68,23 +68,38 @@ config(userConfig) {
 
 Pour toutes les options disponibles, vous pouvez consulter la page [Référence : Vite plugin Symfony](/fr/reference/vite-plugin-symfony).
 
+## Changer le nom du dossier de `build`.
 
-## Vite Bundle
+si vous souhaitez spécifier un autre nom de dossier pour construire vos fichiers, vous devrez changer quelques options.
 
-Si vous modifiez certaines propriétés dans votre fichier `vite.config.js`, vous devrez probablement créer un fichier de configuration `pentatrion_vite.yaml` pour que votre bundle synchronise ces modifications. ça concerne:
+```js
+// vite.config.js
+export default defineConfig({
+  base: '/custom-build/', // [!code ++]
+  plugins: [
+    symfonyPlugin(),
+  ],
 
-- Options de base de `vite`
-  - `base`
-  - `build.outdir`
+  build: {
+    outDir: 'public/custom-build', // [!code ++]
+
+    rollupOptions: {
+      input: {
+        "app": "./assets/app.js",
+      },
+    },
+
+  },
+});
+```
+
+Vous devrez ensuite créer un fichier de configuration `pentatrion_vite.yaml` pour que `pentatrion/vite-bundle` soit en accord avec votre configuration js.
 
 
 ```yaml{3,4}
 #config/packages/pentatrion_vite.yaml
 pentatrion_vite:
-  public_directory: public
-  build_directory: build
-
-  # etc...
+  build_directory: custom-build // [!code ++]
 ```
 
-Pour toutes les options disponibles, vous pouvez consulter la page [Référence : Vite Bundle](/fr/reference/vite-bundle).
+Pour consulter la liste de toutes les options disponibles, vous pouvez vous rendre sur la page [Référence : Vite Bundle](/fr/reference/vite-bundle).

@@ -18,7 +18,7 @@ node_modules
 /playground/stimulus/
 /playground/vite-only/
 /playground/basic-real/
-
+/playground/ssr-html/
 /playground/*/.env.local
 /playground/*/composer.lock
 /playground/*/.env.local.php
