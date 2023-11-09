@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-welcome{% endblock %}
+
+{% block content %}
+<h1 {{ stimulus_controller('welcome', {name: 'Symfony, Vite & Stimulus'})}}></h1>
+
+<div>
+    {{ form(form)}}
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageWelcome') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageWelcome') }}
+{% endblock %}

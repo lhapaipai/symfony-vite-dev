@@ -203,4 +203,10 @@ export type VitePluginSymfonyOptions = {
    * @default true
    */
   enforceServerOriginAfterListening: boolean;
+
+  /**
+   * enable controllers.json loader for Symfony UX.
+   * @default false
+   */
+  stimulus: boolean | string;
 };

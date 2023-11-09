@@ -29,6 +29,12 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     userConfig.sriAlgorithm = false;
   }
 
+  if (userConfig.stimulus === true) {
+    userConfig.stimulus = "./assets/controllers.json";
+  } else if (typeof userConfig.stimulus !== "string" && userConfig.stimulus !== false) {
+    userConfig.stimulus = false;
+  }
+
   return {
     originOverride: userConfig.originOverride ?? null,
     buildDirectory: userConfig.buildDirectory,
@@ -40,6 +46,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
     enforcePluginOrderingPosition: userConfig.enforcePluginOrderingPosition === false ? false : true,
     enforceServerOriginAfterListening: userConfig.enforceServerOriginAfterListening === false ? false : true,
+    stimulus: userConfig.stimulus,
   };
 }
 

@@ -29,6 +29,7 @@ import {
 import { resolvePluginOptions, resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "./pluginOptions";
 
 import { VitePluginSymfonyOptions, StringMapping, GeneratedFiles, ResolvedConfigWithOrderablePlugins } from "./types";
+import { createControllersModule } from "./stimulusBridge";
 
 // src and dist directory are in the same level;
 const pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -41,6 +42,10 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
   let viteDevServerUrl: string;
 
   const entryPointsBasename = "entrypoints.json";
+
+  const virtualModuleId = "virtual:symfony/controllers";
+  const resolvedVirtualModuleId = "\0" + virtualModuleId;
+  let stimulusControllersContent = null;
 
   const inputRelPath2outputRelPath: StringMapping = {};
   const generatedFiles: GeneratedFiles = {};
@@ -89,6 +94,20 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
         const manifestPos = viteConfig.plugins.findIndex((plugin) => plugin.name === "vite:reporter");
         viteConfig.plugins.splice(manifestPos, 0, symfonyPlugin[0]);
+      }
+
+      if (typeof pluginOptions.stimulus === "string") {
+        stimulusControllersContent = JSON.parse(readFileSync(resolve(config.root, pluginOptions.stimulus)).toString());
+      }
+    },
+    resolveId(id: string) {
+      if (pluginOptions.stimulus !== false && id === virtualModuleId) {
+        return resolvedVirtualModuleId;
+      }
+    },
+    async load(id) {
+      if (id === resolvedVirtualModuleId) {
+        return await createControllersModule(stimulusControllersContent);
       }
     },
     configureServer(devServer) {

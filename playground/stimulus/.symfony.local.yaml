@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - stimulus.symfony-vite

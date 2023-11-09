@@ -15,7 +15,6 @@ node_modules
 
 /playground/sandbox/
 /playground/ssr/
-/playground/stimulus/
 /playground/vite-only/
 /playground/basic-real/
 /playground/ssr-html/

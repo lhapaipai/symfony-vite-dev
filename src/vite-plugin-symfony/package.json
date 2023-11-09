@@ -4,8 +4,15 @@
   "description": "",
   "main": "dist/index.js",
   "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./stimulus-helpers": {
+      "import": "./dist/stimulus-helpers/index.mjs",
+      "require": "./dist/stimulus-helpers/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "types": "dist/index.d.ts",
   "author": {
@@ -61,6 +68,7 @@
     "node": "18.12.1"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
     "sirv": "^2.0.2"
