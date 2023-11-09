@@ -1,7 +1,7 @@
 declare module "virtual:symfony/controllers" {
+  import { type ControllerConstructor } from "@hotwired/stimulus";
   const modules: {
-    identifier: string;
-    controllerLoader: () => any;
-  }[];
+    [controllerName: string]: ControllerConstructor;
+  };
   export default modules;
 }

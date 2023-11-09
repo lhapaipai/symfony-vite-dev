@@ -1,5 +1,6 @@
 import { describe, it } from "vitest";
-import { identifierFromFilePath, identifierFromThirdParty } from "../../stimulus";
+import { generateStimulusId } from "../../stimulusBridge";
+import { identifierFromFilePath } from "../../stimulus-helpers/util";
 
 describe("stimulus", () => {
   it("identifierFromFilePath generate correct identifier", ({ expect }) => {
@@ -27,7 +28,7 @@ describe("stimulus", () => {
       // ["not a controller", undefined],
     ];
     list.forEach(([input, result]) => {
-      expect(identifierFromThirdParty(input)).toBe(result);
+      expect(generateStimulusId(input)).toBe(result);
     });
   });
 });

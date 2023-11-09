@@ -15,6 +15,7 @@ describe("resolvePluginOptions", () => {
         "refresh": false,
         "servePublic": "public",
         "sriAlgorithm": false,
+        "stimulus": false,
         "viteDevServerHostname": null,
       }
     `);
@@ -37,6 +38,7 @@ describe("resolvePluginOptions", () => {
         "refresh": false,
         "servePublic": "public",
         "sriAlgorithm": false,
+        "stimulus": false,
         "viteDevServerHostname": null,
       }
     `);
