@@ -2,8 +2,16 @@
 
 {% block title %}HelloController!{% endblock %}
 
-{% block html_class %}page-welcome{% endblock %}
+{% block html_class %}page-lazyimage{% endblock %}
 
 {% block content %}
+  <img
+      src="{{ asset('uploads/symfony-vite-small.png') }}"
+      {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+          src: asset('uploads/symfony-vite.png')
+      }) }}
+      width="400"
+      height="400"
+  >
 {% endblock %}
 

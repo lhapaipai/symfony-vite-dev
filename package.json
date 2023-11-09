@@ -30,6 +30,7 @@
     "@symfony/ux-notify": "file:playground/stimulus/vendor/symfony/ux-notify/assets",
     "@symfony/ux-react": "file:playground/stimulus/vendor/symfony/ux-react/assets",
     "@symfony/ux-svelte": "file:playground/stimulus/vendor/symfony/ux-svelte/assets",
+    "@symfony/ux-swup": "file:playground/stimulus/vendor/symfony/ux-swup/assets",
     "@symfony/ux-toggle-password": "file:playground/stimulus/vendor/symfony/ux-toggle-password/assets",
     "@symfony/ux-translator": "file:playground/stimulus/vendor/symfony/ux-translator/assets",
     "@symfony/ux-turbo": "file:playground/stimulus/vendor/symfony/ux-turbo/assets",

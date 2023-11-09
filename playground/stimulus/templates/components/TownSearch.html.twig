@@ -1,0 +1,12 @@
+<div {{ attributes }}>
+    <input
+        type="search"
+        data-model="query"
+    >
+    <button data-action="live#$render">Update</button>
+    <ul>
+        {% for town in this.towns %}
+            <li>{{ town }}</li>
+        {% endfor %}
+    </ul>
+</div>

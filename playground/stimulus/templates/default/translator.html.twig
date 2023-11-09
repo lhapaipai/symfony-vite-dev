@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-translator{% endblock %}
+
+{% block content %}
+<div>
+    <div>Not using Stimulus</div>
+    <div id="hello"></div>
+    <div id="say_hello"></div>
+    <div id="invitation_title"></div>
+    <div id="num_of_apples"></div>
+    <div id="finish_place"></div>
+    <div id="published_at"></div>
+    <div id="progress"></div>
+    <div id="value_of_object"></div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ vite_entry_link_tags('pageTranslator') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ vite_entry_script_tags('pageTranslator') }}
+{% endblock %}

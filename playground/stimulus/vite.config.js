@@ -7,8 +7,8 @@ import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
 
-const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
-const sharedDir = resolve(basicPlaygroundDir, '../../shared')
+const playgroundDir = dirname(fileURLToPath(import.meta.url));
+const sharedDir = resolve(playgroundDir, '../../shared')
 
 export default defineConfig({
   plugins: [
@@ -30,7 +30,7 @@ export default defineConfig({
         // "pageVue": "./assets/page/vue/main.js",
         // "pageReact": "./assets/page/react/main.jsx",
         // "pageWelcome": "./assets/page/welcome/index.js",
-
+        "pageTranslator": "./assets/page/translator/index.js",
         "app": "./assets/app.js",
         "theme": "./assets/theme.scss"
       },
@@ -57,7 +57,8 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      '~': resolve(basicPlaygroundDir, 'assets'),
+      '~': resolve(playgroundDir, 'assets'),
+      '~project': playgroundDir,
       '~shared': sharedDir
     }
   },

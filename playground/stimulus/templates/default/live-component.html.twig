@@ -2,8 +2,9 @@
 
 {% block title %}HelloController!{% endblock %}
 
-{% block html_class %}page-welcome{% endblock %}
+{% block html_class %}page-live-component{% endblock %}
 
 {% block content %}
+  {{ component('TownSearch') }}
 {% endblock %}
 

@@ -16,7 +16,7 @@
     {{ vite_entry_script_tags('theme') }}
     {% endblock %}
 </head>
-
+{# {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] }) }} #}
 <body>
     <nav id="nav">
         <div class="navbar">
@@ -34,7 +34,9 @@
                 <a class="{{ currentPage == 'live-component' ? 'active' : '' }}" href="{{ path('live-component') }}">Live component</a>
                 <a class="{{ currentPage == 'notify' ? 'active' : '' }}" href="{{ path('notify') }}">Notify</a>
                 <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
+                <a class="{{ currentPage == 'translator' ? 'active' : '' }}" href="{{ path('translator') }}">Translator</a>
                 <a class="{{ currentPage == 'turbo' ? 'active' : '' }}" href="{{ path('turbo') }}">Turbo</a>
+                <a class="{{ currentPage == 'twig' ? 'active' : '' }}" href="{{ path('twig') }}">Twig</a>
                 <a class="{{ currentPage == 'typed' ? 'active' : '' }}" href="{{ path('typed') }}">Typed</a>
                 <a class="{{ currentPage == 'react' ? 'active' : '' }}" href="{{ path('react') }}">React</a>
                 <a class="{{ currentPage == 'svelte' ? 'active' : '' }}" href="{{ path('svelte') }}">Svelte</a>

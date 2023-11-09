@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-twig{% endblock %}
+
+{% block content %}
+  <div>
+    <div>Not using Stimulus</div>
+    {{ component('Alert', { message: 'Hello Twig Components!', type: 'success' }) }}
+  </div>
+{% endblock %}
+

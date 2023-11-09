@@ -56,6 +56,24 @@
                 "fetch": "lazy"
             }
         },
+        "@symfony/ux-react": {
+            "react": {
+                "enabled": false,
+                "fetch": "lazy"
+            }
+        },
+        "@symfony/ux-svelte": {
+            "svelte": {
+                "enabled": false,
+                "fetch": "lazy"
+            }
+        },
+        "@symfony/ux-swup": {
+            "swup": {
+                "enabled": true,
+                "fetch": "lazy"
+            }
+        },
         "@symfony/ux-toggle-password": {
             "toggle-password": {
                 "enabled": true,
@@ -78,18 +96,6 @@
         "@symfony/ux-typed": {
             "typed": {
                 "enabled": true,
-                "fetch": "lazy"
-            }
-        },
-        "@symfony/ux-react": {
-            "react": {
-                "enabled": false,
-                "fetch": "lazy"
-            }
-        },
-        "@symfony/ux-svelte": {
-            "svelte": {
-                "enabled": false,
                 "fetch": "lazy"
             }
         },

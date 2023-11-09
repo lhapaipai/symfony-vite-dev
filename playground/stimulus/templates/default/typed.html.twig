@@ -2,8 +2,14 @@
 
 {% block title %}HelloController!{% endblock %}
 
-{% block html_class %}page-welcome{% endblock %}
+{% block html_class %}page-typed{% endblock %}
 
 {% block content %}
+<div>
+    I created this UX component because
+    <span {{ stimulus_controller('symfony/ux-typed/typed', {
+        strings: ['I ❤ Symfony UX', 'Symfony UX is great', 'Symfony UX is easy']
+    }) }}></span>
+</div>
 {% endblock %}
 
