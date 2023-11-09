@@ -49,7 +49,7 @@
     "tsup": "^6.7.0",
     "typescript": "^4.9.4",
     "vite": "^4.0",
-    "vitest": "^0.32.0"
+    "vitest": "^0.34.6"
   },
   "keywords": [
     "vite-plugin",
@@ -65,12 +65,13 @@
     "vite": "^3.0.0 || ^4.0.0"
   },
   "volta": {
-    "node": "18.12.1"
+    "node": "20.9.0"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
-    "sirv": "^2.0.2"
+    "sirv": "^2.0.2",
+    "vue": "^3.3.8"
   }
 }

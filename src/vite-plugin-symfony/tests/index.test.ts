@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 
-import vitePluginSymfony from "../index";
+import vitePluginSymfony from "../src/index";
 import type { OutputChunk, OutputAsset } from "rollup";
 
 import {

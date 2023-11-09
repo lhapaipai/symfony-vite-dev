@@ -5,15 +5,6 @@
 {% block html_class %}page-vue{% endblock %}
 
 {% block content %}
-<div id="app"></div>
+<div {{ vue_component('App', { 'name': 'Vite, Stimulus & Vue' }) }}></div>
 {% endblock %}
 
-{% block stylesheets %}
-{{ parent() }}
-{{ vite_entry_link_tags('pageVue') }}
-{% endblock %}
-
-{% block javascripts %}
-{{ parent() }}
-{{ vite_entry_script_tags('pageVue') }}
-{% endblock %}

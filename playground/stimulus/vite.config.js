@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import { dirname, resolve } from 'path';
 
 import symfonyPlugin from 'vite-plugin-symfony';
-// import { stimulusPlugin } from 'vite-plugin-symfony/stimulus/plugin'
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
@@ -12,7 +11,6 @@ const sharedDir = resolve(playgroundDir, '../../shared')
 
 export default defineConfig({
   plugins: [
-    // stimulusPlugin(),
     vuePlugin(),
     reactPlugin(),
     symfonyPlugin({
@@ -27,17 +25,11 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        // "pageVue": "./assets/page/vue/main.js",
-        // "pageReact": "./assets/page/react/main.jsx",
-        // "pageWelcome": "./assets/page/welcome/index.js",
+        "pageVue": "./assets/page/vue/main.js",
+        "pageReact": "./assets/page/react/main.jsx",
         "pageTranslator": "./assets/page/translator/index.js",
         "app": "./assets/app.js",
         "theme": "./assets/theme.scss"
-      },
-      output: {
-        // manualChunks: {
-        //   vue: ['vue']
-        // }
       }
     },
     

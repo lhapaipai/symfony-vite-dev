@@ -1,3 +1,5 @@
+import { generateStimulusId } from "./stimulus-helpers/util";
+
 type ControllerUserConfig = {
   enabled: boolean;
   fetch: "eager" | "lazy";
@@ -29,41 +31,42 @@ export async function createControllersModule(config: ControllersConfig) {
   }
 
   for (const packageName in config.controllers) {
-    // let packageConfig = null;
+    let packageConfig = null;
 
-    // try {
-    //   // https://nodejs.org/api/esm.html#import-attributes
-    //   packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
-    // } catch (e) {
-    //   console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
-    // }
+    try {
+      // https://nodejs.org/api/esm.html#import-attributes
+      packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
+    } catch (e) {
+      console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
+    }
 
     for (const controllerName in config.controllers[packageName]) {
       const controllerReference = `${packageName}/${controllerName}`;
 
-      // if (packageConfig && "undefined" === typeof packageConfig.symfony.controllers[controllerName]) {
-      //   throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
-      // }
+      if (packageConfig && "undefined" === typeof packageConfig.symfony.controllers[controllerName]) {
+        throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
+      }
 
-      // const controllerPackageConfig = packageConfig?.symfony.controllers[controllerName] || {};
+      const controllerPackageConfig = packageConfig?.symfony.controllers[controllerName] || {};
       const controllerUserConfig = config.controllers[packageName][controllerName];
 
       if (!controllerUserConfig.enabled) {
         continue;
       }
 
+      const controllerMain = `${packageName}/${controllerPackageConfig.main}`;
       const fetchMode = controllerUserConfig.fetch || "eager";
 
       let moduleValueContents = ``;
 
       if (fetchMode === "eager") {
         const controllerNameForVariable = `controller_${controllerIndex++}`;
-        importStatementContents += `import ${controllerNameForVariable} from '${packageName}';\n`;
+        importStatementContents += `import ${controllerNameForVariable} from '${controllerMain}';\n`;
 
         moduleValueContents = controllerNameForVariable;
       } else if (fetchMode === "lazy") {
         hasLazyControllers = true;
-        moduleValueContents = generateLazyController(packageName, 2);
+        moduleValueContents = generateLazyController(controllerMain, 2);
       } else {
         throw new Error(`Invalid fetch mode "${fetchMode}" in controllers.json. Expected "eager" or "lazy".`);
       }
@@ -71,9 +74,9 @@ export async function createControllersModule(config: ControllersConfig) {
       let controllerNormalizedName = generateStimulusId(controllerReference);
 
       // allow the package or user config to override name
-      // if ("undefined" !== typeof controllerPackageConfig.name) {
-      //   controllerNormalizedName = controllerPackageConfig.name.replace(/\//g, "--");
-      // }
+      if ("undefined" !== typeof controllerPackageConfig.name) {
+        controllerNormalizedName = controllerPackageConfig.name.replace(/\//g, "--");
+      }
       if ("undefined" !== typeof controllerUserConfig.name) {
         controllerNormalizedName = controllerUserConfig.name.replace(/\//g, "--");
       }
@@ -102,13 +105,7 @@ export async function createControllersModule(config: ControllersConfig) {
   return moduleContent;
 }
 
-// Normalize the controller name: remove the initial @ and use Stimulus format
-export function generateStimulusId(packageName: string) {
-  if (packageName.startsWith("@")) {
-    packageName = packageName.substring(1);
-  }
-  return packageName.replace(/_/g, "-").replace(/\//g, "--");
-}
+
 // let controllerNormalizedName = controllerReference.substr(1).replace(/_/g, "-").replace(/\//g, "--");
 
 export function generateLazyController(controllerPath: string, indentationSpaces: number, exportName = "default") {

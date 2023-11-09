@@ -17,7 +17,7 @@
     {% endblock %}
 </head>
 {# {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] }) }} #}
-<body>
+<body {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] }) }}>
     <nav id="nav">
         <div class="navbar">
             <div class="title">

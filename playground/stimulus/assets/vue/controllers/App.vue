@@ -1,13 +1,17 @@
 <template>
   <div class="content">
     <img alt="Vue logo" :src="logoVue" width="261" height="226" />
-    <HelloWorld msg="Hello Vue 3.0 + Vite" />
+    <HelloWorld :name="name" />
   </div>
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from '../components/HelloWorld.vue'
 import logoVue from '~/images/logo-vue.svg';
+
+defineProps({
+  name: String
+})
 </script>
 
 <style>

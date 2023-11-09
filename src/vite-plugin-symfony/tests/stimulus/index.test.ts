@@ -1,6 +1,5 @@
 import { describe, it } from "vitest";
-import { generateStimulusId } from "../../stimulusBridge";
-import { identifierFromFilePath } from "../../stimulus-helpers/util";
+import { identifierFromFilePath, generateStimulusId } from "../../src/stimulus-helpers/util";
 
 describe("stimulus", () => {
   it("identifierFromFilePath generate correct identifier", ({ expect }) => {

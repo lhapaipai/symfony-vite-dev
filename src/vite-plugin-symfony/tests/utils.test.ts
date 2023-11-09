@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { getLegacyName, normalizePath, getFileInfos, getInputRelPath, prepareRollupInputs } from "../utils";
+import { getLegacyName, normalizePath, getFileInfos, getInputRelPath, prepareRollupInputs } from "../src/utils";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -12,7 +12,7 @@ import {
   welcomeLegacyJs,
 } from "./mocks";
 import type { ResolvedConfig } from "vite";
-import { VitePluginSymfonyOptions } from "../types";
+import { VitePluginSymfonyOptions } from "../src/types";
 
 const viteBaseConfig = {
   root: "/home/me/project-dir",

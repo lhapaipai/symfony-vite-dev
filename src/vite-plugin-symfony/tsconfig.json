@@ -6,9 +6,10 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "declaration": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
   "include": [
     "src"
-  ],
+  ]
 }

@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>Hello {{ name }}</h1>
   <button @click="count++">count is: {{ count }}</button>
   <code>assets/page/vue/components/HelloWorld.vue</code>
   <p>Edit component to test hot module replacement.</p>
@@ -9,7 +9,7 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    name: String
   },
   data() {
     return {

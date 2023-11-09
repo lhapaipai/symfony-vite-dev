@@ -5,7 +5,7 @@ export default defineConfig({
   dts: true,
   format: ["esm", "cjs"],
   esbuildOptions(options) {
-    options.external = ["picocolors", "fast-glob", "@hotwired/stimulus", "virtual:symfony/controllers"];
+    options.external = ["picocolors", "fast-glob", "@hotwired/stimulus", "virtual:symfony/controllers", "vue"];
   },
   shims: true,
 });
