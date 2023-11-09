@@ -29,30 +29,29 @@ export async function createControllersModule(config: ControllersConfig) {
   }
 
   for (const packageName in config.controllers) {
-    let packageConfig = null;
+    // let packageConfig = null;
 
-    try {
-      console.log(`${packageName}/package.json`);
-      packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
-    } catch (e) {
-      console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
-    }
+    // try {
+    //   // https://nodejs.org/api/esm.html#import-attributes
+    //   packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
+    // } catch (e) {
+    //   console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
+    // }
 
     for (const controllerName in config.controllers[packageName]) {
       const controllerReference = `${packageName}/${controllerName}`;
 
-      if (packageConfig && "undefined" === typeof packageConfig.symfony.controllers[controllerName]) {
-        throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
-      }
+      // if (packageConfig && "undefined" === typeof packageConfig.symfony.controllers[controllerName]) {
+      //   throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
+      // }
 
-      const controllerPackageConfig = packageConfig?.symfony.controllers[controllerName] || {};
+      // const controllerPackageConfig = packageConfig?.symfony.controllers[controllerName] || {};
       const controllerUserConfig = config.controllers[packageName][controllerName];
 
       if (!controllerUserConfig.enabled) {
         continue;
       }
 
-      // const controllerMain = packageName + '/' + controllerPackageConfig.main;
       const fetchMode = controllerUserConfig.fetch || "eager";
 
       let moduleValueContents = ``;
@@ -72,9 +71,9 @@ export async function createControllersModule(config: ControllersConfig) {
       let controllerNormalizedName = generateStimulusId(controllerReference);
 
       // allow the package or user config to override name
-      if ("undefined" !== typeof controllerPackageConfig.name) {
-        controllerNormalizedName = controllerPackageConfig.name.replace(/\//g, "--");
-      }
+      // if ("undefined" !== typeof controllerPackageConfig.name) {
+      //   controllerNormalizedName = controllerPackageConfig.name.replace(/\//g, "--");
+      // }
       if ("undefined" !== typeof controllerUserConfig.name) {
         controllerNormalizedName = controllerUserConfig.name.replace(/\//g, "--");
       }

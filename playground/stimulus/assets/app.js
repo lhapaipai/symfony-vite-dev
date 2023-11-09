@@ -1,3 +1,6 @@
+// import { registerVueControllerComponents } from '@symfony/ux-vue';
+// import { registerSvelteControllerComponents } from '@symfony/ux-svelte';
+// import { registerReactControllerComponents } from '@symfony/ux-react';
 import './bootstrap.js';
 
 function refreshStickStatus() {

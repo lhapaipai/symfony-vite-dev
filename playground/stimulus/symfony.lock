@@ -78,6 +78,39 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mercure-bundle": {
+        "version": "0.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "0.3",
+            "ref": "851667ac03fd113c5bd2215fb743974f6709bc62"
+        },
+        "files": [
+            "config/packages/mercure.yaml"
+        ]
+    },
+    "symfony/mercure-notifier": {
+        "version": "6.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "98a27687305d236709390ff01d7a6a9818735b97"
+        }
+    },
+    "symfony/notifier": {
+        "version": "6.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "178877daf79d2dbd62129dd03612cb1a2cb407cc"
+        },
+        "files": [
+            "config/packages/notifier.yaml"
+        ]
+    },
     "symfony/routing": {
         "version": "6.3",
         "recipe": {
@@ -131,8 +164,128 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/ux-autocomplete": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "07d9602b7231ba355f484305d6cea58310c01741"
+        },
+        "files": [
+            "config/routes/ux_autocomplete.yaml"
+        ]
+    },
+    "symfony/ux-chartjs": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-cropperjs": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-dropzone": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-lazy-image": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-live-component": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "73e69baf18f47740d6f58688c5464b10cdacae06"
+        },
+        "files": [
+            "config/routes/ux_live_component.yaml"
+        ]
+    },
+    "symfony/ux-notify": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-react": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "e970076b31d602ae6e2106cf91a82c7e1f7ddff2"
+        },
+        "files": [
+            "assets/react/controllers/Hello.jsx"
+        ]
+    },
+    "symfony/ux-svelte": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "4a6ee82d817d4e9be8d4a861476a112011d701e1"
+        },
+        "files": [
+            "assets/svelte/controllers/Hello.svelte"
+        ]
+    },
     "symfony/ux-toggle-password": {
         "version": "v2.12.0"
+    },
+    "symfony/ux-translator": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "bc396565cc4cab95692dd6df810553dc22e352e1"
+        },
+        "files": [
+            "assets/translator.js",
+            "config/packages/ux_translator.yaml",
+            "var/translations/configuration.js",
+            "var/translations/index.js"
+        ]
+    },
+    "symfony/ux-turbo": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-twig-component": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.13",
+            "ref": "67814b5f9794798b885cec9d3f48631424449a01"
+        },
+        "files": [
+            "config/packages/twig_component.yaml"
+        ]
+    },
+    "symfony/ux-typed": {
+        "version": "v2.13.0"
+    },
+    "symfony/ux-vue": {
+        "version": "2.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "7a6b5e211acc7b10b7190e704b40f6d2bca01adf"
+        },
+        "files": [
+            "assets/vue/controllers/Hello.vue"
+        ]
+    },
+    "symfony/validator": {
+        "version": "6.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
+        },
+        "files": [
+            "config/packages/validator.yaml"
+        ]
     },
     "symfony/web-profiler-bundle": {
         "version": "6.3",

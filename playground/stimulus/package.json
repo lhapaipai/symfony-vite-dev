@@ -11,12 +11,35 @@
   "author": "Lhapaipai",
   "license": "ISC",
   "volta": {
-    "node": "18.12.1"
+    "node": "18.18.2"
   },
   "devDependencies": {
     "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/turbo": "^7.0.1",
     "@symfony/stimulus-bridge": "^3.2.0",
-    "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets"
+    "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+    "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
+    "@symfony/ux-cropperjs": "file:vendor/symfony/ux-cropperjs/assets",
+    "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/assets",
+    "@symfony/ux-lazy-image": "file:vendor/symfony/ux-lazy-image/assets",
+    "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
+    "@symfony/ux-notify": "file:vendor/symfony/ux-notify/assets",
+    "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
+    "@symfony/ux-svelte": "file:vendor/symfony/ux-svelte/assets",
+    "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets",
+    "@symfony/ux-translator": "file:vendor/symfony/ux-translator/assets",
+    "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
+    "@symfony/ux-typed": "file:vendor/symfony/ux-typed/assets",
+    "@symfony/ux-vue": "file:vendor/symfony/ux-vue/assets",
+    "chart.js": "^3.4.1 <3.9",
+    "cropperjs": "^1.5.9",
+    "intl-messageformat": "^10.2.5",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "svelte": "^3.0 || ^4.0",
+    "tom-select": "^2.2.2",
+    "typed.js": "^2.0",
+    "vue": "^3.0"
   },
   "dependencies": {
     "stimulus-vite-helpers": "^3.0.1"

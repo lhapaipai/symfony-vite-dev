@@ -20,7 +20,21 @@
     "vite": "^4.5.0",
     "vite-plugin-inspect": "^0.7.12",
     "vite-plugin-symfony": "file:src/vite-plugin-symfony",
-    "vue": "^3.3.1"
+    "vue": "^3.3.1",
+    "@symfony/ux-autocomplete": "file:playground/stimulus/vendor/symfony/ux-autocomplete/assets",
+    "@symfony/ux-chartjs": "file:playground/stimulus/vendor/symfony/ux-chartjs/assets",
+    "@symfony/ux-cropperjs": "file:playground/stimulus/vendor/symfony/ux-cropperjs/assets",
+    "@symfony/ux-dropzone": "file:playground/stimulus/vendor/symfony/ux-dropzone/assets",
+    "@symfony/ux-lazy-image": "file:playground/stimulus/vendor/symfony/ux-lazy-image/assets",
+    "@symfony/ux-live-component": "file:playground/stimulus/vendor/symfony/ux-live-component/assets",
+    "@symfony/ux-notify": "file:playground/stimulus/vendor/symfony/ux-notify/assets",
+    "@symfony/ux-react": "file:playground/stimulus/vendor/symfony/ux-react/assets",
+    "@symfony/ux-svelte": "file:playground/stimulus/vendor/symfony/ux-svelte/assets",
+    "@symfony/ux-toggle-password": "file:playground/stimulus/vendor/symfony/ux-toggle-password/assets",
+    "@symfony/ux-translator": "file:playground/stimulus/vendor/symfony/ux-translator/assets",
+    "@symfony/ux-turbo": "file:playground/stimulus/vendor/symfony/ux-turbo/assets",
+    "@symfony/ux-typed": "file:playground/stimulus/vendor/symfony/ux-typed/assets",
+    "@symfony/ux-vue": "file:playground/stimulus/vendor/symfony/ux-vue/assets"
   },
   "devDependencies": {
     "laravel-vite-plugin": "^0.7.3",

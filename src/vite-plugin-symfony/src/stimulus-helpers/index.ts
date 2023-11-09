@@ -59,23 +59,15 @@ export function startStimulusApp(modules: ImportedModules) {
     });
   });
 
-  console.log("third party controllers", thirdPartyControllers);
-  setTimeout(() => {
-    for (const controllerName in thirdPartyControllers) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (!thirdPartyControllers.hasOwnProperty(controllerName)) {
-        continue;
-      }
-      // @ts-ignore
-      app.register(controllerName, thirdPartyControllers[controllerName]);
+  console.log("load third party controllers", thirdPartyControllers);
+  for (const controllerName in thirdPartyControllers) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (!thirdPartyControllers.hasOwnProperty(controllerName)) {
+      continue;
     }
-    // app.load(thirdPartyControllers);
-    // thirdPartyControllers.forEach(({ identifier, controllerLoader }) => {
-    //   controllerLoader().then((controllerConstructor) => {
-    //     app.register(identifier, controllerConstructor.default);
-    //   });
-    // });
-  }, 3000);
+    // @ts-ignore
+    app.register(controllerName, thirdPartyControllers[controllerName]);
+  }
 
   return app;
 }

@@ -29,7 +29,7 @@ export default defineConfig({
       input: {
         // "pageVue": "./assets/page/vue/main.js",
         // "pageReact": "./assets/page/react/main.jsx",
-        "pageWelcome": "./assets/page/welcome/index.js",
+        // "pageWelcome": "./assets/page/welcome/index.js",
 
         "app": "./assets/app.js",
         "theme": "./assets/theme.scss"
