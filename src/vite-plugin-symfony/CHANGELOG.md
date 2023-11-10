@@ -1,3 +1,7 @@
+## v6.1.0
+
+- add Stimulus and Symfony UX Integration
+
 ## v6.0.1
 
 - add `enforceServerOriginAfterListening`

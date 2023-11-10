@@ -53,7 +53,7 @@ Vite utilise la librairie [picomatch](https://github.com/micromatch/picomatch) p
 
 ## servePublic
 
-- **Type :** `boolean`
+- **Type :** `boolean` | string
 - **Valeur par défaut :** `true`
 
 Par défaut l'extension désactive l'option `publicDir` de la configuration de vite. Nous ne souhaitons pas que le contenu complet du dossier public (point d'entrée index.php, etc...) soit copié dans le dossier de build. (voir [discussion](https://github.com/lhapaipai/vite-bundle/issues/17)). En activant cette option l'extension active tout de même un serveur local pour que le serveur de développement de Vite puisse renvoyer les fichiers présents dans le dossier public.
@@ -72,6 +72,14 @@ Cette option sera supprimée dès que l'option `build.copyPublicDir` de Vite ser
 
 Génère des clés de hachage lors de la génération de vos fichiers. À utiliser si vous souhaitez déployer vos ressources sur un CDN.
 
+## stimulus
+
+- **Type :** `boolean | string[]`
+- **Valeur par défaut :** `false`
+
+Active le bridge qui va interpréter le fichier `assets/controllers.json` pour les contrôleurs tiers de Stimulus (incluant Symfony UX).
+
+Saisir `true` si votre fichier est situés à l'emplacement par défaut `assets/controllers.json` sinon spécifiez le chemin vers votre fichier de référence.
 
 ## viteDevServerHostname
 

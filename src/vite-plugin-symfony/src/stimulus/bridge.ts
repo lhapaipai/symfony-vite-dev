@@ -1,27 +1,6 @@
 import { generateStimulusId } from "./helpers/util";
 import { createRequire } from "node:module";
 
-type ControllerUserConfig = {
-  enabled?: boolean;
-  fetch?: "eager" | "lazy";
-  name?: string;
-  autoimport?: {
-    [path: string]: boolean;
-  };
-  main?: string;
-};
-
-type ControllersConfig = {
-  controllers: {
-    [packageName: string]: {
-      [controllerName: string]: ControllerUserConfig;
-    };
-  };
-  entrypoints: {
-    [key: string]: string;
-  };
-};
-
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
 export const resolvedVirtualSymfonyControllersModuleId = "\0" + virtualSymfonyControllersModuleId;
 
