@@ -7,9 +7,15 @@
     "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
-    "src"
+    "src/**/*.ts"
   ]
 }

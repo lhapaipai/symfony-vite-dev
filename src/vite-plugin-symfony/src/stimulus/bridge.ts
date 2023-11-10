@@ -1,4 +1,5 @@
-import { generateStimulusId } from "./stimulus-helpers/util";
+import { generateStimulusId } from "./helpers/util";
+import { createRequire } from "node:module";
 
 type ControllerUserConfig = {
   enabled: boolean;
@@ -20,7 +21,11 @@ type ControllersConfig = {
   };
 };
 
-export async function createControllersModule(config: ControllersConfig) {
+export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
+export const resolvedVirtualSymfonyControllersModuleId = "\0" + virtualSymfonyControllersModuleId;
+
+export function createControllersModule(config: ControllersConfig) {
+  const require = createRequire(import.meta.url);
   const controllerContents = [];
   let importStatementContents = "";
   let hasLazyControllers = false;
@@ -35,11 +40,15 @@ export async function createControllersModule(config: ControllersConfig) {
 
     try {
       // https://nodejs.org/api/esm.html#import-attributes
-      packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
+      // TODO : change to this when stable
+      // packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
+      packageConfig = require(`${packageName}/package.json`);
     } catch (e) {
       console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
     }
 
+    // package can define multiple stimulus controllers
+    // used only by @symfony/ux-turbo : turbo-core, mercure-turbo-stream
     for (const controllerName in config.controllers[packageName]) {
       const controllerReference = `${packageName}/${controllerName}`;
 
@@ -54,17 +63,46 @@ export async function createControllersModule(config: ControllersConfig) {
         continue;
       }
 
-      const controllerMain = `${packageName}/${controllerPackageConfig.main}`;
+      /**
+       * sometimes default export of the package is not the controller entrypoint.
+       * used by : @symfony/ux-react, @symfony/ux-vue, @symfony/ux-svelte, @symfony/ux-turbo
+       *
+       * ex: @symfony/ux-react (extract package.json)
+       *
+       * {
+       *   "module": "dist/register_controller.js",
+       *   "type": "module",
+       *   "symfony": {
+       *       "controllers": {
+       *           "react": {
+       *               "main": "dist/render_controller.js",
+       *               "fetch": "eager",
+       *               "enabled": true
+       *           }
+       *       },
+       *   }
+       * }
+       */
+      let controllerMain = packageName;
+      if (controllerPackageConfig.main) {
+        controllerMain += `/${controllerPackageConfig.main}`;
+      }
+
       const fetchMode = controllerUserConfig.fetch || "eager";
 
       let moduleValueContents = ``;
 
       if (fetchMode === "eager") {
+        // controller & dependencies are included in the JavaScript that's
+        // downloaded when the page is loaded
         const controllerNameForVariable = `controller_${controllerIndex++}`;
         importStatementContents += `import ${controllerNameForVariable} from '${controllerMain}';\n`;
 
         moduleValueContents = controllerNameForVariable;
       } else if (fetchMode === "lazy") {
+        // controller & dependencies are isolated into a separate file and only
+        // downloaded asynchronously if (and when) the data-controller HTML appears
+        // on the page.
         hasLazyControllers = true;
         moduleValueContents = generateLazyController(controllerMain, 2);
       } else {
@@ -74,6 +112,7 @@ export async function createControllersModule(config: ControllersConfig) {
       let controllerNormalizedName = generateStimulusId(controllerReference);
 
       // allow the package or user config to override name
+      // used by ux-live-component
       if ("undefined" !== typeof controllerPackageConfig.name) {
         controllerNormalizedName = controllerPackageConfig.name.replace(/\//g, "--");
       }
@@ -95,18 +134,10 @@ export async function createControllersModule(config: ControllersConfig) {
     importStatementContents = `import { Controller } from '@hotwired/stimulus';\n` + importStatementContents;
   }
 
-  const moduleContent = `
-    ${importStatementContents}
-    export default {
-      ${controllerContents.join(",\n")}
-    };
-  `;
+  const moduleContent = `${importStatementContents}\nexport default {\n${controllerContents.join(",\n")}\n};\n`;
   // console.log(moduleContent);
   return moduleContent;
 }
-
-
-// let controllerNormalizedName = controllerReference.substr(1).replace(/_/g, "-").replace(/\//g, "--");
 
 export function generateLazyController(controllerPath: string, indentationSpaces: number, exportName = "default") {
   const spaces = " ".repeat(indentationSpaces);

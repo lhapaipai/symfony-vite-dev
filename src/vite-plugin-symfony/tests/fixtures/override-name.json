@@ -1,0 +1,12 @@
+{
+    "controllers": {
+        "@symfony/mock-module": {
+            "mock": {
+                "name": "foo/overridden_name",
+                "fetch": "eager",
+                "enabled": true
+            }
+        }
+    },
+    "entrypoints": []
+}

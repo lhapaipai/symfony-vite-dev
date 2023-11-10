@@ -1,9 +1,11 @@
 import { type ControllerConstructor } from "@hotwired/stimulus";
 
-type ControllerModule = {
+export type ControllerModule = {
   default: ControllerConstructor;
 };
 
+export type LazyControllerModule = () => Promise<ControllerModule>;
+
 export type ControllerImportedModules = {
-  [filePath: string]: () => Promise<ControllerModule>;
+  [filePath: string]: LazyControllerModule;
 };

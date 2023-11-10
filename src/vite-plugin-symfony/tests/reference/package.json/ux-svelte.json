@@ -1,0 +1,32 @@
+{
+    "name": "@symfony/ux-svelte",
+    "description": "Integration of Svelte in Symfony",
+    "module": "dist/register_controller.js",
+    "type": "module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "symfony": {
+        "controllers": {
+            "svelte": {
+                "main": "dist/render_controller.js",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "importmap": {
+            "@hotwired/stimulus": "^3.0.0",
+            "svelte/internal": "^3.0",
+            "@symfony/ux-svelte": "path:%PACKAGE%/dist/loader.js"
+        }
+    },
+    "peerDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "svelte": "^3.0 || ^4.0"
+    },
+    "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "@sveltejs/vite-plugin-svelte": "^2.4.6",
+        "@types/webpack-env": "^1.16",
+        "svelte": "^3.0 || ^4.0"
+    }
+}

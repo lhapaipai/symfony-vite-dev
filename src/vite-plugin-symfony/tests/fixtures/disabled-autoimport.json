@@ -1,0 +1,14 @@
+{
+    "controllers": {
+        "@symfony/mock-module": {
+            "mock": {
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "@symfony/mock-module/dist/style.css": false
+                }
+            }
+        }
+    },
+    "entrypoints": []
+}

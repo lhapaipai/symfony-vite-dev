@@ -1,0 +1,11 @@
+{
+    "controllers": {
+        "@symfony/mock-module": {
+            "mock": {
+                "fetch": "eager",
+                "enabled": true
+            }
+        }
+    },
+    "entrypoints": []
+}

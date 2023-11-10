@@ -1,0 +1,11 @@
+{
+    "controllers": {
+        "@symfony/mock-module": {
+            "mock": {
+                "fetch": "lazy",
+                "enabled": true
+            }
+        }
+    },
+    "entrypoints": []
+}

@@ -5,3 +5,8 @@ declare module "virtual:symfony/controllers" {
   };
   export default modules;
 }
+
+interface StimulusControllerFileInfos {
+  identifier: undefined | string;
+  lazy: boolean;
+}

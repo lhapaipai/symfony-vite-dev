@@ -1,0 +1,38 @@
+{
+    "name": "@symfony/ux-cropperjs",
+    "description": "Cropper.js integration for Symfony",
+    "license": "MIT",
+    "version": "1.1.0",
+    "module": "dist/controller.js",
+    "type": "module",
+    "types": "dist/controller.d.ts",
+    "config": {
+        "css_source": "src/style.css"
+    },
+    "symfony": {
+        "controllers": {
+            "cropper": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "cropperjs/dist/cropper.min.css": true,
+                    "@symfony/ux-cropperjs/dist/style.min.css": true
+                }
+            }
+        },
+        "importmap": {
+            "cropperjs": "^1.5.9",
+            "@hotwired/stimulus": "^3.0.0"
+        }
+    },
+    "peerDependencies": {
+        "cropperjs": "^1.5.9",
+        "@hotwired/stimulus": "^3.0.0"
+    },
+    "devDependencies": {
+        "cropperjs": "^1.5.9",
+        "@hotwired/stimulus": "^3.0.0"
+    }
+}

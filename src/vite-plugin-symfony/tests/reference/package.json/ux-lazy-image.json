@@ -1,0 +1,28 @@
+{
+    "name": "@symfony/ux-lazy-image",
+    "description": "Lazy image loader and utilities for Symfony",
+    "license": "MIT",
+    "version": "1.1.0",
+    "module": "dist/controller.js",
+    "type": "module",
+    "types": "dist/controller.d.ts",
+    "symfony": {
+        "controllers": {
+            "lazy-image": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "importmap": {
+            "@hotwired/stimulus": "^3.0.0"
+        }
+    },
+    "peerDependencies": {
+        "@hotwired/stimulus": "^3.0.0"
+    },
+    "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0"
+    }
+}

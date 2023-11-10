@@ -1,0 +1,22 @@
+{
+    "name": "@symfony/mock-module",
+    "version": "1.0.0",
+    "symfony": {
+        "controllers": {
+            "mock": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "enabled": true,
+                "importedStyles": {
+                    "@symfony/mock-module/dist/style.css": true
+                }
+            },
+            "mock_named": {
+                "main": "dist/named_controller.js",
+                "name": "foo/custom_name",
+                "webpackMode": "eager",
+                "enabled": true
+            }
+        }
+    }
+}

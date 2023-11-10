@@ -29,7 +29,11 @@ import {
 import { resolvePluginOptions, resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "./pluginOptions";
 
 import { VitePluginSymfonyOptions, StringMapping, GeneratedFiles, ResolvedConfigWithOrderablePlugins } from "./types";
-import { createControllersModule } from "./stimulusBridge";
+import {
+  createControllersModule,
+  resolvedVirtualSymfonyControllersModuleId,
+  virtualSymfonyControllersModuleId,
+} from "./stimulus/bridge";
 
 // src and dist directory are in the same level;
 const pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -43,8 +47,6 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
   const entryPointsBasename = "entrypoints.json";
 
-  const virtualModuleId = "virtual:symfony/controllers";
-  const resolvedVirtualModuleId = "\0" + virtualModuleId;
   let stimulusControllersContent = null;
 
   const inputRelPath2outputRelPath: StringMapping = {};
@@ -101,13 +103,13 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
       }
     },
     resolveId(id: string) {
-      if (pluginOptions.stimulus !== false && id === virtualModuleId) {
-        return resolvedVirtualModuleId;
+      if (pluginOptions.stimulus !== false && id === virtualSymfonyControllersModuleId) {
+        return resolvedVirtualSymfonyControllersModuleId;
       }
     },
-    async load(id) {
-      if (id === resolvedVirtualModuleId) {
-        return await createControllersModule(stimulusControllersContent);
+    load(id) {
+      if (id === resolvedVirtualSymfonyControllersModuleId) {
+        return createControllersModule(stimulusControllersContent);
       }
     },
     configureServer(devServer) {

@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "args": [
-        "index"
+        "bridge"
       ],
       "type": "node",
       "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
