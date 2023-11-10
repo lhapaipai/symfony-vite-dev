@@ -75,7 +75,7 @@ Generates hash keys when generating your files. Use if you want to deploy your a
 
 ## stimulus
 
-- **Type:** `boolean | string[]`
+- **Type:** `boolean | string`
 - **Default value:** `false`
 
 Enables the bridge that will interpret the `assets/controllers.json` file for third-party Stimulus controllers (including Symfony UX).

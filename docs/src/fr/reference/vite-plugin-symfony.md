@@ -74,7 +74,7 @@ Génère des clés de hachage lors de la génération de vos fichiers. À utilis
 
 ## stimulus
 
-- **Type :** `boolean | string[]`
+- **Type :** `boolean | string`
 - **Valeur par défaut :** `false`
 
 Active le bridge qui va interpréter le fichier `assets/controllers.json` pour les contrôleurs tiers de Stimulus (incluant Symfony UX).
