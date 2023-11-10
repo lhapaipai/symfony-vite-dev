@@ -1,5 +1,12 @@
 import { describe, it } from "vitest";
-import { getLegacyName, normalizePath, getFileInfos, getInputRelPath, prepareRollupInputs } from "../src/utils";
+import {
+  getLegacyName,
+  normalizePath,
+  getFileInfos,
+  getInputRelPath,
+  prepareRollupInputs,
+  isSubdirectory,
+} from "../src/utils";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -244,5 +251,42 @@ describe("getInputRelPath", () => {
         viteBaseConfig,
       ),
     ).toBe("assets/page/welcome/index-legacy.js");
+  });
+});
+
+describe("isAncestorDir", () => {
+  it("subdirectory is a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/public")).toBe(true);
+  });
+  it("same folder is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/vite-project")).toBe(false);
+  });
+  it("sibling folder is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/symfony-project")).toBe(false);
+  });
+  it("sibling folder starting with same name is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/vite-project-2")).toBe(false);
+  });
+  it("traversing up the tree and into a sibling folder is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/../react-project")).toBe(false);
+  });
+  it("unnormalized path in project folder: is a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/./public")).toBe(true);
+  });
+  it("unnormalized path with path traversal into subdirectory is a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/vite-project/../projects", "/projects/vite-project")).toBe(true);
+  });
+  it("unnormalized path relative to current directory: is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("/projects/vite-project", "./vite-project")).toBe(false);
+  });
+  // this test fails on UNIX but succeeds on Windows
+  // it("Windows: subdirectory is a subdirectory", ({ expect }) => {
+  // expect(isSubdirectory("C:\\projects", "C:\\projects\\vite-project")).toBe(true);
+  // });
+  it("Windows: different directory is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("C:\\projects", "C:\\Users")).toBe(false);
+  });
+  it("Windows: subdirectory on another drive is not a subdirectory", ({ expect }) => {
+    expect(isSubdirectory("C:\\projects", "D:\\projects\\svelte-project")).toBe(false);
   });
 });
