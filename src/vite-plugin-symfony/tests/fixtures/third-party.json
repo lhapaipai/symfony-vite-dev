@@ -1,0 +1,12 @@
+{
+  "controllers": {
+    "stimulus-clipboard": {
+      "stimulus-clipboard": {
+        "name": "stimulus-clipboard",
+        "enabled": true,
+        "fetch": "eager"
+      }
+    }
+  },
+  "entrypoints": []
+}

@@ -32,10 +32,10 @@ export function registerVueControllerComponents(modules: VueImportedModules, con
       vueControllers[componentPath] = defineAsyncComponent(modules[componentPath]);
     }
 
-    return vueControllers[componentPath] as object;
+    return vueControllers[componentPath];
   }
 
-  window.resolveVueComponent = (name: string): object => {
+  window.resolveVueComponent = (name: string) => {
     console.log(loadComponent(name));
     return loadComponent(name);
   };

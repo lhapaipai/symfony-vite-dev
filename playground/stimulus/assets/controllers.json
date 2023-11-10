@@ -62,6 +62,12 @@
                 "fetch": "lazy"
             }
         },
+        "vite-plugin-symfony": {
+            "react": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+        },
         "@symfony/ux-svelte": {
             "svelte": {
                 "enabled": false,
@@ -101,7 +107,7 @@
         },
         "@symfony/ux-vue": {
             "vue": {
-                "enabled": true,
+                "enabled": false,
                 "fetch": "lazy"
             }
         }

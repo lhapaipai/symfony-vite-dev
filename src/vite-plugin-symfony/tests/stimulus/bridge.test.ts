@@ -136,4 +136,17 @@ describe("createControllersModule", () => {
       `);
     });
   });
+
+  describe("third-party.json", () => {
+    it("can import stimulus controller without symfony property", () => {
+      const config = loadControllerJson("third-party.json");
+      expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
+        "import controller_0 from 'stimulus-clipboard';
+
+        export default {
+        'stimulus-clipboard': controller_0
+        };"
+      `);
+    });
+  });
 });

@@ -12,6 +12,10 @@
       "import": "./dist/stimulus/helpers/index.mjs",
       "require": "./dist/stimulus/helpers/index.js"
     },
+    "./stimulus/helpers/react/render_controller": {
+      "import": "./dist/stimulus/helpers/react/render_controller.mjs",
+      "require": "./dist/stimulus/helpers/react/render_controller.js"
+    },
     "./package.json": "./package.json"
   },
   "types": "dist/index.d.ts",
@@ -47,10 +51,14 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jsdom": "^22.1.0",
     "prettier": "^2.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "svelte": "^4.2.3",
     "tsup": "^6.7.0",
     "typescript": "^4.9.4",
     "vite": "^4.0",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "vue": "^3.3.8"
   },
   "keywords": [
     "vite-plugin",
@@ -72,7 +80,17 @@
     "@hotwired/stimulus": "^3.2.2",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
-    "sirv": "^2.0.2",
-    "vue": "^3.3.8"
+    "sirv": "^2.0.2"
+  },
+  "symfony": {
+    "controllers": {
+      "react": {
+        "main": "stimulus/helpers/react/render_controller",
+        "name": "symfony/ux-react/react",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      }
+    }
   }
 }

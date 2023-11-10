@@ -2,12 +2,13 @@ import { generateStimulusId } from "./helpers/util";
 import { createRequire } from "node:module";
 
 type ControllerUserConfig = {
-  enabled: boolean;
-  fetch: "eager" | "lazy";
-  name: string;
-  autoimport: {
+  enabled?: boolean;
+  fetch?: "eager" | "lazy";
+  name?: string;
+  autoimport?: {
     [path: string]: boolean;
   };
+  main?: string;
 };
 
 type ControllersConfig = {
@@ -52,11 +53,15 @@ export function createControllersModule(config: ControllersConfig) {
     for (const controllerName in config.controllers[packageName]) {
       const controllerReference = `${packageName}/${controllerName}`;
 
-      if (packageConfig && "undefined" === typeof packageConfig.symfony.controllers[controllerName]) {
+      if (
+        packageConfig.symfony &&
+        packageConfig &&
+        "undefined" === typeof packageConfig.symfony.controllers[controllerName]
+      ) {
         throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
       }
 
-      const controllerPackageConfig = packageConfig?.symfony.controllers[controllerName] || {};
+      const controllerPackageConfig = packageConfig.symfony?.controllers[controllerName] || {};
       const controllerUserConfig = config.controllers[packageName][controllerName];
 
       if (!controllerUserConfig.enabled) {
@@ -85,7 +90,10 @@ export function createControllersModule(config: ControllersConfig) {
        */
       let controllerMain = packageName;
       if (controllerPackageConfig.main) {
-        controllerMain += `/${controllerPackageConfig.main}`;
+        controllerMain = `${packageName}/${controllerPackageConfig.main}`;
+      }
+      if (controllerUserConfig.main) {
+        controllerMain = `${packageName}/${controllerPackageConfig.main}`;
       }
 
       const fetchMode = controllerUserConfig.fetch || "eager";

@@ -1,5 +1,9 @@
 # Stimulus
 
+::: warning
+⚠️ The implementation is still experimental. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change. The features presented in this page will not respect the `semver` versioning semantics.
+:::
+
 ## Introduction
 
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
@@ -134,7 +138,7 @@ const app = startStimulusApp(require.context(
 app.register('clipboard', Clipboard);
 ```
 
-Chargez plutôt ces contrôleurs avec le fichier `controllers.json`
+Instead, load these controllers with the `controllers.json` file .
 
 ```json
 {
@@ -171,7 +175,7 @@ Chargez plutôt ces contrôleurs avec le fichier `controllers.json`
 | ux-swup                        | ✅            |
 | ux-toggle                      | ✅            |
 | ux-translator                  | ✅            |
-| ux-turbo (not tested)          | NOT Tested    |
+| ux-turbo (not tested)          | Not Tested    |
 | ux-twig                        | ✅            |
 | ux-typed                       | ✅            |
 | ux-vue                         | ✅ (*)        |
@@ -193,3 +197,40 @@ registerVueControllerComponents(require.context('./vue/controllers', true, /\.vu
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
 const app = startStimulusApp(import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'));
+```
+
+### symfony/ux-react
+
+After installing the Flex recipe from `symfony/ux-react` you will need to correct these lines.
+
+```js
+// assets/bootstrap.js
+import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
+
+import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
+import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+
+registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
+registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
+
+
+const app = startStimulusApp(import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'));
+```
+
+Because React component is already imported lazily, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
+```json
+{
+    "controllers": {
+        "@symfony/ux-react": { // [!code --]
+        "vite-plugin-symfony": { // [!code ++]
+            "react": {
+                "enabled": true,
+                "fetch": "lazy" // [!code --]
+                "fetch": "eager" // [!code ++]
+            }
+        },
+
+    },
+    "entrypoints": []
+}
+```

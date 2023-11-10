@@ -1,0 +1,5 @@
+{
+  "name": "stimulus-clipboard",
+  "main": "dist/stimulus-clipboard.umd.js",
+  "module": "dist/stimulus-clipboard.mjs"
+}
