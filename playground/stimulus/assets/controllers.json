@@ -72,12 +72,6 @@
                 "fetch": "eager"
             }
         },
-        "@symfony/ux-svelte": {
-            "svelte": {
-                "enabled": false,
-                "fetch": "lazy"
-            }
-        },
         "@symfony/ux-swup": {
             "swup": {
                 "enabled": true,

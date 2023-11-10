@@ -46,6 +46,7 @@
     "static/"
   ],
   "devDependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "@types/node": "^18.11.18",
     "@types/ws": "^8.5.4",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
@@ -81,7 +82,6 @@
     "node": "20.9.0"
   },
   "dependencies": {
-    "@hotwired/stimulus": "^3.2.2",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
     "sirv": "^2.0.2"
