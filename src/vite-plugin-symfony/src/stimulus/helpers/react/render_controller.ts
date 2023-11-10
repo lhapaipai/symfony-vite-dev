@@ -24,7 +24,6 @@ export default class extends Controller {
 
     reactModuleLoader().then((reactModule) => {
       const component = reactModule.default;
-      console.log("react component ", component);
       this._renderReactElement(React.createElement(component, props, null));
 
       this.dispatchEvent("mount", {

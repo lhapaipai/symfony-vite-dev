@@ -4,6 +4,9 @@ import { dirname, resolve } from 'path';
 import symfonyPlugin from 'vite-plugin-symfony';
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+
+
 import { fileURLToPath } from 'url';
 
 const playgroundDir = dirname(fileURLToPath(import.meta.url));
@@ -13,6 +16,7 @@ export default defineConfig({
   plugins: [
     vuePlugin(),
     reactPlugin(),
+    svelte(),
     symfonyPlugin({
       // debug: true,
       stimulus: true

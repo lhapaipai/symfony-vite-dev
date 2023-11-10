@@ -16,6 +16,10 @@
       "import": "./dist/stimulus/helpers/react/render_controller.mjs",
       "require": "./dist/stimulus/helpers/react/render_controller.js"
     },
+    "./stimulus/helpers/svelte/render_controller": {
+      "import": "./dist/stimulus/helpers/svelte/render_controller.mjs",
+      "require": "./dist/stimulus/helpers/svelte/render_controller.js"
+    },
     "./package.json": "./package.json"
   },
   "types": "dist/index.d.ts",
@@ -87,6 +91,13 @@
       "react": {
         "main": "stimulus/helpers/react/render_controller",
         "name": "symfony/ux-react/react",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      },
+      "svelte": {
+        "main": "stimulus/helpers/svelte/render_controller",
+        "name": "symfony/ux-svelte/svelte",
         "webpackMode": "eager",
         "fetch": "eager",
         "enabled": true

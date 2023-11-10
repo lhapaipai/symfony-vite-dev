@@ -2,7 +2,7 @@
     "controllers": {
         "@symfony/ux-autocomplete": {
             "autocomplete": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy",
                 "autoimport": {
                     "tom-select/dist/css/tom-select.default.css": true,
@@ -12,13 +12,13 @@
         },
         "@symfony/ux-chartjs": {
             "chart": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "@symfony/ux-cropperjs": {
             "cropper": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy",
                 "autoimport": {
                     "cropperjs/dist/cropper.min.css": true,
@@ -28,7 +28,7 @@
         },
         "@symfony/ux-dropzone": {
             "dropzone": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy",
                 "autoimport": {
                     "@symfony/ux-dropzone/dist/style.min.css": true
@@ -37,13 +37,13 @@
         },
         "@symfony/ux-lazy-image": {
             "lazy-image": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "@symfony/ux-live-component": {
             "live": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy",
                 "autoimport": {
                     "@symfony/ux-live-component/dist/live.min.css": true
@@ -52,18 +52,22 @@
         },
         "@symfony/ux-notify": {
             "notify": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "@symfony/ux-react": {
             "react": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "vite-plugin-symfony": {
             "react": {
+                "enabled": true,
+                "fetch": "eager"
+            },
+            "svelte": {
                 "enabled": true,
                 "fetch": "eager"
             }
@@ -82,7 +86,7 @@
         },
         "@symfony/ux-toggle-password": {
             "toggle-password": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy",
                 "autoimport": {
                     "@symfony/ux-toggle-password/dist/style.min.css": true
@@ -91,23 +95,23 @@
         },
         "@symfony/ux-turbo": {
             "turbo-core": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             },
             "mercure-turbo-stream": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "@symfony/ux-typed": {
             "typed": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         },
         "@symfony/ux-vue": {
             "vue": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "lazy"
             }
         }

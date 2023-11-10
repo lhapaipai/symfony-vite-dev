@@ -5,9 +5,6 @@
 {% block html_class %}page-react{% endblock %}
 
 {% block content %}
-{# <div id="root"></div> #}
-<div {{ react_component('Hello', { 'fullName': 'hugues from react' }) }}>
-    Loading...
-</div>
+    <div {{ react_component('App', { 'name': 'Vite, Stimulus & React' }) }}></div>
 {% endblock %}
 
