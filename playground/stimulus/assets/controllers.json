@@ -58,7 +58,7 @@
         },
         "@symfony/ux-react": {
             "react": {
-                "enabled": true,
+                "enabled": false,
                 "fetch": "lazy"
             }
         },
@@ -69,6 +69,12 @@
             },
             "svelte": {
                 "enabled": true,
+                "fetch": "eager"
+            }
+        },
+        "@symfony/ux-svelte": {
+            "svelte": {
+                "enabled": false,
                 "fetch": "eager"
             }
         },

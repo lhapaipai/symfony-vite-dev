@@ -29,8 +29,6 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "pageVue": "./assets/page/vue/main.js",
-        "pageReact": "./assets/page/react/main.jsx",
         "pageTranslator": "./assets/page/translator/index.js",
         "app": "./assets/app.js",
         "theme": "./assets/theme.scss"

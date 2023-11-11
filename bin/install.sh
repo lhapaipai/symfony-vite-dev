@@ -12,7 +12,7 @@ cd "$PLAYGROUNDS_DIR/stimulus"
 symfony composer install
 
 cd "$PROJECT_DIR"
-npm ci
+npm i
 
 cd "$PROJECT_DIR/src/vite-bundle"
 symfony composer install

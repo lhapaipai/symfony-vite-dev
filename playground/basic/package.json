@@ -11,6 +11,9 @@
   "author": "Lhapaipai",
   "license": "ISC",
   "volta": {
-    "node": "18.12.1"
+    "node": "20.9.0"
+  },
+  "dependencies": {
+    "vite-plugin-symfony": "^6.1.0"
   }
 }

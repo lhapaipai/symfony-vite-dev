@@ -36,7 +36,6 @@ export function registerVueControllerComponents(modules: VueImportedModules, con
   }
 
   window.resolveVueComponent = (name: string) => {
-    console.log(loadComponent(name));
     return loadComponent(name);
   };
 }
