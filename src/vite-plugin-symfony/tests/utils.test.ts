@@ -254,10 +254,7 @@ describe("getInputRelPath", () => {
   });
 });
 
-import os from "node:os";
 describe("isAncestorDir", () => {
-  console.log("inside isAncestorDir", os.platform());
-
   it("subdirectory is a subdirectory", ({ expect }) => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/public")).toBe(true);
   });
