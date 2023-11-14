@@ -1,4 +1,4 @@
-import { generateStimulusId } from "./helpers/util";
+import { generateStimulusId } from "./util";
 import { createRequire } from "node:module";
 
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
@@ -15,33 +15,42 @@ export function createControllersModule(config: ControllersConfig) {
     throw new Error('Your Stimulus configuration file (assets/controllers.json) lacks a "controllers" key.');
   }
 
-  for (const packageName in config.controllers) {
+  for (const originalPackageName in config.controllers) {
     let packageConfig = null;
+    let packageNameResolved;
+
+    if (originalPackageName === "@symfony/ux-svelte" || originalPackageName === "@symfony/ux-react") {
+      packageNameResolved = "vite-plugin-symfony";
+    } else {
+      packageNameResolved = originalPackageName;
+    }
 
     try {
       // https://nodejs.org/api/esm.html#import-attributes
       // TODO : change to this when stable
       // packageConfig = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
-      packageConfig = require(`${packageName}/package.json`);
+      packageConfig = require(`${packageNameResolved}/package.json`);
     } catch (e) {
-      console.log(`The file "${packageName}/package.json" could not be found. Try running "npm install --force".`);
+      console.log(
+        `The file "${packageNameResolved}/package.json" could not be found. Try running "npm install --force".`,
+      );
     }
 
     // package can define multiple stimulus controllers
     // used only by @symfony/ux-turbo : turbo-core, mercure-turbo-stream
-    for (const controllerName in config.controllers[packageName]) {
-      const controllerReference = `${packageName}/${controllerName}`;
+    for (const controllerName in config.controllers[originalPackageName]) {
+      const controllerReference = `${originalPackageName}/${controllerName}`;
 
       if (
-        packageConfig.symfony &&
         packageConfig &&
+        packageConfig.symfony &&
         "undefined" === typeof packageConfig.symfony.controllers[controllerName]
       ) {
         throw new Error(`Controller "${controllerReference}" does not exist in the package and cannot be compiled.`);
       }
 
-      const controllerPackageConfig = packageConfig.symfony?.controllers[controllerName] || {};
-      const controllerUserConfig = config.controllers[packageName][controllerName];
+      const controllerPackageConfig = packageConfig?.symfony?.controllers[controllerName] || {};
+      const controllerUserConfig = config.controllers[originalPackageName][controllerName];
 
       if (!controllerUserConfig.enabled) {
         continue;
@@ -67,12 +76,12 @@ export function createControllersModule(config: ControllersConfig) {
        *   }
        * }
        */
-      let controllerMain = packageName;
+      let controllerMain = packageNameResolved;
       if (controllerPackageConfig.main) {
-        controllerMain = `${packageName}/${controllerPackageConfig.main}`;
+        controllerMain = `${packageNameResolved}/${controllerPackageConfig.main}`;
       }
       if (controllerUserConfig.main) {
-        controllerMain = `${packageName}/${controllerPackageConfig.main}`;
+        controllerMain = `${packageNameResolved}/${controllerPackageConfig.main}`;
       }
 
       const fetchMode = controllerUserConfig.fetch || "eager";
@@ -91,7 +100,7 @@ export function createControllersModule(config: ControllersConfig) {
         // downloaded asynchronously if (and when) the data-controller HTML appears
         // on the page.
         hasLazyControllers = true;
-        moduleValueContents = generateLazyController(controllerMain, 2);
+        moduleValueContents = generateLazyController(controllerMain);
       } else {
         throw new Error(`Invalid fetch mode "${fetchMode}" in controllers.json. Expected "eager" or "lazy".`);
       }
@@ -126,23 +135,21 @@ export function createControllersModule(config: ControllersConfig) {
   return moduleContent;
 }
 
-export function generateLazyController(controllerPath: string, indentationSpaces: number, exportName = "default") {
-  const spaces = " ".repeat(indentationSpaces);
-
+export function generateLazyController(controllerPath: string, exportName = "default") {
   return `class extends Controller {
-${spaces}    constructor(context) {
-${spaces}        super(context);
-${spaces}        this.__stimulusLazyController = true;
-${spaces}    }
-${spaces}    initialize() {
-${spaces}        if (this.application.controllers.find((controller) => {
-${spaces}            return controller.identifier === this.identifier && controller.__stimulusLazyController;
-${spaces}        })) {
-${spaces}            return;
-${spaces}        }
-${spaces}        import('${controllerPath.replace(/\\/g, "\\\\")}').then((controller) => {
-${spaces}            this.application.register(this.identifier, controller.${exportName});
-${spaces}        });
-${spaces}    }
-${spaces}}`;
+      constructor(context) {
+        super(context);
+        this.__stimulusLazyController = true;
+      }
+      initialize() {
+        if (this.application.controllers.find((controller) => {
+            return controller.identifier === this.identifier && controller.__stimulusLazyController;
+        })) {
+            return;
+        }
+        import('${controllerPath.replace(/\\/g, "\\\\")}').then((controller) => {
+            this.application.register(this.identifier, controller.${exportName});
+        });
+      }
+    }`;
 }

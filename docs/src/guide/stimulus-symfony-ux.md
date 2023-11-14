@@ -55,9 +55,11 @@ Add the routines for generating a stimulus application compatible with `symfony/
 // assets/bootstrap.js
 
 import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
-const app = startStimulusApp(
+const app = startStimulusApp();
+registerControllers(
+  app,
   import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?')
-);
+)
 ```
 ```twig
 {# base.html.twig #}
@@ -104,6 +106,8 @@ the `vite-plugin-symfony` plugin replaces `@symfony/stimulus-bridge` and provide
 
 If you want to define your own controllers with lazy loading.
 
+Stimulus bundle with Webpack Encore implementation
+
 ```js
 // assets/controllers/welcome_controller.js
 import { Controller } from '@hotwired/stimulus';
@@ -115,7 +119,19 @@ export default class extends Controller {
 }
 ```
 
-Instead, suffix the name of your controller with `_lazycontroller.js`:
+Stimulus bundle with Vite implementation. By default all your controllers are lazy loaded. If you don't want, just define eager mode :
+
+```js
+// assets/bootstrap.js
+const app = startStimulusApp();
+
+registerControllers(
+  app,
+  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?', eager: true) // [!code ++]
+)
+```
+
+If you still want to define some lazy controllers, Suffix them with `_lazycontroller.js`:
 
 ```js
 // assets/controllers/welcome_lazycontroller.js // [!code ++]
@@ -125,6 +141,8 @@ export default class extends Controller {
     // ...
 }
 ```
+
+Or you can call `registerControllers` multiple times.
 
 ### Third-party controllers
 
@@ -137,7 +155,6 @@ const app = startStimulusApp(require.context(
     // ...
 ));
 
-// usual way
 app.register('clipboard', Clipboard);
 ```
 
@@ -147,7 +164,7 @@ Instead, load these controllers with the `controllers.json` file .
 {
     "controllers": {
         "stimulus-clipboard": {     // npm package name
-            "stimulus-clipboard": { // controller id
+            "default": { // controller id
 
                 // to prevent collisions symfony generate a
                 // controller name : <package-name>--<controller-name>
@@ -248,11 +265,9 @@ Because React component is already imported lazily, you need to set fetch `eager
 ```json
 {
     "controllers": {
-        "@symfony/ux-react": { // [!code --]
-        "vite-plugin-symfony": { // [!code ++]
+        "@symfony/ux-react": {
             "react": {
                 "enabled": true,
-                "fetch": "lazy" // [!code --]
                 "fetch": "eager" // [!code ++]
             }
         },
@@ -313,11 +328,9 @@ Because Svelte component is already imported lazily, you need to set fetch `eage
 ```json
 {
     "controllers": {
-        "@symfony/ux-svelte": { // [!code --]
-        "vite-plugin-symfony": { // [!code ++]
+        "@symfony/ux-svelte": {
             "svelte": {
                 "enabled": true,
-                "fetch": "lazy" // [!code --]
                 "fetch": "eager" // [!code ++]
             }
         },

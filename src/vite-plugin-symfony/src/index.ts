@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import util from "node:util";
 import { fileURLToPath } from "node:url";
 import glob from "fast-glob";
-import { cwd } from "node:process";
+import process from "node:process";
 
 import { Plugin, UserConfig } from "vite";
 import sirv from "sirv";
@@ -34,7 +34,7 @@ import {
   createControllersModule,
   resolvedVirtualSymfonyControllersModuleId,
   virtualSymfonyControllersModuleId,
-} from "./stimulus/bridge";
+} from "./stimulus/node/bridge";
 
 // src and dist directory are in the same level;
 const pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -59,7 +59,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
     name: "symfony",
     enforce: "post",
     config(userConfig) {
-      const root = userConfig.root ? resolve(userConfig.root) : cwd();
+      const root = userConfig.root ? resolve(userConfig.root) : process.cwd();
 
       if (userConfig.build.rollupOptions.input instanceof Array) {
         console.error("rollupOptions.input must be an Objet like {app: './assets/app.js'}");
@@ -248,6 +248,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
       }
     },
     async renderChunk(code: string, chunk: RenderedChunk) {
+      // we need this step because css entrypoints doesn't have a facadeModuleId in `generateBundle` step.
       if (!isCssEntryPoint(chunk)) {
         return;
       }

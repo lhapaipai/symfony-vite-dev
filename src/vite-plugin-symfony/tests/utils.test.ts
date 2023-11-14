@@ -1,4 +1,4 @@
-import { describe, it, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import {
   getLegacyName,
   normalizePath,
@@ -6,7 +6,10 @@ import {
   getInputRelPath,
   prepareRollupInputs,
   isSubdirectory,
+  parseVersionString,
+  resolveDevServerUrl,
 } from "../src/utils";
+import { resolvePluginOptions } from "../src/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -18,7 +21,7 @@ import {
   welcomeJs,
   welcomeLegacyJs,
 } from "./mocks";
-import type { ResolvedConfig } from "vite";
+import { defineConfig, InlineConfig, resolveConfig, type ResolvedConfig } from "vite";
 import { VitePluginSymfonyOptions } from "../src/types";
 
 const viteBaseConfig = {
@@ -26,20 +29,130 @@ const viteBaseConfig = {
   base: "/build/",
 } as unknown as ResolvedConfig;
 
+describe("parseVersionString", () => {
+  it("basic", () => {
+    expect(parseVersionString("1.2.3")).toEqual(["1.2.3", 1, 2, 3]);
+  });
+
+  it("return usable version if uncommon string", () => {
+    expect(parseVersionString("1.2.3-dev")).toEqual(["1.2.3-dev", 1, 2, 3]);
+    expect(parseVersionString("1.2")).toEqual(["1.2", 1, 2, 0]);
+    expect(parseVersionString("1")).toEqual(["1", 1, 0, 0]);
+    expect(parseVersionString("1-dev")).toEqual(["1-dev", 1, 0, 0]);
+  });
+});
+
 describe("normalizePath", () => {
-  it("keep the path unchanged on UNIX", ({ expect }) => {
+  it("normalize correctly path", () => {
+    expect(normalizePath("path//to/deep/../file.ts")).toBe("path/to/file.ts");
+  });
+
+  it("keep the path unchanged on UNIX", () => {
     expect(normalizePath("path/to/file.ts")).toBe("path/to/file.ts");
   });
 });
 
 describe("getLegacyName", () => {
-  it("suffix pathname with -legacy before extension", ({ expect }) => {
+  it("suffix pathname with -legacy before extension", () => {
     expect(getLegacyName("assets/page/assets/index.js")).toBe("assets/page/assets/index-legacy.js");
   });
 });
 
+/**
+ * {
+      viteConfig: InlineConfig,
+      isIPv4: boolean,
+      pluginOptions: Partial<VitePluginSymfonyOptions>,
+      expectedUrl: string,
+    }
+ */
+describe("resolveDevServerUrl", () => {
+  it.each([
+    {
+      message: "resolve correctly default config",
+      viteConfig: {},
+      isIPv4: true,
+      pluginOptions: {},
+      expectedUrl: "http://127.0.0.1:5173",
+    },
+    {
+      message: "resolve host priority 1",
+      viteConfig: {},
+      isIPv4: true,
+      pluginOptions: {
+        originOverride: "<override-all>",
+        viteDevServerHostname: "<less-priority>",
+      },
+      expectedUrl: "<override-all>",
+    },
+    {
+      message: "resolve host priority 2",
+      viteConfig: {
+        server: {
+          hmr: {
+            host: "hmr-host",
+          },
+          host: "server-host",
+        },
+      },
+      isIPv4: true,
+      pluginOptions: {
+        viteDevServerHostname: "plugin-host",
+      },
+      expectedUrl: "http://hmr-host:5173",
+    },
+    {
+      message: "resolve host priority 3 (use case docker)",
+      viteConfig: {
+        server: {
+          host: "0.0.0.0.",
+        },
+      },
+      isIPv4: true,
+      pluginOptions: {
+        viteDevServerHostname: "plugin-host",
+      },
+      expectedUrl: "http://plugin-host:5173",
+    },
+    {
+      message: "resolve host priority 4",
+      viteConfig: {
+        server: {
+          host: "server-host",
+        },
+      },
+      isIPv4: true,
+      pluginOptions: {},
+      expectedUrl: "http://server-host:5173",
+    },
+    {
+      message: "resolve host priority 5",
+      viteConfig: {},
+      isIPv4: false,
+      pluginOptions: {},
+      expectedUrl: "http://[::1]:5173",
+    },
+  ])("$message", async ({ viteConfig, isIPv4, pluginOptions, expectedUrl }) => {
+    const address = isIPv4
+      ? {
+          family: "IPv4",
+          address: "127.0.0.1",
+          port: 5173,
+        }
+      : {
+          family: "IPv6",
+          address: "::1",
+          port: 5173,
+        };
+
+    const viteResolvedConfig = await resolveConfig(viteConfig, "serve");
+    const pluginConfig = resolvePluginOptions(pluginOptions);
+    expect(resolveDevServerUrl(address, viteResolvedConfig, pluginConfig)).toBe(expectedUrl);
+  });
+});
+
 describe("getFileInfos", () => {
-  it("parse correctly an output", ({ expect }) => {
+  it("parse correctly an output", () => {
     expect(getFileInfos(asyncDepChunk, "assets/lib/async-dep.js", { sriAlgorithm: false } as VitePluginSymfonyOptions))
       .toMatchInlineSnapshot(`
         {
@@ -187,7 +300,7 @@ describe("getFileInfos", () => {
 });
 
 describe("prepareRollupInputs", () => {
-  it("prepare inputs", ({ expect }) => {
+  it("prepare inputs", () => {
     expect(
       prepareRollupInputs({
         ...viteBaseConfig,
@@ -216,7 +329,7 @@ describe("prepareRollupInputs", () => {
 });
 
 describe("getInputRelPath", () => {
-  it("generate Correct path", ({ expect }) => {
+  it("generate Correct path", () => {
     expect(
       getInputRelPath(
         {
@@ -255,28 +368,28 @@ describe("getInputRelPath", () => {
 });
 
 describe("isAncestorDir", () => {
-  it("subdirectory is a subdirectory", ({ expect }) => {
+  it("subdirectory is a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/public")).toBe(true);
   });
-  it("same folder is not a subdirectory", ({ expect }) => {
+  it("same folder is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project")).toBe(false);
   });
-  it("sibling folder is not a subdirectory", ({ expect }) => {
+  it("sibling folder is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/symfony-project")).toBe(false);
   });
-  it("sibling folder starting with same name is not a subdirectory", ({ expect }) => {
+  it("sibling folder starting with same name is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project-2")).toBe(false);
   });
-  it("traversing up the tree and into a sibling folder is not a subdirectory", ({ expect }) => {
+  it("traversing up the tree and into a sibling folder is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/../react-project")).toBe(false);
   });
-  it("unnormalized path in project folder: is a subdirectory", ({ expect }) => {
+  it("unnormalized path in project folder: is a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/./public")).toBe(true);
   });
-  it("unnormalized path with path traversal into subdirectory is a subdirectory", ({ expect }) => {
+  it("unnormalized path with path traversal into subdirectory is a subdirectory", () => {
     expect(isSubdirectory("/vite-project/../projects", "/projects/vite-project")).toBe(true);
   });
-  it("unnormalized path relative to current directory: is not a subdirectory", ({ expect }) => {
+  it("unnormalized path relative to current directory: is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "./vite-project")).toBe(false);
   });
 });

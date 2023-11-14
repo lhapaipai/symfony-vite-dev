@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-third-party{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Stimulus Color Picker</h1>
+  <p><a href="https://stimulus-color-picker.stimulus-components.com/">Documentation</a></p>
+  <div {{ stimulus_controller('color-picker')}}>
+    <input type="hidden" name="color" value="#667EEA" {{ stimulus_target('color-picker', 'input')}} />
+    <div {{ stimulus_target('color-picker', 'button')}}></div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,36 +1,29 @@
-import { describe, it } from "vitest";
-import { getStimulusControllerFileInfos, generateStimulusId } from "../../../src/stimulus/helpers/util";
+import { describe, it, expect } from "vitest";
+import { getStimulusControllerFileInfos } from "../../../src/stimulus/helpers/util";
 
 describe("stimulus", () => {
-  it("getStimulusControllerFileInfos generate correct infos", ({ expect }) => {
-    const list: [string, string | undefined, boolean][] = [
-      ["./controllers/welcome_controller.js", "welcome", false],
-      ["./controllers/welcome_lazycontroller.js", "welcome", true],
-
-      ["./some-content-before/controllers/welcome_controller.js", "welcome", false],
-      // without controllers
-      ["../welcome_controller.js", "welcome", false],
-      // some content after we add --
-      ["./controllers/foo/bar_controller.js", "foo--bar", false],
-      // we replace _ -> -
-      ["./controllers/foo_bar_controller.js", "foo-bar", false],
-
-      ["not a controller", undefined, false],
-    ];
-    list.forEach(([input, expectedIdentifier, expectedLazy]) => {
-      const { identifier, lazy } = getStimulusControllerFileInfos(input);
-      expect(identifier).toBe(expectedIdentifier);
-      expect(lazy).toBe(expectedLazy);
-    });
-  });
-
-  it("identifierFromThirdParty generate correct identifier", ({ expect }) => {
-    const list = [
-      ["@symfony/ux-toggle-password/toggle-password", "symfony--ux-toggle-password--toggle-password"],
-      ["my-custom-package/toggle-password", "my-custom-package--toggle-password"],
-    ];
-    list.forEach(([input, result]) => {
-      expect(generateStimulusId(input)).toBe(result);
-    });
+  it.each([
+    { input: "./controllers/welcome_controller.js", expectedId: "welcome", expectedLazy: false },
+    { input: "./controllers/welcome_lazycontroller.js", expectedId: "welcome", expectedLazy: true },
+    {
+      input: "./some-content-before/controllers/welcome_controller.js",
+      expectedId: "welcome",
+      expectedLazy: false,
+    },
+    // without controllers
+    { input: "../welcome_controller.js", expectedId: "welcome", expectedLazy: false },
+    // bare module
+    { input: "library/welcome_controller.js", expectedId: "library--welcome", expectedLazy: false },
+    // some content after we add --
+    { input: "./controllers/foo/bar_controller.js", expectedId: "foo--bar", expectedLazy: false },
+    // we replace _ -> -
+    { input: "./controllers/foo_bar_controller.js", expectedId: "foo-bar", expectedLazy: false },
+    { input: "./controllers/my_module.js", expectedId: "my-module", expectedLazy: false },
+    { input: "./path/to/file.js", expectedId: "path--to--file", expectedLazy: false },
+    { input: "not a controller", expectedId: undefined, expectedLazy: false },
+  ])("getStimulusControllerFileInfos generate correct infos", ({ input, expectedId, expectedLazy }) => {
+    const { identifier, lazy } = getStimulusControllerFileInfos(input);
+    expect(identifier).toBe(expectedId);
+    expect(lazy).toBe(expectedLazy);
   });
 });

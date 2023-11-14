@@ -25,9 +25,9 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
 
     this.dispatchEvent("connect");
 
-    const svelteModuleLoader = window.resolveSvelteComponent(this.componentValue);
+    const importedSvelteModule = window.resolveSvelteComponent(this.componentValue);
 
-    svelteModuleLoader().then((svelteModule) => {
+    const onload = (svelteModule) => {
       const Component = svelteModule.default;
 
       this._destroyIfExists();
@@ -44,7 +44,13 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
       this.dispatchEvent("mount", {
         component: Component,
       });
-    });
+    };
+
+    if (typeof importedSvelteModule === "function") {
+      importedSvelteModule().then(onload);
+    } else {
+      onload(importedSvelteModule);
+    }
   }
 
   disconnect() {

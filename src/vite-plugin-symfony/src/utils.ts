@@ -189,6 +189,9 @@ function generateHash(source: BinaryLike, alg: HashAlgorithm) {
   return `${alg}-${hash}`;
 }
 
+/**
+ * @description based on vite resolved config get an array of entrypoints and their type "css" | "js"
+ */
 export const prepareRollupInputs = (config: ResolvedConfig): ParsedInputs => {
   const inputParsed: ParsedInputs = {};
 
@@ -215,6 +218,10 @@ const getKeyByValue = (object, value) => {
   return Object.keys(object).find((key) => object[key] === value);
 };
 
+/**
+ * @description used when generateBundle.
+ * if chunk doesn't have a facadeModuleId his inputRelPath can be retrieve with inputRelPath2outputRelPath
+ */
 export const getInputRelPath = (
   chunk: OutputAsset | OutputChunk,
   options: NormalizedOutputOptions,

@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
-import { createControllersModule } from "../../src/stimulus/bridge";
+import { createControllersModule } from "../../../src/stimulus/node/bridge";
 
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const testDir = dirname(dirname(fileURLToPath(import.meta.url)));
+const testDir = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 
 function loadControllerJson(filename: string) {
   return JSON.parse(readFileSync(resolve(testDir, `fixtures/${filename}`)).toString());
@@ -92,20 +92,20 @@ describe("createControllersModule", () => {
         export default {
         'symfony--mock-module--mock': class extends Controller {
               constructor(context) {
-                  super(context);
-                  this.__stimulusLazyController = true;
+                super(context);
+                this.__stimulusLazyController = true;
               }
               initialize() {
-                  if (this.application.controllers.find((controller) => {
-                      return controller.identifier === this.identifier && controller.__stimulusLazyController;
-                  })) {
-                      return;
-                  }
-                  import('@symfony/mock-module/dist/controller.js').then((controller) => {
-                      this.application.register(this.identifier, controller.default);
-                  });
+                if (this.application.controllers.find((controller) => {
+                    return controller.identifier === this.identifier && controller.__stimulusLazyController;
+                })) {
+                    return;
+                }
+                import('@symfony/mock-module/dist/controller.js').then((controller) => {
+                    this.application.register(this.identifier, controller.default);
+                });
               }
-          }
+            }
         };"
       `);
     });

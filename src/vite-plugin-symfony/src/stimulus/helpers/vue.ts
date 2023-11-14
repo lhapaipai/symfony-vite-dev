@@ -1,38 +1,39 @@
 import { defineAsyncComponent } from "vue";
 import type { Component } from "vue";
+import { ImportedModules, LazyModule, VueModule } from "./types";
 
-declare global {
-  function resolveVueComponent(name: string): Component;
+const vueComponentsOrLoaders: LazyModule<VueModule> | Component = {};
 
-  interface Window {
-    resolveVueComponent(name: string): Component;
-  }
-}
+export function registerVueControllerComponents(
+  modules: ImportedModules<VueModule>,
+  controllersDir = "./vue/controllers",
+) {
+  Object.entries(modules).forEach(([key, module]) => {
+    if (typeof module !== "function") {
+      vueComponentsOrLoaders[key] = module.default;
+    } else {
+      vueComponentsOrLoaders[key] = module;
+    }
+  });
 
-export type VueImportedModules = {
-  [filePath: string]: () => Promise<Component>;
-};
-
-export function registerVueControllerComponents(modules: VueImportedModules, controllersDir = "./vue/controllers") {
-  const vueControllers = Object.keys(modules).reduce((acc, key) => {
-    acc[key] = undefined;
-    return acc;
-  }, {} as Record<string, object | undefined>);
-
-  function loadComponent(name: string) {
+  function loadComponent(name: string): Component {
     const componentPath = `${controllersDir}/${name}.vue`;
 
-    if (!(componentPath in vueControllers)) {
-      const possibleValues = Object.keys(vueControllers).map((key) => key.replace("./", "").replace(".vue", ""));
+    if (!(componentPath in vueComponentsOrLoaders)) {
+      const possibleValues = Object.keys(vueComponentsOrLoaders).map((key) =>
+        key.replace("./", "").replace(".vue", ""),
+      );
 
       throw new Error(`Vue controller "${name}" does not exist. Possible values: ${possibleValues.join(", ")}`);
     }
 
-    if (typeof vueControllers[componentPath] === "undefined") {
-      vueControllers[componentPath] = defineAsyncComponent(modules[componentPath]);
+    if (typeof vueComponentsOrLoaders[componentPath] === "function") {
+      const module = vueComponentsOrLoaders[componentPath] as LazyModule<VueModule>;
+      vueComponentsOrLoaders[componentPath] = defineAsyncComponent(module);
+      console.log("async", vueComponentsOrLoaders[componentPath]);
     }
 
-    return vueControllers[componentPath];
+    return vueComponentsOrLoaders[componentPath];
   }
 
   window.resolveVueComponent = (name: string) => {

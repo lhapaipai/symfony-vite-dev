@@ -20,9 +20,9 @@ export default class extends Controller {
       throw new Error("No component specified.");
     }
 
-    const reactModuleLoader = window.resolveReactComponent(this.componentValue);
+    const importedReactModule = window.resolveReactComponent(this.componentValue);
 
-    reactModuleLoader().then((reactModule) => {
+    const onload = (reactModule) => {
       const component = reactModule.default;
       this._renderReactElement(React.createElement(component, props, null));
 
@@ -31,7 +31,13 @@ export default class extends Controller {
         component: component,
         props: props,
       });
-    });
+    };
+
+    if (typeof importedReactModule === "function") {
+      importedReactModule().then(onload);
+    } else {
+      onload(importedReactModule);
+    }
   }
 
   disconnect() {

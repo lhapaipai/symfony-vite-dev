@@ -1,12 +1,14 @@
-import { SvelteImportedModules, SvelteLazyModule } from "./svelte";
+import { ImportedModule, ImportedModules, SvelteModule } from "../types";
+
+let svelteImportedModules: ImportedModules<SvelteModule> = {};
 
 export function registerSvelteControllerComponents(
-  modules: SvelteImportedModules,
+  modules: ImportedModules<SvelteModule>,
   controllersDir = "./svelte/controllers",
 ) {
-  const svelteImportedModules = modules;
-  console.log("modules", modules);
-  window.resolveSvelteComponent = (name: string): SvelteLazyModule => {
+  svelteImportedModules = { ...svelteImportedModules, ...modules };
+
+  window.resolveSvelteComponent = (name: string): ImportedModule<SvelteModule> => {
     const svelteModule = svelteImportedModules[`${controllersDir}/${name}.svelte`];
     if (typeof svelteModule === "undefined") {
       const possibleValues = Object.keys(svelteImportedModules).map((key) =>

@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.5.1",
+    "stimulus-color-picker": "^1.1.0",
     "stimulus-vite-helpers": "^3.0.1"
   }
 }

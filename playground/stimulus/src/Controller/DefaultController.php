@@ -24,6 +24,14 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    #[Route('/third-party', name: 'third-party')]
+    public function thirdParty(): Response
+    {
+        return $this->render('default/third-party.html.twig', [
+            'currentPage' => 'third-party',
+        ]);
+    }
+
     #[Route('/autocomplete', name: 'autocomplete')]
     public function autocomplete(): Response
     {

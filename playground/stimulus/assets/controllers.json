@@ -58,23 +58,13 @@
         },
         "@symfony/ux-react": {
             "react": {
-                "enabled": false,
-                "fetch": "lazy"
-            }
-        },
-        "vite-plugin-symfony": {
-            "react": {
-                "enabled": true,
-                "fetch": "eager"
-            },
-            "svelte": {
                 "enabled": true,
                 "fetch": "eager"
             }
         },
         "@symfony/ux-svelte": {
             "svelte": {
-                "enabled": false,
+                "enabled": true,
                 "fetch": "eager"
             }
         },
@@ -113,6 +103,16 @@
             "vue": {
                 "enabled": true,
                 "fetch": "lazy"
+            }
+        },
+        "stimulus-color-picker": {
+            "default": {
+                "name": "color-picker",
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": {
+                    "@simonwep/pickr/dist/themes/classic.min.css": true
+                }
             }
         }
     },

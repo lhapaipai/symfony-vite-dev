@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { isSubdirectory } from "../src/utils";
+import { isSubdirectory, normalizePath } from "../src/utils";
 
 vi.mock("node:path", async () => {
   const win32Path = await vi.importActual<typeof import("node:path/win32")>("node:path/win32");
@@ -12,6 +12,23 @@ vi.mock("node:process", async () => {
     ...originalProcess,
     platform: "win32",
   };
+});
+
+vi.mock("node:os", async () => {
+  const originalOs = await vi.importActual<typeof import("node:os") & { default: any }>("node:os");
+  return {
+    ...originalOs,
+    default: {
+      ...originalOs.default,
+      platform: () => "win32",
+    },
+  };
+});
+
+describe("Windows: normalizePath", () => {
+  it("change the path on windows", ({ expect }) => {
+    expect(normalizePath("path\\to\\asset.svg")).toBe("path/to/asset.svg");
+  });
 });
 
 describe("Windows: isAncestorDir", () => {

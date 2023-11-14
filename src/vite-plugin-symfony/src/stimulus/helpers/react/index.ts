@@ -1,12 +1,14 @@
-import { ReactImportedModules, ReactLazyModule } from "./react";
+import { ImportedModule, ImportedModules, ReactModule } from "../types";
+
+let reactImportedModules: ImportedModules<ReactModule> = {};
 
 export function registerReactControllerComponents(
-  modules: ReactImportedModules,
+  modules: ImportedModules<ReactModule>,
   controllersDir = "./react/controllers",
 ) {
-  const reactImportedModules = modules;
+  reactImportedModules = { ...reactImportedModules, ...modules };
 
-  window.resolveReactComponent = (name: string): ReactLazyModule => {
+  window.resolveReactComponent = (name: string): ImportedModule<ReactModule> => {
     const reactModule = reactImportedModules[`${controllersDir}/${name}.jsx` || `${controllersDir}/${name}.tsx`];
     if (typeof reactModule === "undefined") {
       const possibleValues = Object.keys(reactImportedModules).map((key) =>
