@@ -1,15 +1,16 @@
 # Stimulus : Installation
 
 ::: warning
-⚠️ The implementation is still experimental. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change. The features presented in this page will not respect the `semver` versioning semantics.
+⚠️ L'implémentation est encore expérimentale. Le code est totalement fonctionnel, certaines implémentations avec Symfony UX ne sont pas terminées (voir tableau des compatibilité en pied de page) et certains noms de fonctions peuvent être amenés à changer. Les fonctionnalités présentées dans cette page ne respecteront pas la sémantique de gestion de version `semver`.
 :::
 
-Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
+Stimulus est un framework Javascript léger qui a comme ambition de faciliter l'intégration de composants JavaScript dans un projet. Il connecte des objets JavaScript appelés `controllers` aux éléments HTML d'une page via les attributs `data-*`.
 
 ```bash
 composer require symfony/stimulus-bundle
 
-# remove the webpack-compatible @symfony/stimulus-bridge
+# désinstallez le package @symfony/stimulus-bridge
+# uniquement compatible webpack
 npm rm @symfony/stimulus-bridge
 ```
 
@@ -23,7 +24,7 @@ export default defineConfig({
     symfonyPlugin({
       stimulus: true // [!code ++]
 
-      // or define custom path for your controllers.json
+      // ou précisez le chemin de votre controllers.json
       // stimulus: './assets/other-dir/controllers.json'
     }),
   ],
@@ -38,14 +39,14 @@ export default defineConfig({
 });
 ```
 
-If you have run the Flex recipe the import has certainly already been added.
+Si vous avez exécuté la recette Flex l'import a certainement déjà été ajouté.
 
 ```js
 // assets/app.js
 import './bootstrap.js';
 ```
 
-Add the routines for generating a stimulus application compatible with `symfony/stimulus-bundle` and `vite`.
+Ajoutez les routines de génération d'une application stimulus compatible avec `symfony/stimulus-bundle` et `vite`.
 
 ```js
 // assets/bootstrap.js
@@ -75,4 +76,4 @@ registerControllers(
 
 ## Examples
 
-The development repository [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contains a `playground/stimulus` directory containing a complete implementation of Stimulus with Symfony UX.
+Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.

@@ -1,21 +1,21 @@
 # Stimulus : Lazy controllers
 
-If you want to define your own controllers with lazy loading, there is differences with the original implementation.
+Si vous souhaitez définir vos propres contrôleurs avec un chargement paresseux, voici quelques différences dont vous devez avoir connaissance.
 
-Stimulus bundle with Webpack Encore implementation
+Implémentation de Stimulus bundle avec Webpack Encore
 
 ```js
 // assets/controllers/welcome_controller.js
 import { Controller } from '@hotwired/stimulus';
 
-// IS NOT COMPATIBLE !
+// N'EST PAS COMPATIBLE !
 /* stimulusFetch: 'lazy' */ // [!code --]
 export default class extends Controller {
     // ...
 }
 ```
 
-Stimulus bundle with Vite implementation. By default all your controllers are lazy loaded. If you don't want, just define eager mode :
+Implémentation du bundle Stimulus avec Vite. Par défaut tous vos contrôleurs sont chargés à la demande. Si vous ne souhaitez pas cela vous pouvez définir le mode `eager`.
 
 ```js
 // assets/bootstrap.js
@@ -27,7 +27,10 @@ registerControllers(
 )
 ```
 
-If you still want to define some lazy controllers, Suffix them with `_lazycontroller.js`:
+
+Si vous voulez définir parmi ceux-ci quelques controlleurs avec un chargement différé, suffixez plutôt le nom de votre controleur avec `_lazycontroller.js` :
+
+
 
 ```js
 // assets/controllers/welcome_lazycontroller.js // [!code ++]
@@ -38,14 +41,14 @@ export default class extends Controller {
 }
 ```
 
-Or you can call `registerControllers` multiple times.
+Ou vous pouvez appeler « registerControllers » plusieurs fois.
 
-### Third-party controllers
+### Contrôleurs tiers
 
-The webpack loader from `@symfony/stimulus-bridge` cannot be used.
+Le loader webpack de `@symfony/stimulus-bridge` ne peut être utilisé.
 
 ```js
-// IS NOT COMPATIBLE !
+// N'EST PAS COMPATIBLE !
 import Clipboard from '@symfony/stimulus-bridge/lazy-controller-loader?lazy=true!stimulus-clipboard'; // [!code --]
 const app = startStimulusApp(require.context(
     // ...
@@ -54,7 +57,7 @@ const app = startStimulusApp(require.context(
 app.register('clipboard', Clipboard);
 ```
 
-Instead, load these controllers with the `controllers.json` file .
+Chargez plutôt ces contrôleurs avec le fichier `controllers.json`
 
 ```json
 {

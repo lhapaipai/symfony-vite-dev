@@ -1,36 +1,36 @@
 
 # Symfony UX
 
-| UX packages                    | Compatibility |
+| UX packages                    | Compatibilité |
 |--------------------------------|---------------|
 | ux-autocomplete                | ✅            |
 | ux-chartjs                     | ✅            |
 | ux-cropperjs                   | ✅            |
 | ux-dropzone                    | ✅            |
 | ux-lazy                        | ✅            |
-| ux-live-component              | Not Tested    |
-| ux-notify                      | Not Tested    |
+| ux-live-component              | Non testé     |
+| ux-notify                      | Non testé     |
 | ux-react                       | ✅ (*)        |
 | ux-svelte                      | ✅ (*)        |
 | ux-swup                        | ✅            |
 | ux-toggle                      | ✅            |
 | ux-translator                  | ✅            |
-| ux-turbo                       | Not Tested    |
+| ux-turbo                       | Non testé     |
 | ux-twig                        | ✅            |
 | ux-typed                       | ✅            |
 | ux-vue                         | ✅ (*)        |
 
-(*) requires some code changes
+(*) demande quelques modifications de code
 
 ### symfony/ux-vue
 
-Basic installation
+Installation
 
 ```bash
 composer require symfony/ux-vue
 ```
 
-After installing the Flex recipe from `symfony/ux-vue` you will need to correct these lines.
+Après l'installation de la recette Flex de `symfony/ux-vue` vous aurez besoin de corriger ces lignes.
 
 ```js
 // assets/bootstrap.js
@@ -77,13 +77,13 @@ Documentation : [Symfony doc](https://symfony.com/bundles/ux-vue/current/index.h
 
 ### symfony/ux-react
 
-Basic installation
+Installation
 
 ```bash
 composer require symfony/ux-react
 ```
 
-After installing the Flex recipe from `symfony/ux-react` you will need to correct these lines.
+Après avoir installé la recette Flex depuis `symfony/ux-react`, vous devrez corriger ces lignes.
 
 ```js
 // assets/bootstrap.js
@@ -100,7 +100,8 @@ const app = startStimulusApp();
 registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
 ```
 
-Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
+Parce que `import.meta.glob` crée déjà des importations `lazy`, vous devez définir fetch `eager` (sinon votre composant deviendra **vraiment trop paresseux**).
+
 ```json
 {
     "controllers": {
@@ -147,13 +148,13 @@ export default defineConfig({
 
 ### symfony/ux-svelte
 
-Basic installation
+Installation
 
 ```bash
 composer require symfony/ux-svelte
 ```
 
-After installing the Flex recipe from `symfony/ux-svelte` you will need to correct these lines.
+Après avoir installé la recette Flex depuis `symfony/ux-svelte`, vous devrez corriger ces lignes.
 
 ```js
 // assets/bootstrap.js
@@ -170,7 +171,8 @@ const app = startStimulusApp();
 registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
 ```
 
-Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
+Parce que `import.meta.glob` crée déjà des importations `lazy`, vous devez définir fetch `eager` (sinon votre composant deviendra **vraiment trop paresseux**).
+
 ```json
 {
     "controllers": {

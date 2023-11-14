@@ -81,6 +81,8 @@ git tag -a $VERSION -m $VERSION
 
 git push origin
 
+./bin/split-subtree.sh
+
 # vite-bundle
 rm -rf $TMP_DIR
 mkdir --parents "$TMP_DIR"
@@ -103,3 +105,6 @@ git checkout "$RELEASE_BRANCH"
 git tag -a "v$VERSION" -m "v$VERSION"
 git push origin --tags
 
+cd "$PROJECT_DIR/src/vite-plugin-symfony"
+npm run build
+npm publish

@@ -1,20 +1,19 @@
-# Stimulus : in depth
+# Stimulus : En profondeur
 
-In order to facilitate the integration of Stimulus into Symfony applications, the latter has created a specific bundle `symfony/stimulus-bundle`. This bundle adds:
+Afin de faciliter l'intégration de Stimulus dans les applications Symfony, ce dernier a créé un bundle spécifique `symfony/stimulus-bundle`. Ce bundle ajoute :
 
-- Twig functions and filters to easily generate `data-*` attributes
-- services to create Stimulus compatible `data-*` attributes and use them in your own services.
-- a system for automatic and lazy loading of Stimulus controllers via an npm package `@symfony/stimulus-bridge` linked to the bundle. The latter will analyze
-   - the `assets/controllers.json` file for your third-party controllers
-   - controllers stored in an `assets/controllers` folder
-and will return code for the Stimulus app to automatically preload.
+- des fonctions et filtres Twig pour générer facilement des attributs `data-*`
+- des services pour créer des `data-*` attributs compatible Stimulus et les utiliser dans vos propres services.
+- un système de chargement automatique et paresseux des controlleurs Stimulus via un paquet npm `@symfony/stimulus-bridge` lié au bundle. Ce dernier va analyser
+  - le fichier `assets/controllers.json` pour vos contrôleurs tiers
+  - les contrôleurs stockés dans un dossier `assets/controllers`
+et renverra du code pour que l'application Stimulus se précharge automatiquement
 
+Par dessus cela Symfony a construit tout un éco-système `Symfony UX` basé sur des bundles qui intègrent chacun d'eux des contrôleurs `Stimulus`.
 
-On top of that Symfony has built an entire `Symfony UX` eco-system based on bundles which each integrate `Stimulus` controllers.
+Le paquet npm `@symfony/stimulus-bridge` n'étant pas compatible avec Vite:
+  - utilisation de `require.context`
+  - utilisation de loaders `webpack`
 
+le plugin `vite-plugin-symfony` vient ici en remplacement de `@symfony/stimulus-bridge` et assure le pont entre `symfony/stimulus-bundle`, `Symfony UX` et `Vite`.
 
-The npm package `@symfony/stimulus-bridge` is not compatible with Vite:
-   - usage of `require.context`
-   - usage of `webpack` loaders
-
-the `vite-plugin-symfony` plugin replaces `@symfony/stimulus-bridge` and provides the bridge between `symfony/stimulus-bundle`, `Symfony UX` and `Vite`.
