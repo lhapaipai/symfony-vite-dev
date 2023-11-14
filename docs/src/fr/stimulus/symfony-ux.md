@@ -1,28 +1,30 @@
 
 # Symfony UX
 
-| UX packages                    | Compatibilité |
-|--------------------------------|---------------|
-| ux-autocomplete                | ✅            |
-| ux-chartjs                     | ✅            |
-| ux-cropperjs                   | ✅            |
-| ux-dropzone                    | ✅            |
-| ux-lazy                        | ✅            |
-| ux-live-component              | Non testé     |
-| ux-notify                      | Non testé     |
-| ux-react                       | ✅ (*)        |
-| ux-svelte                      | ✅ (*)        |
-| ux-swup                        | ✅            |
-| ux-toggle                      | ✅            |
-| ux-translator                  | ✅            |
-| ux-turbo                       | Non testé     |
-| ux-twig                        | ✅            |
-| ux-typed                       | ✅            |
-| ux-vue                         | ✅ (*)        |
+| UX packages       | Compatibility | UX packages       | Compatibility |
+|-------------------|---------------|-------------------|---------------|
+| ux-autocomplete   | ✅            | ux-svelte         | ✅ (*)        |
+| ux-chartjs        | ✅            | ux-swup           | ✅            |
+| ux-cropperjs      | ✅            | ux-toggle         | ✅            |
+| ux-dropzone       | ✅            | ux-translator     | ✅            |
+| ux-lazy           | ✅            | ux-turbo          | Not Tested    |
+| ux-live-component | Not Tested    | ux-twig           | ✅            |
+| ux-notify         | Not Tested    | ux-typed          | ✅            |
+| ux-react          | ✅ (*)        | ux-vue            | ✅ (*)        |
 
 (*) demande quelques modifications de code
 
-### symfony/ux-vue
+## Prérequis
+
+```bash
+composer require symfony/stimulus-bundle
+
+# désinstallez le package @symfony/stimulus-bridge
+# uniquement compatible webpack
+npm rm @symfony/stimulus-bridge
+```
+
+## symfony/ux-vue
 
 Installation
 
@@ -35,13 +37,10 @@ Après l'installation de la recette Flex de `symfony/ux-vue` vous aurez besoin d
 
 ```js
 // assets/bootstrap.js
-import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
-
 import { registerVueControllerComponents } from '@symfony/ux-vue'; // [!code --]
-import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
-
 registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/)); // [!code --]
 
+import { startStimulusApp, registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 // register Vue components before startStimulusApp
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
@@ -72,11 +71,27 @@ export default defineConfig({
   },
 });
 ```
+```twig
+{# your-template.html.twig #}
+<div {{ vue_component('Hello', { 'name': 'Vite & Stimulus' }) }}></div>
+```
+```vue
+<!-- assets/vue/controllers/Hello.vue -->
+<template>
+    <div>Hello {{ name }}!</div>
+</template>
+
+<script setup>
+    defineProps({
+        name: String
+    });
+</script>
+```
 
 Documentation : [Symfony doc](https://symfony.com/bundles/ux-vue/current/index.html), [Symfony UX](https://ux.symfony.com/vue).
 
 
-### symfony/ux-react
+## symfony/ux-react
 
 Installation
 
@@ -89,14 +104,11 @@ Après avoir installé la recette Flex depuis `symfony/ux-react`, vous devrez co
 
 ```js
 // assets/bootstrap.js
-import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
-
 import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
-import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
-
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
-registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
+import { startStimulusApp, registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
@@ -142,13 +154,29 @@ export default defineConfig({
 });
 ```
 ```twig
+{# base.html.twig #}
 {{ vite_entry_link_tags('app') }}
 {{ vite_entry_script_tags('app', {
     dependency: 'react' // [!code ++]
   }) }}
 ```
+```twig
+{# your-template.html.twig #}
+<div {{ react_component('Hello', { 'fullName': 'Vite & Stimulus' }) }}></div>
+```
+```jsx
+// assets/react/controllers/Hello.jsx
+import React from 'react';
 
-### symfony/ux-svelte
+export default function (props) {
+    return <div>Hello {props.fullName}</div>;
+}
+```
+
+Documentation : [Symfony doc](https://symfony.com/bundles/ux-react/current/index.html), [Symfony UX React](https://ux.symfony.com/react).
+
+
+## symfony/ux-svelte
 
 Installation
 
@@ -161,14 +189,11 @@ Après avoir installé la recette Flex depuis `symfony/ux-svelte`, vous devrez c
 
 ```js
 // assets/bootstrap.js
-import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
-
 import { registerSvelteControllerComponents } from '@symfony/ux-svelte'; // [!code --]
-import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
-
 registerSvelteControllerComponents(require.context('./svelte/controllers', true, /\.svelte$/)); // [!code --]
-registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
+import { registerSvelteControllerComponents, startStimulusApp } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
@@ -225,3 +250,16 @@ export default {
   preprocess: vitePreprocess(),
 }
 ```
+```twig
+{# your-template.html.twig #}
+<div {{ svelte_component('Hello', { 'name': 'Vite & Stimulus' }) }}></div>
+```
+```svelte
+<!-- assets/svelte/controllers/Hello.svelte -->
+<script>
+    export let name = "Svelte";
+</script>
+
+<div>Hello {name}</div>
+```
+Documentation : [Symfony doc](https://symfony.com/bundles/ux-svelte/current/index.html), [Symfony UX Svelte](https://ux.symfony.com/svelte).

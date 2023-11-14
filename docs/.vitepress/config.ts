@@ -83,7 +83,6 @@ export default defineConfig({
           },
           {
             text: 'Stimulus / Symfony UX',
-            collapsed: true,
             items: [
               { text: 'Installation', link: '/stimulus/installation'},
               { text: 'Symfony UX', link: '/stimulus/symfony-ux'},
@@ -162,7 +161,6 @@ export default defineConfig({
           },
           {
             text: 'Stimulus / Symfony UX',
-            collapsed: true,
             items: [
               { text: 'Installation', link: '/fr/stimulus/installation'},
               { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux'},
