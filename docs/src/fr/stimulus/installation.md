@@ -51,7 +51,7 @@ Ajoutez les routines de génération d'une application stimulus compatible avec 
 ```js
 // assets/bootstrap.js
 
-import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers"
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers"
 const app = startStimulusApp();
 registerControllers(
   app,
