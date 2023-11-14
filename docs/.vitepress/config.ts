@@ -71,7 +71,6 @@ export default defineConfig({
               { text: 'Configuration', link: '/guide/configuration' },
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
-              { text: 'Stimulus / Symfony UX', link: '/guide/stimulus-symfony-ux'},
               { text: 'Custom attributes', link: '/guide/custom-attributes'},
               { text: 'Dependency injection', link: '/guide/dependency-injection'},
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
@@ -80,6 +79,16 @@ export default defineConfig({
               { text: 'Tips', link: '/guide/tips' },
               { text: 'Troubleshooting', link: '/guide/troubleshooting' },
               { text: 'Examples', link: '/guide/examples' }
+            ]
+          },
+          {
+            text: 'Stimulus / Symfony UX',
+            collapsed: true,
+            items: [
+              { text: 'Installation', link: '/stimulus/installation'},
+              { text: 'Symfony UX', link: '/stimulus/symfony-ux'},
+              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers'},
+              { text: 'In Depth', link: '/stimulus/in-depth'},
             ]
           },
           {
@@ -149,6 +158,16 @@ export default defineConfig({
               { text: 'Conseils', link: '/fr/guide/tips' },
               { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshooting' },
               { text: 'Exemples', link: '/fr/guide/examples' }
+            ]
+          },
+          {
+            text: 'Stimulus / Symfony UX',
+            collapsed: true,
+            items: [
+              { text: 'Installation', link: '/fr/stimulus/installation'},
+              { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux'},
+              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers'},
+              { text: 'En profondeur', link: '/fr/stimulus/in-depth'},
             ]
           },
           {
