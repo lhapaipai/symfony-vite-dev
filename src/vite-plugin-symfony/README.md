@@ -1,3 +1,16 @@
+<div>
+  <p align="center">
+  <img width="100" src="https://raw.githubusercontent.com/lhapaipai/vite-bundle/main/docs/symfony-vite.svg" alt="Symfony logo">
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/npm/v/vite-plugin-symfony?style=flat-square&logo=npm">
+    <img src="https://img.shields.io/github/actions/workflow/status/lhapaipai/symfony-vite-dev/vite-plugin-symfony-ci.yml?style=flat-square&label=vite-plugin-symfony%20CI&logo=github">
+  </p>
+</div>
+
+
+
+
 # Vite plugin Symfony
 
 A Vite plugin to integrate easily Vite in your Symfony application..

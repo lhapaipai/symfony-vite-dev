@@ -1,6 +1,19 @@
-<p align="center">
+<div>
+  <p align="center">
   <img width="100" src="https://raw.githubusercontent.com/lhapaipai/vite-bundle/main/docs/symfony-vite.svg" alt="Symfony logo">
-</p>
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/npm/v/vite-plugin-symfony?style=flat-square&logo=npm">
+    <img src="https://img.shields.io/packagist/v/pentatrion/vite-bundle?style=flat-square&logo=packagist">
+    <img src="https://img.shields.io/github/actions/workflow/status/lhapaipai/symfony-vite-dev/vite-plugin-symfony-ci.yml?style=flat-square&label=vite-plugin-symfony%20CI&logo=github">
+    <img src="https://img.shields.io/github/actions/workflow/status/lhapaipai/symfony-vite-dev/vite-bundle-ci.yml?style=flat-square&label=vite-bundle%20CI&logo=github">
+
+  </p>
+</div>
+
+
+
+
 
 # Symfony Vite Development Repository
 
