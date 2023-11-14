@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import reactLogo from '~/images/logo-react.svg'
 import viteLogo from '~/images/logo-vite.svg'
-import './App.css'
+import './App.scss'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
+    <div className="react-app">
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -23,12 +23,14 @@ function App() {
             count is {count}
           </button>
         </div>
+        <p>
         <code>assets/page/react/App.jsx</code>
+        </p>
         <p>
           Edit component and save to test HMR
         </p>
       </div>
-    </>
+    </div>
   )
 }
 
