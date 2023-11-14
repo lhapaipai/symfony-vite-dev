@@ -74,6 +74,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
           outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
         },
         optimizeDeps: {
+          exclude: [...(userConfig?.optimizeDeps?.exclude ?? []), virtualSymfonyControllersModuleId],
           //Set to true to force dependency pre-bundling.
           force: true,
         },
