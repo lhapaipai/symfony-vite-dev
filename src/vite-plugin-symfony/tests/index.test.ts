@@ -357,6 +357,7 @@ describe("vitePluginSymfony", () => {
         outDir: "public/build",
       },
       optimizeDeps: {
+        exclude: ["virtual:symfony/controllers"],
         force: true,
       },
       server: {
