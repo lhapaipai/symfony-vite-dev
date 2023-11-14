@@ -20,6 +20,19 @@ export function slash(p: string): string {
   return p.replace(/\\/g, "/");
 }
 
+export function isSubdirectory(parent: string, child: string) {
+  parent = path.normalize(parent);
+  child = path.normalize(child);
+
+  if (parent == child) {
+    return false;
+  }
+
+  const parentDirs = parent.split(path.sep).filter((dir) => dir !== "");
+  const childDirs = child.split(path.sep).filter((dir) => dir !== "");
+  return parentDirs.every((dir, i) => childDirs[i] === dir);
+}
+
 export function normalizePath(id: string): string {
   return path.posix.normalize(isWindows ? slash(id) : id);
 }

@@ -25,6 +25,7 @@ import {
   getFileInfos,
   getInputRelPath,
   parseVersionString,
+  isSubdirectory,
 } from "./utils";
 import { resolvePluginOptions, resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "./pluginOptions";
 
@@ -148,6 +149,13 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
 
+          // buildDir is not a subdirectory of the vite project root -> potentially dangerous
+          if (!isSubdirectory(viteConfig.root, buildDir)) {
+            throw new Error(
+              `Always set outDir to a subdirectory of your project to prevent recursively deleting files anywhere else.`,
+            );
+          }
+
           if (!existsSync(buildDir)) {
             mkdirSync(buildDir, { recursive: true });
           }
@@ -266,7 +274,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
       outputCount++;
       const output = viteConfig.build.rollupOptions?.output;
 
-      // if we have multiple build passes output is an array of each passe.
+      // if we have multiple build passes output is an array of each pass.
       // else we have an object of this unique pass
       const outputLength = Array.isArray(output) ? output.length : 1;
 
