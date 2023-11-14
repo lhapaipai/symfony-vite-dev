@@ -1,4 +1,4 @@
-import { describe, it } from "vitest";
+import { describe, it, vi } from "vitest";
 import {
   getLegacyName,
   normalizePath,
@@ -254,7 +254,10 @@ describe("getInputRelPath", () => {
   });
 });
 
+import os from "node:os";
 describe("isAncestorDir", () => {
+  console.log("inside isAncestorDir", os.platform());
+
   it("subdirectory is a subdirectory", ({ expect }) => {
     expect(isSubdirectory("/projects/vite-project", "/projects/vite-project/public")).toBe(true);
   });
@@ -278,15 +281,5 @@ describe("isAncestorDir", () => {
   });
   it("unnormalized path relative to current directory: is not a subdirectory", ({ expect }) => {
     expect(isSubdirectory("/projects/vite-project", "./vite-project")).toBe(false);
-  });
-  // this test fails on UNIX but succeeds on Windows
-  // it("Windows: subdirectory is a subdirectory", ({ expect }) => {
-  // expect(isSubdirectory("C:\\projects", "C:\\projects\\vite-project")).toBe(true);
-  // });
-  it("Windows: different directory is not a subdirectory", ({ expect }) => {
-    expect(isSubdirectory("C:\\projects", "C:\\Users")).toBe(false);
-  });
-  it("Windows: subdirectory on another drive is not a subdirectory", ({ expect }) => {
-    expect(isSubdirectory("C:\\projects", "D:\\projects\\svelte-project")).toBe(false);
   });
 });

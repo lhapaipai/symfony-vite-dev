@@ -5,20 +5,35 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Vitest dev",
+      "name": "Vitest all files",
       "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
-      ],
-      "args": [
-        "bridge"
       ],
       "type": "node",
       "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
       "env": {
         "NODE_ENV": "development"
       },
+    },
+    {
+      "name": "Vitest Current Test File",
+      "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ],
+      "type": "node",
+      "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
+      "autoAttachChildProcesses": true,
+      "args": [
+        "run",
+        "${file}"
+      ],
+      "smartStep": true,
+      "console": "integratedTerminal"
     },
     {
       "name": "Launch phpunit",
