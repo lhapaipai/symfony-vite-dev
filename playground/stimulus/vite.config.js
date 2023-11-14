@@ -23,6 +23,20 @@ export default defineConfig({
     }),
   ],
 
+  optimizeDeps: {
+    include: [
+      "swup",
+      "@swup/debug-plugin",
+      "@swup/forms-plugin",
+      "@swup/fade-theme",
+      "@swup/slide-theme",
+      "chart.js/auto",
+      "cropperjs",
+      "tom-select",
+      "typed.js"
+    ]
+  },
+
   publicDir: false,
 
   build: {

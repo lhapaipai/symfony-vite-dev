@@ -2,9 +2,11 @@ pentatrion_vite:
     script_attributes:
         # you can define your attributes that you want to apply
         # for all your script tags
+        # 'data-turbo-track': reload
     link_attributes:
         # you can define your attributes that you want to apply
         # for all your link tags
+        # 'data-turbo-track': reload
 
     throw_on_missing_entry: true
 

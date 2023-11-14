@@ -2,10 +2,10 @@
   <div class="vue-app">
     <div>
       <a href="https://vitejs.dev" target="_blank">
-        <img :src="viteLogo" class="logo" alt="Vite logo" />
+        <img :src="viteLogo" class="logo" alt="Vite logo" width="202.25" height="200" />
       </a>
       <a href="https://vuejs.org/" target="_blank">
-        <img :src="vueLogo" class="logo vue" alt="Vue logo" />
+        <img :src="vueLogo" class="logo vue" alt="Vue logo" width="177.33" height="160" />
       </a>
     </div>
     <HelloWorld :name="name" />

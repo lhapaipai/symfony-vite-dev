@@ -5,6 +5,13 @@
 {% block html_class %}page-live-component{% endblock %}
 
 {% block content %}
-  {{ component('TownSearch') }}
+  <div class="cards">
+    <div class="card">
+    {{ component('TownSearch') }}
+    </div>
+    <div class="card">
+      {{ component('RegistrationForm') }}
+    </div>
+  </div>
 {% endblock %}
 

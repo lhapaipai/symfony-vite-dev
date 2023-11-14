@@ -10,10 +10,10 @@
 <main class="svelte-app">
   <div>
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
+      <img src={viteLogo} class="logo" alt="Vite Logo" width="202.25" height="200" />
     </a>
     <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
+      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" width="174.35" height="200" />
     </a>
   </div>
   <h1>Hello {name}</h1>

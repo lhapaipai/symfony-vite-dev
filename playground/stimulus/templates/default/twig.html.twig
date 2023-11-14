@@ -6,8 +6,8 @@
 
 {% block content %}
   <div>
-    <div>Not using Stimulus</div>
-    {{ component('Alert', { message: 'Hello Twig Components!', type: 'success' }) }}
+    {{ component('Alert', { message: ' I am a success alert!' }) }}
+    {{ component('Alert', { message: 'Oh no! The dinos escaped!', type: 'danger' }) }}
   </div>
 {% endblock %}
 

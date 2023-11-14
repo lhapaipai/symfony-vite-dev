@@ -76,3 +76,15 @@ registerControllers(
 ## Examples
 
 The development repository [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contains a `playground/stimulus` directory containing a complete implementation of Stimulus with Symfony UX.
+
+```bash
+git clone https://github.com/lhapaipai/symfony-vite-dev.git
+cd symfony-vite-dev
+make install
+cd playground/stimulus
+composer install
+npm i
+
+symfony serve
+npm run dev
+```

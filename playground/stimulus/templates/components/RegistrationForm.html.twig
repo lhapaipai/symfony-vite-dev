@@ -1,0 +1,26 @@
+<div
+    {{ attributes }}
+>
+    {% if isSuccessful %}
+        <div>Welcome {{ newUserEmail }}!</div>
+    {% else %}
+        {{ form_start(form, {
+            attr: {
+                'novalidate': true,
+                'data-action': 'live#action',
+                'data-action-name': 'prevent|saveRegistration',
+            }
+        }) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.terms) }}
+
+            <button
+                type="submit"
+                class="btn btn-primary {{ this.hasValidationErrors ? 'disabled' : '' }}"
+            >Register</button>
+
+            {{ form_rest(form) }}
+        </form>
+    {% endif %}
+</div>

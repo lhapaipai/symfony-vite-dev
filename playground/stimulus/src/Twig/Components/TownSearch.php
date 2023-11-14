@@ -14,7 +14,7 @@ class TownSearch
     #[LiveProp(writable: true)]
     public string $query = '';
 
-    public const PRODUCTS = [
+    public const TOWNS = [
         'Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice',
         'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille',
         'Rennes', 'Reims', 'Le Havre', 'Cannes', 'Grenoble',
@@ -27,7 +27,7 @@ class TownSearch
     {
         $query = $this->query;
 
-        return array_filter(self::PRODUCTS, function ($town) use ($query) {
+        return array_filter(self::TOWNS, function ($town) use ($query) {
             return str_starts_with(strtolower($town), strtolower($query));
         });
     }

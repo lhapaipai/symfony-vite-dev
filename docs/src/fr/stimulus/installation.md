@@ -74,6 +74,19 @@ registerControllers(
 <h1 {{ stimulus_controller('hello') }}></h1>
 ```
 
-## Examples
+## Exemples
 
 Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.
+
+
+```bash
+git clone https://github.com/lhapaipai/symfony-vite-dev.git
+cd symfony-vite-dev
+make install
+cd playground/stimulus
+composer install
+npm i
+
+symfony serve
+npm run dev
+```

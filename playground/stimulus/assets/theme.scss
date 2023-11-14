@@ -1,8 +1,8 @@
 @import "~shared/theme/index.scss";
 
 html #content {
-  height: calc(100% - var(--nav-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: calc(100% - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

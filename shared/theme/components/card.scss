@@ -25,4 +25,9 @@
     width: 250px;
     max-width: 100%;
   }
+
+  .list {
+    max-height: 300px;
+    overflow: auto;
+  }
 }

@@ -1,0 +1,20 @@
+.alert {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  min-width: 300px;
+
+  &.alert-danger {
+    color: rgb(100, 26, 26);
+    border-color: #D9D9D9;
+    background-color: rgb(254, 217, 217)
+  }
+
+  &.alert-success {
+    color: rgb(53, 89, 18);
+    border-color: #D9D9D9;
+    background-color: rgb(230, 248, 213)
+  }
+}
