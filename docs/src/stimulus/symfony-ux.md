@@ -28,6 +28,7 @@ Basic installation
 
 ```bash
 composer require symfony/ux-vue
+npm i --force
 ```
 
 After installing the Flex recipe from `symfony/ux-vue` you will need to correct these lines.
@@ -81,6 +82,7 @@ Basic installation
 
 ```bash
 composer require symfony/ux-react
+npm i --force
 ```
 
 After installing the Flex recipe from `symfony/ux-react` you will need to correct these lines.
@@ -151,6 +153,7 @@ Basic installation
 
 ```bash
 composer require symfony/ux-svelte
+npm i --force
 ```
 
 After installing the Flex recipe from `symfony/ux-svelte` you will need to correct these lines.

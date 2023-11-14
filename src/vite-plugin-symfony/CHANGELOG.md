@@ -1,10 +1,4 @@
-## v6.1.0
-
-- add Stimulus and Symfony UX Integration
-
-## v6.0.1
-
-- add `enforceServerOriginAfterListening`
+since version 6.0.0 changelogs are managed by the symfony-vite-dev repository
 
 ## v5.0.0
 
