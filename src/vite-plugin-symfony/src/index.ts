@@ -147,10 +147,11 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
 
           // buildDir is not a subdirectory of the vite project root -> potentially dangerous
-          if (!isSubdirectory(viteConfig.root, buildDir)) {
-            throw new Error(
-              `Always set outDir to a subdirectory of your project to prevent recursively deleting files anywhere else.`,
+          if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
+            devServer.config.logger.error(
+              `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.outDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
             );
+            process.exit(1);
           }
 
           if (!existsSync(buildDir)) {

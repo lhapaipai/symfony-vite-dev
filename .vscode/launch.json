@@ -88,12 +88,12 @@
       ],
       "type": "node",
       "cwd": "${workspaceFolder}/playground/basic",
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "outFiles": [
-        "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
-      ]
+      // "env": {
+      //   "NODE_ENV": "development"
+      // },
+      // "outFiles": [
+      //   "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
+      // ]
     },
     {
       "name": "basic:vite:build",
