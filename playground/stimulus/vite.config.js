@@ -5,7 +5,7 @@ import symfonyPlugin from 'vite-plugin-symfony';
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-
+import inspect from "vite-plugin-inspect";
 
 import { fileURLToPath } from 'url';
 
@@ -21,6 +21,7 @@ export default defineConfig({
       // debug: true,
       stimulus: true
     }),
+    inspect()
   ],
 
   optimizeDeps: {

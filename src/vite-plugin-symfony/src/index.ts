@@ -30,11 +30,7 @@ import {
 import { resolvePluginOptions, resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "./pluginOptions";
 
 import { VitePluginSymfonyOptions, StringMapping, GeneratedFiles, ResolvedConfigWithOrderablePlugins } from "./types";
-import {
-  createControllersModule,
-  resolvedVirtualSymfonyControllersModuleId,
-  virtualSymfonyControllersModuleId,
-} from "./stimulus/node/bridge";
+import { createControllersModule, virtualSymfonyControllersModuleId } from "./stimulus/node/bridge";
 
 // src and dist directory are in the same level;
 const pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -106,11 +102,11 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
     },
     resolveId(id: string) {
       if (pluginOptions.stimulus !== false && id === virtualSymfonyControllersModuleId) {
-        return resolvedVirtualSymfonyControllersModuleId;
+        return id;
       }
     },
     load(id) {
-      if (id === resolvedVirtualSymfonyControllersModuleId) {
+      if (id === virtualSymfonyControllersModuleId) {
         return createControllersModule(stimulusControllersContent);
       }
     },
