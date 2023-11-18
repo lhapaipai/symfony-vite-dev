@@ -49,7 +49,7 @@ describe("vitePluginSymfony", () => {
     welcomePluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs]));
 
     expect(welcomePluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -91,7 +91,7 @@ describe("vitePluginSymfony", () => {
     hashPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs]));
 
     expect(hashPluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -136,7 +136,7 @@ describe("vitePluginSymfony", () => {
     pageAssetsPluginInstance.generateBundle({ format: "es" }, createBundleObject([pageAssets, indexCss, logoPng]));
 
     expect(pageAssetsPluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -177,7 +177,7 @@ describe("vitePluginSymfony", () => {
     pageImportsPluginInstance.generateBundle({ format: "es" }, createBundleObject([pageImports, asyncDepChunk]));
 
     expect(pageImportsPluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -220,7 +220,7 @@ describe("vitePluginSymfony", () => {
     themePluginInstance.generateBundle({ format: "es" }, createBundleObject([themeCss]));
 
     expect(themePluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -262,7 +262,7 @@ describe("vitePluginSymfony", () => {
     circularPluginInstance.generateBundle({ format: "es" }, createBundleObject([circular1Js, circular2Js]));
 
     expect(circularPluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",
@@ -306,7 +306,7 @@ describe("vitePluginSymfony", () => {
     legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs]));
 
     expect(legacyPluginInstance.emitFile).toHaveBeenCalledWith({
-      fileName: "entrypoints.json",
+      fileName: ".vite/entrypoints.json",
       source: JSON.stringify(
         {
           base: "/build/",

@@ -42,7 +42,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
   let viteConfig: ResolvedConfigWithOrderablePlugins;
   let viteDevServerUrl: string;
 
-  const entryPointsBasename = "entrypoints.json";
+  const entryPointsFileName = ".vite/entrypoints.json";
 
   let stimulusControllersContent = null;
 
@@ -145,6 +145,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
           }
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
+          const viteDir = resolve(buildDir, ".vite");
 
           // buildDir is not a subdirectory of the vite project root -> potentially dangerous
           if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
@@ -160,6 +161,8 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
           existsSync(buildDir) && emptyDir(buildDir);
 
+          mkdirSync(viteDir, { recursive: true });
+
           const address = devServer.httpServer?.address();
 
           if (!isAddressInfo(address)) {
@@ -174,7 +177,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
           const entryPoints = getDevEntryPoints(viteConfig, viteDevServerUrl);
 
-          const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsBasename);
+          const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsFileName);
 
           writeJson(entryPointsPath, {
             base: viteConfig.base,
@@ -281,7 +284,7 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
         const entryPoints = getBuildEntryPoints(generatedFiles, viteConfig, inputRelPath2outputRelPath);
 
         this.emitFile({
-          fileName: entryPointsBasename,
+          fileName: entryPointsFileName,
           source: JSON.stringify(
             {
               base: viteConfig.base,

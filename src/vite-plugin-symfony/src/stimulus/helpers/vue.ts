@@ -30,7 +30,6 @@ export function registerVueControllerComponents(
     if (typeof vueComponentsOrLoaders[componentPath] === "function") {
       const module = vueComponentsOrLoaders[componentPath] as LazyModule<VueModule>;
       vueComponentsOrLoaders[componentPath] = defineAsyncComponent(module);
-      console.log("async", vueComponentsOrLoaders[componentPath]);
     }
 
     return vueComponentsOrLoaders[componentPath];

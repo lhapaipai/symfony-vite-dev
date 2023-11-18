@@ -1,0 +1,21 @@
+{
+  "name": "vite-playground-basic",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "20.9.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^3.0.2",
+    "vite": "^4.5.0",
+    "vite-plugin-symfony": "^6.1.3"
+  }
+}

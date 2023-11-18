@@ -1,3 +1,11 @@
+## v6.2.0
+
+- fix #77 support Vite 5.x
+
+## v6.1.3
+
+- fix #34 set warning when setting a build directory outside of your project
+
 ## v6.1.2
 
 - stimulus lazy controllers enhancement

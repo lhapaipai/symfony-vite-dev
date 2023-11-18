@@ -21,7 +21,7 @@ export default defineConfig({
   publicDir: false,
 
   build: {
-    assetsInlineLimit: 2048,
+    assetsInlineLimit: 512,
     manifest: true,
     rollupOptions: {
       input: {
