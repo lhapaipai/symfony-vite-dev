@@ -8,8 +8,8 @@ import {
   isSubdirectory,
   parseVersionString,
   resolveDevServerUrl,
-} from "../../src/entrypoints/utils";
-import { resolvePluginOptions } from "../../src/pluginOptions";
+} from "~/entrypoints/utils";
+import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -22,7 +22,7 @@ import {
   welcomeLegacyJs,
 } from "../mocks";
 import { resolveConfig, type ResolvedConfig } from "vite";
-import { VitePluginSymfonyOptions } from "../../src/types";
+import { VitePluginSymfonyOptions } from "~/types";
 
 const viteBaseConfig = {
   root: "/home/me/project-dir",

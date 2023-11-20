@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { createControllersModule } from "../../../src/stimulus/node/bridge";
+import { createControllersModule } from "~/stimulus/node/bridge";
 
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";

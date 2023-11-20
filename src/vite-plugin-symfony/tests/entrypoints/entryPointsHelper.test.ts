@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { getDevEntryPoints } from "../../src/entrypoints/entryPointsHelper";
+import { getDevEntryPoints } from "~/entrypoints/entryPointsHelper";
 
 import type { ResolvedConfig } from "vite";
 import { viteBaseConfig } from "../mocks";

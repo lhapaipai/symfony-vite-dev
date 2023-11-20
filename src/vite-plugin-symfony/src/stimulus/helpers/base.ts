@@ -1,6 +1,6 @@
 import { Application, Controller } from "@hotwired/stimulus";
 import thirdPartyControllers from "virtual:symfony/controllers";
-import { getStimulusControllerFileInfos } from "./util";
+import { getStimulusControllerFileInfos } from "~/stimulus/util";
 import { ControllerModule, ImportedModules, LazyModule } from "./types";
 
 declare module "@hotwired/stimulus" {

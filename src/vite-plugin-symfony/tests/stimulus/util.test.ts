@@ -1,7 +1,19 @@
 import { describe, it, expect } from "vitest";
-import { getStimulusControllerFileInfos } from "../../../src/stimulus/helpers/util";
+import { getStimulusControllerFileInfos, generateStimulusId } from "~/stimulus/util";
 
-describe("stimulus", () => {
+describe("stimulus generateStimulusId", () => {
+  it("identifierFromThirdParty generate correct identifier", ({ expect }) => {
+    const list = [
+      ["@symfony/ux-toggle-password/toggle-password", "symfony--ux-toggle-password--toggle-password"],
+      ["my-custom-package/toggle-password", "my-custom-package--toggle-password"],
+    ];
+    list.forEach(([input, result]) => {
+      expect(generateStimulusId(input)).toBe(result);
+    });
+  });
+});
+
+describe("stimulus getStimulusControllerFileInfos", () => {
   it.each([
     {
       input: "./controllers/welcome_controller.js",

@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
-import { resolvePluginOptions, resolveBase, resolveOutDir } from "../src/pluginOptions";
-import { VitePluginSymfonyOptions } from "../src/types";
+import { resolvePluginOptions, resolveBase, resolveOutDir } from "~/pluginOptions";
+import { VitePluginSymfonyOptions } from "~/types";
 
 describe("resolvePluginOptions", () => {
   it("resolves with default options when no config", ({ expect }) => {

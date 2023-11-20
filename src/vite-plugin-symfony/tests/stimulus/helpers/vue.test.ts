@@ -2,14 +2,15 @@
  * @vitest-environment jsdom
  */
 import { describe, expect, it } from "vitest";
-import { registerVueControllerComponents } from "../../../src/stimulus/helpers/vue";
+import { registerVueControllerComponents } from "~/stimulus/helpers/vue";
+import { ImportedModules, VueModule } from "~/stimulus/helpers/types";
 
 const fakeVueComponent = () => ({});
 
 const createFakeImportedModules = () => {
   return {
     "./vue/controllers/Hello.vue": () => Promise.resolve(fakeVueComponent),
-  };
+  } as any as ImportedModules<VueModule>;
 };
 
 describe("registerVueControllerComponents", () => {

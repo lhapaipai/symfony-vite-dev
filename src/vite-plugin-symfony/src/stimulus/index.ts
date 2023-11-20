@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Logger, Plugin, ResolvedConfig, UserConfig } from "vite";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
-import { getStimulusControllerFileInfos } from "./helpers/util";
+import { getStimulusControllerFileInfos } from "./util";
 
 const applicationGlobalVarName = "$$stimulusApp$$";
 
@@ -41,11 +41,8 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
       }
     },
     transform(code, id, options) {
-      if (viteCommand !== "serve") {
-        return;
-      }
-      if (options?.ssr || process.env.VITEST) {
-        return;
+      if (viteCommand !== "serve" || (options?.ssr && !process.env.VITEST) || id.includes("node_modules")) {
+        return null;
       }
 
       if (id.endsWith("bootstrap.js") || id.endsWith("bootstrap.ts")) {
@@ -61,21 +58,20 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
 
       // we don't need lazy behavior, the module is already loaded and we are in a dev environment
       const { identifier } = getStimulusControllerFileInfos(id, true);
-      if (!identifier) return;
+      if (!identifier) return null;
       logger.info(`controller ${identifier}`, { timestamp: true });
 
       const metaHotFooter = `
-        if (import.meta.hot) {
-          import.meta.hot.accept(newModule => {
-            if (!window.${applicationGlobalVarName}) {
-              console.warn('Simulus app not available. Are you creating app with startStimulusApp() ?');
-              import.meta.hot.invalidate();
-            } else {
-              window.${applicationGlobalVarName}.register('${identifier}', newModule.default);
-            }
-          })
-        } 
-      `;
+if (import.meta.hot) {
+  import.meta.hot.accept(newModule => {
+    if (!window.${applicationGlobalVarName}) {
+      console.warn('Simulus app not available. Are you creating app with startStimulusApp() ?');
+      import.meta.hot.invalidate();
+    } else {
+      window.${applicationGlobalVarName}.register('${identifier}', newModule.default);
+    }
+  })
+}`;
 
       return `${code}\n${metaHotFooter}`;
     },

@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 
-import vitePluginSymfonyEntrypoints from "../../src/entrypoints/index";
+import vitePluginSymfonyEntrypoints from "~/entrypoints/index";
 import type { OutputChunk, OutputAsset } from "rollup";
 
 import {
@@ -19,8 +19,9 @@ import {
   circular2Js,
   viteUserConfigNoRoot,
 } from "../mocks";
-import { VitePluginSymfonyOptions } from "../../src/types";
-import { resolvePluginOptions } from "../../src/pluginOptions";
+import { VitePluginSymfonyOptions } from "~/types";
+import { resolvePluginOptions } from "~/pluginOptions";
+import { createLogger } from "vite";
 
 function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   const bundles: {
@@ -36,7 +37,7 @@ function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
 function plugin(userOptions: Partial<VitePluginSymfonyOptions>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stimulus, ...entrypointsOptions } = resolvePluginOptions(userOptions);
-  return vitePluginSymfonyEntrypoints(entrypointsOptions);
+  return vitePluginSymfonyEntrypoints(entrypointsOptions, createLogger());
 }
 
 describe("vitePluginSymfonyEntrypoints", () => {

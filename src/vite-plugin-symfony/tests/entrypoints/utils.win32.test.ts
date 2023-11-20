@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { isSubdirectory, normalizePath } from "../../src/entrypoints/utils";
+import { isSubdirectory, normalizePath } from "~/entrypoints/utils";
 
 vi.mock("node:path", async () => {
   const win32Path = await vi.importActual<typeof import("node:path/win32")>("node:path/win32");

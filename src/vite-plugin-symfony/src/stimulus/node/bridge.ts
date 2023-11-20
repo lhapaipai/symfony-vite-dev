@@ -1,4 +1,4 @@
-import { generateStimulusId } from "./util";
+import { generateStimulusId } from "../util";
 import { createRequire } from "node:module";
 
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
