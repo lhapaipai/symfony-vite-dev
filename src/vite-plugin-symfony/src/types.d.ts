@@ -215,11 +215,13 @@ export type VitePluginSymfonyEntrypointsOptions = {
 export type VitePluginSymfonyStimulusOptions = {
   /**
    * path to controllers.json relative to vite root
+   * @default ./assets/controller.json
    */
   controllersFilePath: string;
 
   /**
    * enable hmr for controllers
+   * @default true
    */
   hmr: boolean;
 };

@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   vite: {
+    publicDir: "./public",
     resolve: {
       alias: [
         {

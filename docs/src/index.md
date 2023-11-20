@@ -37,10 +37,28 @@ features:
   - icon: ⚡️
     title: Easy configuration
     details: Fast installation with Bundle Flex recipe and preconfigured Vite plugin.
-  - icon: 🛠️
+  - icon:
+      src: /images/twig.svg
+      wrap: true
+      width: 32
+      height: 23
     title: Twig functions
-    details: Associate your entrypoints in your Twig templates with Twig functions.
+    details: Provide Twig functions for your Twig templates.
   - icon: 📦
     title: Assets management
     details: Integrate your assets into Symfony with custom Asset version Strategy.
+  - icon:
+      src: /images/stimulus.svg
+      width: 32
+      height: 32
+      wrap: true
+    title: Stimulus / Symfony UX
+    details: Easy integration with Symfony UX components and HMR.
+  - icon: 🧩
+    title: Advanced features
+    details: Custom attributes, Multiple configurations, Dependency injection
+  - icon: 🚀
+    title: Performances
+    details: Preload assets, Cache for config files
+
 ---

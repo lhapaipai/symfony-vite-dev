@@ -1,3 +1,9 @@
+## v6.3.0
+
+- stimulus HMR
+- fix bug : stimulus restart vite dev server when controllers.json is updated
+- split vite-plugin-symfony into 2 plugins `vite-plugin-symfony-entrypoints` and `vite-plugin-symfony-stimulus`.
+
 ## v6.2.0
 
 - fix #77 support Vite 5.x
