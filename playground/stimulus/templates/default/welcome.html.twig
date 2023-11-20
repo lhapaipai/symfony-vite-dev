@@ -5,6 +5,18 @@
 {% block html_class %}page-welcome{% endblock %}
 
 {% block content %}
-<h1 {{ stimulus_controller('welcome', {name: 'Symfony, Vite & Stimulus'})}}></h1>
+<div {{ stimulus_controller('welcome', {name: 'Symfony, Vite & Stimulus'})}}>
+  <h1 {{ stimulus_target('welcome', 'title')}}>&nbsp;</h1>
+  <div>
+    <button {{ stimulus_action('welcome', 'increment', 'click')}} {{ stimulus_target('welcome', 'button') }}>count : 0</button>
+  </div>
+  <p>
+    <code>assets/controllers/welcome_controller.js</code>
+  </p>
+  <p>
+    Edit component and save to test HMR
+  </p>
+
+</div>
 {% endblock %}
 

@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import { VitePluginSymfonyOptions } from "./types";
+import { VitePluginSymfonyEntrypointsOptions, VitePluginSymfonyOptions } from "./types";
 
 export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOptions> = {}): VitePluginSymfonyOptions {
   if (typeof userConfig.publicDirectory === "string") {
@@ -30,8 +30,21 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
   }
 
   if (userConfig.stimulus === true) {
-    userConfig.stimulus = "./assets/controllers.json";
-  } else if (typeof userConfig.stimulus !== "string" && userConfig.stimulus !== false) {
+    userConfig.stimulus = {
+      controllersFilePath: "./assets/controllers.json",
+      hmr: true,
+    };
+  } else if (typeof userConfig.stimulus === "string") {
+    userConfig.stimulus = {
+      controllersFilePath: userConfig.stimulus,
+      hmr: true,
+    };
+  } else if (typeof userConfig.stimulus === "object") {
+    userConfig.stimulus = {
+      controllersFilePath: userConfig.stimulus.controllersFilePath ?? "./assets/controllers.json",
+      hmr: userConfig.stimulus.hmr !== false ? true : false,
+    };
+  } else {
     userConfig.stimulus = false;
   }
 
@@ -50,14 +63,14 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
   };
 }
 
-export function resolveBase(config: VitePluginSymfonyOptions): string {
+export function resolveBase(config: VitePluginSymfonyEntrypointsOptions): string {
   if (typeof config.buildDirectory !== "undefined") {
     return "/" + config.buildDirectory + "/";
   }
   return "/build/";
 }
 
-export function resolveOutDir(config: VitePluginSymfonyOptions): string {
+export function resolveOutDir(config: VitePluginSymfonyEntrypointsOptions): string {
   let publicDirectory = "public";
   let buildDirectory = "build";
   if (typeof config.publicDirectory !== "undefined") {
@@ -69,7 +82,7 @@ export function resolveOutDir(config: VitePluginSymfonyOptions): string {
   return join(publicDirectory, buildDirectory);
 }
 
-export function resolvePublicDir(config: VitePluginSymfonyOptions) {
+export function resolvePublicDir(config: VitePluginSymfonyEntrypointsOptions) {
   if (typeof config.publicDirectory !== "undefined") {
     return config.publicDirectory;
   }

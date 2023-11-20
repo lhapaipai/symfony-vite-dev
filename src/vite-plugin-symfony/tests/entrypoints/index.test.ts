@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 
-import vitePluginSymfony from "../src/index";
+import vitePluginSymfonyEntrypoints from "../../src/entrypoints/index";
 import type { OutputChunk, OutputAsset } from "rollup";
 
 import {
@@ -18,7 +18,9 @@ import {
   circular1Js,
   circular2Js,
   viteUserConfigNoRoot,
-} from "./mocks";
+} from "../mocks";
+import { VitePluginSymfonyOptions } from "../../src/types";
+import { resolvePluginOptions } from "../../src/pluginOptions";
 
 function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   const bundles: {
@@ -31,9 +33,15 @@ function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   return bundles;
 }
 
-describe("vitePluginSymfony", () => {
+function plugin(userOptions: Partial<VitePluginSymfonyOptions>) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { stimulus, ...entrypointsOptions } = resolvePluginOptions(userOptions);
+  return vitePluginSymfonyEntrypoints(entrypointsOptions);
+}
+
+describe("vitePluginSymfonyEntrypoints", () => {
   it("generate correct welcome build entrypoints", ({ expect }) => {
-    const welcomePluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const welcomePluginInstance = plugin({ debug: true }) as any;
 
     welcomePluginInstance.emitFile = vi.fn();
     welcomePluginInstance.configResolved({
@@ -64,7 +72,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: false,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -75,7 +83,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct integrity hash for build entrypoints", ({ expect }) => {
-    const hashPluginInstance = vitePluginSymfony({ debug: true, sriAlgorithm: "sha256" }) as any;
+    const hashPluginInstance = plugin({ debug: true, sriAlgorithm: "sha256" }) as any;
 
     hashPluginInstance.emitFile = vi.fn();
     hashPluginInstance.configResolved({
@@ -110,7 +118,7 @@ describe("vitePluginSymfony", () => {
               hash: "sha256-w+Sit18/MC+LC1iX8MrNapOiCQ8wbPX8Rb6ErbfDX1Q=",
             },
           },
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -121,7 +129,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct pageAssets build entrypoints", ({ expect }) => {
-    const pageAssetsPluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const pageAssetsPluginInstance = plugin({ debug: true }) as any;
     pageAssetsPluginInstance.emitFile = vi.fn();
     pageAssetsPluginInstance.configResolved({
       ...viteBaseConfig,
@@ -151,7 +159,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: false,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -162,7 +170,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct pageImports build entrypoints", ({ expect }) => {
-    const pageImportsPluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const pageImportsPluginInstance = plugin({ debug: true }) as any;
     pageImportsPluginInstance.emitFile = vi.fn();
     pageImportsPluginInstance.configResolved({
       ...viteBaseConfig,
@@ -192,7 +200,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: false,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -203,7 +211,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct theme build entrypoints", ({ expect }) => {
-    const themePluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const themePluginInstance = plugin({ debug: true }) as any;
     themePluginInstance.emitFile = vi.fn();
     themePluginInstance.configResolved({
       ...viteBaseConfig,
@@ -235,7 +243,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: false,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -246,7 +254,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct circular build entrypoints", ({ expect }) => {
-    const circularPluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const circularPluginInstance = plugin({ debug: true }) as any;
     circularPluginInstance.emitFile = vi.fn();
     circularPluginInstance.configResolved({
       ...viteBaseConfig,
@@ -277,7 +285,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: false,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -288,7 +296,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("generate correct legacy build entrypoints", ({ expect }) => {
-    const legacyPluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const legacyPluginInstance = plugin({ debug: true }) as any;
     legacyPluginInstance.emitFile = vi.fn();
     legacyPluginInstance.configResolved({
       ...viteBaseConfig,
@@ -335,7 +343,7 @@ describe("vitePluginSymfony", () => {
           },
           legacy: true,
           metadatas: {},
-          version: "test",
+          version: ["test"],
           viteServer: null,
         },
         null,
@@ -346,7 +354,7 @@ describe("vitePluginSymfony", () => {
   });
 
   it("loads correctly without root user config option", ({ expect }) => {
-    const pluginInstance = vitePluginSymfony({ debug: true }) as any;
+    const pluginInstance = plugin({ debug: true }) as any;
     const config = pluginInstance.config(viteUserConfigNoRoot);
 
     expect(config).toEqual({
@@ -357,7 +365,6 @@ describe("vitePluginSymfony", () => {
         outDir: "public/build",
       },
       optimizeDeps: {
-        exclude: ["virtual:symfony/controllers"],
         force: true,
       },
       server: {

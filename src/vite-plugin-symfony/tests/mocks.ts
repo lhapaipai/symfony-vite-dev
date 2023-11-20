@@ -5,12 +5,12 @@ import { ChunkMetadata } from "../src/types";
 export const viteBaseConfig = {
   root: "/home/me/project-dir",
   base: "/build/",
-  plugins: [{ name: "symfony" }, { name: "vite:reporter" }],
+  plugins: [{ name: "symfony-entrypoints" }, { name: "symfony-stimulus" }, { name: "vite:reporter" }],
 } as unknown as ResolvedConfig;
 
 export const viteUserConfigNoRoot = {
   base: "/build/",
-  plugins: [{ name: "symfony" }, { name: "vite:reporter" }],
+  plugins: [{ name: "symfony-entrypoints" }, { name: "symfony-stimulus" }, { name: "vite:reporter" }],
   build: {
     rollupOptions: {},
   },

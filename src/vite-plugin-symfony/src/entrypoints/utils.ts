@@ -6,7 +6,14 @@ import { writeFileSync, rmSync, readdirSync } from "fs";
 import { join } from "path";
 import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import { resolve, extname, relative } from "path";
-import { StringMapping, DevServerUrl, VitePluginSymfonyOptions, FileInfos, ParsedInputs, HashAlgorithm } from "./types";
+import {
+  StringMapping,
+  DevServerUrl,
+  FileInfos,
+  ParsedInputs,
+  HashAlgorithm,
+  VitePluginSymfonyEntrypointsOptions,
+} from "../types";
 import { BinaryLike, createHash } from "node:crypto";
 
 export const isWindows = os.platform() === "win32";
@@ -93,7 +100,7 @@ const polyfillId = "\0vite/legacy-polyfills";
 export function resolveDevServerUrl(
   address: AddressInfo,
   config: ResolvedConfig,
-  pluginOptions: VitePluginSymfonyOptions,
+  pluginOptions: VitePluginSymfonyEntrypointsOptions,
 ): DevServerUrl {
   if (pluginOptions.originOverride) {
     return pluginOptions.originOverride as DevServerUrl;
@@ -143,7 +150,7 @@ export const isCssEntryPoint = (chunk: RenderedChunk) => {
 export const getFileInfos = (
   chunk: OutputChunk | OutputAsset,
   inputRelPath,
-  pluginOptions: VitePluginSymfonyOptions,
+  pluginOptions: VitePluginSymfonyEntrypointsOptions,
 ): FileInfos => {
   const alg = pluginOptions.sriAlgorithm;
   if (chunk.type === "asset") {

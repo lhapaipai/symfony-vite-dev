@@ -11,5 +11,14 @@ let $nav = document.querySelector("#nav");
 if ($nav) {
   window.addEventListener("scroll", refreshStickStatus);
   refreshStickStatus();
+
+
+
 }
 
+// if (import.meta.hot) {
+//   import.meta.hot.accept((mod, ctx) => {
+//     import.meta.hot.send('restart')
+//     console.log(mod, ctx)
+//   })
+// }

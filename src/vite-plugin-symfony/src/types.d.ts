@@ -119,7 +119,15 @@ export type DevServerUrl = `${"http" | "https"}://${string}:${number}`;
 
 export type HashAlgorithm = false | "sha256" | "sha384" | "sha512";
 
-export type VitePluginSymfonyOptions = {
+export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
+  /**
+   * enable controllers.json loader for Symfony UX.
+   * @default false
+   */
+  stimulus: boolean | string | VitePluginSymfonyStimulusOptions;
+};
+
+export type VitePluginSymfonyEntrypointsOptions = {
   /**
    * Web directory root
    * Relative file path from project directory root.
@@ -202,10 +210,16 @@ export type VitePluginSymfonyOptions = {
    * @default true
    */
   enforceServerOriginAfterListening: boolean;
+};
+
+export type VitePluginSymfonyStimulusOptions = {
+  /**
+   * path to controllers.json relative to vite root
+   */
+  controllersFilePath: string;
 
   /**
-   * enable controllers.json loader for Symfony UX.
-   * @default false
+   * enable hmr for controllers
    */
-  stimulus: boolean | string;
+  hmr: boolean;
 };

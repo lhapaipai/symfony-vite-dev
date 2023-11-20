@@ -1,8 +1,8 @@
 import { describe, it } from "vitest";
-import { getDevEntryPoints } from "../src/entryPointsHelper";
+import { getDevEntryPoints } from "../../src/entrypoints/entryPointsHelper";
 
 import type { ResolvedConfig } from "vite";
-import { viteBaseConfig } from "./mocks";
+import { viteBaseConfig } from "../mocks";
 
 describe("getDevEntryPoints", () => {
   it("generate correct entrypoints", ({ expect }) => {

@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-symfony",
   "version": "6.2.0",
-  "description": "",
+  "description": "A Vite plugin to integrate easily Vite in your Symfony application",
   "main": "dist/index.js",
   "exports": {
     ".": {
@@ -84,6 +84,7 @@
     "node": "20.9.0"
   },
   "dependencies": {
+    "debug": "^4.3.4",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
     "sirv": "^2.0.2"

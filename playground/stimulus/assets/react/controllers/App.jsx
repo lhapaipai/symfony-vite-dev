@@ -28,7 +28,6 @@ function App(props) {
         </p>
         <p>
           Edit component and save to test HMR
-          (we have hmr with js but not with css)
         </p>
       </div>
       </div>

@@ -1,0 +1,29 @@
+{
+  "base": "/o/",
+  "entryPoints": {
+    "pageTranslator": {
+      "js": [
+        "http://127.0.0.1:5173/o/assets/page/translator/index.js"
+      ]
+    },
+    "app": {
+      "js": [
+        "http://127.0.0.1:5173/o/assets/app.js"
+      ]
+    },
+    "theme": {
+      "css": [
+        "http://127.0.0.1:5173/o/assets/theme.scss"
+      ]
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "6.2.0",
+    6,
+    2,
+    0
+  ],
+  "viteServer": "http://127.0.0.1:5173"
+}

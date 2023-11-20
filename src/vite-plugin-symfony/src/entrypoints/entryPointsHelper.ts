@@ -1,7 +1,7 @@
 import process from "node:process";
 import type { ResolvedConfig } from "vite";
 import { getLegacyName, prepareRollupInputs } from "./utils";
-import { EntryPoints, EntryPoint, StringMapping, GeneratedFiles, FileInfos, FilesMetadatas } from "./types";
+import { EntryPoints, EntryPoint, StringMapping, GeneratedFiles, FileInfos, FilesMetadatas } from "../types";
 
 export const getDevEntryPoints = (config: ResolvedConfig, viteDevServerUrl: string): EntryPoints => {
   const entryPoints: EntryPoints = {};
