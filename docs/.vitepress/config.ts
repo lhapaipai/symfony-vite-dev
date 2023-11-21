@@ -1,10 +1,13 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
+import { renderMermaidGraphsPlugin } from './mermaid'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   vite: {
-    publicDir: "./public",
+    plugins: [
+      renderMermaidGraphsPlugin()
+    ],
     resolve: {
       alias: [
         {

@@ -8,6 +8,7 @@ import {
   isSubdirectory,
   parseVersionString,
   resolveDevServerUrl,
+  isCssEntryPoint,
 } from "~/entrypoints/utils";
 import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
@@ -23,11 +24,61 @@ import {
 } from "../mocks";
 import { resolveConfig, type ResolvedConfig } from "vite";
 import { VitePluginSymfonyOptions } from "~/types";
+import type { RenderedChunk } from "rollup";
 
 const viteBaseConfig = {
   root: "/home/me/project-dir",
   base: "/build/",
 } as unknown as ResolvedConfig;
+
+describe("isCssEntryPoint", () => {
+  it.each([
+    [
+      {
+        isEntry: false,
+      },
+      false,
+    ],
+    [
+      {
+        isEntry: true,
+        modules: {
+          "/path/to/module.js": {},
+          "/path/to/style.css": {},
+        },
+      },
+      false,
+    ],
+    [
+      {
+        isEntry: true,
+        modules: {
+          "/path/to/style.module.css": {},
+        },
+      },
+      false,
+    ],
+    [
+      {
+        // original entrypoint is wrapped into a js file
+        fileName: "assets/theme-!~{001}~.js",
+        facadeModuleId: "/path/to/assets/theme.scss",
+        isEntry: true,
+        modules: {
+          // original entrypoint
+          "/path/to/assets/theme.scss": {},
+        },
+        viteMetadata: {
+          // Set of relative paths of generated css files
+          importedCss: new Set(["assets/theme-hIRg7xK2.css"]),
+        },
+      },
+      true,
+    ],
+  ])("find when entrypoint is a pure css file", (chunk: RenderedChunk, expectedValue: boolean) => {
+    expect(isCssEntryPoint(chunk)).toBe(expectedValue);
+  });
+});
 
 describe("parseVersionString", () => {
   it("basic", () => {

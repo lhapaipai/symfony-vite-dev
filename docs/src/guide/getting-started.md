@@ -2,6 +2,8 @@
 
 Vite is a tool to facilitate the development experience of modern web projects.
 
+
+
 It provides:
 
 - a development server which allows, among other things, the Hot Module Replacement of the generated code by taking advantage of the EcmaScript modules.

@@ -1,9 +1,10 @@
-import { Plugin, createLogger } from "vite";
+import { Plugin } from "vite";
 import symfonyEntrypoints from "./entrypoints";
 import symfonyStimulus from "./stimulus";
 
 import { VitePluginSymfonyOptions } from "./types";
 import { resolvePluginOptions } from "./pluginOptions";
+import { createLogger } from "./logger";
 
 export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
   const { stimulus: stimulusOptions, ...entrypointsOptions } = resolvePluginOptions(userOptions);

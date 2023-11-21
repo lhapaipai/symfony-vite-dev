@@ -6,6 +6,42 @@
 
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
 
+```mermaid
+flowchart TB
+  style virtual stroke-dasharray: 5 5;
+  style groupReact fill:#fff58e;
+  style groupUX fill:#fffac7;
+  style groupCustom fill:#fffac7;
+  style virtualisation fill:#fff58e;
+  classDef component fill:#ffa901, stroke-width:0;
+
+  app(app.js):::component -->|import| bootstrap(bootstrap.js):::component
+
+  %% bootstrap(bootstrap.js):::component -->|"registerReactControllerComponents()"| reactComponents>./react/controllers/\*]
+
+
+
+  bootstrap --->|"startStimulusApp()"| virtual(virtual:symfony/controllers)
+  bootstrap -->|"registerControllers()"| customControllers>"./controllers/\*"]
+
+  subgraph groupCustom[Custom controllers]
+    customControllers ---> welcome_controller(welcome_controller.js):::component & slideshow_controller(slideshow_controller.js):::component
+  end
+
+  subgraph groupUX[Symfony UX]
+    virtual --> uxReact(symfony/ux-react) & uxChartjs(symfony/ux-chartjs) & uxDropzone(symfony/ux-dropzone)
+
+    subgraph virtualisation
+      direction TB
+      controllers{{controllers.json}} -->|transformed into| virtual
+    end
+    subgraph groupReact[React]
+      uxReact --> reactComponents>./react/controllers/\*]
+      reactComponents --> counter(counter.jsx):::component & card(Card.jsx):::component
+    end
+  end
+```
+
 ```bash
 composer require symfony/stimulus-bundle
 

@@ -55,7 +55,8 @@ describe("vitePluginSymfonyEntrypoints", () => {
         },
       },
     });
-    welcomePluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs]));
+    const welcomeBundle = createBundleObject([welcomeJs]);
+    welcomePluginInstance.generateBundle({ format: "es" }, welcomeBundle);
 
     expect(welcomePluginInstance.emitFile).toHaveBeenCalledWith({
       fileName: ".vite/entrypoints.json",

@@ -5,3 +5,5 @@ node_modules/
 .vitepress/dist/
 .vscode/
 .local/
+
+graphs/

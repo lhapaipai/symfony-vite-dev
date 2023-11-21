@@ -6,15 +6,9 @@ import { writeFileSync, rmSync, readdirSync } from "fs";
 import { join } from "path";
 import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import { resolve, extname, relative } from "path";
-import {
-  StringMapping,
-  DevServerUrl,
-  FileInfos,
-  ParsedInputs,
-  HashAlgorithm,
-  VitePluginSymfonyEntrypointsOptions,
-} from "../types";
+import { DevServerUrl, FileInfos, ParsedInputs, HashAlgorithm, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { BinaryLike, createHash } from "node:crypto";
+import { getInputPath } from "./pathMapping";
 
 export const isWindows = os.platform() === "win32";
 
@@ -221,10 +215,6 @@ export const prepareRollupInputs = (config: ResolvedConfig): ParsedInputs => {
   return inputParsed;
 };
 
-const getKeyByValue = (object, value) => {
-  return Object.keys(object).find((key) => object[key] === value);
-};
-
 /**
  * @description used when generateBundle.
  * if chunk doesn't have a facadeModuleId his inputRelPath can be retrieve with inputRelPath2outputRelPath
@@ -233,14 +223,11 @@ export const getInputRelPath = (
   chunk: OutputAsset | OutputChunk,
   options: NormalizedOutputOptions,
   config: ResolvedConfig,
-  inputRelPath2outputRelPath: StringMapping = null,
 ): string => {
   if (chunk.type === "asset" || !chunk.facadeModuleId) {
-    if (inputRelPath2outputRelPath !== null) {
-      const inputRelPath = getKeyByValue(inputRelPath2outputRelPath, chunk.fileName);
-      if (inputRelPath) {
-        return inputRelPath;
-      }
+    const inputRelPath = getInputPath(chunk.fileName);
+    if (inputRelPath) {
+      return inputRelPath;
     }
 
     return `_${chunk.fileName}`;

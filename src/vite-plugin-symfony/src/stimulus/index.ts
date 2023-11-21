@@ -49,7 +49,7 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
         const appRegex = /[^\n]*?\s(\w+)(?:\s*=\s*startStimulusApp\(\))/;
         const appVariable = (code.match(appRegex) || [])[1];
         if (appVariable) {
-          logger.info(`appVariable ${appVariable}`, { timestamp: true });
+          logger.info(`appVariable ${appVariable}`);
           const exportFooter = `window.${applicationGlobalVarName} = ${appVariable}`;
           return `${code}\n${exportFooter}`;
         }
@@ -59,7 +59,7 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
       // we don't need lazy behavior, the module is already loaded and we are in a dev environment
       const { identifier } = getStimulusControllerFileInfos(id, true);
       if (!identifier) return null;
-      logger.info(`controller ${identifier}`, { timestamp: true });
+      logger.info(`controller ${identifier}`);
 
       const metaHotFooter = `
 if (import.meta.hot) {
@@ -79,7 +79,7 @@ if (import.meta.hot) {
       const { watcher } = devServer;
       watcher.on("change", (path) => {
         if (path === controllersFilePath) {
-          logger.info("✨ controllers.json updated, we restart server.", { timestamp: true });
+          logger.info("✨ controllers.json updated, we restart server.");
           devServer.restart();
         }
       });

@@ -28,12 +28,8 @@ import {
 } from "./utils";
 import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../pluginOptions";
 
-import {
-  StringMapping,
-  GeneratedFiles,
-  ResolvedConfigWithOrderablePlugins,
-  VitePluginSymfonyEntrypointsOptions,
-} from "../types";
+import { GeneratedFiles, ResolvedConfigWithOrderablePlugins, VitePluginSymfonyEntrypointsOptions } from "../types";
+import { addIOMapping } from "./pathMapping";
 
 // src and dist directory are in the same level;
 let pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -53,7 +49,6 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
   const entryPointsFileName = ".vite/entrypoints.json";
 
-  const inputRelPath2outputRelPath: StringMapping = {};
   const generatedFiles: GeneratedFiles = {};
 
   let outputCount = 0;
@@ -65,9 +60,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       const root = userConfig.root ? resolve(userConfig.root) : process.cwd();
 
       if (userConfig.build.rollupOptions.input instanceof Array) {
-        logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"), {
-          timestamp: true,
-        });
+        logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"));
         process.exit(1);
       }
 
@@ -116,31 +109,13 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
               `"buildDirectory" plugin option is deprecated and will be removed in v5.x use base: "${resolveBase(
                 pluginOptions,
               )}" from vite config instead`,
-              {
-                timestamp: true,
-              },
             );
           }
           if (typeof pluginOptions.publicDirectory !== "undefined") {
             logger.error(
-              `${colors.red(
-                "[vite-plugin-symfony]",
-              )} "publicDirectory" plugin option is deprecated and will be removed in v5.x use build.outDir: "${resolveOutDir(
+              `"publicDirectory" plugin option is deprecated and will be removed in v5.x use build.outDir: "${resolveOutDir(
                 pluginOptions,
               )}" from vite config instead`,
-              {
-                timestamp: true,
-              },
-            );
-          }
-          if (pluginOptions.viteDevServerHostname !== null) {
-            logger.error(
-              `${colors.red(
-                "[vite-plugin-symfony]",
-              )} "viteDevServerHostname" plugin option is deprecated and will be removed in v5.x use originOverride with protocol and port instead`,
-              {
-                timestamp: true,
-              },
             );
           }
 
@@ -151,9 +126,6 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
             logger.error(
               `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.outDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
-              {
-                timestamp: true,
-              },
             );
             process.exit(1);
           }
@@ -171,9 +143,6 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           if (!isAddressInfo(address)) {
             logger.error(
               `address is not an object open an issue with your address value to fix the problem : ${address}`,
-              {
-                timestamp: true,
-              },
             );
             process.exit(1);
           }
@@ -259,17 +228,17 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         ? normalizePath(relative(viteConfig.root, chunk.facadeModuleId))
         : chunk.name;
 
-      // chunk.viteMetadata.importedCss contains a Set of relative file paths of css files
-      // in our case we have only one file.
-      // eg: inputRelPath2outputRelPath['assets/theme.scss'] = 'assets/theme-44b5be96.css';
+      // chunk.viteMetadata.importedCss contains a Set of relative paths of generated css files
+      // in our case we have only one file (it's a condition of isCssEntryPoint to be true).
+      // eg: addIOMapping('assets/theme.scss', 'assets/theme-44b5be96.css');
       chunk.viteMetadata.importedCss.forEach((cssBuildFilename) => {
-        inputRelPath2outputRelPath[cssAssetName] = cssBuildFilename;
+        addIOMapping(cssAssetName, cssBuildFilename);
       });
     },
     generateBundle(options: NormalizedOutputOptions, bundle: { [fileName: string]: OutputAsset | OutputChunk }) {
       for (const chunk of Object.values(bundle)) {
         const inputRelPath = getInputRelPath(chunk, options, viteConfig);
-        inputRelPath2outputRelPath[inputRelPath] = chunk.fileName;
+        addIOMapping(inputRelPath, chunk.fileName);
         generatedFiles[chunk.fileName] = getFileInfos(chunk, inputRelPath, pluginOptions);
       }
 
@@ -281,7 +250,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       const outputLength = Array.isArray(output) ? output.length : 1;
 
       if (outputCount >= outputLength) {
-        const entryPoints = getBuildEntryPoints(generatedFiles, viteConfig, inputRelPath2outputRelPath);
+        const entryPoints = getBuildEntryPoints(generatedFiles, viteConfig);
 
         this.emitFile({
           fileName: entryPointsFileName,

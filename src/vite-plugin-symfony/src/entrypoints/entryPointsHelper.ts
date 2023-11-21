@@ -1,7 +1,8 @@
 import process from "node:process";
 import type { ResolvedConfig } from "vite";
 import { getLegacyName, prepareRollupInputs } from "./utils";
-import { EntryPoints, EntryPoint, StringMapping, GeneratedFiles, FileInfos, FilesMetadatas } from "../types";
+import { EntryPoints, EntryPoint, GeneratedFiles, FileInfos, FilesMetadatas } from "../types";
+import { getOutputPath } from "./pathMapping";
 
 export const getDevEntryPoints = (config: ResolvedConfig, viteDevServerUrl: string): EntryPoints => {
   const entryPoints: EntryPoints = {};
@@ -27,11 +28,7 @@ export const getFilesMetadatas = (base: string, generatedFiles: GeneratedFiles):
   );
 };
 
-export const getBuildEntryPoints = (
-  generatedFiles: GeneratedFiles,
-  viteConfig: ResolvedConfig,
-  inputRelPath2outputRelPath: StringMapping,
-): EntryPoints => {
+export const getBuildEntryPoints = (generatedFiles: GeneratedFiles, viteConfig: ResolvedConfig): EntryPoints => {
   const entryPoints: EntryPoints = {};
   let hasLegacyEntryPoint = false;
 
@@ -39,16 +36,16 @@ export const getBuildEntryPoints = (
   const entryFiles = prepareRollupInputs(viteConfig);
 
   for (const [entryName, entry] of Object.entries(entryFiles)) {
-    const outputRelPath = inputRelPath2outputRelPath[entry.inputRelPath];
+    const outputRelPath = getOutputPath(entry.inputRelPath);
     const fileInfos = generatedFiles[outputRelPath];
 
     if (!outputRelPath || !fileInfos) {
-      console.error("unable to map generatedFile", entry, outputRelPath, fileInfos, inputRelPath2outputRelPath);
+      console.error("unable to map generatedFile", entry, outputRelPath, fileInfos);
       process.exit(1);
     }
 
     const legacyInputRelPath = getLegacyName(entry.inputRelPath);
-    const legacyFileInfos = generatedFiles[inputRelPath2outputRelPath[legacyInputRelPath]] ?? null;
+    const legacyFileInfos = generatedFiles[getOutputPath(legacyInputRelPath)] ?? null;
 
     if (legacyFileInfos) {
       hasLegacyEntryPoint = true;
@@ -63,8 +60,8 @@ export const getBuildEntryPoints = (
     );
   }
 
-  if (hasLegacyEntryPoint && inputRelPath2outputRelPath["vite/legacy-polyfills"]) {
-    const fileInfos = generatedFiles[inputRelPath2outputRelPath["vite/legacy-polyfills"]] ?? null;
+  if (hasLegacyEntryPoint && getOutputPath("vite/legacy-polyfills")) {
+    const fileInfos = generatedFiles[getOutputPath("vite/legacy-polyfills")] ?? null;
     if (fileInfos) {
       entryPoints["polyfills-legacy"] = resolveEntrypoint(fileInfos, generatedFiles, viteConfig, false);
     }
