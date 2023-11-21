@@ -44,10 +44,10 @@ flowchart TD
     symfonyWebServer(("`Symfony local web server
         listen **8000**`")):::service
 
-    subgraph browser ["Browser https://localhost:8000/contact html page"]
+    subgraph browser ["Browser localhost:8000/contact html page"]
         direction TB
-        viteClientTag("&lt;script src=&quot;https://localhost:5173/build/@vite/client&quot; /&gt;"):::file
-        appTag("&lt;script src=&quot;https://localhost:5173/build/app.js&quot; /&gt;"):::file
+        viteClientTag("&lt;script src=&quot;localhost:5173/build/@vite/client&quot; /&gt;"):::file
+        appTag("&lt;script src=&quot;localhost:5173/build/app.js&quot; /&gt;"):::file
     end
 
     framework --> symfonyWebServer -->|serve| browser
