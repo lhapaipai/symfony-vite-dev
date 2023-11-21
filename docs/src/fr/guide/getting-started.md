@@ -10,6 +10,57 @@ Il met à disposition :
 
 ## Comment Vite fonctionne-t-il ?
 
+```mermaid
+%%{ init: { 'flowchart': { 'curve': 'bumpY' } } }%%
+flowchart TD
+    classDef file fill:#fcf9d7, stroke:#dba726;
+    classDef service fill:#fff155, stroke:#dba726;
+    classDef principal fill:#f2d63e, stroke:#c3830e;
+    style twigFile fill:#fbfbfb, stroke-dasharray: 5 5;
+    style assets fill:#fbfbfb, stroke-dasharray: 5 5;
+    style browser fill:#fbfbfb, stroke-dasharray: 5 5;
+
+    subgraph twigFile ["contact.html.twig"]
+        twigFunctions("`vite_entry_script_tags('app')
+        vite_entry_link_tags('app')`"):::file
+    end
+
+    subgraph assets [assets]
+        cssFile("🎨 theme.scss"):::file
+        jsFile("📜 app.js"):::file
+    end
+
+    framework((("`Symfony framework
+    📦  **pentatrion/vite-bundle**`"))):::principal
+
+    entrypointsJson("✨ entrypoints.json"):::file
+
+    vite(("`⚡️Vite dev Server
+        📦  **vite-plugin-symfony**
+        listen **5173**`")):::service
+
+    symfonyWebServer(("`Symfony local web server
+        listen **8000**`")):::service
+
+    subgraph browser ["Browser https://localhost:8000/contact html page"]
+        direction TB
+        viteClientTag("&lt;script src=&quot;https://localhost:5173/build/@vite/client&quot; /&gt;"):::file
+        appTag("&lt;script src=&quot;https://localhost:5173/build/app.js&quot; /&gt;"):::file
+    end
+
+    framework --> symfonyWebServer -->|serve| browser
+    twigFunctions -->|resolve| framework
+
+    vite -->|⚙️ generate| entrypointsJson -->|use| framework
+
+    vite <-->|🚀 web socket
+    communicate events| browser
+    jsFile & cssFile <-->|🧐 watch modifications| vite
+
+    vite <-->|"🔥 HMR
+    replace file when source is modified"| appTag
+```
+
 Par défaut, Vite utilise un fichier `index.html` comme point d'entrée de votre application.
 
 ```html
