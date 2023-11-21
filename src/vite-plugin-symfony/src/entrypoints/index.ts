@@ -35,13 +35,29 @@ import { showDepreciationsWarnings } from "./depreciations";
 // src and dist directory are in the same level;
 let pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
 let pluginVersion;
+let bundleVersion;
 
 if (process.env.VITEST) {
   pluginDir = dirname(pluginDir);
   pluginVersion = ["test"];
+  bundleVersion = ["test"];
 } else {
-  const packageJson = JSON.parse(readFileSync(join(pluginDir, "package.json")).toString());
-  pluginVersion = parseVersionString(packageJson?.version);
+  try {
+    const packageJson = JSON.parse(readFileSync(join(pluginDir, "package.json")).toString());
+    pluginVersion = parseVersionString(packageJson?.version);
+  } catch {
+    pluginVersion = [""];
+  }
+  try {
+    const composerJson = JSON.parse(readFileSync("composer.lock").toString());
+    bundleVersion = parseVersionString(
+      composerJson.packages?.find(
+        (composerPackage: { name: string }) => composerPackage.name === "pentatrion/vite-bundle",
+      )?.version,
+    );
+  } catch {
+    bundleVersion = [""];
+  }
 }
 
 export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger): Plugin {
@@ -105,7 +121,15 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       const _printUrls = devServer.printUrls;
       devServer.printUrls = () => {
         _printUrls();
-        console.log(`  ${colors.green("➜")}  Vite ${colors.yellow("⚡️")}Symfony`);
+        const versions: string[] = [];
+        if (pluginVersion[0]) {
+          versions.push(colors.dim(`vite-plugin-symfony: `) + colors.bold(`v${pluginVersion[0]}`));
+        }
+        if (bundleVersion[0]) {
+          versions.push(colors.dim(`pentatrion/vite-bundle: `) + colors.bold(`v${bundleVersion[0]}`));
+        }
+        const versionStr = versions.length === 0 ? "" : versions.join(colors.dim(", "));
+        console.log(`  ${colors.green("➜")}  Vite ${colors.yellow("⚡️")}Symfony: ${versionStr}`);
       };
 
       devServer.httpServer?.once("listening", () => {
