@@ -30,6 +30,7 @@ import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../p
 
 import { GeneratedFiles, ResolvedConfigWithOrderablePlugins, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { addIOMapping } from "./pathMapping";
+import { showDepreciationsWarnings } from "./depreciations";
 
 // src and dist directory are in the same level;
 let pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -99,33 +100,35 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
     },
     configureServer(devServer) {
       // vite server is running
-
       const { watcher, ws } = devServer;
-      // empty the buildDir and create an entrypoints.json file inside.
+
+      const _printUrls = devServer.printUrls;
+      devServer.printUrls = () => {
+        _printUrls();
+        console.log(`  ${colors.green("➜")}  Vite ${colors.yellow("⚡️")}Symfony`);
+      };
+
       devServer.httpServer?.once("listening", () => {
+        // empty the buildDir and create an entrypoints.json file inside.
         if (viteConfig.env.DEV) {
-          if (typeof pluginOptions.buildDirectory !== "undefined") {
-            logger.error(
-              `"buildDirectory" plugin option is deprecated and will be removed in v5.x use base: "${resolveBase(
-                pluginOptions,
-              )}" from vite config instead`,
-            );
-          }
-          if (typeof pluginOptions.publicDirectory !== "undefined") {
-            logger.error(
-              `"publicDirectory" plugin option is deprecated and will be removed in v5.x use build.outDir: "${resolveOutDir(
-                pluginOptions,
-              )}" from vite config instead`,
-            );
-          }
+          showDepreciationsWarnings(pluginOptions, logger);
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
           const viteDir = resolve(buildDir, ".vite");
+          const address = devServer.httpServer?.address();
+          const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsFileName);
 
           // buildDir is not a subdirectory of the vite project root -> potentially dangerous
           if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
             logger.error(
               `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.outDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
+            );
+            process.exit(1);
+          }
+
+          if (!isAddressInfo(address)) {
+            logger.error(
+              `address is not an object open an issue with your address value to fix the problem : ${address}`,
             );
             process.exit(1);
           }
@@ -138,27 +141,14 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
           mkdirSync(viteDir, { recursive: true });
 
-          const address = devServer.httpServer?.address();
-
-          if (!isAddressInfo(address)) {
-            logger.error(
-              `address is not an object open an issue with your address value to fix the problem : ${address}`,
-            );
-            process.exit(1);
-          }
-
           viteDevServerUrl = resolveDevServerUrl(address, devServer.config, pluginOptions);
           if (pluginOptions.enforceServerOriginAfterListening) {
             viteConfig.server.origin = viteDevServerUrl;
           }
 
-          const entryPoints = getDevEntryPoints(viteConfig, viteDevServerUrl);
-
-          const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsFileName);
-
           writeJson(entryPointsPath, {
             base: viteConfig.base,
-            entryPoints,
+            entryPoints: getDevEntryPoints(viteConfig, viteDevServerUrl),
             legacy: false,
             metadatas: {},
             version: pluginVersion,
