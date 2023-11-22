@@ -10,9 +10,18 @@ export default defineConfig({
     ],
     resolve: {
       alias: [
+        /**
+         * overriding internal components
+         * https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
+         * https://github.com/vuejs/vitepress/tree/main/src/client/theme-default/components
+         */
         {
           find: /^.*\/VPHero.vue$/,
           replacement: fileURLToPath(new URL('./theme/components/VPHero.vue', import.meta.url))
+        },
+        {
+          find: /^.*\/VPHomeHero.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPHomeHero.vue', import.meta.url))
         },
         {
           find: /^.*\/VPButton.vue$/,
@@ -152,7 +161,6 @@ export default defineConfig({
               { text: 'Configuration', link: '/fr/guide/configuration' },
               { text: 'Fonctions Twig', link: '/fr/guide/twig-functions' },
               { text: 'Assets', link: '/fr/guide/assets' },
-              { text: 'Stimulus / Symfony UX', link: '/fr/guide/stimulus-symfony-ux'},
               { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes'},
               { text: 'Injection de dépendances', link: '/fr/guide/dependency-injection'},
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },

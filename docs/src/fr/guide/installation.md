@@ -1,3 +1,7 @@
+✨ Installation rapide et facile avec les recettes Symfony Flex.
+
+<img src="/animations/install.svg" width="688" height="379" alt="installation" />
+
 # Pré-requis
 
 Afin de tester l'implémentation, vous devez avoir une application Symfony avec au moins le bundle Twig installé.
@@ -42,6 +46,7 @@ npm install
 Add this Twig functions in any template or base layout where you need to include a JavaScript entry.
 
 ```twig
+{# base.html.twig #}
 {% block stylesheets %}
     {{ vite_entry_link_tags('app') }}
 {% endblock %}
@@ -51,7 +56,7 @@ Add this Twig functions in any template or base layout where you need to include
 {% endblock %}
 ```
 
-# Utilisation dans un environnement de développement
+# 💻 Utilisation dans un environnement de développement
 
 ```bash
 # démarrez votre serveur Web local Symfony (port d'écoute 8000 par défaut)
@@ -65,7 +70,7 @@ Vous pouvez vous rendre sur : `https://127.0.0.1:8000/welcome`.
 
 Ouvrez votre console d'outils de développement, vous verrez : `Happy coding !!`.
 
-# Utilisation en environnement de production
+# 📦 Utilisation en environnement de production
 
 ```bash
 # générez vos fichiers js/css.

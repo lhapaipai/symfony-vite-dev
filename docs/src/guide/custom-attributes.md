@@ -10,6 +10,7 @@ Custom attributes can be added to rendered `<script>` or `<link>` in 3 different
 
 Here is a complete example configuration :
 
+## Global attributes
 
 ```yaml
 # config/packages/pentatrion_vite.yaml
@@ -17,6 +18,9 @@ pentatrion_vite:
     script_attributes:
         foo: bar
 ```
+
+## Local attributes
+
 ```twig
 {{ vite_entry_script_tags('app', {
   attr: {
@@ -24,6 +28,8 @@ pentatrion_vite:
   }
 }) }}
 ```
+
+## Subscribe to `RenderAssetTagEvent` 🧩
 
 ```php
 // src/EventSubscriber/ScriptNonceSubscriber.php
@@ -57,7 +63,9 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
 
 ```
 
-vous obtiendrez ceci
+## Result
+
+You will get this:
 
 ```html
 <script

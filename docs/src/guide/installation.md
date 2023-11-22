@@ -1,6 +1,11 @@
-# Prerequisites
+✨ Easy installation with Symfony Flex recipe.
+
+<img src="/animations/install.svg" width="688" height="379" alt="installation" />
+
+## Prerequisites
 
 In order to test the implementation you must have a Symfony application with at least the Twig bundle installed.
+
 
 ```bash
 symfony new symfony-app
@@ -16,7 +21,7 @@ composer require --dev symfony/maker-bundle
 # > WelcomeController
 ```
 
-# Installation
+## Installation
 
 If you come from Webpack Encore, check the [migration](/extra/migration-webpack-encore) documentation before starting.
 
@@ -41,6 +46,7 @@ npm install
 Add these Twig functions in any template or base layout where you need to include a style sheet or JavaScript entry.
 
 ```twig
+{# base.html.twig #}
 {% block stylesheets %}
     {{ vite_entry_link_tags('app') }}
 {% endblock %}
@@ -50,7 +56,7 @@ Add these Twig functions in any template or base layout where you need to includ
 {% endblock %}
 ```
 
-# Usage in development environment
+## 💻 Usage in development environment
 
 ```bash
 # start your Symfony local Web server (listening port 8000 by default)
@@ -64,7 +70,7 @@ You can go to: `https://127.0.0.1:8000/welcome`.
 
 Open your developer tools console you'll see : `Happy coding !!`.
 
-# Usage in production environment
+## 📦 Usage in production environment
 
 ```bash
 # build your js/css files

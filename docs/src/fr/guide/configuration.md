@@ -1,6 +1,6 @@
 # Configuration
 
-## Vite Plugin Symfony
+## Vite Plugin Symfony <img src="/images/logo-npm.svg" width="39" height="15" style="display: inline; vertical-align: -10%; " />
 
 Afin de conserver un maximum de flexibilité, j'ai décidé de ne pas créer de couche d'abstraction par dessus le fichier de configuration `vite.config.js`.
 

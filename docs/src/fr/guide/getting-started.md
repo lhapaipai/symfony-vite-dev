@@ -1,12 +1,12 @@
 # Bien démarrer
 
-Vite est un outils permettant de faciliter l'expérience de développement des projets web modernes.
+Vite <img src="/images/logo-vite.svg" width="16" height="16" style="display: inline;" /> est un outils permettant de faciliter l'expérience de développement des projets web modernes.
 
 Il met à disposition :
 
-- un serveur de développement qui permet entre autre le remplacement à chaud du code généré en tirant partie des modules EcmaScript.
+- un **serveur de développement** qui permet entre autre le remplacement à chaud 🔥 du code généré en tirant partie des modules EcmaScript.
 
-- une commande de génération de code qui utilise [Rollup](https://rollupjs.org/).
+- une **commande de génération de code** qui utilise [Rollup <img src="/images/logo-rollup.svg" width="16" height="16" style="display: inline;" />](https://rollupjs.org/).
 
 ## Comment Vite fonctionne-t-il ?
 
@@ -77,9 +77,11 @@ Par défaut, Vite utilise un fichier `index.html` comme point d'entrée de votre
 </html>
 ```
 
-Lorsque vous lancez Vite en développement, celui-ci lancera un serveur HTTP sur le port 5173 et servira votre fichier `index.html` en réécrivant les urls de vos balises `<script>` et assets.
+## 💻 Serveur de développement
 
-Ainsi, une requête à l'adresse : `http://localhost:5173` renverra votre fichier `index.html` avec le code suivant.
+Lorsque vous lancez Vite en développement avec `npx vite`, celui-ci lancera un serveur HTTP sur le port 5173 et servira votre fichier `index.html` en réécrivant les urls de vos balises `<script>` et assets.
+
+Ainsi, une requête à l'adresse : `curl http://localhost:5173` renverra votre fichier `index.html` avec le code suivant.
 
 ```html{4,10}
 <!DOCTYPE html>
@@ -99,7 +101,9 @@ Ainsi, une requête à l'adresse : `http://localhost:5173` renverra votre fichie
 Le code renvoyé par `http://localhost:5173/src/main.ts` correspond au script de votre point d'entrée compilé.
 Celui renvoyé par `http://localhost:5173/@client/client` correspond au script mettant en place un WebSocket entre votre navigateur et le serveur de Vite. Ce dernier permet le remplacement à chaud de votre code pour optimiser votre expérience de développement.
 
-Enfin, lorsque vous lancez la compilation de votre code, Vite s'appuiera sur Rollup et générera un fichier `index.html` de cette forme.
+## 📦 Compilation pour la production
+
+Enfin, lorsque vous lancez la compilation de votre code avec `npx vite build`, Vite s'appuiera sur Rollup et générera un fichier `index.html` de cette forme.
 
 ```html{6,7}
 <!DOCTYPE html>
@@ -116,7 +120,7 @@ Enfin, lorsque vous lancez la compilation de votre code, Vite s'appuiera sur Rol
 </html>
 ```
 
-## Comment intégrer Vite dans un application Symfony ?
+## <img src="/symfony-vite.svg" width="24" height="24" style="display: inline; vertical-align: -10%;" /> Comment intégrer Vite dans un application Symfony ?
 
 Le fonctionnement de Vite est piloté par la réécriture des balises `<script>` et `<link>`, il serait donc intéressant de déplacer cette logique dans des fonctions Twig.
 

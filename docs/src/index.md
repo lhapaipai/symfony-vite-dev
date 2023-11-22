@@ -10,14 +10,16 @@ hero:
   tagline: Give wings to your Sym[ph]on[ie] application.
   dependencies:
     - icon:
-        src: /images/packagist-logo.svg
+        src: /images/logo-packagist.svg
         width: 30
         height: 35
+      prefix: composer require
       name: pentatrion/vite-bundle
     - icon:
-        src: /images/npm-logo.svg
+        src: /images/logo-npm.svg
         width: 50
         height: 19.45
+      prefix: npm i -D
       name: vite-plugin-symfony
   image:
     src: /symfony-vite.svg
@@ -32,13 +34,15 @@ hero:
     - theme: alt
       text: Migration v6
       link: /extra/migration
-
+  extra:
+    title: 📢 Notice
+    description: The English version of the documentation contains numerous translation errors. If anyone would be motivated to lend a little helping hand that would be so great... 🙏 The repository <a href="https://github.com/lhapaipai/symfony-vite-dev">symfony-vite-dev</a> brings together in a folder all the tools to participate in development.
 features:
   - icon: ⚡️
     title: Easy configuration
     details: Fast installation with Bundle Flex recipe and preconfigured Vite plugin.
   - icon:
-      src: /images/twig.svg
+      src: /images/logo-twig.svg
       wrap: true
       width: 32
       height: 23
@@ -48,7 +52,7 @@ features:
     title: Assets management
     details: Integrate your assets into Symfony with custom Asset version Strategy.
   - icon:
-      src: /images/stimulus.svg
+      src: /images/logo-stimulus.svg
       width: 32
       height: 32
       wrap: true

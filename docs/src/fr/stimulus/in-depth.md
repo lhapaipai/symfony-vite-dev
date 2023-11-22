@@ -1,4 +1,4 @@
-# Stimulus : En profondeur
+# Stimulus : En profondeur ⚙️
 
 Afin de faciliter l'intégration de Stimulus dans les applications Symfony, ce dernier a créé un bundle spécifique `symfony/stimulus-bundle`. Ce bundle ajoute :
 

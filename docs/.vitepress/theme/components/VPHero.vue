@@ -18,27 +18,10 @@ export interface Dependency {
   prefix: string;
   name: string;
 }
-
-const dependencies: Dependency[] = [
-  {
-    icon: {
-      src: "/images/packagist-logo.svg",
-      width: 30,
-      height: 35
-    },
-    prefix: "composer require",
-    name: "pentatrion/vite-bundle"
-  },
-  {
-    icon: {
-      src: "/images/npm-logo.svg",
-      width: 50,
-      height: 19.45
-    },
-    prefix: "npm i -D",
-    name: "vite-plugin-symfony"
-  }
-];
+export interface Extra {
+  title: string;
+  description: string
+}
 
 const props = defineProps<{
   name?: string
@@ -46,6 +29,8 @@ const props = defineProps<{
   tagline?: string
   image?: DefaultTheme.ThemeableImage
   actions?: HeroAction[]
+  dependencies: Dependency[];
+  extra?: Extra;
 }>()
 
 const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
@@ -93,6 +78,9 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
         </div>
       </div>
     </div>
+    <div class="container extra" v-if="extra">
+      <div class="warning custom-block"><p class="custom-block-title">{{ extra.title }}</p><p v-html="extra.description"></p></div>
+    </div>
   </div>
 </template>
 
@@ -119,6 +107,10 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   flex-direction: column;
   margin: 0 auto;
   max-width: 1152px;
+}
+
+.container.extra {
+  margin-top: 1rem;
 }
 
 @media (min-width: 960px) {

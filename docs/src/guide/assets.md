@@ -38,14 +38,14 @@ If you want to make Vite aware of others assets you can import a directory of as
 Please note, by default Vite will make all its assets smaller than 4kb inline, so you will not be able to reference these files. (see explanations and solution in [troubleshooting](/guide/troubleshooting.html#troubleshooting)).
 
 ```
-├──assets
-│ ├──images
-│ │ ├──climbing.jpg
-│ │ ├──violin.jpg
-│ │ ├──...
-│ │
-│ ├──app.js
-│...
+.
+├── assets
+│   ├── images
+│   │   ├── climbing.jpg
+│   │   ├── violin.jpg
+│   │   └── ...
+│   └── app.js
+└── ...
 ```
 
 ```js

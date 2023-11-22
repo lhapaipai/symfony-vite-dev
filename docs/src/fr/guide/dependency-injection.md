@@ -1,4 +1,4 @@
-# Injection de dépendances
+# Injection de dépendances 💉
 
 si vous voulez plus de contrôle (comme créer des fonctions Twig personnalisées),
 vous pouvez utiliser l'injection de dépendance avec `EntrypointRenderer` / `EntrypointsLookup`.

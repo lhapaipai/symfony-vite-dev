@@ -1,4 +1,4 @@
-# Comment fonctionne le plugin vite
+# Comment fonctionne le plugin vite 🔍
 
 le rôle principal du plugin est de produire un fichier `entrypoints.json` à partir des points d'entrée configurés dans le fichier `vite.config.js`.
 

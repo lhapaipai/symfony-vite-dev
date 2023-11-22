@@ -1,5 +1,5 @@
 
-# Configurations multiples avec Vite
+# Configurations multiples avec Vite 🏗️
 
 Il est possible de combiner plusieurs fichiers de configuration Vite. Voici un modèle de configuration possible.
 

@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshooting 🧐
 
 - if you experience unwanted reloads of your application, read the section [https/http in development](#https--http-in-development).
 

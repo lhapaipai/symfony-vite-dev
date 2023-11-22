@@ -10,6 +10,7 @@ Des attributs personnalisés peuvent être ajoutés aux balises `<script>` et au
 
 Voici un exemple complet de configuration :
 
+## Attributs globaux
 
 ```yaml
 # config/packages/pentatrion_vite.yaml
@@ -17,6 +18,9 @@ pentatrion_vite:
     script_attributes:
         foo: bar
 ```
+
+## Attributs locaux
+
 ```twig
 {{ vite_entry_script_tags('app', {
   attr: {
@@ -24,6 +28,9 @@ pentatrion_vite:
   }
 }) }}
 ```
+
+## En écoutant l'événement `RenderAssetTagEvent` 🧩
+
 
 ```php
 // src/EventSubscriber/ScriptNonceSubscriber.php
@@ -57,7 +64,9 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
 
 ```
 
-vous obtiendrez ceci
+## Résultat
+
+vous obtiendrez ceci :
 
 ```html
 <script

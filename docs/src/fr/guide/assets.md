@@ -40,14 +40,14 @@ Attention, par défaut Vite rendra en ligne tous ses assets de taille inférieur
 
 
 ```
-├──assets
-│ ├──images
-│ │ ├──climbing.jpg
-│ │ ├──violin.jpg
-│ │ ├──...
-│ │
-│ ├──app.js
-│...
+.
+├── assets
+│   ├── images
+│   │   ├── climbing.jpg
+│   │   ├── violin.jpg
+│   │   └── ...
+│   └── app.js
+└── ...
 ```
 
 ```js

@@ -1,7 +1,9 @@
-# Stimulus : Installation
+# Stimulus <img src="/images/logo-stimulus.svg" width="24" height="24" style="display: inline;" />
+
+## Installation
 
 ::: warning
-⚠️ The implementation is still experimental. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change. The features presented in this page will not respect the `semver` versioning semantics.
+🧪 The implementation is still experimental. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change. The features presented in this page will not respect the `semver` versioning semantics.
 :::
 
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
@@ -9,37 +11,59 @@ Stimulus is a lightweight JavaScript framework that aims to facilitate the integ
 ```mermaid
 flowchart TB
   style virtual stroke-dasharray: 5 5;
-  style groupReact fill:#fff58e;
-  style groupUX fill:#fffac7;
-  style groupCustom fill:#fffac7;
-  style virtualisation fill:#fff58e;
-  classDef component fill:#ffa901, stroke-width:0;
+  style groupReact fill:#fffac7;
+  style groupUX fill:#fbfbfb, stroke-dasharray: 5 5;
+  style groupCustom fill:#fbfbfb, stroke-dasharray: 5 5;
+  classDef file fill:#fcf9d7, stroke:#dba726;
+  classDef package fill:#fff155, stroke:#dba726;
+  classDef virtualPackage fill:#fff155, stroke:#dba726, stroke-dasharray: 5 5;
+  classDef directory stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 5 5;
+  classDef rawFile stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 2 2;
 
-  app(app.js):::component -->|import| bootstrap(bootstrap.js):::component
+  bootstrap(bootstrap.js):::file
+  app(app.js):::file
 
-  %% bootstrap(bootstrap.js):::component -->|"registerReactControllerComponents()"| reactComponents>./react/controllers/\*]
-
-
-
-  bootstrap --->|"startStimulusApp()"| virtual(virtual:symfony/controllers)
-  bootstrap -->|"registerControllers()"| customControllers>"./controllers/\*"]
 
   subgraph groupCustom[Custom controllers]
-    customControllers ---> welcome_controller(welcome_controller.js):::component & slideshow_controller(slideshow_controller.js):::component
+    customControllers>"./controllers/\*"]:::directory
+    welcome_controller(welcome_controller.js):::file
+    slideshow_controller(slideshow_controller.js):::file
   end
 
-  subgraph groupUX[Symfony UX]
-    virtual --> uxReact(symfony/ux-react) & uxChartjs(symfony/ux-chartjs) & uxDropzone(symfony/ux-dropzone)
+  subgraph groupUX[Stimulus Bundle with Symfony UX]
+    virtual(virtual:symfony/controllers):::virtualPackage
 
-    subgraph virtualisation
-      direction TB
-      controllers{{controllers.json}} -->|transformed into| virtual
-    end
+    uxReact(symfony/ux-react):::package
+    uxChartjs(symfony/ux-chartjs):::package
+    uxDropzone(symfony/ux-dropzone):::package
+
+    controllers{{controllers.json}}:::rawFile
+
     subgraph groupReact[React]
-      uxReact --> reactComponents>./react/controllers/\*]
-      reactComponents --> counter(counter.jsx):::component & card(Card.jsx):::component
+
+    reactComponents>./react/controllers/\*]:::directory
+    counter(counter.jsx):::file
+    card(Card.jsx):::file
     end
   end
+
+  app -->|import| bootstrap
+
+  %% bootstrap(bootstrap.js):::file -->|"registerReactControllerComponents()"| reactComponents>./react/controllers/\*]
+
+
+
+  bootstrap --->|"startStimulusApp()"| virtual
+  bootstrap -->|"registerControllers()"| customControllers
+
+  customControllers ---> welcome_controller & slideshow_controller
+
+  virtual --> uxReact & uxChartjs & uxDropzone
+
+  controllers -->|transformed into| virtual
+  uxReact --> reactComponents
+  reactComponents --> counter & card
+
 ```
 
 ```bash

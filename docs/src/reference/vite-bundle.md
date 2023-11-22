@@ -1,4 +1,4 @@
-# Vite bundle Options
+# Vite bundle options <img src="/images/logo-packagist.svg" width="28" height="32" style="display: inline; vertical-align: -10%; " />
 
 The configuration of the bundle is located in the file `config/packages/pentatrion_vite.yaml`.
 

@@ -1,5 +1,5 @@
 
-# Usage tips
+# Usage tips 💡
 
 If you want to install the bundle without the community recipe, check the [manual installation](/extra/manual-installation.html).
 
@@ -47,7 +47,7 @@ will render
 ```
 during development.
 
-## Docker
+## Docker <img src="/images/logo-docker.svg" width="34" height="24" style="display: inline;" />
 
 If you are using Docker for your Symfony development and running your node commands in a container, you will need to make some configuration adjustments.
 
@@ -97,7 +97,7 @@ You can learn more by following this [Github discussion](https://github.com/lhap
 
 
 
-## Dependency Pre-Bundling
+## Dependency Pre-Bundling 🏃
 
 Initially in a Vite project, `index.html` is the entry point to your application. When you run your dev serve, Vite will crawl your source code and automatically discover dependency imports.
 
@@ -121,7 +121,7 @@ export default defineConfig({
     },
 });
 ```
-## Configure splitting files per entry point
+## Configure splitting files per entry point 📦
 
 Vite tries to split your js files into multiple smaller files shared between entry points.
 To configure the exact splitting one can define a `manualChunks` function in `rollupOptions`, refer to [rollup docs on manual chunks](https://rollupjs.org/configuration-options/#output-manualchunks) for more details.
@@ -142,7 +142,7 @@ export default defineConfig({
 });
 ```
 
-## https / http in Development
+## https / http in Development 🔒
 
 Your Vite dev server can cause unwanted reload if used in http and your Symfony application uses https (probably due to invalid certificates ). Configuration is easier if you develop your application without https.
 

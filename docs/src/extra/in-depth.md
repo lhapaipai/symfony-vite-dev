@@ -1,4 +1,4 @@
-# How this bundle works
+# How this bundle works 🔍
 
 ```twig
 {% block stylesheets %}

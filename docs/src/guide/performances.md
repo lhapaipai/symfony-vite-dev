@@ -1,6 +1,6 @@
-# Performances
+# Performances 🚀
 
-## Preloading your scripts
+## Preloading your scripts ⏳
 
 When your files contain common dependencies (React, Vue, etc.), Vite will split your files in order to reduce the overall size of your scripts.
 
@@ -93,7 +93,7 @@ Link: \
 ```
 
 
-## Caching configuration files
+## Caching configuration files 🏃
 
 When you call the Twig functions `vite_entry_link_tags('app')` or `vite_entry_script_tags('app')` or `asset('assets/image.jpg')`, the bundle will look for `public/build/entrypoints files. json` and `manifest.json` to fill your html tags with the correct `src` or `href` attributes.
 

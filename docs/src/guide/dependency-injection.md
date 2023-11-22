@@ -1,5 +1,5 @@
 
-# Dependency injection
+# Dependency injection 💉
 
 if you want more control (like creating custom Twig functions),
 you can use dependency injection with EntrypointRenderer.

@@ -1,4 +1,4 @@
-# Contribute
+# Contribute 🙏
 
 The repository [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) brings together in a folder all the tools to participate in development.
 You will have access to the Symfony bundle and the Vite plugin in the `src` folder. The `playground` folder groups together test environments to cover all use cases.

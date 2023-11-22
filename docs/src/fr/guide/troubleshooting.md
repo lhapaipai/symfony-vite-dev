@@ -1,4 +1,4 @@
-# Résolution de problèmes
+# Résolution de problèmes 🧐
 
 - si vous rencontrez des rechargements intempestifs de votre application, lisez la section [https/http en développement](/fr/guide/tips.html#https-http-en-developpement).
 

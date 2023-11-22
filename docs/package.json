@@ -28,5 +28,8 @@
     "vite": "^4",
     "vitepress": "1.0.0-rc.25"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "svg-term-cli": "^2.1.1"
+  }
 }

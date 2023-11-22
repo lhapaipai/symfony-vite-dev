@@ -1,5 +1,5 @@
 
-# Conseils d'utilisation
+# Conseils d'utilisation 💡
 
 Si vous souhaitez installer le bundle sans la recette de la communauté, consultez [l'installation manuelle](/fr/extra/manual-installation.html).
 
@@ -47,7 +47,7 @@ rendera
 ```
 during development.
 
-## Docker
+## Docker <img src="/images/logo-docker.svg" width="34" height="24" style="display: inline;" />
 
 Si vous utilisez Docker pour votre développement Symfony et que vous exécutez vos commandes node dans un conteneur, vous aurez besoin de faire quelques ajustements dans la configuration.
 
@@ -95,7 +95,7 @@ Un exemple de configuration avec Docker peut-être trouvée de les [bacs à sabl
 
 Vous pourrez en savoir plus en suivant cette [discussion Github](https://github.com/lhapaipai/vite-bundle/issues/26).
 
-## Préparation des dépendances
+## Préparation des dépendances 🏃
 
 Initialement dans un projet Vite, `index.html` est le point d'entrée de votre application. Lorsque vous exécutez votre serveur de développement, Vite analyse votre code source et découvre automatiquement les dépendances dont il aura besoin.
 
@@ -119,7 +119,7 @@ export default defineConfig({
     },
 });
 ```
-## Configurer le fractionnement des fichier
+## Configurer le fractionnement des fichiers 📦
 
 Vite essaie de diviser vos fichiers js en plusieurs fichiers plus petits partagés entre les points d'entrée. Pour configurer le fractionnement exact, vous pouvez définir une fonction `manualChunks` dans `rollupOptions`, reportez-vous à la [documentation rollup](https://rollupjs.org/configuration-options/#output-manualchunks) pour plus de détails.
 
@@ -139,7 +139,7 @@ export default defineConfig({
 });
 ```
 
-## https / http en développement
+## https / http en développement 🔒
 
 Votre serveur de développement Vite peut provoquer un rechargement indésirable s'il est utilisé en http alors que votre application Symfony utilise https (probablement en raison de certificats invalides). La configuration est plus facile si vous développez votre application sans https.
 

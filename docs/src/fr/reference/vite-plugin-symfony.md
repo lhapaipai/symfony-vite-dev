@@ -1,4 +1,4 @@
-# Vite plugin Symfony Options
+# Vite plugin Symfony options <img src="/images/logo-npm.svg" width="39" height="15" style="display: inline; vertical-align: -10%; " />
 
 ## debug
 

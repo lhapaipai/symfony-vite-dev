@@ -1,5 +1,5 @@
 
-# Multiple Vite Configurations
+# Multiple Vite Configurations 🏗️
 
 It's possible to combine multiple Vite configuration files. Here is a possible configuration model.
 

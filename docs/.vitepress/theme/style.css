@@ -1,5 +1,6 @@
 /**
  * Customize default theme styling by overriding CSS variables:
+ * doc https://vitepress.dev/guide/extending-default-theme#customizing-css
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
  */
 
@@ -8,11 +9,11 @@
  * -------------------------------------------------------------------------- */
 
  :root {
-  --vp-c-brand: #ffa901;
   --vp-c-brand-1: #ffa901;
-  --vp-c-brand-light: #ffe64b;
-  --vp-c-brand-lighter: #FFF194;
-  --vp-c-brand-lightest: #FFFADB;
+  --vp-c-brand-2: #ffe64b;
+  --vp-c-brand-3: #FFF194;
+  --vp-c-brand-soft: #FFFADB;
+
   --vp-c-brand-dark: #CC8800;
   --vp-c-brand-darker: #996600;
   --vp-c-brand-dimm: rgba(255, 252, 235, 0.08);
@@ -23,13 +24,13 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-button-brand-border: var(--vp-c-brand-light);
+  --vp-button-brand-border: var(--vp-c-brand-2);
   --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand);
-  --vp-button-brand-hover-border: var(--vp-c-brand-light);
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+  --vp-button-brand-hover-border: var(--vp-c-brand-2);
   --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-light);
-  --vp-button-brand-active-border: var(--vp-c-brand-light);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-border: var(--vp-c-brand-2);
   --vp-button-brand-active-text: var(--vp-c-white);
   --vp-button-brand-active-bg: var(--vp-button-brand-bg);
 
@@ -75,14 +76,14 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-border: var(--vp-c-brand-1);
   --vp-custom-block-tip-text: var(--vp-c-brand-darker);
   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
 }
 
 .dark {
-  --vp-custom-block-tip-border: var(--vp-c-brand);
-  --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
+  --vp-custom-block-tip-border: var(--vp-c-brand-1);
+  --vp-custom-block-tip-text: var(--vp-c-brand-soft);
   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
 }
 
@@ -91,18 +92,19 @@
  * -------------------------------------------------------------------------- */
 
 .DocSearch {
-  --docsearch-primary-color: var(--vp-c-brand) !important;
+  --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+/* vitepress/src/client/theme-default/styles/components/vp-doc.css
+   https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/components/vp-doc.css
+ */
 .vp-doc div[class*='language-'] {
   box-shadow: 0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08);
 }
 
 .dark .vp-doc div[class*='language-'] {
   box-shadow: none;
-
 }
-
 
 .main .vp-doc a {
   font-weight: 500;
@@ -117,4 +119,31 @@
 .main .vp-doc a:hover {
   color: var(--vp-c-brand-1);
   text-decoration: underline;
+}
+
+.vp-doc :not(pre) > code {
+  border: 1px solid var(--vp-c-gray-3);
+}
+
+
+
+/** Custom */
+kbd {
+  background-color: var(--vp-code-bg);
+  border: 1px solid var(--vp-c-gray-2);
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 var(--vp-c-gray-2);
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: .9rem;
+  line-height: 10px;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.dark {
+  kbd {
+    background-color: #333;
+    box-shadow: none;
+  }
 }

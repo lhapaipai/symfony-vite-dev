@@ -1,4 +1,4 @@
-# Contribuez
+# Contribuez 🙏
 
 Le dépôt [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) regroupe dans un dossier tous les outils pour participer au développement.
 Vous aurez accès dans le dossier `src` au bundle Symfony et au plugin Vite. Le dossier `playground` quant à lui regroupe des environnements de test pour couvrir l'ensemble des cas d'usage.

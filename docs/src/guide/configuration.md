@@ -1,6 +1,6 @@
 # Configuration
 
-## Vite Plugin Symfony
+## Vite Plugin Symfony <img src="/images/logo-npm.svg" width="39" height="15" style="display: inline; vertical-align: -10%; " />
 
 In order to maintain maximum flexibility, I decided not to create an abstraction layer on top of the `vite.config.js` configuration file.
 

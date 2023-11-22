@@ -1,4 +1,4 @@
-# Exemples
+# Exemples ⛳
 
 Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground` regroupant des exemples d'utilisation.
 

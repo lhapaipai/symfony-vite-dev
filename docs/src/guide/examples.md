@@ -1,4 +1,4 @@
-# Examples
+# Examples ⛳
 
 The [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) repository contains a `playground` directory with usage examples.
 

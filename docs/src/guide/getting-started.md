@@ -1,14 +1,12 @@
 # Getting started
 
-Vite is a tool to facilitate the development experience of modern web projects.
-
-
+Vite <img src="/images/logo-vite.svg" width="16" height="16" style="display: inline;" /> is a tool to facilitate the development experience of modern web projects.
 
 It provides:
 
-- a development server which allows, among other things, the Hot Module Replacement of the generated code by taking advantage of the EcmaScript modules.
+- a **development server** which allows, among other things, the Hot Module Replacement 🔥 of the generated code by taking advantage of the EcmaScript modules.
 
-- a build command that uses [Rollup](https://rollupjs.org/).
+- a **build command** that uses [Rollup <img src="/images/logo-rollup.svg" width="16" height="16" style="display: inline;" />](https://rollupjs.org/).
 
 ## How does Vite works ?
 
@@ -79,9 +77,11 @@ By default, Vite uses an `index.html` file as your application's entry point.
 </html>
 ```
 
-When you launch Vite in development, it will launch an HTTP server on port 5173 and serve your `index.html` file by rewriting the urls of your `<script>` tags and assets.
+## 💻 Vite dev server
 
-Thus, a request to the address: `http://localhost:5173` will return your file `index.html` with the following code.
+When you launch Vite in development with `npx vite`, it will launch an HTTP server on port 5173 and serve your `index.html` file by rewriting the urls of your `<script>` tags and assets.
+
+Thus, a request to the address: `curl http://localhost:5173` will return your file `index.html` with the following code.
 
 ```html{4,10}
 <!DOCTYPE html>
@@ -101,7 +101,9 @@ Thus, a request to the address: `http://localhost:5173` will return your file `i
 The code returned by `http://localhost:5173/src/main.ts` is your compiled entry point script.
 The one returned by `http://localhost:5173/@client/client` corresponds to the script setting up a WebSocket between your browser and the Vite server. The latter allows the hot replacement of your code to optimize your development experience.
 
-Finally, when you start building your code, Vite will rely on Rollup and generate an `index.html` file that looks like this.
+## 📦 Building for production
+
+Finally, when you start building your code with `npx vite build`, Vite will rely on Rollup and generate an `index.html` file that looks like this.
 
 ```html{6,7}
 <!DOCTYPE html>
@@ -118,7 +120,7 @@ Finally, when you start building your code, Vite will rely on Rollup and generat
 </html>
 ```
 
-## How to integrate Vite into a Symfony application?
+## <img src="/symfony-vite.svg" width="24" height="24" style="display: inline; vertical-align: -10%;" /> How to integrate Vite into a Symfony application?
 
 The operation of Vite is driven by the rewriting of the `<script>` and `<link>` tags, so it would be interesting to move this logic into Twig functions.
 
