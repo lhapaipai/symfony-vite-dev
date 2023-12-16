@@ -4,6 +4,9 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/stimulus/helpers/index.ts",
+    "src/stimulus/helpers/vue/index.ts",
+    "src/stimulus/helpers/react/index.ts",
+    "src/stimulus/helpers/svelte/index.ts",
     "src/stimulus/helpers/react/render_controller.ts",
     "src/stimulus/helpers/svelte/render_controller.ts",
   ],

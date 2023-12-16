@@ -20,6 +20,18 @@
       "import": "./dist/stimulus/helpers/svelte/render_controller.mjs",
       "require": "./dist/stimulus/helpers/svelte/render_controller.js"
     },
+    "./stimulus/helpers/vue": {
+      "import": "./dist/stimulus/helpers/vue/index.mjs",
+      "require": "./dist/stimulus/helpers/vue/index.js"
+    },
+    "./stimulus/helpers/react": {
+      "import": "./dist/stimulus/helpers/react/index.mjs",
+      "require": "./dist/stimulus/helpers/react/index.js"
+    },
+    "./stimulus/helpers/svelte": {
+      "import": "./dist/stimulus/helpers/svelte/index.mjs",
+      "require": "./dist/stimulus/helpers/svelte/index.js"
+    },
     "./package.json": "./package.json"
   },
   "types": "dist/index.d.ts",
