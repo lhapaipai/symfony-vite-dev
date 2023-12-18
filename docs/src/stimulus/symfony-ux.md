@@ -39,7 +39,8 @@ After installing the Flex recipe from `symfony/ux-vue` you will need to correct 
 import { registerVueControllerComponents } from '@symfony/ux-vue'; // [!code --]
 registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/)); // [!code --]
 
-import { startStimulusApp, registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers/vue" // [!code ++]
 // register Vue components before startStimulusApp
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
@@ -106,7 +107,8 @@ After installing the Flex recipe from `symfony/ux-react` you will need to correc
 import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
 
-import { startStimulusApp, registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers/react" // [!code ++]
 registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
 const app = startStimulusApp();
@@ -190,11 +192,12 @@ After installing the Flex recipe from `symfony/ux-svelte` you will need to corre
 import { registerSvelteControllerComponents } from '@symfony/ux-svelte'; // [!code --]
 registerSvelteControllerComponents(require.context('./svelte/controllers', true, /\.svelte$/)); // [!code --]
 
-import { registerSvelteControllerComponents, startStimulusApp } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus/helpers/svelte" // [!code ++]
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
 const app = startStimulusApp();
-registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
+registerControllers(app, import.meta    .glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
 ```
 
 Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
