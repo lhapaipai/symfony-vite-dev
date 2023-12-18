@@ -197,7 +197,7 @@ import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
 const app = startStimulusApp();
-registerControllers(app, import.meta    .glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
+registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
 ```
 
 Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
