@@ -38,6 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
   
       - name: Install dependencies
+        working-directory: .
         run: composer install --no-interaction --no-ansi
 
       - uses: pnpm/action-setup@v2
