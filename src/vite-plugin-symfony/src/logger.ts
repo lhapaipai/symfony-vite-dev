@@ -79,8 +79,8 @@ export function createLogger(level: LogLevel = "info", options: LoggerOptions = 
           type === "info"
             ? colors.cyan(colors.bold(prefix))
             : type === "warn"
-            ? colors.yellow(colors.bold(prefix))
-            : colors.red(colors.bold(prefix));
+              ? colors.yellow(colors.bold(prefix))
+              : colors.red(colors.bold(prefix));
         if (options.timestamp) {
           return `${colors.dim(timeFormatter.format(new Date()))} ${tag} ${msg}`;
         } else {

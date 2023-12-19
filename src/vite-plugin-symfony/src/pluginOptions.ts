@@ -54,7 +54,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     publicDirectory: userConfig.publicDirectory,
     refresh: userConfig.refresh ?? false,
     servePublic: userConfig.servePublic,
-    debug: userConfig.debug === true ?? false,
+    debug: userConfig.debug === true,
     viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
     enforcePluginOrderingPosition: userConfig.enforcePluginOrderingPosition === false ? false : true,

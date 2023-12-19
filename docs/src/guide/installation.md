@@ -56,6 +56,12 @@ Add these Twig functions in any template or base layout where you need to includ
 {% endblock %}
 ```
 
+:::info
+Usually when you start a new Vite project, you use the `create-vite` package. Go to the project's github page to add your usual dependencies according to your needs: typescript, eslint, prettier, react...
+- [Official create-vite github package](https://github.com/vitejs/vite/tree/main/packages/create-vite)
+- [Awesome Vite : Community templates](https://github.com/vitejs/awesome-vite#templates)
+:::
+
 ## 💻 Usage in development environment
 
 ```bash

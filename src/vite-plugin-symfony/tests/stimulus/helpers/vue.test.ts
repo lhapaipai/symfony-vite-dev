@@ -33,7 +33,7 @@ describe("registerVueControllerComponents", () => {
     registerVueControllerComponents(createFakeImportedModules());
     const resolveVueComponent = window.resolveVueComponent;
     expect(() => resolveVueComponent("Helloooo")).toThrowErrorMatchingInlineSnapshot(
-      '"Vue controller \\"Helloooo\\" does not exist. Possible values: vue/controllers/Hello"',
+      `[Error: Vue controller "Helloooo" does not exist. Possible values: vue/controllers/Hello]`,
     );
   });
 });

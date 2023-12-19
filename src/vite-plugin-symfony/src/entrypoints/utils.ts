@@ -135,7 +135,7 @@ export const isCssEntryPoint = (chunk: RenderedChunk) => {
   }
 
   if (isPureCssChunk) {
-    return chunk?.viteMetadata.importedCss.size === 1 ?? false;
+    return chunk?.viteMetadata.importedCss.size === 1;
   }
 
   return false;

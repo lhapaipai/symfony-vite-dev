@@ -9,7 +9,7 @@ import sirv from "sirv";
 
 import colors from "picocolors";
 
-import type { RenderedChunk, OutputAsset, NormalizedOutputOptions, OutputChunk } from "rollup";
+import type { RenderedChunk, NormalizedOutputOptions, OutputBundle } from "rollup";
 
 import { getDevEntryPoints, getBuildEntryPoints, getFilesMetadatas } from "./entryPointsHelper";
 import {
@@ -249,7 +249,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         addIOMapping(cssAssetName, cssBuildFilename);
       });
     },
-    generateBundle(options: NormalizedOutputOptions, bundle: { [fileName: string]: OutputAsset | OutputChunk }) {
+    generateBundle(options: NormalizedOutputOptions, bundle: OutputBundle) {
       for (const chunk of Object.values(bundle)) {
         const inputRelPath = getInputRelPath(chunk, options, viteConfig);
         addIOMapping(inputRelPath, chunk.fileName);
