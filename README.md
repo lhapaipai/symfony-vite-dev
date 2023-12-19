@@ -41,7 +41,7 @@ make install-playgrounds
 # launch the development environment for the `basic` playground.
 cd playground/basic
 symfony local:server:start
-npm run dev
+pnpm run dev
 # from your browser go to: https://127.0.0.1:8000/
 ```
 
