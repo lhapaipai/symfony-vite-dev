@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node / Yarn
         uses: actions/setup-node@v2
         with:
-          node-version: '19'
+          node-version: '20'
 
       - name: 'Install JS dependencies'
         run: 'npm ci'
