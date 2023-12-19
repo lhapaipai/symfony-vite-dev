@@ -48,8 +48,8 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest",
-    "test-run": "vitest run",
-    "coverage": "vitest run --coverage",
+    "test-run": "vitest --run",
+    "coverage": "vitest --run --coverage",
     "tsc:check": "tsc --noEmit",
     "lint:check": "eslint -c .eslintrc ./src"
   },
