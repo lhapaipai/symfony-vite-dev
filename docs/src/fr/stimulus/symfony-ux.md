@@ -40,7 +40,8 @@ Après l'installation de la recette Flex de `symfony/ux-vue` vous aurez besoin d
 import { registerVueControllerComponents } from '@symfony/ux-vue'; // [!code --]
 registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/)); // [!code --]
 
-import { startStimulusApp, registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers/vue" // [!code ++]
 // register Vue components before startStimulusApp
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
@@ -107,7 +108,8 @@ Après avoir installé la recette Flex depuis `symfony/ux-react`, vous devrez co
 import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
 
-import { startStimulusApp, registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers/react" // [!code ++]
 registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
 const app = startStimulusApp();
@@ -192,7 +194,8 @@ Après avoir installé la recette Flex depuis `symfony/ux-svelte`, vous devrez c
 import { registerSvelteControllerComponents } from '@symfony/ux-svelte'; // [!code --]
 registerSvelteControllerComponents(require.context('./svelte/controllers', true, /\.svelte$/)); // [!code --]
 
-import { registerSvelteControllerComponents, startStimulusApp } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus/helpers/svelte" // [!code ++]
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
 const app = startStimulusApp();

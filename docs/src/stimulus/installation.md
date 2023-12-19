@@ -3,7 +3,7 @@
 ## Installation
 
 ::: warning
-🧪 The implementation is still experimental. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change. The features presented in this page will not respect the `semver` versioning semantics.
+🧪 Please note that Stimulus implementation is marked unstable and may be subject to breaking changes without a major release. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change.
 :::
 
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
