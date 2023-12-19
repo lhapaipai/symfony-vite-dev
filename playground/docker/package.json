@@ -11,8 +11,5 @@
     "volta": {
         "node": "20.9.0"
     },
-    "dependencies": {
-        "vite": "^4.5.0",
-        "vite-plugin-symfony": "^4.3.4"
-    }
+    "dependencies": {}
 }

@@ -23,24 +23,24 @@
     "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
     "@symfony/ux-typed": "file:vendor/symfony/ux-typed/assets",
     "@symfony/ux-vue": "file:vendor/symfony/ux-vue/assets",
-    "@vitejs/plugin-legacy": "^5.0.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "@vitejs/plugin-vue": "^4.5.0",
-    "@vue/runtime-core": "^3.3.1",
-    "@vue/runtime-dom": "^3.3.1",
-    "concurrently": "^8.2.0",
+    "@vitejs/plugin-legacy": "^5.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "@vue/runtime-core": "^3.3.13",
+    "@vue/runtime-dom": "^3.3.13",
+    "concurrently": "^8.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "terser": "^5.16.1",
-    "vite": "^5.0.0",
-    "vite-plugin-inspect": "^0.7.12",
+    "terser": "^5.26.0",
+    "vite": "^5.0.10",
+    "vite-plugin-inspect": "^0.8.1",
     "vite-plugin-symfony": "file:src/vite-plugin-symfony",
-    "vue": "^3.3.1"
+    "vue": "^3.3.13"
   },
   "devDependencies": {
-    "sass": "^1.57.1",
+    "sass": "^1.69.5",
     "stimulus-color-picker": "^1.1.0",
-    "vitest": "^0.34.6"
+    "vitest": "^1.1.0"
   },
   "volta": {
     "node": "20.9.0"

@@ -11,11 +11,11 @@ cd "$PROJECT_DIR"
 # we need this because package.json contain reference
 # of vendor/symfony/ux-* files
 composer install --no-autoloader
-npm i
+pnpm install
 
 cd "$PROJECT_DIR/src/vite-bundle"
 symfony composer install
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
-npm ci
-npm run build
+pnpm install
+pnpm run build

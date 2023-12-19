@@ -106,5 +106,5 @@ git tag -a "v$VERSION" -m "v$VERSION"
 git push origin --tags
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
-npm run build
-npm publish
+pnpm run build
+pnpm publish

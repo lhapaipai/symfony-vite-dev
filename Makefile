@@ -5,7 +5,7 @@ help: ## Outputs this help screen
 install: ## Install vite-bundle/vite-plugin-symfony dependencies
 	./bin/install.sh
 
-install-playgrounds: ## Install playgrounds (npm i/composer i)
+install-playgrounds: ## Install playgrounds (pnpm i/composer i)
 	./bin/install-playgrounds.sh
 
 ci-cd:
