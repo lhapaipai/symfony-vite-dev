@@ -35,6 +35,8 @@ make install
 make install-playgrounds
 ```
 
+Note : If you want to install without makefile, install first composer dependencies of `.` and `./playground/stimulus` projects because `./vendor` and `./playground/stimulus/vendor` directories contains npm dependencies needed for `pnpm install` which is recursive.
+
 ## Execution
 
 ```bash

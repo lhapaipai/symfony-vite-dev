@@ -70,6 +70,8 @@ fi
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
 npm --no-git-tag-version --allow-same-version version $VERSION
 
+README_FILE="$PROJECT_DIR/src/vite-plugin-symfony/README.md"
+sed -i -e "s/\"vite-plugin-symfony\": \"\^[\.0-9]\+\"/\"vite-plugin-symfony\": \"^$MAJOR_VERSION.$MINOR_VERSION\"/g" "$README_FILE"
 
 cd "$PROJECT_DIR"
 

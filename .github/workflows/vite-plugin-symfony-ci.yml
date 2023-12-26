@@ -1,7 +1,7 @@
 name: 'vite-plugin-symfony CI'
 on:
   push:
-    branches: ['main', 'feature/github-workflow']
+    branches: ['main']
   pull_request:
 
 defaults:

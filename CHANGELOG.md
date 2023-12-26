@@ -1,3 +1,7 @@
+## Next
+
+- Moving package manager to pnpm
+
 ## v6.3.1
 
 - Fix React/Vue/Svelte dependencies with Stimulus helper (@santos-pierre) 

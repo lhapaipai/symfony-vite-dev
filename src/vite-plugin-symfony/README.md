@@ -74,8 +74,8 @@ and your package.json :
         "build": "vite build"
     },
     "devDependencies": {
-        "vite": "^4.0",
-        "vite-plugin-symfony": "^4"
+        "vite": "^5.0",
+        "vite-plugin-symfony": "^6"
     }
 }
 ```
