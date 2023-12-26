@@ -108,12 +108,6 @@ importers:
 
   playground/basic: {}
 
-  playground/basic-real:
-    dependencies:
-      vite-plugin-symfony:
-        specifier: ^6.0.0
-        version: link:../../src/vite-plugin-symfony
-
   playground/basic-vite4:
     dependencies:
       '@vitejs/plugin-legacy':
@@ -128,24 +122,6 @@ importers:
   playground/legacy: {}
 
   playground/multiple: {}
-
-  playground/sandbox:
-    dependencies:
-      vite:
-        specifier: ^4.5.0
-        version: 4.5.0(sass@1.69.5)(terser@5.26.0)
-
-  playground/ssr:
-    dependencies:
-      '@vue/runtime-core':
-        specifier: ^3.3.4
-        version: 3.3.13
-      '@vue/runtime-dom':
-        specifier: ^3.3.4
-        version: 3.3.13
-      vue:
-        specifier: ^3.3.13
-        version: 3.3.13(typescript@5.3.3)
 
   playground/stimulus:
     dependencies:
@@ -262,8 +238,6 @@ importers:
   playground/symfony64: {}
 
   playground/symfony7: {}
-
-  playground/vite-only: {}
 
   playground/with-cdn: {}
 
