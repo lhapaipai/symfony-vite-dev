@@ -44,7 +44,7 @@ Create this directory structure :
 ├──vite.config.js
 ```
 
-Vite base config with vite 3.x
+Vite base config with vite
 
 ```js
 // vite.config.js
