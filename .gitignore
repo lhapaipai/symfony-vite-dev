@@ -9,7 +9,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-/extra
+/extra/vite
+/extra/webpack-encore-bundle
 
 node_modules
 

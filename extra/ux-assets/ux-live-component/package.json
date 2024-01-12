@@ -1,0 +1,42 @@
+{
+    "name": "@symfony/ux-live-component",
+    "description": "Live Component: bring server-side re-rendering & model binding to any element.",
+    "module": "dist/live_controller.js",
+    "type": "module",
+    "types": "dist/live_controller.d.ts",
+    "version": "1.0.0",
+    "config": {
+        "css_source": "styles/live.css"
+    },
+    "license": "MIT",
+    "symfony": {
+        "controllers": {
+            "live": {
+                "main": "dist/live_controller.js",
+                "name": "live",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "@symfony/ux-live-component/dist/live.min.css": true
+                }
+            }
+        },
+        "importmap": {
+            "@hotwired/stimulus": "^3.0.0"
+        }
+    },
+    "dependencies": {
+        "morphdom": "^2.6.1"
+    },
+    "peerDependencies": {
+        "@hotwired/stimulus": "^3.0.0"
+    },
+    "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "@testing-library/dom": "^7.31.0",
+        "@testing-library/user-event": "^13.1.9",
+        "@types/node-fetch": "^2.6.2",
+        "node-fetch": "^2.6.1"
+    }
+}

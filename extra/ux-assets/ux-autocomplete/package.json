@@ -1,0 +1,36 @@
+{
+    "name": "@symfony/ux-autocomplete",
+    "description": "JavaScript-powered autocompletion functionality for forms.",
+    "module": "dist/controller.js",
+    "type": "module",
+    "types": "dist/controller.d.ts",
+    "version": "1.0.0",
+    "license": "MIT",
+    "symfony": {
+        "controllers": {
+            "autocomplete": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "tom-select/dist/css/tom-select.default.css": true,
+                    "tom-select/dist/css/tom-select.bootstrap5.css": false
+                }
+            }
+        },
+        "importmap": {
+            "@hotwired/stimulus": "^3.0.0",
+            "tom-select": "^2.2.2"
+        }
+    },
+    "peerDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "tom-select": "^2.2.2"
+    },
+    "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "tom-select": "^2.2.2",
+        "vitest-fetch-mock": "^0.2.2"
+    }
+}

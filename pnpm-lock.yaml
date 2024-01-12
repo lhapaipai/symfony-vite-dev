@@ -12,50 +12,50 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@symfony/ux-autocomplete':
-        specifier: file:vendor/symfony/ux-autocomplete/assets
-        version: file:vendor/symfony/ux-autocomplete/assets(@hotwired/stimulus@3.2.2)(tom-select@2.3.1)
+        specifier: file:extra/ux-assets/ux-autocomplete
+        version: file:extra/ux-assets/ux-autocomplete(@hotwired/stimulus@3.2.2)(tom-select@2.3.1)
       '@symfony/ux-chartjs':
-        specifier: file:vendor/symfony/ux-chartjs/assets
-        version: file:vendor/symfony/ux-chartjs/assets(@hotwired/stimulus@3.2.2)(chart.js@3.8.2)
+        specifier: file:extra/ux-assets/ux-chartjs
+        version: file:extra/ux-assets/ux-chartjs(@hotwired/stimulus@3.2.2)(chart.js@3.8.2)
       '@symfony/ux-cropperjs':
-        specifier: file:vendor/symfony/ux-cropperjs/assets
-        version: file:vendor/symfony/ux-cropperjs/assets(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1)
+        specifier: file:extra/ux-assets/ux-cropperjs
+        version: file:extra/ux-assets/ux-cropperjs(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1)
       '@symfony/ux-dropzone':
-        specifier: file:vendor/symfony/ux-dropzone/assets
-        version: file:vendor/symfony/ux-dropzone/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:extra/ux-assets/ux-dropzone
+        version: file:extra/ux-assets/ux-dropzone(@hotwired/stimulus@3.2.2)
       '@symfony/ux-lazy-image':
-        specifier: file:vendor/symfony/ux-lazy-image/assets
-        version: file:vendor/symfony/ux-lazy-image/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:extra/ux-assets/ux-lazy-image
+        version: file:extra/ux-assets/ux-lazy-image(@hotwired/stimulus@3.2.2)
       '@symfony/ux-live-component':
-        specifier: file:vendor/symfony/ux-live-component/assets
-        version: file:vendor/symfony/ux-live-component/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:extra/ux-assets/ux-live-component
+        version: file:extra/ux-assets/ux-live-component(@hotwired/stimulus@3.2.2)
       '@symfony/ux-notify':
-        specifier: file:vendor/symfony/ux-notify/assets
-        version: file:vendor/symfony/ux-notify/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:extra/ux-assets/ux-notify
+        version: file:extra/ux-assets/ux-notify(@hotwired/stimulus@3.2.2)
       '@symfony/ux-react':
-        specifier: file:vendor/symfony/ux-react/assets
-        version: file:vendor/symfony/ux-react/assets(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0)
+        specifier: file:extra/ux-assets/ux-react
+        version: file:extra/ux-assets/ux-react(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0)
       '@symfony/ux-svelte':
-        specifier: file:vendor/symfony/ux-svelte/assets
-        version: file:vendor/symfony/ux-svelte/assets(@hotwired/stimulus@3.2.2)(svelte@4.2.8)
+        specifier: file:extra/ux-assets/ux-svelte
+        version: file:extra/ux-assets/ux-svelte(@hotwired/stimulus@3.2.2)(svelte@4.2.8)
       '@symfony/ux-swup':
-        specifier: file:vendor/symfony/ux-swup/assets
-        version: file:vendor/symfony/ux-swup/assets(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1)
+        specifier: file:extra/ux-assets/ux-swup
+        version: file:extra/ux-assets/ux-swup(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1)
       '@symfony/ux-toggle-password':
-        specifier: file:vendor/symfony/ux-toggle-password/assets
-        version: file:vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:extra/ux-assets/ux-toggle-password
+        version: file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2)
       '@symfony/ux-translator':
-        specifier: file:vendor/symfony/ux-translator/assets
-        version: file:vendor/symfony/ux-translator/assets(intl-messageformat@10.5.8)
+        specifier: file:extra/ux-assets/ux-translator
+        version: file:extra/ux-assets/ux-translator(intl-messageformat@10.5.8)
       '@symfony/ux-turbo':
-        specifier: file:vendor/symfony/ux-turbo/assets
-        version: file:vendor/symfony/ux-turbo/assets(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0)
+        specifier: file:extra/ux-assets/ux-turbo
+        version: file:extra/ux-assets/ux-turbo(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0)
       '@symfony/ux-typed':
-        specifier: file:vendor/symfony/ux-typed/assets
-        version: file:vendor/symfony/ux-typed/assets(@hotwired/stimulus@3.2.2)(typed.js@2.1.0)
+        specifier: file:extra/ux-assets/ux-typed
+        version: file:extra/ux-assets/ux-typed(@hotwired/stimulus@3.2.2)(typed.js@2.1.0)
       '@symfony/ux-vue':
-        specifier: file:vendor/symfony/ux-vue/assets
-        version: file:vendor/symfony/ux-vue/assets(@hotwired/stimulus@3.2.2)(vue@3.3.13)
+        specifier: file:extra/ux-assets/ux-vue
+        version: file:extra/ux-assets/ux-vue(@hotwired/stimulus@3.2.2)(vue@3.3.13)
       '@vitejs/plugin-legacy':
         specifier: ^5.2.0
         version: 5.2.0(terser@5.26.0)(vite@5.0.10)
@@ -191,50 +191,50 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(@hotwired/stimulus@3.2.2)
       '@symfony/ux-autocomplete':
-        specifier: file:vendor/symfony/ux-autocomplete/assets
-        version: file:playground/stimulus/vendor/symfony/ux-autocomplete/assets(@hotwired/stimulus@3.2.2)(tom-select@2.3.1)
+        specifier: file:../../extra/ux-assets/ux-autocomplete
+        version: file:extra/ux-assets/ux-autocomplete(@hotwired/stimulus@3.2.2)(tom-select@2.3.1)
       '@symfony/ux-chartjs':
-        specifier: file:vendor/symfony/ux-chartjs/assets
-        version: file:playground/stimulus/vendor/symfony/ux-chartjs/assets(@hotwired/stimulus@3.2.2)(chart.js@3.8.2)
+        specifier: file:../../extra/ux-assets/ux-chartjs
+        version: file:extra/ux-assets/ux-chartjs(@hotwired/stimulus@3.2.2)(chart.js@3.8.2)
       '@symfony/ux-cropperjs':
-        specifier: file:vendor/symfony/ux-cropperjs/assets
-        version: file:playground/stimulus/vendor/symfony/ux-cropperjs/assets(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1)
+        specifier: file:../../extra/ux-assets/ux-cropperjs
+        version: file:extra/ux-assets/ux-cropperjs(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1)
       '@symfony/ux-dropzone':
-        specifier: file:vendor/symfony/ux-dropzone/assets
-        version: file:playground/stimulus/vendor/symfony/ux-dropzone/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-dropzone
+        version: file:extra/ux-assets/ux-dropzone(@hotwired/stimulus@3.2.2)
       '@symfony/ux-lazy-image':
-        specifier: file:vendor/symfony/ux-lazy-image/assets
-        version: file:playground/stimulus/vendor/symfony/ux-lazy-image/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-lazy-image
+        version: file:extra/ux-assets/ux-lazy-image(@hotwired/stimulus@3.2.2)
       '@symfony/ux-live-component':
-        specifier: file:vendor/symfony/ux-live-component/assets
-        version: file:playground/stimulus/vendor/symfony/ux-live-component/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-live-component
+        version: file:extra/ux-assets/ux-live-component(@hotwired/stimulus@3.2.2)
       '@symfony/ux-notify':
-        specifier: file:vendor/symfony/ux-notify/assets
-        version: file:playground/stimulus/vendor/symfony/ux-notify/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-notify
+        version: file:extra/ux-assets/ux-notify(@hotwired/stimulus@3.2.2)
       '@symfony/ux-react':
-        specifier: file:vendor/symfony/ux-react/assets
-        version: file:playground/stimulus/vendor/symfony/ux-react/assets(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0)
+        specifier: file:../../extra/ux-assets/ux-react
+        version: file:extra/ux-assets/ux-react(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0)
       '@symfony/ux-svelte':
-        specifier: file:vendor/symfony/ux-svelte/assets
-        version: file:playground/stimulus/vendor/symfony/ux-svelte/assets(@hotwired/stimulus@3.2.2)(svelte@4.2.8)
+        specifier: file:../../extra/ux-assets/ux-svelte
+        version: file:extra/ux-assets/ux-svelte(@hotwired/stimulus@3.2.2)(svelte@4.2.8)
       '@symfony/ux-swup':
-        specifier: file:vendor/symfony/ux-swup/assets
-        version: file:playground/stimulus/vendor/symfony/ux-swup/assets(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1)
+        specifier: file:../../extra/ux-assets/ux-swup
+        version: file:extra/ux-assets/ux-swup(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1)
       '@symfony/ux-toggle-password':
-        specifier: file:vendor/symfony/ux-toggle-password/assets
-        version: file:playground/stimulus/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-toggle-password
+        version: file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2)
       '@symfony/ux-translator':
-        specifier: file:vendor/symfony/ux-translator/assets
-        version: file:playground/stimulus/vendor/symfony/ux-translator/assets(intl-messageformat@10.5.8)
+        specifier: file:../../extra/ux-assets/ux-translator
+        version: file:extra/ux-assets/ux-translator(intl-messageformat@10.5.8)
       '@symfony/ux-turbo':
-        specifier: file:vendor/symfony/ux-turbo/assets
-        version: file:playground/stimulus/vendor/symfony/ux-turbo/assets(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0)
+        specifier: file:../../extra/ux-assets/ux-turbo
+        version: file:extra/ux-assets/ux-turbo(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0)
       '@symfony/ux-typed':
-        specifier: file:vendor/symfony/ux-typed/assets
-        version: file:playground/stimulus/vendor/symfony/ux-typed/assets(@hotwired/stimulus@3.2.2)(typed.js@2.1.0)
+        specifier: file:../../extra/ux-assets/ux-typed
+        version: file:extra/ux-assets/ux-typed(@hotwired/stimulus@3.2.2)(typed.js@2.1.0)
       '@symfony/ux-vue':
-        specifier: file:vendor/symfony/ux-vue/assets
-        version: file:playground/stimulus/vendor/symfony/ux-vue/assets(@hotwired/stimulus@3.2.2)(vue@3.3.13)
+        specifier: file:../../extra/ux-assets/ux-vue
+        version: file:extra/ux-assets/ux-vue(@hotwired/stimulus@3.2.2)(vue@3.3.13)
       chart.js:
         specifier: ^3.8.2
         version: 3.8.2
@@ -7271,9 +7271,9 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-autocomplete/assets(@hotwired/stimulus@3.2.2)(tom-select@2.3.1):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-autocomplete/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-autocomplete/assets
+  file:extra/ux-assets/ux-autocomplete(@hotwired/stimulus@3.2.2)(tom-select@2.3.1):
+    resolution: {directory: extra/ux-assets/ux-autocomplete, type: directory}
+    id: file:extra/ux-assets/ux-autocomplete
     name: '@symfony/ux-autocomplete'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7281,11 +7281,10 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       tom-select: 2.3.1
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-chartjs/assets(@hotwired/stimulus@3.2.2)(chart.js@3.8.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-chartjs/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-chartjs/assets
+  file:extra/ux-assets/ux-chartjs(@hotwired/stimulus@3.2.2)(chart.js@3.8.2):
+    resolution: {directory: extra/ux-assets/ux-chartjs, type: directory}
+    id: file:extra/ux-assets/ux-chartjs
     name: '@symfony/ux-chartjs'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7293,11 +7292,10 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       chart.js: 3.8.2
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-cropperjs/assets(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-cropperjs/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-cropperjs/assets
+  file:extra/ux-assets/ux-cropperjs(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1):
+    resolution: {directory: extra/ux-assets/ux-cropperjs, type: directory}
+    id: file:extra/ux-assets/ux-cropperjs
     name: '@symfony/ux-cropperjs'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7305,52 +7303,47 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       cropperjs: 1.6.1
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-dropzone/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-dropzone/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-dropzone/assets
+  file:extra/ux-assets/ux-dropzone(@hotwired/stimulus@3.2.2):
+    resolution: {directory: extra/ux-assets/ux-dropzone, type: directory}
+    id: file:extra/ux-assets/ux-dropzone
     name: '@symfony/ux-dropzone'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-lazy-image/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-lazy-image/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-lazy-image/assets
+  file:extra/ux-assets/ux-lazy-image(@hotwired/stimulus@3.2.2):
+    resolution: {directory: extra/ux-assets/ux-lazy-image, type: directory}
+    id: file:extra/ux-assets/ux-lazy-image
     name: '@symfony/ux-lazy-image'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-live-component/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-live-component/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-live-component/assets
+  file:extra/ux-assets/ux-live-component(@hotwired/stimulus@3.2.2):
+    resolution: {directory: extra/ux-assets/ux-live-component, type: directory}
+    id: file:extra/ux-assets/ux-live-component
     name: '@symfony/ux-live-component'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
       morphdom: 2.7.1
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-notify/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-notify/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-notify/assets
+  file:extra/ux-assets/ux-notify(@hotwired/stimulus@3.2.2):
+    resolution: {directory: extra/ux-assets/ux-notify, type: directory}
+    id: file:extra/ux-assets/ux-notify
     name: '@symfony/ux-notify'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-react/assets(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-react/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-react/assets
+  file:extra/ux-assets/ux-react(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {directory: extra/ux-assets/ux-react, type: directory}
+    id: file:extra/ux-assets/ux-react
     name: '@symfony/ux-react'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7360,11 +7353,10 @@ packages:
       '@hotwired/stimulus': 3.2.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-svelte/assets(@hotwired/stimulus@3.2.2)(svelte@4.2.8):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-svelte/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-svelte/assets
+  file:extra/ux-assets/ux-svelte(@hotwired/stimulus@3.2.2)(svelte@4.2.8):
+    resolution: {directory: extra/ux-assets/ux-svelte, type: directory}
+    id: file:extra/ux-assets/ux-svelte
     name: '@symfony/ux-svelte'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7372,11 +7364,10 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       svelte: 4.2.8
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-swup/assets(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-swup/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-swup/assets
+  file:extra/ux-assets/ux-swup(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1):
+    resolution: {directory: extra/ux-assets/ux-swup, type: directory}
+    id: file:extra/ux-assets/ux-swup
     name: '@symfony/ux-swup'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7392,31 +7383,28 @@ packages:
       '@swup/forms-plugin': 2.0.1(swup@3.1.1)
       '@swup/slide-theme': 1.0.5
       swup: 3.1.1
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-toggle-password/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-toggle-password/assets
+  file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2):
+    resolution: {directory: extra/ux-assets/ux-toggle-password, type: directory}
+    id: file:extra/ux-assets/ux-toggle-password
     name: '@symfony/ux-toggle-password'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-translator/assets(intl-messageformat@10.5.8):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-translator/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-translator/assets
+  file:extra/ux-assets/ux-translator(intl-messageformat@10.5.8):
+    resolution: {directory: extra/ux-assets/ux-translator, type: directory}
+    id: file:extra/ux-assets/ux-translator
     name: '@symfony/ux-translator'
     peerDependencies:
       intl-messageformat: ^10.2.5
     dependencies:
       intl-messageformat: 10.5.8
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-turbo/assets(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-turbo/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-turbo/assets
+  file:extra/ux-assets/ux-turbo(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0):
+    resolution: {directory: extra/ux-assets/ux-turbo, type: directory}
+    id: file:extra/ux-assets/ux-turbo
     name: '@symfony/ux-turbo'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7424,11 +7412,10 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       '@hotwired/turbo': 7.3.0
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-typed/assets(@hotwired/stimulus@3.2.2)(typed.js@2.1.0):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-typed/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-typed/assets
+  file:extra/ux-assets/ux-typed(@hotwired/stimulus@3.2.2)(typed.js@2.1.0):
+    resolution: {directory: extra/ux-assets/ux-typed, type: directory}
+    id: file:extra/ux-assets/ux-typed
     name: '@symfony/ux-typed'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
@@ -7436,19 +7423,17 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       typed.js: 2.1.0
-    dev: true
 
-  file:playground/stimulus/vendor/symfony/ux-vue/assets(@hotwired/stimulus@3.2.2)(vue@3.3.13):
-    resolution: {directory: playground/stimulus/vendor/symfony/ux-vue/assets, type: directory}
-    id: file:playground/stimulus/vendor/symfony/ux-vue/assets
+  file:extra/ux-assets/ux-vue(@hotwired/stimulus@3.2.2)(vue@3.3.13):
+    resolution: {directory: extra/ux-assets/ux-vue, type: directory}
+    id: file:extra/ux-assets/ux-vue
     name: '@symfony/ux-vue'
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
       vue: ^3.0
     dependencies:
       '@hotwired/stimulus': 3.2.2
-      vue: 3.3.13(typescript@4.9.5)
-    dev: true
+      vue: 3.3.13(typescript@5.3.3)
 
   file:src/vite-plugin-symfony(vite@5.0.10):
     resolution: {directory: src/vite-plugin-symfony, type: directory}
@@ -7464,183 +7449,4 @@ packages:
       vite: 5.0.10(@types/node@20.10.5)(sass@1.69.5)(terser@5.26.0)
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  file:vendor/symfony/ux-autocomplete/assets(@hotwired/stimulus@3.2.2)(tom-select@2.3.1):
-    resolution: {directory: vendor/symfony/ux-autocomplete/assets, type: directory}
-    id: file:vendor/symfony/ux-autocomplete/assets
-    name: '@symfony/ux-autocomplete'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      tom-select: ^2.2.2
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      tom-select: 2.3.1
-    dev: false
-
-  file:vendor/symfony/ux-chartjs/assets(@hotwired/stimulus@3.2.2)(chart.js@3.8.2):
-    resolution: {directory: vendor/symfony/ux-chartjs/assets, type: directory}
-    id: file:vendor/symfony/ux-chartjs/assets
-    name: '@symfony/ux-chartjs'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      chart.js: ^3.4.1 <3.9
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      chart.js: 3.8.2
-    dev: false
-
-  file:vendor/symfony/ux-cropperjs/assets(@hotwired/stimulus@3.2.2)(cropperjs@1.6.1):
-    resolution: {directory: vendor/symfony/ux-cropperjs/assets, type: directory}
-    id: file:vendor/symfony/ux-cropperjs/assets
-    name: '@symfony/ux-cropperjs'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      cropperjs: ^1.5.9
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      cropperjs: 1.6.1
-    dev: false
-
-  file:vendor/symfony/ux-dropzone/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: vendor/symfony/ux-dropzone/assets, type: directory}
-    id: file:vendor/symfony/ux-dropzone/assets
-    name: '@symfony/ux-dropzone'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-    dev: false
-
-  file:vendor/symfony/ux-lazy-image/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: vendor/symfony/ux-lazy-image/assets, type: directory}
-    id: file:vendor/symfony/ux-lazy-image/assets
-    name: '@symfony/ux-lazy-image'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-    dev: false
-
-  file:vendor/symfony/ux-live-component/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: vendor/symfony/ux-live-component/assets, type: directory}
-    id: file:vendor/symfony/ux-live-component/assets
-    name: '@symfony/ux-live-component'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      morphdom: 2.7.1
-    dev: false
-
-  file:vendor/symfony/ux-notify/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: vendor/symfony/ux-notify/assets, type: directory}
-    id: file:vendor/symfony/ux-notify/assets
-    name: '@symfony/ux-notify'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-    dev: false
-
-  file:vendor/symfony/ux-react/assets(@hotwired/stimulus@3.2.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {directory: vendor/symfony/ux-react/assets, type: directory}
-    id: file:vendor/symfony/ux-react/assets
-    name: '@symfony/ux-react'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      react: ^18.0
-      react-dom: ^18.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  file:vendor/symfony/ux-svelte/assets(@hotwired/stimulus@3.2.2)(svelte@4.2.8):
-    resolution: {directory: vendor/symfony/ux-svelte/assets, type: directory}
-    id: file:vendor/symfony/ux-svelte/assets
-    name: '@symfony/ux-svelte'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      svelte: ^3.0 || ^4.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      svelte: 4.2.8
-    dev: false
-
-  file:vendor/symfony/ux-swup/assets(@hotwired/stimulus@3.2.2)(@swup/debug-plugin@3.0.0)(@swup/fade-theme@1.0.5)(@swup/forms-plugin@2.0.1)(@swup/slide-theme@1.0.5)(swup@3.1.1):
-    resolution: {directory: vendor/symfony/ux-swup/assets, type: directory}
-    id: file:vendor/symfony/ux-swup/assets
-    name: '@symfony/ux-swup'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      '@swup/debug-plugin': ^3.0
-      '@swup/fade-theme': ^1.0
-      '@swup/forms-plugin': ^2.0
-      '@swup/slide-theme': ^1.0
-      swup: ^3.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      '@swup/debug-plugin': 3.0.0(swup@3.1.1)
-      '@swup/fade-theme': 1.0.5
-      '@swup/forms-plugin': 2.0.1(swup@3.1.1)
-      '@swup/slide-theme': 1.0.5
-      swup: 3.1.1
-    dev: false
-
-  file:vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2):
-    resolution: {directory: vendor/symfony/ux-toggle-password/assets, type: directory}
-    id: file:vendor/symfony/ux-toggle-password/assets
-    name: '@symfony/ux-toggle-password'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-    dev: false
-
-  file:vendor/symfony/ux-translator/assets(intl-messageformat@10.5.8):
-    resolution: {directory: vendor/symfony/ux-translator/assets, type: directory}
-    id: file:vendor/symfony/ux-translator/assets
-    name: '@symfony/ux-translator'
-    peerDependencies:
-      intl-messageformat: ^10.2.5
-    dependencies:
-      intl-messageformat: 10.5.8
-    dev: false
-
-  file:vendor/symfony/ux-turbo/assets(@hotwired/stimulus@3.2.2)(@hotwired/turbo@7.3.0):
-    resolution: {directory: vendor/symfony/ux-turbo/assets, type: directory}
-    id: file:vendor/symfony/ux-turbo/assets
-    name: '@symfony/ux-turbo'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      '@hotwired/turbo': ^7.0.1
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      '@hotwired/turbo': 7.3.0
-    dev: false
-
-  file:vendor/symfony/ux-typed/assets(@hotwired/stimulus@3.2.2)(typed.js@2.1.0):
-    resolution: {directory: vendor/symfony/ux-typed/assets, type: directory}
-    id: file:vendor/symfony/ux-typed/assets
-    name: '@symfony/ux-typed'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      typed.js: ^2.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      typed.js: 2.1.0
-    dev: false
-
-  file:vendor/symfony/ux-vue/assets(@hotwired/stimulus@3.2.2)(vue@3.3.13):
-    resolution: {directory: vendor/symfony/ux-vue/assets, type: directory}
-    id: file:vendor/symfony/ux-vue/assets
-    name: '@symfony/ux-vue'
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-      vue: ^3.0
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      vue: 3.3.13(typescript@5.3.3)
     dev: false

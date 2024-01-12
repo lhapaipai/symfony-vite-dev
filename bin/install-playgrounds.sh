@@ -12,6 +12,19 @@ do
   echo "* installing playground $PLAYGROUND"
   cd "$PLAYGROUND_DIR"
 
+  if [ $PLAYGROUND != "vite-only" ]
+  then
+    echo '  > symfony composer install'
+    symfony composer install 1> /dev/null 2>&1 \
+      && echo '    [ok]' || echo '    [failed]'
+  fi
+
+  if [ $PLAYGROUND == "stimulus" ]
+  then
+    echo '  > hardcode-ux-assets'
+    "$SCRIPT_DIR/hardcode-ux-assets.sh"
+  fi
+
   echo '  > pnpm i'
   pnpm i 1> /dev/null \
     && echo '    [ok]' || echo '    [failed]'
