@@ -214,6 +214,10 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: '/symfony-vite.svg',
 
+    search: {
+      provider: 'local',
+    },
+
     socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/vite-bundle' }]
   }
 });
