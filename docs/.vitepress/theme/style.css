@@ -121,11 +121,10 @@
   text-decoration: underline;
 }
 
-.vp-doc :not(pre) > code {
+.vp-doc :not(pre)>code {
   border: 1px solid var(--vp-c-gray-3);
+  background-color: var(--vp-code-block-bg);
 }
-
-
 
 /** Custom */
 kbd {
@@ -141,9 +140,7 @@ kbd {
   vertical-align: middle;
 }
 
-.dark {
-  kbd {
-    background-color: #333;
-    box-shadow: none;
-  }
+.dark kbd {
+  background-color: #333;
+  box-shadow: none;
 }
