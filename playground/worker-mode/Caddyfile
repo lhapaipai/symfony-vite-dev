@@ -1,0 +1,26 @@
+{
+	order php_server before file_server
+	order php before file_server
+
+	frankenphp {
+		worker {
+			file ./public/index.php
+			env APP_RUNTIME Runtime\FrankenPhpSymfony\Runtime
+		}
+	}
+}
+
+worker-mode.symfony-vite-dev.localhost {
+	log {
+		format console
+	}
+
+	root * public/
+
+	encode zstd gzip
+
+	respond /healthz 200
+
+	file_server browse
+	php_server
+}
