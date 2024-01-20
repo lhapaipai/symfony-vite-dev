@@ -1,4 +1,9 @@
-## Next
+## v6.3.3
+
+- Fix dark mode issue with background
+- Fix worker mode (kernel.reset)
+
+## v6.3.2
 
 - Moving package manager to pnpm
 
