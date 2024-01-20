@@ -3,10 +3,9 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import type { Plugin, PluginOption } from 'vite';
 import { mkdir, readdir } from 'node:fs/promises'
 
-export async function getFilesInDirectory(directory: URL): Promise<string[]> {
+export async function getFilesInDirectory(directory) {
 	return (await readdir(directory)).filter(file => file[0] !== '.');
 }
 
@@ -20,13 +19,13 @@ const styleTagRegExp = /<style>[\S\s]*?<\/style>/gm;
 const configFileURL = new URL('mermaid.config.json', import.meta.url);
 const puppeteerConfigFileURL = new URL('puppeteer-config.json', import.meta.url);
 
-export function renderMermaidGraphsPlugin(): Plugin {
+export function renderMermaidGraphsPlugin() {
 	const existingGraphFileNamesPromise = mkdir(graphsDirectory, { recursive: true })
 		.then(() => getFilesInDirectory(graphsDirectory))
 		.then(files => new Set(files.filter(name => name.endsWith('.svg'))));
-	const existingGraphsByName = new Map<string, Promise<string>>();
+	const existingGraphsByName = new Map();
 
-	async function renderGraph(codeBlock: string, outFile: string) {
+	async function renderGraph(codeBlock, outFile) {
 		const existingGraphFileNames = await existingGraphFileNamesPromise;
 		const outFileURL = new URL(outFile, graphsDirectory);
 		if (!existingGraphFileNames.has(outFile)) {
@@ -45,7 +44,7 @@ export function renderMermaidGraphsPlugin(): Plugin {
 		const outFileContent = await readFile(outFileURL, 'utf8');
 		// Styles need to be placed top-level, so we extract them and then
 		// prepend them, separated with a line-break
-		const extractedStyles: string[] = [];
+		const extractedStyles = [];
 		const baseGraph = outFileContent
 			// We need to replace some HTML entities
 			.replace(greaterThanRegExp, '>')
@@ -62,9 +61,9 @@ export function renderMermaidGraphsPlugin(): Plugin {
 		name: 'render-mermaid-charts',
 		async transform(code, id) {
 			if (id.endsWith('.md')) {
-				const renderedGraphs: string[] = [];
-				const mermaidCodeBlocks: string[] = [];
-				let match: RegExpExecArray | null = null;
+				const renderedGraphs = [];
+				const mermaidCodeBlocks = [];
+				let match = null;
 				while ((match = mermaidRegExp.exec(code)) !== null) {
 					mermaidCodeBlocks.push(match[1]);
 				}

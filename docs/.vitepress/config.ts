@@ -1,13 +1,9 @@
 import { defineConfig } from 'vitepress';
 import { fileURLToPath, URL } from 'node:url';
-import { renderMermaidGraphsPlugin } from './mermaid'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   vite: {
-    plugins: [
-      renderMermaidGraphsPlugin()
-    ],
     resolve: {
       alias: [
         /**
@@ -84,8 +80,8 @@ export default defineConfig({
               { text: 'Configuration', link: '/guide/configuration' },
               { text: 'Twig functions', link: '/guide/twig-functions' },
               { text: 'Assets', link: '/guide/assets' },
-              { text: 'Custom attributes', link: '/guide/custom-attributes'},
-              { text: 'Dependency injection', link: '/guide/dependency-injection'},
+              { text: 'Custom attributes', link: '/guide/custom-attributes' },
+              { text: 'Dependency injection', link: '/guide/dependency-injection' },
               { text: 'Multiple configurations', link: '/guide/multiple-configurations' },
               { text: 'Performances', link: '/guide/performances' },
               { text: 'Using a CDN', link: '/guide/cdn' },
@@ -97,10 +93,10 @@ export default defineConfig({
           {
             text: 'Stimulus / Symfony UX',
             items: [
-              { text: 'Installation', link: '/stimulus/installation'},
-              { text: 'Symfony UX', link: '/stimulus/symfony-ux'},
-              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers'},
-              { text: 'In Depth', link: '/stimulus/in-depth'},
+              { text: 'Installation', link: '/stimulus/installation' },
+              { text: 'Symfony UX', link: '/stimulus/symfony-ux' },
+              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers' },
+              { text: 'In Depth', link: '/stimulus/in-depth' }
             ]
           },
           {
@@ -161,8 +157,8 @@ export default defineConfig({
               { text: 'Configuration', link: '/fr/guide/configuration' },
               { text: 'Fonctions Twig', link: '/fr/guide/twig-functions' },
               { text: 'Assets', link: '/fr/guide/assets' },
-              { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes'},
-              { text: 'Injection de dépendances', link: '/fr/guide/dependency-injection'},
+              { text: 'Attributs personnalisés', link: '/fr/guide/custom-attributes' },
+              { text: 'Injection de dépendances', link: '/fr/guide/dependency-injection' },
               { text: 'Configurations multiples', link: '/fr/guide/multiple-configurations' },
               { text: 'Performances', link: '/fr/guide/performances' },
               { text: 'Utiliser un CDN', link: '/fr/guide/cdn' },
@@ -174,10 +170,10 @@ export default defineConfig({
           {
             text: 'Stimulus / Symfony UX',
             items: [
-              { text: 'Installation', link: '/fr/stimulus/installation'},
-              { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux'},
-              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers'},
-              { text: 'En profondeur', link: '/fr/stimulus/in-depth'},
+              { text: 'Installation', link: '/fr/stimulus/installation' },
+              { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux' },
+              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers' },
+              { text: 'En profondeur', link: '/fr/stimulus/in-depth' }
             ]
           },
           {
@@ -215,7 +211,7 @@ export default defineConfig({
     logo: '/symfony-vite.svg',
 
     search: {
-      provider: 'local',
+      provider: 'local'
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/vite-bundle' }]

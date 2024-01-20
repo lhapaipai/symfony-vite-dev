@@ -24,7 +24,7 @@ module.exports = {
       }
     },
     {
-      files: ['src/**/*', '.vitepress/config.ts', '.vitepress/theme/**/*']
+      files: ['src/**/*', '.vitepress/*.ts', '.vitepress/*.js', '.vitepress/theme/**/*']
     }
   ]
 };

@@ -8,7 +8,8 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "lint": "eslint .vitepress ."
+    "lint": "eslint .vitepress .",
+    "build-graphs": "node .vitepress/build-graphs.js"
   },
   "keywords": [],
   "author": "Hugues Tavernier",

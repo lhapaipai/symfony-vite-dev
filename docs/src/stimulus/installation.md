@@ -8,63 +8,7 @@
 
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
 
-```mermaid
-flowchart TB
-  style virtual stroke-dasharray: 5 5;
-  style groupReact fill:#fffac7;
-  style groupUX fill:#fbfbfb, stroke-dasharray: 5 5;
-  style groupCustom fill:#fbfbfb, stroke-dasharray: 5 5;
-  classDef file fill:#fcf9d7, stroke:#dba726;
-  classDef package fill:#fff155, stroke:#dba726;
-  classDef virtualPackage fill:#fff155, stroke:#dba726, stroke-dasharray: 5 5;
-  classDef directory stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 5 5;
-  classDef rawFile stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 2 2;
-
-  bootstrap(bootstrap.js):::file
-  app(app.js):::file
-
-
-  subgraph groupCustom[Custom controllers]
-    customControllers>"./controllers/\*"]:::directory
-    welcome_controller(welcome_controller.js):::file
-    slideshow_controller(slideshow_controller.js):::file
-  end
-
-  subgraph groupUX[Stimulus Bundle with Symfony UX]
-    virtual(virtual:symfony/controllers):::virtualPackage
-
-    uxReact(symfony/ux-react):::package
-    uxChartjs(symfony/ux-chartjs):::package
-    uxDropzone(symfony/ux-dropzone):::package
-
-    controllers{{controllers.json}}:::rawFile
-
-    subgraph groupReact[React]
-
-    reactComponents>./react/controllers/\*]:::directory
-    counter(counter.jsx):::file
-    card(Card.jsx):::file
-    end
-  end
-
-  app -->|import| bootstrap
-
-  %% bootstrap(bootstrap.js):::file -->|"registerReactControllerComponents()"| reactComponents>./react/controllers/\*]
-
-
-
-  bootstrap --->|"startStimulusApp()"| virtual
-  bootstrap -->|"registerControllers()"| customControllers
-
-  customControllers ---> welcome_controller & slideshow_controller
-
-  virtual --> uxReact & uxChartjs & uxDropzone
-
-  controllers -->|transformed into| virtual
-  uxReact --> reactComponents
-  reactComponents --> counter & card
-
-```
+![Stimulus How does it works ?](/graphs/stimulus.svg)
 
 ```bash
 composer require symfony/stimulus-bundle
