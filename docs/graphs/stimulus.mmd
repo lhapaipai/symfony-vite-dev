@@ -1,48 +1,38 @@
-%%{ init: { 'flowchart': { 'curve': 'bumpY' } } }%%
-flowchart TD
-    classDef file fill:#fcf9d7, stroke:#dba726;
-    classDef service fill:#fff155, stroke:#dba726;
-    classDef principal fill:#f2d63e, stroke:#c3830e;
-    style twigFile fill:#fbfbfb, stroke-dasharray: 5 5;
-    style assets fill:#fbfbfb, stroke-dasharray: 5 5;
-    style browser fill:#fbfbfb, stroke-dasharray: 5 5;
-
-    subgraph twigFile ["contact.html.twig"]
-        twigFunctions("`vite_entry_script_tags('app')
-        vite_entry_link_tags('app')`"):::file
+flowchart TB
+  style virtual stroke-dasharray: 5 5;
+  style groupReact fill:#fffac7;
+  style groupUX fill:#fbfbfb, stroke-dasharray: 5 5;
+  style groupCustom fill:#fbfbfb, stroke-dasharray: 5 5;
+  classDef file fill:#fcf9d7, stroke:#dba726;
+  classDef package fill:#fff155, stroke:#dba726;
+  classDef virtualPackage fill:#fff155, stroke:#dba726, stroke-dasharray: 5 5;
+  classDef directory stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 5 5;
+  classDef rawFile stroke:#dba726, fill:#f2f2f2, stroke-dasharray: 2 2;
+  bootstrap(bootstrap.js):::file
+  app(app.js):::file
+  subgraph groupCustom[Custom controllers]
+    customControllers>"./controllers/\*"]:::directory
+    welcome_controller(welcome_controller.js):::file
+    slideshow_controller(slideshow_controller.js):::file
+  end
+  subgraph groupUX[Stimulus Bundle with Symfony UX]
+    virtual(virtual:symfony/controllers):::virtualPackage
+    uxReact(symfony/ux-react):::package
+    uxChartjs(symfony/ux-chartjs):::package
+    uxDropzone(symfony/ux-dropzone):::package
+    controllers{{controllers.json}}:::rawFile
+    subgraph groupReact[React]
+    reactComponents>./react/controllers/\*]:::directory
+    counter(counter.jsx):::file
+    card(Card.jsx):::file
     end
-
-    subgraph assets [assets]
-        cssFile("🎨 theme.scss"):::file
-        jsFile("📜 app.js"):::file
-    end
-
-    framework((("`Symfony framework
-    📦  **pentatrion/vite-bundle**`"))):::principal
-
-    entrypointsJson("✨ entrypoints.json"):::file
-
-    vite(("`⚡️Vite dev Server
-        📦  **vite-plugin-symfony**
-        listen **5173**`")):::service
-
-    symfonyWebServer(("`Symfony local web server
-        listen **8000**`")):::service
-
-    subgraph browser ["Browser localhost:8000/contact html page"]
-        direction TB
-        viteClientTag("&lt;script src=&quot;localhost:5173/build/@vite/client&quot; /&gt;"):::file
-        appTag("&lt;script src=&quot;localhost:5173/build/app.js&quot; /&gt;"):::file
-    end
-
-    framework --> symfonyWebServer -->|serve| browser
-    twigFunctions -->|resolve| framework
-
-    vite -->|⚙️ generate| entrypointsJson -->|use| framework
-
-    vite <-->|🚀 web socket
-    communicate events| browser
-    jsFile & cssFile <-->|🧐 watch modifications| vite
-
-    vite <-->|"🔥 HMR
-    replace file when source is modified"| appTag
+  end
+  app -->|import| bootstrap
+  %% bootstrap(bootstrap.js):::file -->|"registerReactControllerComponents()"| reactComponents>./react/controllers/\*]
+  bootstrap --->|"startStimulusApp()"| virtual
+  bootstrap -->|"registerControllers()"| customControllers
+  customControllers ---> welcome_controller & slideshow_controller
+  virtual --> uxReact & uxChartjs & uxDropzone
+  controllers -->|transformed into| virtual
+  uxReact --> reactComponents
+  reactComponents --> counter & card
