@@ -90,8 +90,8 @@ importers:
         specifier: ^0.8.1
         version: 0.8.1(vite@5.0.10)
       vite-plugin-symfony:
-        specifier: file:src/vite-plugin-symfony
-        version: file:src/vite-plugin-symfony(vite@5.0.10)
+        specifier: workspace:*
+        version: link:src/vite-plugin-symfony
       vue:
         specifier: ^3.3.13
         version: 3.3.13(typescript@5.2.2)
@@ -154,11 +154,7 @@ importers:
 
   playground/basic: {}
 
-  playground/basic-real:
-    dependencies:
-      vite-plugin-symfony:
-        specifier: ^6.0.0
-        version: link:../../src/vite-plugin-symfony
+  playground/basic-real: {}
 
   playground/basic-vite4:
     dependencies:
@@ -319,6 +315,8 @@ importers:
   playground/vite-only: {}
 
   playground/with-cdn: {}
+
+  playground/worker-mode: {}
 
   src/vite-plugin-symfony:
     dependencies:
@@ -9302,19 +9300,3 @@ packages:
     dependencies:
       '@hotwired/stimulus': 3.2.2
       vue: 3.3.13(typescript@5.2.2)
-
-  file:src/vite-plugin-symfony(vite@5.0.10):
-    resolution: {directory: src/vite-plugin-symfony, type: directory}
-    id: file:src/vite-plugin-symfony
-    name: vite-plugin-symfony
-    peerDependencies:
-      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
-    dependencies:
-      debug: 4.3.4
-      fast-glob: 3.3.2
-      picocolors: 1.0.0
-      sirv: 2.0.3
-      vite: 5.0.10(@types/node@20.10.5)(sass@1.69.5)(terser@5.26.0)
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
