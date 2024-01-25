@@ -129,7 +129,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           versions.push(colors.dim(`pentatrion/vite-bundle: `) + colors.bold(`v${bundleVersion[0]}`));
         }
         const versionStr = versions.length === 0 ? "" : versions.join(colors.dim(", "));
-        console.log(`  ${colors.green("➜")}  Vite ${colors.yellow("⚡️")}Symfony: ${versionStr}`);
+        console.log(`  ${colors.green("➜")}  Vite ${colors.yellow("⚡️")} Symfony: ${versionStr}`);
       };
 
       devServer.httpServer?.once("listening", () => {
