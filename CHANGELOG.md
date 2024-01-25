@@ -1,3 +1,8 @@
+## v6.3.4
+
+- Use Request::getUriForPath to build absolute URLs (@andyexeter)
+- Formatting fix in vite printUrls output (@andyexeter)
+
 ## v6.3.3
 
 - Fix dark mode issue with background

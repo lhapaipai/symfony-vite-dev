@@ -19,12 +19,6 @@ do
       && echo '    [ok]' || echo '    [failed]'
   fi
 
-  if [ $PLAYGROUND == "stimulus" ]
-  then
-    echo '  > hardcode-ux-assets'
-    "$SCRIPT_DIR/hardcode-ux-assets.sh"
-  fi
-
   echo '  > pnpm i'
   pnpm i 1> /dev/null \
     && echo '    [ok]' || echo '    [failed]'
