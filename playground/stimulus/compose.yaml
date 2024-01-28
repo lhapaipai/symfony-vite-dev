@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-###> symfony/mercure-bundle ###
+  ###> symfony/mercure-bundle ###
   mercure:
     image: dunglas/mercure
     restart: unless-stopped
@@ -11,7 +11,9 @@ services:
       MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
       # Set the URL of your Symfony project (without trailing slash!) as value of the cors_origins directive
       MERCURE_EXTRA_DIRECTIVES: |
-        cors_origins http://127.0.0.1:8000
+        cors_origins https://127.0.0.1:8000 http://127.0.0.1:8000
+    ports:
+      - "80"
     # Comment the following line to disable the development mode
     command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
     volumes:
@@ -20,7 +22,6 @@ services:
 ###< symfony/mercure-bundle ###
 
 volumes:
-###> symfony/mercure-bundle ###
+  ###> symfony/mercure-bundle ###
   mercure_data:
-  mercure_config:
-###< symfony/mercure-bundle ###
+  mercure_config: ###< symfony/mercure-bundle ###

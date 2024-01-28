@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!
+{% endblock %}
+
+{% block html_class %}page-notifier
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div data-controller="notifier" class="notifier-container">
+      <button data-action="click->notifier#notify">Notify !</button>
+    </div>
+
+    {{ stream_notifications(['/chat/symfony-vite']) }}
+  </div>
+{% endblock %}

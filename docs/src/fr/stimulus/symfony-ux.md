@@ -7,12 +7,13 @@
 | ux-chartjs        | ✅            | ux-swup           | ✅            |
 | ux-cropperjs      | ✅            | ux-toggle         | ✅            |
 | ux-dropzone       | ✅            | ux-translator     | ✅            |
-| ux-lazy           | ✅            | ux-turbo          | 🤯 Not Tested    |
+| ux-lazy           | ✅            | ux-turbo          | Pas encore testé (**) |
 | ux-live-component | ✅            | ux-twig           | ✅            |
-| ux-notify         | 🤯 Not Tested    | ux-typed          | ✅            |
+| ux-notify         | ✅            | ux-typed          | ✅            |
 | ux-react          | ✅ (*)        | ux-vue            | ✅ (*)        |
 
-(*) demande quelques modifications de code
+(*) demande quelques modifications au niveau des imports (voir ci-dessous)
+(**) en théorie il n'y a aucune raison que ce ne soit pas compatible, vos retours sont les bienvenus.
 
 ## Prérequis
 

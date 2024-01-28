@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Bridge\Mercure\MercureOptions;
+use Symfony\Component\Notifier\ChatterInterface;
+use Symfony\Component\Notifier\Message\ChatMessage;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
@@ -139,12 +142,25 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/notify', name: 'notify')]
-    public function notify(): Response
+    #[Route('/notifier', name: 'notifier')]
+    public function notifier(ChatterInterface $chatter): Response
     {
-        return $this->render('default/notify.html.twig', [
+        return $this->render('default/notifier.html.twig', [
             'currentPage' => 'notify',
         ]);
+    }
+
+    #[Route('/notify', name: 'notify')]
+    public function notify(ChatterInterface $chatter): Response
+    {
+        $message = (new ChatMessage(
+            'Symfony UX Notify!',
+            new MercureOptions(['/chat/symfony-vite'])
+        ))->transport('mercure');
+
+        $chatter->send($message);
+
+        return new Response('', Response::HTTP_NO_CONTENT);
     }
 
     #[Route('/toggle-password', name: 'toggle-password')]

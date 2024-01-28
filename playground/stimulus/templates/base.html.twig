@@ -2,52 +2,54 @@
 <!DOCTYPE html>
 <html class="{% block html_class %}{% endblock %}">
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>
+      {% block title %}Welcome!
+      {% endblock %}
+    </title>
     <link rel="icon" href="data:;base64,iBORw0KGgo=">
     {% block stylesheets %}
-    {{ vite_entry_link_tags('app') }}
-    {{ vite_entry_link_tags('theme') }}
+      {{ vite_entry_link_tags('app') }}
+      {{ vite_entry_link_tags('theme') }}
     {% endblock %}
 
     {% block javascripts %}
-    {{ vite_entry_script_tags('app', { dependency: 'react' }) }}
-    {{ vite_entry_script_tags('theme') }}
+      {{ vite_entry_script_tags('app', { dependency: 'react' }) }}
+      {{ vite_entry_script_tags('theme') }}
     {% endblock %}
-</head>
-{# {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] }) }} #}
-<body {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] }) }}>
+  </head>
+  <body {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] } ) }}>
     <nav id="nav">
-        <div class="navbar">
-            <div class="title">
-                <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg" /> Symfony & Vite
-            </div>
-            <div class="links">
-                <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
-
-                <a class="{{ currentPage == 'third-party' ? 'active' : '' }}" href="{{ path('third-party') }}">Third party</a>
-                <a class="{{ currentPage == 'autocomplete' ? 'active' : '' }}" href="{{ path('autocomplete') }}">Autocomplete</a>
-                <a class="{{ currentPage == 'chartjs' ? 'active' : '' }}" href="{{ path('chartjs') }}">Chart js</a>
-                <a class="{{ currentPage == 'cropperjs' ? 'active' : '' }}" href="{{ path('cropperjs') }}">Cropper js</a>
-                <a class="{{ currentPage == 'dropzone' ? 'active' : '' }}" href="{{ path('dropzone') }}">Dropzone</a>
-                <a class="{{ currentPage == 'lazy-image' ? 'active' : '' }}" href="{{ path('lazy-image') }}">Lazy image</a>
-                <a data-no-swup class="{{ currentPage == 'live-component' ? 'active' : '' }}" href="{{ path('live-component') }}">Live component</a>
-                {# <a class="{{ currentPage == 'notify' ? 'active' : '' }}" href="{{ path('notify') }}">Notify</a> #}
-                <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
-                <a data-no-swup class="{{ currentPage == 'translator' ? 'active' : '' }}" href="{{ path('translator') }}">Translator</a>
-                {# <a class="{{ currentPage == 'turbo' ? 'active' : '' }}" href="{{ path('turbo') }}">Turbo</a> #}
-                <a class="{{ currentPage == 'twig' ? 'active' : '' }}" href="{{ path('twig') }}">Twig</a>
-                <a class="{{ currentPage == 'typed' ? 'active' : '' }}" href="{{ path('typed') }}">Typed</a>
-                <a class="{{ currentPage == 'react' ? 'active' : '' }}" href="{{ path('react') }}">React</a>
-                <a class="{{ currentPage == 'svelte' ? 'active' : '' }}" href="{{ path('svelte') }}">Svelte</a>
-                <a class="{{ currentPage == 'vue' ? 'active' : '' }}" href="{{ path('vue') }}">Vue</a>
-            </div>
+      <div class="navbar">
+        <div class="title">
+          <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg"/>
+          Symfony & Vite
         </div>
-    </nav>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-</body>
+        <div class="links">
+          <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
 
-</html>
+          <a class="{{ currentPage == 'third-party' ? 'active' : '' }}" href="{{ path('third-party') }}">Third party</a>
+          <a class="{{ currentPage == 'autocomplete' ? 'active' : '' }}" href="{{ path('autocomplete') }}">Autocomplete</a>
+          <a class="{{ currentPage == 'chartjs' ? 'active' : '' }}" href="{{ path('chartjs') }}">Chart js</a>
+          <a class="{{ currentPage == 'cropperjs' ? 'active' : '' }}" href="{{ path('cropperjs') }}">Cropper js</a>
+          <a class="{{ currentPage == 'dropzone' ? 'active' : '' }}" href="{{ path('dropzone') }}">Dropzone</a>
+          <a class="{{ currentPage == 'lazy-image' ? 'active' : '' }}" href="{{ path('lazy-image') }}">Lazy image</a>
+          <a data-no-swup class="{{ currentPage == 'live-component' ? 'active' : '' }}" href="{{ path('live-component') }}">Live component</a>
+          <a class="{{ currentPage == 'notifier' ? 'active' : '' }}" href="{{ path('notifier') }}">Notifier</a>
+          <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
+          <a data-no-swup class="{{ currentPage == 'translator' ? 'active' : '' }}" href="{{ path('translator') }}">Translator</a>
+          {# <a class="{{ currentPage == 'turbo' ? 'active' : '' }}" href="{{ path('turbo') }}">Turbo</a> #}
+          <a class="{{ currentPage == 'twig' ? 'active' : '' }}" href="{{ path('twig') }}">Twig</a>
+          <a class="{{ currentPage == 'typed' ? 'active' : '' }}" href="{{ path('typed') }}">Typed</a>
+          <a class="{{ currentPage == 'react' ? 'active' : '' }}" href="{{ path('react') }}">React</a>
+          <a class="{{ currentPage == 'svelte' ? 'active' : '' }}" href="{{ path('svelte') }}">Svelte</a>
+          <a class="{{ currentPage == 'vue' ? 'active' : '' }}" href="{{ path('vue') }}">Vue</a>
+        </div>
+      </div>
+    </nav>
+    <div id="content"> {% block content %}{% endblock %}
+      </div>
+    </body>
+
+  </html>
