@@ -1,6 +1,8 @@
 ## next
 
 - fix vite-plugin-symfony support having externals dependencies.
+- increase vite-bundle php minimum compatibility to 8.0
+  no major version because the bundle was unusable with php 7.4 because of mixed type.
 
 ## v6.3.4
 
