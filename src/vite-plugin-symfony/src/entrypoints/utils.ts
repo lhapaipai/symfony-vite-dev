@@ -4,7 +4,7 @@ import path from "node:path";
 import type { AddressInfo } from "net";
 import { writeFileSync, rmSync, readdirSync } from "fs";
 import { join } from "path";
-import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
+import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions, ExternalOption } from "rollup";
 import { resolve, extname, relative } from "path";
 import { DevServerUrl, FileInfos, ParsedInputs, HashAlgorithm, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { BinaryLike, createHash } from "node:crypto";
@@ -245,3 +245,29 @@ export const getInputRelPath = (
   }
   return inputRelPath.replace(/\0/g, "");
 };
+
+/**
+ * vite/src/node/build.ts
+ */
+export function resolveUserExternal(
+  user: ExternalOption,
+  id: string,
+  parentId: string | undefined,
+  isResolved: boolean,
+): boolean | null | void {
+  if (typeof user === "function") {
+    return user(id, parentId, isResolved);
+  } else if (Array.isArray(user)) {
+    return user.some((test) => isExternal(id, test));
+  } else {
+    return isExternal(id, user);
+  }
+}
+
+function isExternal(id: string, test: string | RegExp) {
+  if (typeof test === "string") {
+    return id === test;
+  } else {
+    return test.test(id);
+  }
+}

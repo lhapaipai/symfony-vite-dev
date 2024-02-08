@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, test } from "vitest";
 import {
   getLegacyName,
   normalizePath,
@@ -9,6 +9,7 @@ import {
   parseVersionString,
   resolveDevServerUrl,
   isCssEntryPoint,
+  resolveUserExternal,
 } from "~/entrypoints/utils";
 import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
@@ -442,5 +443,59 @@ describe("isAncestorDir", () => {
   });
   it("unnormalized path relative to current directory: is not a subdirectory", () => {
     expect(isSubdirectory("/projects/vite-project", "./vite-project")).toBe(false);
+  });
+});
+
+describe("resolveUserExternal()", () => {
+  test.each([
+    {
+      external: ["leaflet"],
+      id: "leaflet",
+      expectedValue: true,
+    },
+    {
+      external: ["other", "leaflet"],
+      id: "leaflet",
+      expectedValue: true,
+    },
+    {
+      external: [/node_modules/, "leaflet"],
+      id: "leaflet",
+      expectedValue: true,
+    },
+    {
+      external: ["other"],
+      id: "leaflet",
+      expectedValue: false,
+    },
+    {
+      external: [],
+      id: "leaflet",
+      expectedValue: false,
+    },
+  ])("detect string as external dependency", ({ external, id, expectedValue }) => {
+    expect(resolveUserExternal(external, id, "root", false)).toBe(expectedValue);
+  });
+
+  test.each([
+    {
+      external: [/leaflet/],
+      id: "leaflet-draw",
+      expectedValue: true,
+    },
+  ])("detect regex as external dependency", ({ external, id, expectedValue }) => {
+    expect(resolveUserExternal(external, id, "root", false)).toBe(expectedValue);
+  });
+
+  test.each([
+    {
+      external: (id: string) => {
+        return id === "leaflet" ? true : false;
+      },
+      id: "leaflet",
+      expectedValue: true,
+    },
+  ])("detect callback as external dependency", ({ external, id, expectedValue }) => {
+    expect(resolveUserExternal(external, id, "root", false)).toBe(expectedValue);
   });
 });

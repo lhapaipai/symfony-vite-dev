@@ -11,7 +11,7 @@ services:
       MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
       # Set the URL of your Symfony project (without trailing slash!) as value of the cors_origins directive
       MERCURE_EXTRA_DIRECTIVES: |
-        cors_origins https://127.0.0.1:8000 http://127.0.0.1:8000
+        cors_origins *
     ports:
       - "80"
     # Comment the following line to disable the development mode

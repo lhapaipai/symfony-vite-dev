@@ -1,6 +1,6 @@
 import process from "node:process";
 import type { ResolvedConfig } from "vite";
-import { getLegacyName, prepareRollupInputs } from "./utils";
+import { getLegacyName, prepareRollupInputs, resolveUserExternal } from "./utils";
 import { EntryPoints, EntryPoint, GeneratedFiles, FileInfos, FilesMetadatas } from "../types";
 import { getOutputPath } from "./pathMapping";
 
@@ -89,10 +89,24 @@ export const resolveEntrypoint = (
       if (resolvedImportOutputRelPaths.indexOf(importOutputRelPath) !== -1) {
         continue;
       }
+
       resolvedImportOutputRelPaths.push(importOutputRelPath);
 
       const importFileInfos = generatedFiles[importOutputRelPath];
       if (!importFileInfos) {
+        const isExternal = config.build.rollupOptions.external
+          ? resolveUserExternal(
+              config.build.rollupOptions.external,
+              importOutputRelPath, // use URL as id since id could not be resolved
+              fileInfos.inputRelPath,
+              false,
+            )
+          : false;
+
+        if (isExternal) {
+          continue;
+        }
+
         throw new Error(`Unable to find ${importOutputRelPath}`);
       }
 

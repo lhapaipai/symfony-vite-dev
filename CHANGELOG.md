@@ -1,3 +1,7 @@
+## next
+
+- fix vite-plugin-symfony support having externals dependencies.
+
 ## v6.3.4
 
 - Use Request::getUriForPath to build absolute URLs (@andyexeter)

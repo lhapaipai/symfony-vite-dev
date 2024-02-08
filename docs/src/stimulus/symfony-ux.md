@@ -7,7 +7,7 @@
 | ux-chartjs        | ✅            | ux-swup           | ✅            |
 | ux-cropperjs      | ✅            | ux-toggle         | ✅            |
 | ux-dropzone       | ✅            | ux-translator     | ✅            |
-| ux-lazy           | ✅            | ux-turbo          | Not yes Tested (**) |
+| ux-lazy           | ✅            | ux-turbo          | Not yet Tested (**) |
 | ux-live-component | ✅            | ux-twig           | ✅            |
 | ux-notify         | ✅            | ux-typed          | ✅            |
 | ux-react          | ✅ (*)        | ux-vue            | ✅ (*)        |
