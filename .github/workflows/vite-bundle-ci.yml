@@ -16,8 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # php-versions: [ '7.4', '8.0', '8.1', '8.2' ]
-        php-versions: [ '8.2' ]
+        php-versions: [ '8.0', '8.1', '8.2', '8.3' ]
 
     steps:
       - name: Checkout
@@ -48,12 +47,12 @@ jobs:
         run: composer install --no-interaction --no-ansi
 
       - name: Validate coding standards
-        if: matrix.php-versions == 8.2
+        if: matrix.php-versions == 8.3
         run: php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose --diff --dry-run --stop-on-violation --using-cache=no
 
       - name: Static analysis
         run: php vendor/bin/phpstan analyse --configuration=phpstan.neon --verbose
 
       - name: Tests
-        if: matrix.php-versions == 8.2
+        if: matrix.php-versions == 8.3
         run: php bin/phpunit

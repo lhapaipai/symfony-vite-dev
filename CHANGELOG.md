@@ -1,4 +1,8 @@
-## next
+## v6.3.6
+
+- fix crossorigin attribute to Link header for scripts with type=module (@andyexeter)
+
+## v6.3.5
 
 - fix vite-plugin-symfony support having externals dependencies.
 - increase vite-bundle php minimum compatibility to 8.0
