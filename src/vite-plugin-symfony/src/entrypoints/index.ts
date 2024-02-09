@@ -113,7 +113,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       viteConfig = config as ResolvedConfigWithOrderablePlugins;
 
       if (pluginOptions.enforcePluginOrderingPosition) {
-        const pluginPos = viteConfig.plugins.findIndex((plugin) => plugin.name === "symfony");
+        const pluginPos = viteConfig.plugins.findIndex((plugin) => plugin.name === "symfony-entrypoints");
         const symfonyPlugin = viteConfig.plugins.splice(pluginPos, 1);
 
         const manifestPos = viteConfig.plugins.findIndex((plugin) => plugin.name === "vite:reporter");

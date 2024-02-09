@@ -1,7 +1,7 @@
 ## v6.4.0
 
 - vite-plugin-symfony : add exposedEnvVars option
-
+- vite-plugin-symfony : fix enforcePluginOrderingPosition https://github.com/lhapaipai/vite-bundle/issues/80
 ## v6.3.6
 
 - fix crossorigin attribute to Link header for scripts with type=module (@andyexeter)
