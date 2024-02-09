@@ -210,6 +210,13 @@ export type VitePluginSymfonyEntrypointsOptions = {
    * @default true
    */
   enforceServerOriginAfterListening: boolean;
+
+  /**
+   * For security reasons only variables prefixed with `VITE_` from your .env files are exposed.
+   * In some cases you will want to be able to access other variables. Just add them here.
+   * @default ["APP_ENV"]
+   */
+  exposedEnvVars: string[];
 };
 
 export type VitePluginSymfonyStimulusOptions = {

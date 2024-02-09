@@ -49,17 +49,18 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
   }
 
   return {
-    originOverride: userConfig.originOverride ?? null,
     buildDirectory: userConfig.buildDirectory,
+    debug: userConfig.debug === true,
+    enforcePluginOrderingPosition: userConfig.enforcePluginOrderingPosition === false ? false : true,
+    enforceServerOriginAfterListening: userConfig.enforceServerOriginAfterListening === false ? false : true,
+    exposedEnvVars: userConfig.exposedEnvVars ?? ["APP_ENV"],
+    originOverride: userConfig.originOverride ?? null,
     publicDirectory: userConfig.publicDirectory,
     refresh: userConfig.refresh ?? false,
     servePublic: userConfig.servePublic,
-    debug: userConfig.debug === true,
-    viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
-    enforcePluginOrderingPosition: userConfig.enforcePluginOrderingPosition === false ? false : true,
-    enforceServerOriginAfterListening: userConfig.enforceServerOriginAfterListening === false ? false : true,
     stimulus: userConfig.stimulus,
+    viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
   };
 }
 

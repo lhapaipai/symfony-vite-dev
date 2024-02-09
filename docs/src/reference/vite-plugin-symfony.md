@@ -34,6 +34,31 @@ This turns out to be problematic when used with Symfony because it is the Symfon
 
 If you encounter problems displaying resources because you are in specific environments (Docker for example), you may need to deactivate this option.
 
+## exposedEnvVars
+
+- **Type:** `string[]`
+- **Default value:** `["APP_ENV"]`
+
+By default, Vite exposes a number of environment variables through the `import.meta.env` object: `MODE`, `BASE_URL`, `PROD`, `DEV`, `SSR`.
+
+It also reads `.env` / `.env.local` / `.env.[mode]` / `.env.[mode].local` files and extracts the associated environment variables.
+
+For security reasons only variables prefixed with `VITE_` are exposed.
+In some cases you will want to be able to access other variables. Just add them here.
+
+:::warning
+Be careful to distinguish between these 3 extracted environment variables.
+
+- `import.meta.env.PROD`: {boolean}  whether the app is running in production (running the dev server with NODE_ENV='production' or running an app built with NODE_ENV='production')
+- `import.meta.env.DEV`: {boolean} whether the app is running in development (always the opposite of `import.meta.env.PROD`)
+- `import.meta.env.APP_ENV`: computed value from files `.env`, `.env.local`, etc...
+
+Finally in the same way, pay attention to the interpretation of the `.env.[mode]` files where `mode` will be evaluated according to `NODE_ENV` by vite and according to `APP_ENV` by Symfony. So it's better to abstain 🤯. Vite documentation [Env Variables and Modes](https://vitejs.dev/guide/env-and-mode.html).
+:::
+
+:::info
+There is also the `envPrefix` option for Vite. But it is less flexible: [Vite Shared options: envPrefix](https://vitejs.dev/config/shared-options.html#envprefix).
+:::
 
 ## originOverride
 

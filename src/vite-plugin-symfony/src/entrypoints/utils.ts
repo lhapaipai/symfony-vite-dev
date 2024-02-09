@@ -1,4 +1,4 @@
-import { type ResolvedConfig } from "vite";
+import { loadEnv, type ResolvedConfig } from "vite";
 import os from "node:os";
 import path from "node:path";
 import type { AddressInfo } from "net";
@@ -270,4 +270,20 @@ function isExternal(id: string, test: string | RegExp) {
   } else {
     return test.test(id);
   }
+}
+
+export function extractExtraEnvVars(
+  mode: string,
+  envDir: string,
+  exposedEnvVars: string[],
+  define?: Record<string, string>,
+) {
+  const allVars = loadEnv(mode, envDir, "");
+  const availableKeys = Object.keys(allVars).filter((key) => exposedEnvVars.indexOf(key) !== -1);
+  const extraDefine = Object.fromEntries(availableKeys.map((key) => [key, JSON.stringify(allVars[key])]));
+
+  return {
+    ...extraDefine,
+    ...(define ?? {}),
+  };
 }

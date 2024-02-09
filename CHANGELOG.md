@@ -1,3 +1,7 @@
+## v6.4.0
+
+- vite-plugin-symfony : add exposedEnvVars option
+
 ## v6.3.6
 
 - fix crossorigin attribute to Link header for scripts with type=module (@andyexeter)

@@ -10,6 +10,9 @@ describe("resolvePluginOptions", () => {
         "debug": false,
         "enforcePluginOrderingPosition": true,
         "enforceServerOriginAfterListening": true,
+        "exposedEnvVars": [
+          "APP_ENV",
+        ],
         "originOverride": null,
         "publicDirectory": undefined,
         "refresh": false,
@@ -33,6 +36,9 @@ describe("resolvePluginOptions", () => {
         "debug": false,
         "enforcePluginOrderingPosition": true,
         "enforceServerOriginAfterListening": true,
+        "exposedEnvVars": [
+          "APP_ENV",
+        ],
         "originOverride": null,
         "publicDirectory": "www",
         "refresh": false,

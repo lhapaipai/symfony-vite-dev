@@ -25,6 +25,7 @@ import {
   getInputRelPath,
   parseVersionString,
   isSubdirectory,
+  extractExtraEnvVars,
 } from "./utils";
 import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../pluginOptions";
 
@@ -73,8 +74,12 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
   return {
     name: "symfony-entrypoints",
     enforce: "post",
-    config(userConfig) {
+    config(userConfig, { mode }) {
       const root = userConfig.root ? resolve(userConfig.root) : process.cwd();
+
+      const envDir = userConfig.envDir ? resolve(root, userConfig.envDir) : root;
+
+      const extraEnvVars = extractExtraEnvVars(mode, envDir, pluginOptions.exposedEnvVars, userConfig.define);
 
       if (userConfig.build.rollupOptions.input instanceof Array) {
         logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"));
@@ -88,6 +93,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           manifest: true,
           outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
         },
+        define: extraEnvVars,
         optimizeDeps: {
           //Set to true to force dependency pre-bundling.
           force: true,

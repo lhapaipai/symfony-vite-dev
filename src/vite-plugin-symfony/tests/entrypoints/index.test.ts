@@ -357,7 +357,7 @@ describe("vitePluginSymfonyEntrypoints", () => {
 
   it("loads correctly without root user config option", ({ expect }) => {
     const pluginInstance = plugin({ debug: true }) as any;
-    const config = pluginInstance.config(viteUserConfigNoRoot);
+    const config = pluginInstance.config(viteUserConfigNoRoot, { mode: "development" });
 
     expect(config).toEqual({
       base: "/build/",
@@ -366,6 +366,7 @@ describe("vitePluginSymfonyEntrypoints", () => {
         manifest: true,
         outDir: "public/build",
       },
+      define: {},
       optimizeDeps: {
         force: true,
       },
