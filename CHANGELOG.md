@@ -1,3 +1,8 @@
+## v6.4.1
+
+- fix import.meta in cjs env
+- vite-plugin-symfony : fix Displaying the statuses of Stimulus controllers in production https://github.com/lhapaipai/vite-plugin-symfony/issues/38
+
 ## v6.4.0
 
 - vite-plugin-symfony : add exposedEnvVars option

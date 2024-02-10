@@ -16,17 +16,19 @@ describe("extractExtraEnvVars()", () => {
     const result = extractExtraEnvVars("development", "/my-project", ["APP_ENV"], { __FOO__: '"bar"' });
     expect(result).toMatchInlineSnapshot(`
       {
-        "APP_ENV": ""prod"",
         "__FOO__": ""bar"",
+        "import.meta.env.APP_ENV": ""prod"",
       }
     `);
   });
 
   test("explicitly defined env vars takes precedence", () => {
-    const result = extractExtraEnvVars("development", "/my-project", ["APP_ENV"], { APP_ENV: '"PRIORITY"' });
+    const result = extractExtraEnvVars("development", "/my-project", ["APP_ENV"], {
+      "import.meta.env.APP_ENV": '"PRIORITY"',
+    });
     expect(result).toMatchInlineSnapshot(`
       {
-        "APP_ENV": ""PRIORITY"",
+        "import.meta.env.APP_ENV": ""PRIORITY"",
       }
     `);
   });

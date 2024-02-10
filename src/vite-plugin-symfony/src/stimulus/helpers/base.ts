@@ -32,7 +32,12 @@ export function getLazyController(lazyControllerModule: LazyModule<ControllerMod
 
 export function startStimulusApp() {
   const app = Application.start();
-  app.debug = true;
+
+  try {
+    app.debug = import.meta ? import.meta.env.APP_ENV === "dev" : false;
+  } catch (e) {
+    // silently catch error warning for tsup cjs build
+  }
 
   for (const controllerName in thirdPartyControllers) {
     // eslint-disable-next-line no-prototype-builtins

@@ -280,7 +280,9 @@ export function extractExtraEnvVars(
 ) {
   const allVars = loadEnv(mode, envDir, "");
   const availableKeys = Object.keys(allVars).filter((key) => exposedEnvVars.indexOf(key) !== -1);
-  const extraDefine = Object.fromEntries(availableKeys.map((key) => [key, JSON.stringify(allVars[key])]));
+  const extraDefine = Object.fromEntries(
+    availableKeys.map((key) => [`import.meta.env.${key}`, JSON.stringify(allVars[key])]),
+  );
 
   return {
     ...extraDefine,
