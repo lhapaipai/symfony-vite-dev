@@ -176,11 +176,12 @@ export default defineConfig({
 });
 ```
 
-> [!NOTE]  
-> If you get TLS related errors when launching the dev server, this might be caused by an old symfony-cli version/node <17 version combination.
-> To fix this, you can either:
-> - prepend `NODE_OPTIONS=--openssl-legacy-provider` to your `dev` npm script
-> - delete your current certificate and restart your server ([full details here](https://github.com/symfony/symfony-docs/pull/19369))
+::: tip
+If you get TLS related errors when launching the dev server, this might be caused by an old symfony-cli version/node <17 version combination.
+To fix this, you can either:
+ - prepend `NODE_OPTIONS=--openssl-legacy-provider` to your `dev` npm script
+ - delete your current certificate and restart your server ([full details here](https://github.com/symfony/symfony-docs/pull/19369))
+:::
 
 ### Generate custom certificates
 
