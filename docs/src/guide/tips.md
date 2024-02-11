@@ -144,7 +144,7 @@ export default defineConfig({
 
 ## https / http in Development 🔒
 
-Your Vite dev server can cause unwanted reload if used in http and your Symfony application uses https (probably due to invalid certificates ). Configuration is easier if you develop your application without https.
+Your Vite dev server can cause unwanted reload (and mixed content warnings) if used in http and your Symfony application uses https (probably due to invalid certificates). Configuration is easier if you develop your application without https.
 
 ```bash
 npm run dev
@@ -153,14 +153,42 @@ symfony serve --no-tls
 
 browse : `http://127.0.0.1:8000`
 
-if you still want to use https you will need to generate certificates for your Vite dev server.
+If you still want to use https, you can use one of the two options below.
 
-you can use mkcert : https://github.com/FiloSottile/mkcert
+### Use symfony cli certificate
+
+First, [enable symfony-cli TLS](https://symfony.com/doc/current/setup/symfony_server.html#enabling-tls) if you haven't done it yet.
+
+```js
+// vite.config.js
+import fs from "fs";
+import { join } from 'node:path';
+import { homedir } from 'node:os';
+
+export default defineConfig({
+    // ...
+    server: {
+        https: {
+            pfx: join(homedir(), '.symfony5/certs/default.p12'),
+        },
+        cors: true
+    },
+});
+```
+
+> [!NOTE]  
+> If you get TLS related errors when launching the dev server, this might be caused by an old symfony-cli version/node <17 version combination.
+> To fix this, you can either:
+> - prepend `NODE_OPTIONS=--openssl-legacy-provider` to your `dev` npm script
+> - delete your current certificate and restart your server ([full details here](https://github.com/symfony/symfony-docs/pull/19369))
+
+### Generate custom certificates
+
+With [mkcert](https://github.com/FiloSottile/mkcert)
 
 ```bash
 mkcert -install
 mkcert -key-file certs/vite.key.pem -cert-file certs/vite.crt.pem localhost 127.0.0.1
-
 ```
 
 ```js
