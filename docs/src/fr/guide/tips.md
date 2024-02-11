@@ -141,7 +141,7 @@ export default defineConfig({
 
 ## https / http en développement 🔒
 
-Votre serveur de développement Vite peut provoquer un rechargement indésirable s'il est utilisé en http alors que votre application Symfony utilise https (probablement en raison de certificats invalides). La configuration est plus facile si vous développez votre application sans https.
+Votre serveur de développement Vite peut provoquer un rechargement indésirable  (et des alertes de contenu mixte) s'il est utilisé en http alors que votre application Symfony utilise https (probablement en raison de certificats invalides). La configuration est plus facile si vous développez votre application sans https.
 
 
 ```bash
@@ -151,7 +151,40 @@ symfony serve --no-tls
 
 rendez-vous alors à cette adresse : `http://127.0.0.1:8000`
 
-si vous souhaitez toujours utiliser https, vous devrez générer des certificats pour votre serveur de développement Vite.
+si vous souhaitez toujours utiliser https, vous pouvez utiliser une des deux méthodes ci-dessous.
+
+### Utiliser le certificat de Symfony cli
+
+Tout d'abord, [activez symfony-cli TLS](https://symfony.com/doc/current/setup/symfony_server.html#enabling-tls) si vous ne l'avez pas encore fait.
+
+```js
+// vite.config.js
+import fs from "fs";
+import { join } from 'node:path';
+import { homedir } from 'node:os';
+
+export default defineConfig({
+    // ...
+    server: {
+        https: {
+            pfx: join(homedir(), '.symfony5/certs/default.p12'),
+        },
+        cors: true
+    },
+});
+```
+
+::: tip
+Si vous obtenez des erreurs liées à TLS lors du lancement du serveur de développement, cela peut être dû à une ancienne version de symfony-cli/node <17.
+
+Pour résoudre ce problème, vous pouvez soit :
+  - ajoutez `NODE_OPTIONS=--openssl-legacy-provider` à votre script npm `dev`
+  - supprimez votre certificat actuel et redémarrez votre serveur ([tous les détails ici](https://github.com/symfony/symfony-docs/pull/19369))
+:::
+
+### Générer des certificats personnalisés
+
+Avec [mkcert](https://github.com/FiloSottile/mkcert)
 
 vous pouvez utiliser mkcert : https://github.com/FiloSottile/mkcert
 

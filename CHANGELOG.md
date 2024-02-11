@@ -1,3 +1,7 @@
+## next
+
+- doc add https tip with symfony cli certificate. (@nlemoine)
+
 ## v6.4.1
 
 - fix import.meta in cjs env
