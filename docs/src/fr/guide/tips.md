@@ -186,8 +186,6 @@ Pour résoudre ce problème, vous pouvez soit :
 
 Avec [mkcert](https://github.com/FiloSottile/mkcert)
 
-vous pouvez utiliser mkcert : https://github.com/FiloSottile/mkcert
-
 ```bash
 mkcert -install
 mkcert -key-file certs/vite.key.pem -cert-file certs/vite.crt.pem localhost 127.0.0.1
