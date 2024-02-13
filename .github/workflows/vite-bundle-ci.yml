@@ -51,7 +51,14 @@ jobs:
         run: php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose --diff --dry-run --stop-on-violation --using-cache=no
 
       - name: Static analysis
-        run: php vendor/bin/phpstan analyse --configuration=phpstan.neon --verbose
+        env:
+            PHP_VERSION: ${{ matrix.php-versions }}
+        run: |
+          config_file=phpstan.neon
+          if [ "$PHP_VERSION" = "8.0" ]; then
+            config_file=phpstan.php80.neon
+          fi
+          php vendor/bin/phpstan analyse --configuration=$config_file --verbose
 
       - name: Tests
         if: matrix.php-versions == 8.3
