@@ -1,7 +1,19 @@
 root = true
 
+[*]
+indent_size = 2
+
 [*.json]
 indent_size = 4
 
 [*.{yaml,yml}]
+indent_size = 4
+
+[*.php]
+indent_size = 4
+
+[*.{ts,js,tsx,jsx}]
+indent_size = 2
+
+[*.twig]
 indent_size = 4

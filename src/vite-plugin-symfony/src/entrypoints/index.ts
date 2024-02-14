@@ -1,4 +1,4 @@
-import { resolve, join, relative, dirname } from "node:path";
+import path, { resolve, join, relative, dirname } from "node:path";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import glob from "fast-glob";
@@ -26,6 +26,8 @@ import {
   parseVersionString,
   isSubdirectory,
   extractExtraEnvVars,
+  INFO_PUBLIC_PATH,
+  normalizeConfig,
 } from "./utils";
 import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../pluginOptions";
 
@@ -202,9 +204,27 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         });
       }
 
+      devServer.middlewares.use(function symfonyInternalsMiddleware(req, res, next) {
+        if (req.url === "/" || req.url === viteConfig.base) {
+          res.statusCode = 404;
+          res.end(readFileSync(join(pluginDir, "static/dev-server-404.html")));
+          return;
+        }
+
+        if (req.url === path.posix.join(viteConfig.base, INFO_PUBLIC_PATH)) {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+
+          res.end(normalizeConfig(viteConfig));
+          return;
+        }
+
+        return next();
+      });
+
+      // inspired by https://github.com/vitejs/vite
+      // file: packages/vite/src/node/server/middlewares/static.ts
       if (pluginOptions.servePublic !== false) {
-        // inspired by https://github.com/vitejs/vite
-        // file: packages/vite/src/node/server/middlewares/static.ts
         const serve = sirv(resolvePublicDir(pluginOptions), {
           dev: true,
           etag: true,
@@ -222,17 +242,14 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
             res.setHeader("Access-Control-Allow-Origin", "*");
           },
         });
-        devServer.middlewares.use(function viteServePublicMiddleware(req, res, next) {
-          if (req.url === "/" || req.url === "/build/") {
-            res.statusCode = 404;
-            res.end(readFileSync(join(pluginDir, "static/dev-server-404.html")));
-            return;
-          }
 
+        devServer.middlewares.use(function viteServePublicMiddleware(req, res, next) {
           // skip import request and internal requests `/@fs/ /@vite-client` etc...
           if (isImportRequest(req.url!) || isInternalRequest(req.url!)) {
             return next();
           }
+
+          // only if servePublic is enabled
           serve(req, res, next);
         });
       }

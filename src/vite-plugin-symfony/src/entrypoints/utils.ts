@@ -1,4 +1,4 @@
-import { loadEnv, type ResolvedConfig } from "vite";
+import { loadEnv, UserConfig, type ResolvedConfig } from "vite";
 import os from "node:os";
 import path from "node:path";
 import type { AddressInfo } from "net";
@@ -70,6 +70,8 @@ export const emptyDir = (dir: string) => {
     rmSync(join(dir, file), { recursive: true });
   }
 };
+
+export const INFO_PUBLIC_PATH = "/@vite/info";
 
 /* not imported from vite because we don't want vite in package.json dependencies */
 const FS_PREFIX = `/@fs/`;
@@ -288,4 +290,18 @@ export function extractExtraEnvVars(
     ...extraDefine,
     ...(define ?? {}),
   };
+}
+
+export function normalizeConfig(config: ResolvedConfig) {
+  const result = JSON.stringify(config, function (k, v) {
+    if (k === "plugins" && Array.isArray(v)) {
+      return v.filter((v) => v.name).map((v) => v.name);
+    }
+    if (typeof v === "function") {
+      return undefined;
+    }
+    return v;
+  });
+
+  return result;
 }
