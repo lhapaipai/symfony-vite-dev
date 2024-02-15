@@ -21,16 +21,12 @@ export type FileMetadatas = {
 };
 
 export type EntryPointsFile = {
-  viteServer:
-    | {
-        origin: string;
-        base: string;
-      }
-    | false;
+  base: string;
   entryPoints: EntryPoints;
-  assets: StringMapping;
   legacy: boolean;
   metadatas: FileMetadatas;
+  version: [string, number, number, number];
+  viteServer: string | null;
 };
 
 export type FilesMetadatas = {
@@ -70,12 +66,13 @@ export type EntryFilesMapping = {
 export type ManifestEntry = {
   file: string;
   src?: string;
+  isDynamicEntry?: boolean;
   isEntry?: boolean;
   imports?: string[];
   css?: string[];
 };
 
-export type Manifest = {
+export type ManifestFile = {
   [k: string]: ManifestEntry;
 };
 
