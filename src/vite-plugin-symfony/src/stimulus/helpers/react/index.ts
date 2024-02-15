@@ -9,7 +9,8 @@ export function registerReactControllerComponents(
   reactImportedModules = { ...reactImportedModules, ...modules };
 
   window.resolveReactComponent = (name: string): ImportedModule<ReactModule> => {
-    const reactModule = reactImportedModules[`${controllersDir}/${name}.jsx`] || reactImportedModules[`${controllersDir}/${name}.tsx`];
+    const reactModule =
+      reactImportedModules[`${controllersDir}/${name}.jsx`] || reactImportedModules[`${controllersDir}/${name}.tsx`];
     if (typeof reactModule === "undefined") {
       const possibleValues = Object.keys(reactImportedModules).map((key) =>
         key.replace(`${controllersDir}/`, "").replace(".jsx", "").replace(".tsx", ""),
