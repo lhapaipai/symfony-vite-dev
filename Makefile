@@ -16,3 +16,15 @@ ci-cd:
 tests: ## run vite-bundle/vite-plugin-symfony tests
 	cd src/vite-bundle && ./bin/phpunit
 	cd src/vite-plugin-symfony && pnpm run test-run
+
+phpstan-82:
+	cd src/vite-bundle && \
+		rm -r vendor/ composer.lock && \
+		php8.2 /usr/local/bin/composer install && \
+		composer run phpstan-82
+
+phpstan-80:
+	cd src/vite-bundle && \
+		rm -r vendor/ composer.lock && \
+		php8.0 /usr/local/bin/composer install && \
+		composer run phpstan-80

@@ -1,3 +1,4 @@
 {
   "php-cs-fixer.executablePath": "${workspaceFolder}/bin/php-cs-fixer",
+  "phpstan.rootDir": "src/vite-bundle"
 }

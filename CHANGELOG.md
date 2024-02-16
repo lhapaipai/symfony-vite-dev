@@ -1,6 +1,11 @@
-## next
+## v6.4.3
+
+- vite-bundle : fix deprecation warning with `configs` key in multiple config.
+
+## v6.4.2
 
 - doc add https tip with symfony cli certificate. (@nlemoine)
+- fixed symfony/ux-react inability to load tsx components (@vladcos)
 
 ## v6.4.1
 
