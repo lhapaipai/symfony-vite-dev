@@ -13,7 +13,7 @@
 
 # Vite plugin Symfony
 
-A Vite plugin to integrate easily Vite in your Symfony application..
+A Vite plugin to easily integrate Vite into your Symfony application.
 
 - create a `entrypoints.json` file inside your build directory with your js/css/preload dependencies.
 - reload your browser when you update your twig files
