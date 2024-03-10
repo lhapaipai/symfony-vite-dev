@@ -15,7 +15,8 @@ export default defineConfig({
     reactPlugin(),
     symfonyPlugin({
       debug: false,
-      servePublic: false
+      servePublic: false,
+      enforceServerOriginAfterListening: false
     }),
   ],
 
