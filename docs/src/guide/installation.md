@@ -25,7 +25,7 @@ composer require --dev symfony/maker-bundle
 
 If you come from Webpack Encore, check the [migration](/extra/migration-webpack-encore) documentation before starting.
 
-Install the bundle and the recipe associated :
+Install the bundle and the associated recipe:
 
 ```bash
 composer require pentatrion/vite-bundle
@@ -35,7 +35,7 @@ composer require pentatrion/vite-bundle
 # (defaults to n): y
 ```
 
-if you already have a `package.json` in your project before the installation of the bundle, the recipe will have kept your file without modifying it, so you will need to update it by referring to the [package.json](https://github.com/lhapaipai/vite-bundle/blob/main/install/package.json) reference file (sections `scripts` and `devDependencies`).
+If you already have a `package.json` in your project before the installation of the bundle, the recipe will have kept your file without modifying it, so you will need to update it by referring to the [package.json](https://github.com/lhapaipai/vite-bundle/blob/main/install/package.json) reference file (sections `scripts` and `devDependencies`).
 
 ```bash
 # install your js dependencies (vite and vite-plugin-symfony)

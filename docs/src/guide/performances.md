@@ -13,7 +13,7 @@ pentatrion_vite:
 ```
 
 
-with a configuration like this for example:
+With a configuration like this for example:
 
 ```js
 // vite.config.js
@@ -57,7 +57,6 @@ createApp(App).mount('#app')
 The preload option is only effective when you have launched a `vite build`.
 
 This is how your application will behave depending on the `preload` option you choose.
-
 
 With the `none` option:
 

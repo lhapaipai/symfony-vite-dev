@@ -67,7 +67,7 @@ By following this configuration your `public/build/entrypoints.json` file will b
 }
 ```
 
-You will therefore be able to deploy the contents of your `public/build` folder on your CDN.
+You will then be able to deploy the contents of your `public/build` folder on your CDN.
 
 ::: warning
 The file generation step must always be performed on your server because it is the `public/build/entrypoints.json` file which is hosted on your site and not the `http://cdn.your-cdn-provider.com/entrypoints.json` file which will be used for integrity hashes.

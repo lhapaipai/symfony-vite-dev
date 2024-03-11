@@ -3,14 +3,14 @@
 
 If you want to install the bundle without the community recipe, check the [manual installation](/extra/manual-installation.html).
 
-## CSS files as entrypoint
+## CSS file entrypoints
 
-This section talk about FOUC (Flash of unstyled content) for development only. Normally this phenomenon should not occur after a build process.
+This section talks about FOUC (Flash of Unstyled Content) in development mode only. This phenomenon should not occur in production builds.
 
-By default if you import your css files from js entry point, the vite dev server create only one entrypoint (`<script src="http://localhost:5173/build/assets/app.js" type="module"></script>`) for your js and css files. Your css content will be loaded after. This result to a period of time when the content of the page will not be styled. It can be boring.
+By default, if you import your css files from a js entry point, the vite dev server creates only one entrypoint (`<script src="http://localhost:5173/build/assets/app.js" type="module"></script>`) for your js and css files. Your css content will be loaded after. This results in a small period of time where the content of the page will not be styled.
 
-You can however provide a css/scss/... file as entrypoint and it will be directly inserted as a link tag `<link rel="stylesheet" href="http://localhost:5173/build/assets/theme.scss">`.
-In this way your browser will wait for the loading of your `theme.scss` file before rendering the page.
+You can however provide a css/scss/... file as an entrypoint and it will be directly inserted as a link tag `<link rel="stylesheet" href="http://localhost:5173/build/assets/theme.scss">`.
+This way, your browser will wait for the loading of your `theme.scss` file before rendering the page.
 
 ```js
 export default defineConfig({
@@ -26,7 +26,7 @@ export default defineConfig({
 ```
 
 ::: tip
-still add the two Twig functions vite_entry_link_tags / vite_entry_script_tags
+Make sure to still add the two Twig functions vite_entry_link_tags / vite_entry_script_tags
 even if the entry point is a css file because in development mode Vite will need to insert its js code to activate the HMR.
 :::
 
@@ -70,14 +70,13 @@ docker run
 // vite.config.js
 export default defineConfig({
     server: {
-        // nous avons besoin que vite écoute sur toutes les interfaces
+        // Required to listen on all interfaces
         host: '0.0.0.0'
     },
     plugins: [
         symfonyPlugin({
-            // comme nous avons spécifié un `server.host` = 0.0.0.
-            // nous devons explicitement nommer le server host name
-            // à utiliser.
+            // as we set `server.host` to 0.0.0.0
+            // we must explicitly set the server host name
             viteDevServerHostname: 'localhost'
         }),
     ],
@@ -99,20 +98,21 @@ You can learn more by following this [Github discussion](https://github.com/lhap
 
 ## Dependency Pre-Bundling 🏃
 
-Initially in a Vite project, `index.html` is the entry point to your application. When you run your dev serve, Vite will crawl your source code and automatically discover dependency imports.
+In a standard Vite project, `index.html` is the entry point to the application. When you run dev serve, Vite will crawl your source code and automatically discover dependency imports.
 
-Because we don't have any `index.html`, Vite can't do this Pre-bundling step when he starts but when you browse a page where he finds a package he does not already have cached. Vite will re-run the dep bundling process and reload the page.
+Because we don't have an `index.html` in Symfony projects, Vite can't do this pre-bundling step when it starts.
+This means when you browse a page where it finds a package it does not already have cached, Vite will re-run the dep bundling process and reload the page.
 
-this behavior can be annoying if you have a lot of dependencies because it creates a lot of page reloads before getting to the final render.
+This behavior can be annoying if you have a lot of dependencies because it creates a lot of page reloads before getting to the final render.
 
-you can limit this by declaring in the `vite.config.js` the most common dependencies of your project.
+You can limit this by declaring your project's most common dependencies in `vite.config.js`:
 
 ```js
 // vite.config.js
 
 export default defineConfig({
     server: {
-        //Set to true to force dependency pre-bundling.
+        // Set to true to force dependency pre-bundling.
         force: true,
     },
     // ...
