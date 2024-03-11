@@ -18,7 +18,7 @@ It's possible to combine multiple Vite configuration files. Here is a possible c
 
 ## Vite configuration
 
-define 2 vite config files `vite.config1.config.js` and `vite.config2.config.js`.
+Define 2 vite config files `vite.config1.config.js` and `vite.config2.config.js`.
 
 ```js{6,13}
 // vite.config1.config.js
@@ -71,7 +71,7 @@ export default defineConfig({
 
 ## Bundle configuration
 
-in your `config/packages/pentatrion_vite.yaml` file
+In your `config/packages/pentatrion_vite.yaml` file:
 
 ```yaml
 pentatrion_vite:
@@ -98,7 +98,7 @@ pentatrion_vite:
 
 ```
 
-in your templates
+In your templates:
 
 ```twig
 {% block stylesheets %}
@@ -118,7 +118,7 @@ in your templates
 {% endblock %}
 ```
 
-to show your assets in dev mode
+To show your assets in dev mode:
 
 ```yaml
 # config/routes/dev/pentatrion_vite.yaml
@@ -148,7 +148,7 @@ _pentatrion_vite_config2: // [!code ++]
 
 ## Symfony Asset component configuration
 
-Optional : if you want to use asset symfony component with custom strategy you need to add extra config...
+Optional: if you want to use Symfony's asset component with a custom strategy you need to add extra config:
 
 ```yaml
 # config/services.yaml
@@ -178,7 +178,8 @@ framework:
 
 ```
 
-after you can use your assets like this:
+After you can use your assets like this:
+
 ```twig
 <img src="{{ asset('assets/images/violin.jpg', 'config1')}}" alt="">
 ```

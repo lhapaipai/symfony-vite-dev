@@ -1,6 +1,6 @@
 # Compatibility
 
-In order to facilitate the versionning between the symfony bundle and the vite plugin, I decided since the version 3.3.0 to synchronize the major and minor version of the two packages. For the patch number, each package increments independently based on the respective bug fixes. There are therefore no correlations between patch versions and the most up-to-date version should always be used.
+In order to facilitate the versioning between the symfony bundle and the vite plugin, I decided since the version 3.3.0 to synchronize the major and minor version of the two packages. For the patch number, each package increments independently based on the respective bug fixes. There are therefore no correlations between patch versions and the most up-to-date version should always be used.
 
 If you have no particular constraints, update the `pentatrion/vite-bundle` bundle to its latest version you will benefit from the maximum functionality (go to the page [migration](/fr/extra/migration)).
 

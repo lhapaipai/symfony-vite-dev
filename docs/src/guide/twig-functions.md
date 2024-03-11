@@ -1,17 +1,17 @@
 # Twig functions <img src="/images/logo-twig.svg" width="32" height="23" style="display: inline; vertical-align: -10%; " />
 
-The bundle provides two Twig functions both of which accept an optional second parameter of options.
-An optional third parameter `config_name` is available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page if you want more details.
+The bundle provides two Twig functions, both of which accept an optional second parameter of options.
+An optional third parameter `config_name` is available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page for more details.
 
 ## vite_entry_script_tags 📜
 
 arguments details:
 - `<entry_name>` **type: string** Name of your entrypoint defined in your `vite.config.js` file.
-- `options` (optionnal) **type: associative array**
+- `options` (optional) **type: associative array**
   - `dependency` **type: `"react"` | `null`** if your code use ReactJS, you need to specify this dependency to allow Vite to be able to modify the HTML during development. [More details on Vite documentation](https://vitejs.dev/guide/backend-integration.html#backend-integration)
   - `attr`: Array (an associative array of extra attributes).
   - `absolute_url`: **type: `boolean`** Generates full URLs of your js files
-- `config_name` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
+- `config_name` (optional) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 ```twig
 {{ vite_entry_script_tags(
@@ -30,11 +30,11 @@ arguments details:
 
 arguments details:
 - `<entry_name>` **type: string** Name of your entrypoint defined in your `vite.config.js` file.
-- `options` (optionnal) **type: associative array**
+- `options` (optional) **type: associative array**
   - `attr`: Array (an associative array of extra attributes).
   - `preloadDynamicImports`: **type: boolean, default: false** Preload dynamic imports in `<link rel="modulepreload">` tags.
   - `absolute_url`: **type: `boolean`** Generates full URLs of your css files
-- `config_name` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
+- `config_name` (optional) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 
 ```twig
@@ -54,7 +54,7 @@ arguments details:
 Some plugins require knowing if the development server is running to run scripts. This function solves this problem.
 
 arguments details:
-- `config_name` (optionnal) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
+- `config_name` (optional) **type: string** leave empty if you have only one `vite.config.js` file, else `default_config` if not specified.
 
 return value : `"dev"` | `"build"` | `null`
 

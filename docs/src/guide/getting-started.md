@@ -4,13 +4,13 @@ Vite <img src="/images/logo-vite.svg" width="16" height="16" style="display: inl
 
 It provides:
 
-- a **development server** which allows, among other things, the Hot Module Replacement 🔥 of the generated code by taking advantage of the EcmaScript modules.
+- a **development server** which allows, among other things, [Hot Module Replacement 🔥](https://vitejs.dev/guide/features.html#hot-module-replacement) of generated code by taking advantage of ES modules.
 
-- a **build command** that uses [Rollup <img src="/images/logo-rollup.svg" width="16" height="16" style="display: inline;" />](https://rollupjs.org/).
+- a **build command** which uses [Rollup <img src="/images/logo-rollup.svg" width="16" height="16" style="display: inline;" />](https://rollupjs.org/).
 
-## How does Vite works ?
+## How does Vite work?
 
-![How does Vite works](/graphs/vite.svg)
+![How does Vite work](/graphs/vite.svg)
 
 By default, Vite uses an `index.html` file as your application's entry point.
 
@@ -156,7 +156,7 @@ The main function of `vite-plugin-symfony` is to generate an `entrypoints.json` 
 ```
 :::
 
-The `pentatrion/vite-bundle` Symfony bundle will mainly provide the two Twig functions `vite_entry_script_tags` and `vite_entry_link_tags`. Under the hood these 2 functions will parse the generated `entrypoints.json` file and return the appropriate `<script>` and `<link>` tags.
+The `pentatrion/vite-bundle` Symfony bundle will mainly provide the two Twig functions `vite_entry_script_tags` and `vite_entry_link_tags`. Under the hood, these two functions parse the generated `entrypoints.json` file and return the appropriate `<script>` and `<link>` tags.
 
 
 ::: code-group
