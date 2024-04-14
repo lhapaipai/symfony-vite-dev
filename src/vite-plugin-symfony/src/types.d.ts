@@ -122,6 +122,7 @@ export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
    * @default false
    */
   stimulus: boolean | string | VitePluginSymfonyStimulusOptions;
+  fosRouting: boolean | string | VitePluginSymfonyFosRoutingOptions;
 };
 
 export type VitePluginSymfonyEntrypointsOptions = {
@@ -229,3 +230,37 @@ export type VitePluginSymfonyStimulusOptions = {
    */
   hmr: boolean;
 };
+
+/**
+ * @default ./fos-routing/index.ts
+ */
+export type VitePluginSymfonyFosRoutingOptions = {
+  /**
+   * Arguments to pass to the fos:js-routing:dump command
+   */
+  args?: {
+    /**
+     * You can check the available options by running `php bin/console fos:js-routing:dump --help`
+     * The options below should be pretty self-explanatory.
+     */
+    target?: string
+    format?: string | 'json' | 'js',
+    locale?: string
+    prettyPrint?: boolean
+    domain?: string[]
+    /**
+     * Extra arguments to pass to the command, in case the bundle gets updated and the vite plugin does not.
+     * This way you won't have to wait for the vite plugin to be updated.
+     */
+    extraArgs?: object
+  },
+  transformCheckFileTypes?: RegExp
+  /**
+   * The command to run to dump the routes. Default to php`
+   */
+  php?: string
+  /**
+   * If true, the plugin will output errors and information to the console.
+   */
+  verbose?: boolean
+}
