@@ -151,7 +151,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           // buildDir is not a subdirectory of the vite project root -> potentially dangerous
           if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
             logger.error(
-              `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.outDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
+              `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.emptyOutDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
             );
             process.exit(1);
           }
