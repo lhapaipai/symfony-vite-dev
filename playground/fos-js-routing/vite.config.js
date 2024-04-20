@@ -3,6 +3,7 @@ import { dirname, resolve } from 'path';
 
 import symfonyPlugin from 'vite-plugin-symfony';
 import { fileURLToPath } from 'url';
+import inspect from "vite-plugin-inspect";
 
 const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
 const sharedDir = resolve(basicPlaygroundDir, '../../shared')
@@ -12,10 +13,9 @@ export default defineConfig({
     symfonyPlugin({
       debug: false,
       servePublic: false,
-      fosRouting: {
-        
-      }
+      fosRouting: true
     }),
+    inspect()
   ],
 
   publicDir: false,

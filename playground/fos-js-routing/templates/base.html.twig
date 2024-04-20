@@ -24,8 +24,8 @@
                 <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg" /> Symfony & Vite
             </div>
             <div class="links">
-                <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
-                <a class="{{ currentPage == 'other' ? 'active' : '' }}" href="{{ path('other') }}">Other</a>
+                <a id="welcome-link" class="{{ currentPage == 'welcome' ? 'active' : '' }}">Welcome</a>
+                <a id="other-link" class="{{ currentPage == 'other' ? 'active' : '' }}">Other</a>
             </div>
         </div>
     </nav>
