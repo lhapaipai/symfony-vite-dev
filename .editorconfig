@@ -12,8 +12,14 @@ indent_size = 4
 [*.php]
 indent_size = 4
 
+[*.css]
+indent_size = 4
+
 [*.{ts,js,tsx,jsx}]
 indent_size = 2
 
 [*.twig]
+indent_size = 2
+
+[*.html]
 indent_size = 4
