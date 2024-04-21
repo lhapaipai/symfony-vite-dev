@@ -15,7 +15,6 @@ import { getDevEntryPoints, getBuildEntryPoints, getFilesMetadatas } from "./ent
 import {
   normalizePath,
   writeJson,
-  emptyDir,
   isImportRequest,
   isInternalRequest,
   resolveDevServerUrl,
@@ -24,7 +23,6 @@ import {
   getFileInfos,
   getInputRelPath,
   parseVersionString,
-  isSubdirectory,
   extractExtraEnvVars,
   INFO_PUBLIC_PATH,
   normalizeConfig,
@@ -150,14 +148,6 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           const address = devServer.httpServer?.address();
           const entryPointsPath = resolve(viteConfig.root, viteConfig.build.outDir, entryPointsFileName);
 
-          // buildDir is not a subdirectory of the vite project root -> potentially dangerous
-          if (!isSubdirectory(viteConfig.root, buildDir) && viteConfig.build.emptyOutDir !== true) {
-            logger.error(
-              `outDir ${buildDir} is not a subDirectory of your project root. To prevent recursively deleting files anywhere else set "build.outDir" to true in your vite.config.js to confirm that you did not accidentally specify a wrong directory location.`,
-            );
-            process.exit(1);
-          }
-
           if (!isAddressInfo(address)) {
             logger.error(
               `address is not an object open an issue with your address value to fix the problem : ${address}`,
@@ -168,8 +158,6 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
           if (!existsSync(buildDir)) {
             mkdirSync(buildDir, { recursive: true });
           }
-
-          existsSync(buildDir) && emptyDir(buildDir);
 
           mkdirSync(viteDir, { recursive: true });
 

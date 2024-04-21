@@ -38,7 +38,7 @@ export type InputOption = {
 };
 ```
 
-if you have a theme containing only css rules (no js) it may be interesting to define an entry point with a \[s\]css file. this will in particular [prevent FOUC](/guide/tips#css-files-as-entrypoint) during development.
+If you have a theme containing only css rules (no js) you may define an entry point with a single \[s\]css file. This will in particular [prevent FOUC](/guide/tips#css-files-as-entrypoint) during development.
 
 In order to allow use Vite without configuration, the extension preconfigures some options of Vite if these have not yet been defined. (view [source code](https://github.com/lhapaipai/vite-plugin-symfony/blob/main/src/index.ts)).
 
