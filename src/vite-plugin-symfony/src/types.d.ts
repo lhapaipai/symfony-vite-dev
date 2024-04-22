@@ -254,7 +254,25 @@ export type VitePluginSymfonyFosRoutingOptions = {
      */
     extraArgs?: object;
   };
+  /**
+   * File types to check for injecting the route data.
+   * By default, we will inject the route data in js, jsx, ts, tsx and vue files.
+   */
   transformCheckFileTypes?: RegExp;
+  /**
+   * A list of files to check for changes. When a file in this array changes, the plugin will dump the routes and
+   * eventually if there are new routes we will initiate a full reload in hmr.
+   * By default, we will watch for changes in files with the `php` extension in the `src` directory.
+   * Combine this option with the `transformCheckFileTypes` option to watch for changes in other file types.
+   */
+  watchPaths?: string[];
+  /**
+   * Some Symfony projects use different file extensions for the routes configuration files.
+   * This option allows you to specify the possible file extensions.
+   * By default, we will look for files with the `php` extension. But you can add more extensions: "yaml", "yml", "xml", "json", etc.
+   * Combine this option with the `watchPaths` option to watch for changes in other file types.
+   */
+  possibleRoutesConfigFilesExt?: string[];
   /**
    * The command to run to dump the routes. Default to php`
    */

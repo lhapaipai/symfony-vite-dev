@@ -1,6 +1,6 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
 import { objectToArg } from "~/fos-routing/utils";
-import { Logger } from "vite";
+import { Logger, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -30,6 +30,8 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       extraArgs: {},
     },
     transformCheckFileTypes: /\.(js|jsx|ts|tsx|vue)$/,
+    watchPaths: ["src/**/*.php"],
+    possibleRoutesConfigFilesExt: ["php"],
     verbose: false,
     php: "php",
   };
@@ -67,6 +69,18 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
    */
   const target = finalPluginOptions.args.target;
 
+  function runDumpRoutesCmd() {
+    if (finalPluginOptions.verbose) {
+      logger.warn("Generating fos routes...");
+    }
+    const args = objectToArg(finalPluginOptions.args);
+
+    // Dump routes
+    execFileSync(finalPluginOptions.php, ["bin/console", "fos:js-routing:dump", ...args], {
+      stdio: finalPluginOptions.verbose ? "inherit" : undefined,
+    });
+  }
+
   /**
    * Runs the command to generate the fos routes.
    * Also checks if the routes have changed and saves them to a file.
@@ -75,18 +89,8 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
   function runCmd() {
     shouldInject = false;
 
-    if (finalPluginOptions.verbose) {
-      console.log("Generating fos routes...");
-    }
-
     try {
-      const args = objectToArg(finalPluginOptions.args);
-
-      // Dump routes
-      execFileSync(finalPluginOptions.php, ["bin/console", "fos:js-routing:dump", ...args], {
-        stdio: finalPluginOptions.verbose ? "inherit" : undefined,
-      });
-
+      runDumpRoutesCmd();
       const content = fs.readFileSync(target);
       if (fs.existsSync(target)) {
         fs.rmSync(target); // Remove the temporary file
@@ -109,14 +113,42 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
     /**
      * Runs the command on build start.
      */
-    async buildStart() {
+    buildStart() {
       runCmd();
     },
     /**
-     * Runs the command on hot update.
+     * Configures the server to watch for changes.
+     * When a change is detected, the routes are dumped and the code is reloaded if the routes file content is changed.
      */
-    async handleHotUpdate() {
-      runCmd();
+    configureServer(devServer: ViteDevServer) {
+      const { watcher, ws } = devServer;
+      const paths = [...finalPluginOptions.watchPaths, target];
+      for (const path of paths) {
+        watcher.add(path);
+      }
+      watcher.on("change", function (path) {
+        /**
+         * Dump the routes if a possible routes config file is changed.
+         */
+        finalPluginOptions.possibleRoutesConfigFilesExt.forEach((ext) => {
+          if (path.endsWith(`.${ext}`)) {
+            runDumpRoutesCmd();
+          }
+        });
+        /**
+         * Reload the code if the routes file content is changed.
+         */
+        if (target === path) {
+          if (finalPluginOptions.verbose) {
+            logger.warn("We detected a change in the routes file. Reloading...");
+          }
+          ws.send({
+            type: "full-reload",
+          });
+        } else if (finalPluginOptions.verbose) {
+          logger.warn("No change in the routes file.");
+        }
+      });
     },
 
     /**
@@ -127,6 +159,9 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
     async transform(code, id) {
       // Inject if shouldInject is true and the file is matched by the transformCheckFileTypes regex.
       if (shouldInject && defaultPluginOptions.transformCheckFileTypes.test(id)) {
+        if (finalPluginOptions.verbose) {
+          logger.warn(`Injecting routes in ${id}...`);
+        }
         return {
           code: code.replace(
             /import\s+\w+\s+from\s+(?:"(?:fos-router|symfony-ts-router)"|'(?:fos-router|symfony-ts-router)')\s*;?/,
