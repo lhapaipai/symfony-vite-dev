@@ -1,3 +1,8 @@
+## v6.4.4
+
+- vite-plugin-symfony : fix typo in error message when outDir is outside project root (@acran)
+- vite-plugin-symfony : revert emptying `outDir` in dev mode (thanks @nlemoine)
+
 ## v6.4.3
 
 - vite-bundle : fix deprecation warning with `configs` key in multiple config.

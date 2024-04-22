@@ -5,4 +5,4 @@
 SCRIPT_DIR="$(dirname "$(readlink -f "$BASH_SOURCE")")"
 PROJECT_DIR=$(dirname "$SCRIPT_DIR")
 
-/usr/bin/php8.1 $PROJECT_DIR/src/vite-bundle/vendor/bin/php-cs-fixer "$@"
+/usr/bin/php8.2 $PROJECT_DIR/src/vite-bundle/vendor/bin/php-cs-fixer "$@"
