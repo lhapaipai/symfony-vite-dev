@@ -70,7 +70,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
      * Also checks if the routes have changed and saves them to a file.
      * Then sets shouldInject to true if the routes have changed.
      */
-    async function runCmd() {
+    function runCmd() {
         shouldInject = false;
 
         if (finalPluginOptions.verbose) {
@@ -81,18 +81,18 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
             const args = objectToArg(finalPluginOptions.args);
 
             // Dump routes
-            await execFileSync(finalPluginOptions.php, ['bin/console', 'fos:js-routing:dump', ...args], {
+            execFileSync(finalPluginOptions.php, ['bin/console', 'fos:js-routing:dump', ...args], {
                 stdio: finalPluginOptions.verbose ? 'inherit' : undefined
             });
 
-            const content = await fs.readFileSync(target);
+            const content = fs.readFileSync(target);
             if (fs.existsSync(target)) {
-                await fs.rmSync(target); // Remove the temporary file
+                fs.rmSync(target); // Remove the temporary file
             }
             // Check if there are new routes
             if (!prevContent || content.compare(prevContent) !== 0) {
                 fs.mkdirSync(path.dirname(finalTarget), {recursive: true});
-                await fs.writeFileSync(finalTarget, content);
+                fs.writeFileSync(finalTarget, content);
                 prevContent = content;
                 shouldInject = true;
             }
@@ -109,13 +109,13 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
          * Runs the command on build start.
          */
         async buildStart() {
-            await runCmd();
+            runCmd();
         },
         /**
          * Runs the command on hot update.
          */
         async handleHotUpdate() {
-            await runCmd();
+            runCmd();
         },
 
         /**
