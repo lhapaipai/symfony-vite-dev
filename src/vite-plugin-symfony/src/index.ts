@@ -8,7 +8,11 @@ import { resolvePluginOptions } from "./pluginOptions";
 import { createLogger } from "./logger";
 
 export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
-  const { stimulus: stimulusOptions, fosRouting: fosRoutingOptions, ...entrypointsOptions } = resolvePluginOptions(userOptions);
+  const {
+    stimulus: stimulusOptions,
+    fosRouting: fosRoutingOptions,
+    ...entrypointsOptions
+  } = resolvePluginOptions(userOptions);
 
   const plugins: Plugin[] = [
     symfonyEntrypoints(
@@ -25,7 +29,10 @@ export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> =
 
   if (typeof fosRoutingOptions === "object") {
     plugins.push(
-        symfonyFosRouting(fosRoutingOptions, createLogger("info", { prefix: "[symfony:fos-routing]", allowClearScreen: true })) as Plugin,
+      symfonyFosRouting(
+        fosRoutingOptions,
+        createLogger("info", { prefix: "[symfony:fos-routing]", allowClearScreen: true }),
+      ) as Plugin,
     );
   }
 
