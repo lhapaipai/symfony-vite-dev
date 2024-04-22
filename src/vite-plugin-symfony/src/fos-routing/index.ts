@@ -129,12 +129,12 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       if (shouldInject && defaultPluginOptions.transformCheckFileTypes.test(id)) {
         return {
           code: code.replace(
-            /import\s+Routing\s+from\s+"fos-router"\s*;/,
+            /import\s+\w+\s+from\s+(?:"(?:fos-router|symfony-ts-router)"|'(?:fos-router|symfony-ts-router)')\s*;?/,
             `
-                        import Routing from "fos-router";
-                        import routes from ${JSON.stringify(finalTarget)};
-                        Routing.setRoutingData(routes);
-                      `,
+            import Routing from "fos-router";
+            import routes from ${JSON.stringify(finalTarget)};
+            Routing.setRoutingData(routes);
+            `,
           ),
           map: null,
         };
