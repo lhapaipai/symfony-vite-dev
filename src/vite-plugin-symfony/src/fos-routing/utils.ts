@@ -6,8 +6,8 @@
  * @param value
  */
 function shellArg(key: string, value: any): string {
-    key = kebabize(key);
-    return typeof value === 'boolean' ? (value ? '--' + key : '') : '--' + key + '=' + value;
+  key = kebabize(key);
+  return typeof value === "boolean" ? (value ? "--" + key : "") : "--" + key + "=" + value;
 }
 
 /**
@@ -15,13 +15,13 @@ function shellArg(key: string, value: any): string {
  * @param str
  */
 function kebabize(str: string): string {
-    return str.split('').map((letter, idx) => {
-        return letter.toUpperCase() === letter
-            ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
-            : letter;
-    }).join('');
+  return str
+    .split("")
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}` : letter;
+    })
+    .join("");
 }
-
 
 /**
  * Transforms an object into an array of shell arguments.
@@ -29,23 +29,22 @@ function kebabize(str: string): string {
  * This function is recursive.
  * @param obj
  */
-export const objectToArg = (obj: object) : string[] => {
-    return Object.keys(obj).reduce((pass, key) => {
-        const val = obj[key];
-        if (!val) {
-            return pass;
-        }
-        if (key === 'extraArgs' && typeof val === 'object') {
-            pass.push(...objectToArg(val));
-            return pass;
-        }
+export const objectToArg = (obj: object): string[] => {
+  return Object.keys(obj).reduce((pass, key) => {
+    const val = obj[key];
+    if (!val) {
+      return pass;
+    }
+    if (key === "extraArgs" && typeof val === "object") {
+      pass.push(...objectToArg(val));
+      return pass;
+    }
 
-        if (Array.isArray(val)) {
-            pass.push(...val.map((v) => shellArg(key, v)));
-        } else {
-            pass.push(shellArg(key, val));
-        }
-        return pass;
-    }, []);
-}
-
+    if (Array.isArray(val)) {
+      pass.push(...val.map((v) => shellArg(key, v)));
+    } else {
+      pass.push(shellArg(key, val));
+    }
+    return pass;
+  }, []);
+};
