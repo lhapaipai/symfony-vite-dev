@@ -1,0 +1,19 @@
+{
+    "name": "vite-playground-fos-js-routing",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "keywords": [],
+    "author": "Lhapaipai",
+    "license": "ISC",
+    "volta": {
+        "node": "20.9.0"
+    },
+    "dependencies": {
+        "fos-router": "^2.4.6"
+    }
+}

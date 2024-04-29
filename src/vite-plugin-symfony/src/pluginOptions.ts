@@ -60,6 +60,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     servePublic: userConfig.servePublic,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
     stimulus: userConfig.stimulus,
+    fosRouting: userConfig.fosRouting,
     viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
   };
 }
