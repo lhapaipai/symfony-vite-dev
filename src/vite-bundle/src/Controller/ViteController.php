@@ -2,8 +2,8 @@
 
 namespace Pentatrion\ViteBundle\Controller;
 
-use Pentatrion\ViteBundle\Service\EntrypointsLookupCollection;
 use Pentatrion\ViteBundle\Service\EntrypointsLookup;
+use Pentatrion\ViteBundle\Service\EntrypointsLookupCollection;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -26,7 +26,7 @@ class ViteController
         $entrypointsLookup = $this->entrypointsLookupCollection->getEntrypointsLookup($configName);
         $origin = $this->proxyOrigin ?? $this->resolveDevServer($entrypointsLookup);
         $base = $entrypointsLookup->getBase();
-        
+
         $response = $this->httpClient->request(
             'GET',
             $origin.$base.$path
