@@ -1,4 +1,4 @@
-import { loadEnv, UserConfig, type ResolvedConfig } from "vite";
+import { loadEnv, type ResolvedConfig } from "vite";
 import os from "node:os";
 import path from "node:path";
 import type { AddressInfo } from "net";

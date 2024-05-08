@@ -13,3 +13,8 @@ _pentatrion_vite_build2:
         configName: config2
     requirements:
         path: ".+"
+
+_profiler_vite:
+    path: /_profiler/vite
+    defaults:
+        _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info

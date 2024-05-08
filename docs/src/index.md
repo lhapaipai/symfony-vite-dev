@@ -32,7 +32,7 @@ hero:
       text: Installation
       link: /guide/installation
     - theme: alt
-      text: Migration v6
+      text: Migration v7
       link: /extra/migration
   extra:
     title: 📢 Notice

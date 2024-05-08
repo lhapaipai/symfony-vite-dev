@@ -19,6 +19,21 @@ yarn upgrade vite-plugin-symfony@^6.0
 Si vous faites une mise à jour vers une nouvelle version majeure,
 vous aurez également quelques lignes de code à modifier.
 
+## v6.x vers v7.x
+
+Mettez à jour votre fichier `./config/routes/dev/pentatrion_vite.yaml`.
+
+```diff
+_pentatrion_vite:
+    prefix: /build
+    resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+
++ _profiler_vite:
++     path: /_profiler/vite
++     defaults:
++         _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+```
+
 ## v5.x vers v6.x
 
 

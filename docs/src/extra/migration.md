@@ -7,16 +7,31 @@ composer outdated
 
 # at the time of writing this, it was the version 6.0
 # so update your bundle to this version
-composer require pentatrion/vite-bundle:^6.0
+composer require pentatrion/vite-bundle:^7.0
 
 # Important ! update your vite-plugin-symfony npm package
 # to the same Major and version.
-npm i vite-plugin-symfony@^6.0
+npm i vite-plugin-symfony@^7.0
 # or
-yarn upgrade vite-plugin-symfony@^6.0
+yarn upgrade vite-plugin-symfony@^7.0
 ```
 
 If you upgrade to a new major version
+
+## from v6.x to v7.x
+
+Update your `./config/routes/dev/pentatrion_vite.yaml` file
+
+```diff
+_pentatrion_vite:
+    prefix: /build
+    resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+
++ _profiler_vite:
++     path: /_profiler/vite
++     defaults:
++         _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+```
 
 ## from v5.x to v6.x
 
