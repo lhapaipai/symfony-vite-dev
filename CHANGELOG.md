@@ -1,3 +1,9 @@
+## v6.4.5
+
+- vite-bundle : fix Crossorigin attribute needs adding to Link headers (@andyexeter)
+- vite-bundle : Skip devServer lookup if proxy is defined (@Blackskyliner)
+- vite-bundle : fix typo in error message when outDir is outside project root (@acran)
+
 ## v6.4.4
 
 - vite-plugin-symfony : fix typo in error message when outDir is outside project root (@acran)

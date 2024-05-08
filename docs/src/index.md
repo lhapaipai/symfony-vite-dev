@@ -34,9 +34,7 @@ hero:
     - theme: alt
       text: Migration v6
       link: /extra/migration
-  extra:
-    title: 📢 Notice
-    description: The English version of the documentation contains numerous translation errors. If anyone would be motivated to lend a little helping hand that would be so great... 🙏 The repository <a href="https://github.com/lhapaipai/symfony-vite-dev">symfony-vite-dev</a> brings together in a folder all the tools to participate in development.
+  extra: ~
 features:
   - icon: ⚡️
     title: Easy configuration
