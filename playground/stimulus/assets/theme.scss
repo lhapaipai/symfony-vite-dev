@@ -5,4 +5,8 @@ html #content {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .cards {
+    width: 100%;
+  }
 }
