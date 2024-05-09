@@ -52,4 +52,3 @@ body:
       description: |
         Optional: only if you have suggestions on a fix/reason for the bug
         Don't hesitate to create a pull request with your solution, it helps get faster feedback. You should open a pull request on the main symfony-vite-dev monorepo : https://github.com/lhapaipai/symfony-vite-dev.
-        This repository is a "subtree split": a read-only subset of that main repository.
