@@ -43,7 +43,7 @@ Génère des URL complètes de vos fichiers js/css/assets générés (schema + d
 - **Type :** `boolean`
 - **Valeur par défaut :** `true`
 
-Par défaut, vite-bundle lèvera une exception si vous utilisez la function Twig `asset()` avec un chemin qui n'est pas présent dans le fichier `manifest.json`, dans certains cas des plugins peuvent copier des fichiers statiques sans qu'ils ne soient référencés dans le manifeste, vous devrez donc assigner la valeur à `true` pour pouvoir y faire référence.
+Par défaut, vite-bundle lèvera une exception si vous utilisez la function Twig `asset()` avec un chemin qui n'est pas présent dans le fichier `manifest.json`, dans certains cas des plugins peuvent copier des fichiers statiques sans qu'ils ne soient référencés dans le manifeste, vous devrez donc assigner la valeur à `false` pour pouvoir y faire référence.
 
 ```js
 import { defineConfig } from 'vite'

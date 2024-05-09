@@ -43,7 +43,7 @@ Generates full URLs of your generated js/css/assets files (schema + domain + pat
 - **Type:** `boolean`
 - **Default value:** `true`
 
-By default, vite-bundle will throw an exception if you use the Twig `asset()` function with a path that is not present in the `manifest.json` file, in some cases plugins can copy static files without they are referenced in the manifest, you will need to set the value to `true` to be able to use them.
+By default, vite-bundle will throw an exception if you use the Twig `asset()` function with a path that is not present in the `manifest.json` file, in some cases plugins can copy static files without them being referenced in the manifest, you will need to set the value to `false` to be able to use them.
 
 ```js
 import { defineConfig } from 'vite'
