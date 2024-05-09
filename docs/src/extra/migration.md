@@ -20,17 +20,19 @@ If you upgrade to a new major version
 
 ## from v6.x to v7.x
 
-Update your `./config/routes/dev/pentatrion_vite.yaml` file
+Remove your `./config/routes/dev/pentatrion_vite.yaml` file.
+Add instead the `./config/routes/pentatrion_vite.yaml` file with this content:
 
-```diff
-_pentatrion_vite:
-    prefix: /build
-    resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+```yaml
+when@dev:
+    _pentatrion_vite:
+        prefix: /build
+        resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
 
-+ _profiler_vite:
-+     path: /_profiler/vite
-+     defaults:
-+         _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+    _profiler_vite:
+        path: /_profiler/vite
+        defaults:
+            _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
 ```
 
 ## from v5.x to v6.x
