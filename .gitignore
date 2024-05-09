@@ -11,6 +11,7 @@
 
 /extra/vite
 /extra/webpack-encore-bundle
+/extra/VichUploaderBundle
 
 node_modules
 

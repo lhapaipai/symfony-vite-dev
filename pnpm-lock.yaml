@@ -172,7 +172,7 @@ importers:
         version: 5.0.11(@types/node@20.10.5)(sass@1.69.5)(terser@5.26.0)
       vite-plugin-symfony:
         specifier: ^6.3.2
-        version: link:../../src/vite-plugin-symfony
+        version: 6.4.5(vite@5.0.11)
 
   playground/legacy: {}
 
@@ -8587,6 +8587,20 @@ packages:
       vite: 5.0.10(@types/node@20.10.5)(sass@1.69.5)(terser@5.26.0)
     transitivePeerDependencies:
       - rollup
+      - supports-color
+    dev: false
+
+  /vite-plugin-symfony@6.4.5(vite@5.0.11):
+    resolution: {integrity: sha512-qBLtkuJcmOcyBbd89HfuuvzAYPyFPGqWpka+XnYgP79ecSjp+Xztxodkef7rp8O3KPcDLjnuROqzuCIq83lU2Q==}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      debug: 4.3.4
+      fast-glob: 3.3.2
+      picocolors: 1.0.0
+      sirv: 2.0.3
+      vite: 5.0.11(@types/node@20.10.5)(sass@1.69.5)(terser@5.26.0)
+    transitivePeerDependencies:
       - supports-color
     dev: false
 

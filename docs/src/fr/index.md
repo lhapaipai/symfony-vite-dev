@@ -31,7 +31,7 @@ hero:
       text: Installation
       link: /fr/guide/installation
     - theme: alt
-      text: Migration v6
+      text: Migration v7
       link: /extra/migration
   extra: ~
 features:

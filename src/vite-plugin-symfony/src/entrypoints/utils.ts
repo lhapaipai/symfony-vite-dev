@@ -71,6 +71,8 @@ export const emptyDir = (dir: string) => {
   }
 };
 
+export const INFO_PUBLIC_PATH = "/@vite/info";
+
 /* not imported from vite because we don't want vite in package.json dependencies */
 const FS_PREFIX = `/@fs/`;
 const VALID_ID_PREFIX = `/@id/`;
@@ -288,4 +290,18 @@ export function extractExtraEnvVars(
     ...extraDefine,
     ...(define ?? {}),
   };
+}
+
+export function normalizeConfig(config: ResolvedConfig) {
+  const result = JSON.stringify(config, function (k, v) {
+    if (k === "plugins" && Array.isArray(v)) {
+      return v.filter((v) => v.name).map((v) => v.name);
+    }
+    if (typeof v === "function") {
+      return undefined;
+    }
+    return v;
+  });
+
+  return result;
 }
