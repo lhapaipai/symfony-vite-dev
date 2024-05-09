@@ -1,3 +1,7 @@
+## v6.4.7
+
+- vite-bundle : prepare v7 flex recipe add pentatrion_vite.yaml route file into install directory 
+
 ## v6.4.6
 
 - vite-bundle : add throw_on_missing_asset option

@@ -23,7 +23,7 @@ If you upgrade to a new major version
 ### `RenderAssetTagEvent`
 
 If you created a class that listened to the `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` event.
-The `$event` instance has different methods that allow more complete control of the generation of html tags. See the source code for [RenderAssetTagEvent](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php) and [Tag](https://github.com/lhapaipai/ vite-bundle/blob/main/src/Model/Tag.php).
+The `$event` instance has different methods that allow more complete control of the generation of html tags. See the source code for [RenderAssetTagEvent](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php) and [Tag](https://github.com/lhapaipai/vite-bundle/blob/main/src/Model/Tag.php).
 
 
 ```php
