@@ -12,5 +12,8 @@
   "license": "ISC",
   "volta": {
     "node": "20.9.0"
+  },
+  "dependencies": {
+    "vite-plugin-static-copy": "^1.0.4"
   }
 }

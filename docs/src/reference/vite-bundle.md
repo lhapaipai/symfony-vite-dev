@@ -38,6 +38,44 @@ When using Docker, you may want to specify a different origin if you start your 
 
 Generates full URLs of your generated js/css/assets files (schema + domain + path).
 
+## throw_on_missing_asset
+
+- **Type:** `boolean`
+- **Default value:** `true`
+
+By default, vite-bundle will throw an exception if you use the Twig `asset()` function with a path that is not present in the `manifest.json` file, in some cases plugins can copy static files without they are referenced in the manifest, you will need to set the value to `true` to be able to use them.
+
+```js
+import { defineConfig } from 'vite'
+
+import symfonyPlugin from 'vite-plugin-symfony';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "assets/images/angular.svg",
+          dest: "static"
+        }
+      ]
+    }),
+    symfonyPlugin(),
+  ],
+  // ...
+});
+```
+```yaml
+# config/packages/framework.yaml
+framework:
+    assets:
+        version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+```
+```twig
+<img src="{{ asset('static/angular.svg')}}" />
+```
+
 ## throw_on_missing_entry
 
 - **Type:** `boolean`

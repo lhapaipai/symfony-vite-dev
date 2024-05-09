@@ -1,3 +1,7 @@
+## v6.4.6
+
+- vite-bundle : add throw_on_missing_asset option
+
 ## v6.4.5
 
 - vite-bundle : fix Crossorigin attribute needs adding to Link headers (@andyexeter)

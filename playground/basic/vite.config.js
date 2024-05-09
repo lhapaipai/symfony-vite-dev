@@ -5,6 +5,7 @@ import symfonyPlugin from 'vite-plugin-symfony';
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
 const sharedDir = resolve(basicPlaygroundDir, '../../shared')
@@ -13,6 +14,14 @@ export default defineConfig({
   plugins: [
     vuePlugin(),
     reactPlugin(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: "assets/images/angular.svg",
+          dest: "static"
+        }
+      ]
+    }),
     symfonyPlugin({
       debug: false,
       servePublic: false

@@ -60,9 +60,13 @@
         <div class="card">
             <p>png image imported via asset twig function, less 4kb</p>
             <img src="{{ asset('assets/images/logo-symfony-less-4kb.png', 'vite') }}" alt="">
-            <code>{{ asset('assets/images/logo-symfony-less-4kb.png') }}</code>
+            <code>{{ asset('assets/images/logo-symfony-less-4kb.png', 'vite') }}</code>
         </div>
-
+        <div class="card">
+            <p>static image imported via asset twig function, but not in manifest.json (vite-plugin-static-copy)</p>
+            <img src="{{ asset('static/angular.svg', 'vite')}}" alt="">
+            <code>{{ asset('static/angular.svg', 'vite')}}</code>
+        </div>
     </div>
 </div>
 {% endblock %}
