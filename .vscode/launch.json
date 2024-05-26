@@ -8,30 +8,22 @@
             "name": "Vitest all files",
             "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
             "env": {
                 "NODE_ENV": "development"
-            },
+            }
         },
         {
             "name": "Vitest Current Test File",
             "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**",
-                "**/node_modules/**"
-            ],
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/src/vite-plugin-symfony",
             "autoAttachChildProcesses": true,
-            "args": [
-                "run",
-                "${file}"
-            ],
+            "args": ["run", "${file}"],
             "smartStep": true,
             "console": "integratedTerminal"
         },
@@ -42,9 +34,7 @@
             "program": "${workspaceFolder}/src/vite-bundle/bin/phpunit",
             "cwd": "${workspaceFolder}/src/vite-bundle",
             "port": 9003,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ]
+            "runtimeArgs": ["-dxdebug.start_with_request=yes"]
         },
         {
             "name": "php basic cache:clear",
@@ -52,28 +42,19 @@
             "request": "launch",
             "program": "${workspaceFolder}/playground/basic/bin/console",
             "cwd": "${workspaceFolder}/playground/basic",
-            "args": [
-                "cache:clear"
-            ],
+            "args": ["cache:clear"],
             "port": 9003,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ]
+            "runtimeArgs": ["-dxdebug.start_with_request=yes"]
         },
         {
             "name": "Launch phpunit multiple config",
             "type": "php",
             "request": "launch",
             "program": "${workspaceFolder}/src/vite-bundle/bin/phpunit",
-            "args": [
-                "--filter",
-                "testMultipleConfig"
-            ],
+            "args": ["--filter", "testMultipleConfig"],
             "cwd": "${workspaceFolder}/src/vite-bundle",
             "port": 9003,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ]
+            "runtimeArgs": ["-dxdebug.start_with_request=yes"]
         },
         {
             "name": "basic:vite:dev",
@@ -83,11 +64,9 @@
                 "${workspaceFolder}/playground/basic/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
-            "cwd": "${workspaceFolder}/playground/basic",
+            "cwd": "${workspaceFolder}/playground/basic"
             // "env": {
             //   "NODE_ENV": "development"
             // },
@@ -104,17 +83,13 @@
                 "${workspaceFolder}/playground/basic/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/basic",
             "env": {
                 "NODE_ENV": "development"
             },
-            "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
-            ]
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "sandbox:vite:dev",
@@ -124,9 +99,7 @@
                 "${workspaceFolder}/playground/sandbox/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/sandbox",
             "env": {
@@ -145,17 +118,13 @@
                 "${workspaceFolder}/playground/sandbox/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/sandbox",
             "env": {
                 "NODE_ENV": "development"
             },
-            "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
-            ]
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "stimulus:vite:dev",
@@ -165,9 +134,7 @@
                 "${workspaceFolder}/playground/stimulus/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/stimulus",
             "env": {
@@ -186,17 +153,48 @@
                 "${workspaceFolder}/playground/stimulus/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/stimulus",
             "env": {
                 "NODE_ENV": "development"
             },
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
+        },
+        {
+            "name": "fos-js-routing:vite:dev",
+            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "args": [
+                "-c",
+                "${workspaceFolder}/playground/fos-js-routing/vite.config.js"
+            ],
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/playground/fos-js-routing",
+            "env": {
+                "NODE_ENV": "development"
+            },
             "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
+                "${workspaceFolder}/node_modules/vite-plugin-symfony/dist/*.js"
             ]
+        },
+        {
+            "name": "fos-js-routing:vite:build",
+            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "args": [
+                "build",
+                "-c",
+                "${workspaceFolder}/playground/fos-js-routing/vite.config.js"
+            ],
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/playground/fos-js-routing",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "with-cdn:vite:dev",
@@ -206,9 +204,7 @@
                 "${workspaceFolder}/playground/with-cdn/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/with-cdn",
             "env": {
@@ -227,17 +223,13 @@
                 "${workspaceFolder}/playground/with-cdn/vite.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/with-cdn",
             "env": {
                 "NODE_ENV": "development"
             },
-            "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
-            ]
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "ssr:vite:build:server",
@@ -248,29 +240,20 @@
                 "${workspaceFolder}/playground/ssr/vite.ssr.config.js"
             ],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceFolder}/playground/ssr",
             "env": {
                 "NODE_ENV": "development"
             },
-            "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
-            ]
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "Vite dev",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": [
-                "-c",
-                "vite.default.config.js"
-            ],
+            "args": ["-c", "vite.default.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
@@ -284,35 +267,22 @@
             "name": "Vite build",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
             // "program": "${workspaceFolder}/src/vite/packages/vite/dist/node/cli.js",
-            "args": [
-                "build",
-                "-c",
-                "vite.default.config.js"
-            ],
+            "args": ["build", "-c", "vite.default.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
                 "NODE_ENV": "development"
             },
-            "outFiles": [
-                "${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"
-            ]
+            "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
             "name": "Minimal Vite dev",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": [
-                "-c",
-                "vite.minimal.config.js"
-            ],
+            "args": ["-c", "vite.minimal.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
@@ -325,15 +295,9 @@
         {
             "name": "Minimal Vite build",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": [
-                "build",
-                "-c",
-                "vite.minimal.config.js"
-            ],
+            "args": ["build", "-c", "vite.minimal.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
@@ -346,14 +310,9 @@
         {
             "name": "Legacy Vite dev",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": [
-                "-c",
-                "vite.legacy.config.js"
-            ],
+            "args": ["-c", "vite.legacy.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
@@ -366,15 +325,9 @@
         {
             "name": "Legacy Vite build",
             "program": "${workspaceFolder}/node_modules/.bin/vite",
-            "args": [
-                "build",
-                "-c",
-                "vite.legacy.config.js"
-            ],
+            "args": ["build", "-c", "vite.legacy.config.js"],
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "cwd": "${workspaceRoot}",
             "env": {
@@ -397,9 +350,7 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "port": 0,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ],
+            "runtimeArgs": ["-dxdebug.start_with_request=yes"],
             "env": {
                 "XDEBUG_MODE": "debug,develop",
                 "XDEBUG_CONFIG": "client_port=${port}"
