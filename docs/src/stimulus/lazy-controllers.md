@@ -23,7 +23,7 @@ const app = startStimulusApp();
 
 registerControllers(
   app,
-  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?', eager: true) // [!code ++]
+  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?', {eager: true}) // [!code ++]
 )
 ```
 
