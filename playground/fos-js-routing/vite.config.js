@@ -13,7 +13,7 @@ export default defineConfig({
     symfonyPlugin({
       debug: false,
       servePublic: false,
-      fosRouting: true
+      fosRouting: {}
     }),
     inspect()
   ],
@@ -34,14 +34,14 @@ export default defineConfig({
         }
       }
     },
-    
+
     minify: false,
   },
 
 
   server: {
     // port: 5175,
-    // origin: 'http://localhost:5175',
+    origin: 'http://docs.lndo.site',
     // strictPort: true,
     fs: {
       allow: [

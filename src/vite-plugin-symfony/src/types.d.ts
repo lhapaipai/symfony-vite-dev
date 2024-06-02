@@ -255,10 +255,16 @@ export type VitePluginSymfonyFosRoutingOptions = {
     extraArgs?: object;
   };
   /**
-   * File types to check for injecting the route data.
-   * By default, we will inject the route data in js, jsx, ts, tsx and vue files.
+   * If true, the plugin will add the import statement to the entry file automatically. So you don't have to do it
+   * manually.
+   * Default to `true`
    */
-  transformCheckFileTypes?: RegExp;
+  addImportByDefault?: boolean;
+  /**
+   * The package name of the routing plugin.
+   * Default to `fos-router`
+   */
+  routingPluginPackageName?: string;
   /**
    * A list of files to check for changes. When a file in this array changes, the plugin will dump the routes and
    * eventually if there are new routes we will initiate a full reload in hmr.

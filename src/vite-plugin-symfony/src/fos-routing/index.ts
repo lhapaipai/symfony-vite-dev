@@ -2,9 +2,9 @@ import { VitePluginSymfonyFosRoutingOptions } from "~/types";
 import { objectToArg } from "~/fos-routing/utils";
 import { Logger, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
-import * as fs from "node:fs";
 import * as path from "node:path";
 import process from "node:process";
+import fs from "node:fs";
 
 /**
  * Vite plugin to generate fos routes and inject them into the code.
@@ -14,9 +14,9 @@ import process from "node:process";
  * @param logger
  */
 export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRoutingOptions, logger?: Logger) {
-  let shouldInject = true; // Control when to inject
+  let routesChanged = true; // Control when to inject
   let prevContent = null; // Previous content of the routes
-
+  const entryModules = new Set();
   /**
    * Default plugin options.
    */
@@ -29,7 +29,8 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       domain: [],
       extraArgs: {},
     },
-    transformCheckFileTypes: /\.(js|jsx|ts|tsx|vue)$/,
+    addImportByDefault: true,
+    routingPluginPackageName: "fos-router",
     watchPaths: ["src/**/*.php"],
     possibleRoutesConfigFilesExt: ["php"],
     verbose: false,
@@ -87,8 +88,6 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
    * Then sets shouldInject to true if the routes have changed.
    */
   function runCmd() {
-    shouldInject = false;
-
     try {
       runDumpRoutesCmd();
       const content = fs.readFileSync(target);
@@ -100,7 +99,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
         fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
         fs.writeFileSync(finalTarget, content);
         prevContent = content;
-        shouldInject = true;
+        routesChanged = true;
       }
     } catch (err) {
       logger.error(err.toString());
@@ -110,12 +109,29 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
 
   return {
     name: "rollup-plugin-symfony-fos-routing",
+
     /**
      * Runs the command on build start.
      */
-    buildStart() {
+    buildStart(inputOptions) {
+      const normalizePath = (p) => path.resolve(p).split(path.sep).join("/");
+
+      /**
+       * Add the entry modules to the set.
+       * Alternative to this.getModuleInfo(id).isEntry because we get "
+       * The "isEntry" property of ModuleInfo is not supported." when using it in transform function.
+       */
+      if (Array.isArray(inputOptions.input)) {
+        inputOptions.input.forEach((input) => entryModules.add(normalizePath(input)));
+      } else if (typeof inputOptions.input === "object") {
+        Object.values(inputOptions.input).forEach((input) => entryModules.add(normalizePath(input)));
+      } else if (typeof inputOptions.input === "string") {
+        entryModules.add(normalizePath(inputOptions.input));
+      }
+
       runCmd();
     },
+
     /**
      * Configures the server to watch for changes.
      * When a change is detected, the routes are dumped and the code is reloaded if the routes file content is changed.
@@ -126,7 +142,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       for (const path of paths) {
         watcher.add(path);
       }
-      watcher.on("change", function (path) {
+      watcher.on("change", function(path) {
         /**
          * Dump the routes if a possible routes config file is changed.
          */
@@ -136,7 +152,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
           }
         });
         /**
-         * Reload the code if the routes file content is changed.
+         * Reload the page if the routes file content is changed.
          */
         if (target === path) {
           if (finalPluginOptions.verbose) {
@@ -157,20 +173,37 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
      * @param id
      */
     async transform(code, id) {
+      const isInputFile = entryModules.has(id);
+
       // Inject if shouldInject is true and the file is matched by the transformCheckFileTypes regex.
-      if (shouldInject && defaultPluginOptions.transformCheckFileTypes.test(id)) {
+      if (isInputFile && routesChanged) {
         if (finalPluginOptions.verbose) {
           logger.warn(`Injecting routes in ${id}...`);
         }
+        const routingPluginPackageName = finalPluginOptions.routingPluginPackageName;
+
+        // Create the regex pattern dynamically
+        const pattern = `import\\s+\\w+\\s+from\\s+(?:"${routingPluginPackageName}"|'${routingPluginPackageName}')\\s*;?`;
+        // Create the RegExp object
+        const importRegex = new RegExp(pattern, "g");
+        const replaceText = `
+import Routing from "${finalPluginOptions.routingPluginPackageName}";
+import routes from ${JSON.stringify(finalTarget)};
+Routing.setRoutingData(routes); \n
+        `;
+        console.log(pattern);
+        /**
+         * Inject the routes into the code if the code does not contain the routing plugin import.
+         */
+        if (!code.match(pattern) && finalPluginOptions.addImportByDefault) {
+          return {
+            code: replaceText + code,
+            map: null,
+          };
+        }
+
         return {
-          code: code.replace(
-            /import\s+\w+\s+from\s+(?:"(?:fos-router|symfony-ts-router)"|'(?:fos-router|symfony-ts-router)')\s*;?/,
-            `
-            import Routing from "fos-router";
-            import routes from ${JSON.stringify(finalTarget)};
-            Routing.setRoutingData(routes);
-            `,
-          ),
+          code: code.replace(importRegex, replaceText),
           map: null,
         };
       }
