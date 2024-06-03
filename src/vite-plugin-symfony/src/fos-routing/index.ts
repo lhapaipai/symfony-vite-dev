@@ -1,5 +1,5 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
-import { objectToArg } from "~/fos-routing/utils";
+import { deepMerge, objectToArg } from "~/fos-routing/utils";
 import { Logger, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
@@ -40,10 +40,10 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
   /**
    * Merges the default options with the user options.
    */
-  const finalPluginOptions: VitePluginSymfonyFosRoutingOptions = {
-    ...defaultPluginOptions,
-    ...pluginOptions,
-  };
+  const finalPluginOptions: VitePluginSymfonyFosRoutingOptions = deepMerge(
+    defaultPluginOptions,
+    pluginOptions,
+  );
 
   /**
    * Resolves the target path.
@@ -90,6 +90,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
   function runCmd() {
     try {
       runDumpRoutesCmd();
+
       const content = fs.readFileSync(target);
       if (fs.existsSync(target)) {
         fs.rmSync(target); // Remove the temporary file
@@ -98,6 +99,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       if (!prevContent || content.compare(prevContent) !== 0) {
         fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
         fs.writeFileSync(finalTarget, content);
+
         prevContent = content;
         routesChanged = true;
       }
@@ -191,7 +193,7 @@ import Routing from "${finalPluginOptions.routingPluginPackageName}";
 import routes from ${JSON.stringify(finalTarget)};
 Routing.setRoutingData(routes); \n
         `;
-        console.log(pattern);
+
         /**
          * Inject the routes into the code if the code does not contain the routing plugin import.
          */
