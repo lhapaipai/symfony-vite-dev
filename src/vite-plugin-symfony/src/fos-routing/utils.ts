@@ -53,7 +53,7 @@ export const objectToArg = (obj: object): string[] => {
  * Check if the item is an object.
  * @param item
  */
-function isObject(item) {
+function isObject(item: any) {
   return item && typeof item === "object" && !Array.isArray(item);
 }
 
@@ -62,10 +62,10 @@ function isObject(item) {
  * @param target
  * @param source
  */
-export const deepMerge = (target, source) => {
+export const deepMerge = (target: any, source: any) => {
   let output = { ...target };
   if (isObject(target) && isObject(source)) {
-    Object.keys(source).forEach(key => {
+    Object.keys(source).forEach((key) => {
       if (isObject(source[key])) {
         if (!(key in target)) {
           output = { ...output, [key]: source[key] };

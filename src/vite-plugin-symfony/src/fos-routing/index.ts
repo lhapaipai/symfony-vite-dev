@@ -1,5 +1,6 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
 import { deepMerge, objectToArg } from "~/fos-routing/utils";
+import { normalizePath } from "vite-plugin-symfony/src/entrypoints/utils.ts";
 import { Logger, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
@@ -40,10 +41,8 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
   /**
    * Merges the default options with the user options.
    */
-  const finalPluginOptions: VitePluginSymfonyFosRoutingOptions = deepMerge(
-    defaultPluginOptions,
-    pluginOptions,
-  );
+  const finalPluginOptions: VitePluginSymfonyFosRoutingOptions =
+    pluginOptions === true ? defaultPluginOptions : deepMerge(defaultPluginOptions, pluginOptions);
 
   /**
    * Resolves the target path.
@@ -70,7 +69,7 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
    */
   const target = finalPluginOptions.args.target;
 
-  function runDumpRoutesCmd() {
+  function runDumpRoutesCmdSync() {
     if (finalPluginOptions.verbose) {
       logger.warn("Generating fos routes...");
     }
@@ -82,33 +81,6 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
     });
   }
 
-  /**
-   * Runs the command to generate the fos routes.
-   * Also checks if the routes have changed and saves them to a file.
-   * Then sets shouldInject to true if the routes have changed.
-   */
-  function runCmd() {
-    try {
-      runDumpRoutesCmd();
-
-      const content = fs.readFileSync(target);
-      if (fs.existsSync(target)) {
-        fs.rmSync(target); // Remove the temporary file
-      }
-      // Check if there are new routes
-      if (!prevContent || content.compare(prevContent) !== 0) {
-        fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
-        fs.writeFileSync(finalTarget, content);
-
-        prevContent = content;
-        routesChanged = true;
-      }
-    } catch (err) {
-      logger.error(err.toString());
-    }
-    return [];
-  }
-
   return {
     name: "rollup-plugin-symfony-fos-routing",
 
@@ -116,22 +88,36 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
      * Runs the command on build start.
      */
     buildStart(inputOptions) {
-      const normalizePath = (p) => path.resolve(p).split(path.sep).join("/");
-
       /**
        * Add the entry modules to the set.
        * Alternative to this.getModuleInfo(id).isEntry because we get "
        * The "isEntry" property of ModuleInfo is not supported." when using it in transform function.
        */
-      if (Array.isArray(inputOptions.input)) {
-        inputOptions.input.forEach((input) => entryModules.add(normalizePath(input)));
-      } else if (typeof inputOptions.input === "object") {
-        Object.values(inputOptions.input).forEach((input) => entryModules.add(normalizePath(input)));
-      } else if (typeof inputOptions.input === "string") {
-        entryModules.add(normalizePath(inputOptions.input));
-      }
+      Object.values(inputOptions.input).forEach((input) => entryModules.add(normalizePath(input)));
 
-      runCmd();
+      /**
+       * Runs the command to generate the fos routes.
+       * Also checks if the routes have changed and saves them to a file.
+       * Then sets routesChanged to true if the routes have changed.
+       */
+      try {
+        runDumpRoutesCmdSync();
+
+        const content = fs.readFileSync(target);
+        if (fs.existsSync(target)) {
+          fs.rmSync(target); // Remove the temporary file
+        }
+        // Check if there are new routes
+        if (!prevContent || content.compare(prevContent) !== 0) {
+          fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
+          fs.writeFileSync(finalTarget, content);
+
+          prevContent = content;
+          routesChanged = true;
+        }
+      } catch (err) {
+        logger.error(err.toString());
+      }
     },
 
     /**
@@ -144,13 +130,14 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
       for (const path of paths) {
         watcher.add(path);
       }
-      watcher.on("change", function(path) {
+      watcher.on("change", function (path) {
+        if (path === target) return;
         /**
          * Dump the routes if a possible routes config file is changed.
          */
         finalPluginOptions.possibleRoutesConfigFilesExt.forEach((ext) => {
           if (path.endsWith(`.${ext}`)) {
-            runDumpRoutesCmd();
+            runDumpRoutesCmdSync();
           }
         });
         /**

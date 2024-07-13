@@ -41,7 +41,7 @@ export default defineConfig({
 
   server: {
     // port: 5175,
-    origin: 'http://docs.lndo.site',
+    // origin: 'http://docs.lndo.site',
     // strictPort: true,
     fs: {
       allow: [
