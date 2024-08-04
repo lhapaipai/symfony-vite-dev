@@ -24,7 +24,8 @@ export default defineConfig({
     }),
     symfonyPlugin({
       debug: false,
-      servePublic: false
+      servePublic: false,
+      enforceServerOriginAfterListening: false
     }),
   ],
 

@@ -10,6 +10,7 @@ import {
   resolveDevServerUrl,
   isCssEntryPoint,
   resolveUserExternal,
+  normalizeConfig,
 } from "~/entrypoints/utils";
 import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
@@ -497,5 +498,30 @@ describe("resolveUserExternal()", () => {
     },
   ])("detect callback as external dependency", ({ external, id, expectedValue }) => {
     expect(resolveUserExternal(external, id, "root", false)).toBe(expectedValue);
+  });
+});
+
+describe("normalizeConfig", () => {
+  test.each([
+    {
+      resolvedConfig: {
+        plugins: [{ name: "vite:infos" }, { name: "other" }],
+      },
+      expectedValue: { plugins: ["vite:infos", "other"] },
+    },
+    {
+      resolvedConfig: {
+        func1() {},
+        foo: {
+          bar: "baz",
+          func2() {},
+        },
+      },
+      expectedValue: { foo: { bar: "baz" } },
+    },
+  ])("pluginsConfigSimplification", ({ resolvedConfig, expectedValue }) => {
+    const normalizedConfig = normalizeConfig(resolvedConfig as any as ResolvedConfig);
+
+    expect(JSON.parse(normalizedConfig)).toMatchObject(expectedValue);
   });
 });
