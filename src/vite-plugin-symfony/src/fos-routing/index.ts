@@ -1,6 +1,6 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
-import { deepMerge, objectToArg } from "~/fos-routing/utils";
-import { normalizePath } from "vite-plugin-symfony/src/entrypoints/utils.ts";
+import { objectToArg } from "~/fos-routing/utils";
+import { normalizePath } from "~/entrypoints/utils";
 import { Logger, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
@@ -14,70 +14,25 @@ import fs from "node:fs";
  * @param pluginOptions
  * @param logger
  */
-export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRoutingOptions, logger?: Logger) {
+export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRoutingOptions, logger?: Logger) {
   let routesChanged = true; // Control when to inject
   let prevContent = null; // Previous content of the routes
   const entryModules = new Set();
-  /**
-   * Default plugin options.
-   */
-  const defaultPluginOptions = {
-    args: {
-      target: "var/cache/fosRoutes.json",
-      format: "json",
-      locale: "",
-      prettyPrint: false,
-      domain: [],
-      extraArgs: {},
-    },
-    addImportByDefault: true,
-    routingPluginPackageName: "fos-router",
-    watchPaths: ["src/**/*.php"],
-    possibleRoutesConfigFilesExt: ["php"],
-    verbose: false,
-    php: "php",
-  };
-
-  /**
-   * Merges the default options with the user options.
-   */
-  const finalPluginOptions: VitePluginSymfonyFosRoutingOptions =
-    pluginOptions === true ? defaultPluginOptions : deepMerge(defaultPluginOptions, pluginOptions);
 
   /**
    * Resolves the target path.
    */
-  const finalTarget = path.resolve(process.cwd(), finalPluginOptions.args.target);
-
-  /**
-   * Resolve the target path to a temporary file.
-   */
-  finalPluginOptions.args.target = path.resolve(
-    process.cwd(),
-    finalPluginOptions.args.target.replace(/\.json$/, ".tmp.json"),
-  );
-
-  /**
-   * Prevents the target from being the same as the final target.
-   */
-  if (finalPluginOptions.args.target === finalTarget) {
-    finalPluginOptions.args.target += ".tmp";
-  }
-
-  /**
-   * Target shortcut.
-   */
-  const target = finalPluginOptions.args.target;
+  const target = path.resolve(process.cwd(), pluginOptions.args.target);
 
   function runDumpRoutesCmdSync() {
-    if (finalPluginOptions.verbose) {
+    if (pluginOptions.verbose) {
       logger.warn("Generating fos routes...");
     }
-    const args = objectToArg(finalPluginOptions.args);
+    const args = objectToArg(pluginOptions.args);
 
     // Dump routes
-    execFileSync(finalPluginOptions.php, ["bin/console", "fos:js-routing:dump", ...args], {
-      stdio: finalPluginOptions.verbose ? "inherit" : undefined,
+    execFileSync(pluginOptions.php, ["bin/console", "fos:js-routing:dump", ...args], {
+      stdio: pluginOptions.verbose ? "inherit" : undefined,
     });
   }
 
@@ -93,7 +48,9 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
        * Alternative to this.getModuleInfo(id).isEntry because we get "
        * The "isEntry" property of ModuleInfo is not supported." when using it in transform function.
        */
-      Object.values(inputOptions.input).forEach((input) => entryModules.add(normalizePath(input)));
+      Object.values(inputOptions.input).forEach((input) =>
+        entryModules.add(normalizePath(path.resolve(process.cwd(), input))),
+      );
 
       /**
        * Runs the command to generate the fos routes.
@@ -109,11 +66,13 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
         }
         // Check if there are new routes
         if (!prevContent || content.compare(prevContent) !== 0) {
-          fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
-          fs.writeFileSync(finalTarget, content);
+          fs.mkdirSync(path.dirname(target), { recursive: true });
+          fs.writeFileSync(target, content);
 
           prevContent = content;
           routesChanged = true;
+        } else {
+          routesChanged = false;
         }
       } catch (err) {
         logger.error(err.toString());
@@ -126,16 +85,15 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
      */
     configureServer(devServer: ViteDevServer) {
       const { watcher, ws } = devServer;
-      const paths = [...finalPluginOptions.watchPaths, target];
+      const paths = [...pluginOptions.watchPaths, target];
       for (const path of paths) {
         watcher.add(path);
       }
       watcher.on("change", function (path) {
-        if (path === target) return;
         /**
          * Dump the routes if a possible routes config file is changed.
          */
-        finalPluginOptions.possibleRoutesConfigFilesExt.forEach((ext) => {
+        pluginOptions.possibleRoutesConfigFilesExt.forEach((ext) => {
           if (path.endsWith(`.${ext}`)) {
             runDumpRoutesCmdSync();
           }
@@ -144,13 +102,13 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
          * Reload the page if the routes file content is changed.
          */
         if (target === path) {
-          if (finalPluginOptions.verbose) {
+          if (pluginOptions.verbose) {
             logger.warn("We detected a change in the routes file. Reloading...");
           }
           ws.send({
             type: "full-reload",
           });
-        } else if (finalPluginOptions.verbose) {
+        } else if (pluginOptions.verbose) {
           logger.warn("No change in the routes file.");
         }
       });
@@ -166,25 +124,25 @@ export default function symfonyFosRouting(pluginOptions?: VitePluginSymfonyFosRo
 
       // Inject if shouldInject is true and the file is matched by the transformCheckFileTypes regex.
       if (isInputFile && routesChanged) {
-        if (finalPluginOptions.verbose) {
+        if (pluginOptions.verbose) {
           logger.warn(`Injecting routes in ${id}...`);
         }
-        const routingPluginPackageName = finalPluginOptions.routingPluginPackageName;
+        const routingPluginPackageName = pluginOptions.routingPluginPackageName;
 
         // Create the regex pattern dynamically
         const pattern = `import\\s+\\w+\\s+from\\s+(?:"${routingPluginPackageName}"|'${routingPluginPackageName}')\\s*;?`;
         // Create the RegExp object
         const importRegex = new RegExp(pattern, "g");
         const replaceText = `
-import Routing from "${finalPluginOptions.routingPluginPackageName}";
-import routes from ${JSON.stringify(finalTarget)};
+import Routing from "${pluginOptions.routingPluginPackageName}";
+import routes from ${JSON.stringify(target)};
 Routing.setRoutingData(routes); \n
         `;
 
         /**
          * Inject the routes into the code if the code does not contain the routing plugin import.
          */
-        if (!code.match(pattern) && finalPluginOptions.addImportByDefault) {
+        if (!code.match(pattern) && pluginOptions.addImportByDefault) {
           return {
             code: replaceText + code,
             map: null,

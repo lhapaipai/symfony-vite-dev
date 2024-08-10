@@ -1,5 +1,6 @@
 import { join } from "node:path";
 import { VitePluginSymfonyEntrypointsOptions, VitePluginSymfonyOptions } from "./types";
+import { deepMerge } from "~/fos-routing/utils";
 
 export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOptions> = {}): VitePluginSymfonyOptions {
   if (typeof userConfig.publicDirectory === "string") {
@@ -46,6 +47,34 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     };
   } else {
     userConfig.stimulus = false;
+  }
+
+  /**
+   * Default options for fos-routing plugin.
+   */
+  const defaultFosRouterPluginOptions = {
+    args: {
+      target: "var/cache/fosRoutes.json",
+      format: "json",
+      locale: "",
+      prettyPrint: false,
+      domain: [],
+      extraArgs: {},
+    },
+    addImportByDefault: true,
+    routingPluginPackageName: "fos-router",
+    watchPaths: ["src/**/*.php"],
+    possibleRoutesConfigFilesExt: ["php"],
+    verbose: false,
+    php: "php",
+  };
+
+  if (userConfig.fosRouting === true) {
+    userConfig.fosRouting = defaultFosRouterPluginOptions;
+  } else if (typeof userConfig.fosRouting === "object") {
+    userConfig.fosRouting = deepMerge(defaultFosRouterPluginOptions, userConfig.fosRouting);
+  } else {
+    userConfig.fosRouting = false;
   }
 
   return {
