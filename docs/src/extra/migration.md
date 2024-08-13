@@ -5,12 +5,11 @@
 # and get what is the latest version
 composer outdated
 
-# at the time of writing this, it was the version 6.0
-# so update your bundle to this version
+# update your bundle to this version
 composer require pentatrion/vite-bundle:^7.0
 
 # Important ! update your vite-plugin-symfony npm package
-# to the same Major and version.
+# to the same Major and minor and version.
 npm i vite-plugin-symfony@^7.0
 # or
 yarn upgrade vite-plugin-symfony@^7.0
@@ -20,14 +19,43 @@ If you upgrade to a new major version
 
 ## from v6.x to v7.x
 
-Remove your `./config/routes/dev/pentatrion_vite.yaml` file.
-Add instead the `./config/routes/pentatrion_vite.yaml` file with this content:
+Update your recipe
+
+```bash
+composer recipes:update pentatrion/vite-bundle
+```
+
+The `./config/routes/dev/pentatrion_vite.yaml` file is replaced by `./config/routes/pentatrion_vite.yaml` with `when@dev` and add a new route.
+
+If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
+
+Else, you will need to update manually your `config/routes/pentatrion_vite.yaml` file.
+
 
 ```yaml
+# config/routes/pentatrion_vite.yaml
 when@dev:
-    _pentatrion_vite:
-        prefix: /build
-        resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+    # remove this default config
+    _pentatrion_vite: // [!code --]
+        prefix: /build // [!code --]
+        resource: "@PentatrionViteBundle/Resources/config/routing.yaml" // [!code --]
+
+    # add one route by build path
+    _pentatrion_vite_config1: // [!code ++]
+        path: /build-1/{path} #same as your config1 base // [!code ++]
+        defaults: // [!code ++]
+            _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+            configName: config1 // [!code ++]
+        requirements: // [!code ++]
+            path: ".+" // [!code ++]
+
+    _pentatrion_vite_config2: // [!code ++]
+        path: /build-2/{path} #same as your config2 base // [!code ++]
+        defaults: // [!code ++]
+            _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+            configName: config2 // [!code ++]
+        requirements: // [!code ++]
+            path: ".+" // [!code ++]
 
     _profiler_vite:
         path: /_profiler/vite

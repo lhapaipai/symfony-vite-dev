@@ -1,10 +1,8 @@
 pentatrion_vite:
     # absolute_url: true
-
-    preload: link-tag
-    
+    # preload: link-tag
+    # crossorigin: anonymous
     script_attributes:
-        foo: bar
         # you can define your attributes that you want to apply
         # for all your script tags
     link_attributes:

@@ -95,8 +95,7 @@ export default defineConfig({
             items: [
               { text: 'Installation', link: '/stimulus/installation' },
               { text: 'Symfony UX', link: '/stimulus/symfony-ux' },
-              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers' },
-              { text: 'In Depth', link: '/stimulus/in-depth' }
+              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers' }
             ]
           },
           {
@@ -110,11 +109,19 @@ export default defineConfig({
             text: 'Extra',
             items: [
               { text: 'Compatibility', link: '/extra/compatibility' },
-              { text: 'In depth', link: '/extra/in-depth' },
               { text: 'Manual installation', link: '/extra/manual-installation' },
               { text: 'Migration', link: '/extra/migration' },
               { text: 'Migration Webpack Encore', link: '/extra/migration-webpack-encore' },
               { text: 'Contribute', link: '/extra/contribute' }
+            ]
+          },
+          {
+            text: 'How does it work ?',
+            items: [
+              { text: 'Bundle', link: '/in-depth/bundle' },
+              { text: 'Plugin', link: '/in-depth/plugin' },
+              { text: 'Preload', link: '/in-depth/preload' },
+              { text: 'Stimulus', link: '/in-depth/stimulus' }
             ]
           }
         ],
@@ -172,8 +179,7 @@ export default defineConfig({
             items: [
               { text: 'Installation', link: '/fr/stimulus/installation' },
               { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux' },
-              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers' },
-              { text: 'En profondeur', link: '/fr/stimulus/in-depth' }
+              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers' }
             ]
           },
           {
@@ -187,11 +193,19 @@ export default defineConfig({
             text: 'Extra',
             items: [
               { text: 'Compatibilité', link: '/fr/extra/compatibility' },
-              { text: 'En profondeur', link: '/fr/extra/in-depth' },
               { text: 'Installation manuelle', link: '/fr/extra/manual-installation' },
               { text: 'Migration', link: '/fr/extra/migration' },
               { text: 'Migration Webpack Encore', link: '/fr/extra/migration-webpack-encore' },
               { text: 'Contribuez', link: '/fr/extra/contribute' }
+            ]
+          },
+          {
+            text: 'Fonctionnement interne',
+            items: [
+              { text: 'Bundle', link: '/fr/in-depth/bundle' },
+              { text: 'Plugin', link: '/fr/in-depth/plugin' },
+              { text: 'Préchargements', link: '/fr/in-depth/preload' },
+              { text: 'Stimulus', link: '/fr/in-depth/stimulus' }
             ]
           }
         ],
