@@ -28,6 +28,15 @@ composer recipes:update pentatrion/vite-bundle
 
 Elle va remplacer votre fichier `./config/routes/dev/pentatrion_vite.yaml` par celui-ci `./config/routes/pentatrion_vite.yaml` qui utilise `when@dev` et ajoutera une nouvelle route.
 
+l'option `crossorigin` pour vite-bundle est à `true` par défaut (l'anciennement sa valeur par défaut était `false`).
+Normalement vous n'auriez pas à changer ce comportement vers `false`. Si vous rencontrez des problèmes avec cette option, n'hésitez pas à ouvrir une *issue*.
+
+```yaml
+# config/packages/pentatrion_vite.yaml
+pentatrion_vite:
+  crossorigin: true
+```
+
 Si vous n'avez pas des [configurations multiples](/fr/guide/multiple-configurations) c'est déja terminé...
 
 Sinon vous aurez besoin de mettre à jour votre fichier `config/routes/pentatrion_vite.yaml`.

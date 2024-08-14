@@ -47,7 +47,6 @@ export default defineConfig({
         },
       },
     },
-    assetsDir: "bundle",
     minify: false,
   },
 

@@ -1,19 +1,15 @@
-## À discuter
+# Préchargements
 
-`crossorigin` valeur par défaut à `anonymous`.
-- les balises script de type `internal` n'héritent plus des `globalDefaultAttributes`. la plupart sont des scripts inline ce n'est pas logique d'indiquer un crossorigin.
-au contraire pour `@vite/client` c'est nécessaire.
+L'objectif de cette page est de faire un état des lieux du comportement natif de Vite et des choix qui ont été faits pour copier son comportement dans une application Symfony.
+La lecture de cette documentation peut vous être nécessaire si vous cherchez à paramétrer finement le préchargement des scripts et feuilles de style ou si vous souhaitez contribuer au projet. Elle traitera de sujets comme les attributs `rel="preload"` et `rel="modulepreload"` et `crossorigin="xxx"`.
 
-Code source pour le test
+## TL;DR;
 
-```js
-// node_modules/my-lib/main.js
-export const foo = "bar";
-```
+code source utilisé pour la documentation de cette page
 
 ```js
-// app.js
-import { foo } from "my-lib";
+// assets/app.js
+import { foo } from "./shared.js";
 console.log(foo);
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -23,15 +19,29 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-## TL;DR;
-
-index.html en dev mode
+Comportement natif de Vite : analyse du code source du fichier `index.html` en dev mode
 
 ```html
 <html lang="en">
   <head>
     <script type="module" src="/@vite/client"></script>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+Comportement souhaité
+
+Afin d'être exhaustif et parce que l'application Symfony est servie sur une autre URL. l'URL complète
+du client Vite devra être écrite. On ajoute explicitement l'attribut `crossorigin`.
+```html
+<html lang="en">
+  <head>
+    <script type="module" src="http://127.0.0.1:5173/@vite/client" crossorigin></script>
+    <script type="module" src="http://127.0.0.1:5173/assets/app.js" crossorigin></script>
   </head>
   <body>
     ...
@@ -40,7 +50,7 @@ index.html en dev mode
 ```
 
 
-index.html après un build
+Comportement natif de Vite : analyse du code source du fichier `index.html` après un build
 
 ```html
 <html lang="en">
@@ -57,11 +67,18 @@ index.html après un build
 </html>
 ```
 
+Comportement souhaité avec un préchargement sous forme de balises html :
 
-index.html après un build avec l'en-tête Link
+Exactement le même rendu que pour le comportement natif
+
+Comportement souhaité avec un préchargement sous forme d'en-tête `Link` :
+
+bien que explicitement présent dans le code source du fichier html le fichier `/assets/app-bXh9WZ8a.js`
+sera tout de même présent dans l'en-tête `Link`. Si correctement configuré cela ne provoque pas de
+requête supplémentaire mais un requête exécutée encore plus tôt.
 
 ```bash
-Link: </assets/shared-5Hh7diCN.js>; rel="modulepreload"; crossorigin
+Link: </assets/app-bXh9WZ8a.js>; rel="modulepreload"; crossorigin, </assets/shared-5Hh7diCN.js>; rel="modulepreload"; crossorigin
 ```
 ```html
 <!doctype html>
@@ -75,9 +92,10 @@ Link: </assets/shared-5Hh7diCN.js>; rel="modulepreload"; crossorigin
     ...
   </body>
 </html>
+```
 
+Comportement natif de Vite : analyse du code source du fichier `index.html` après un build avec le plugin legacy
 
-<!-- index.html après un build avec le plugin legacy -->
 ```html
 <!doctype html>
 <html class="page-welcome">
@@ -112,11 +130,21 @@ Link: </assets/shared-5Hh7diCN.js>; rel="modulepreload"; crossorigin
 </html>
 ```
 
-## Pourquoi l'attribut `crossorigin` explicite ?
+## Attribut `crossorigin` activé par défaut dans la version 7 de `vite-bundle`.
+
+Pourquoi ?
+
+- On s'approche au plus près du comportement natif de Vite.
+- Normalement le mode [`cors`](https://developer.mozilla.org/en-US/docs/Web/API/Request/mode) est activé implicitement pour toute balise `<script type="module">`. En ajoutant explicitement l'attribut `crossorigin` cela ne doit rien changer. Mais cela permet aux polyfills comme celui de [`modulePreload`](https://vitejs.dev/config/build-options.html#build-modulepreload) de mieux fonctionner. En effet sans la présence de cet attribut, le polyfill pourrait effectuer un fetch inutile
+
+```
+A preload for 'https://example.org/build/example.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute.
+```
+
 
 ```ts
 // from vite source code
-// packages/vite/src/node/plugins/html.ts L713
+// https://github.com/vitejs/vite/blob/1bda847329022d5279cfa2b51719dd19a161fd64/packages/vite/src/node/plugins/html.ts#L713
 const toScriptTag = (
   chunk: OutputChunk,
   toOutputPath: (filename: string) => string,
@@ -138,7 +166,73 @@ const toScriptTag = (
 })
 ```
 
-## Version sans le plugin Legacy
+l'option `build.modulePreload.polyfill` injecte ce code supplémentaire qui va créer explicitement un fetch sur les balises `<link rel="modulepreload" href="/script.js />` trouvées dans le code source.
+
+- le polyfill fonctionne uniquement pour `modulepreload` pas pour `preload`
+- grâce au `MutationObserver` le polyfill préchargera les `modulepreload` créés tout au long du cycle de vie de la page.
+- le polyfill est présent dans le fichier js du point d'entrée il n'est pas injecté dans le fichier `index.html`,
+ pas besoin de l'ajouter nous-même.
+
+le code source est inspiré de [es-module-shims](https://github.com/guybedford/es-module-shims/blob/13694283ec3b6aafdfd91ca1033df9f5f34bd4cf/src/es-module-shims.js#L603).
+
+```ts
+// source code from vite
+// https://github.com/vitejs/vite/blob/1bda847329022d5279cfa2b51719dd19a161fd64/packages/vite/src/node/plugins/modulePreloadPolyfill.ts#L59
+(function polyfill() {
+  const relList = document.createElement('link').relList
+  if (relList && relList.supports && relList.supports('modulepreload')) {
+    return
+  }
+
+  for (const link of document.querySelectorAll('link[rel="modulepreload"]')) {
+    processPreload(link)
+  }
+
+  new MutationObserver((mutations: any) => {
+    for (const mutation of mutations) {
+      if (mutation.type !== 'childList') {
+        continue
+      }
+      for (const node of mutation.addedNodes) {
+        if (node.tagName === 'LINK' && node.rel === 'modulepreload')
+          processPreload(node)
+      }
+    }
+  }).observe(document, { childList: true, subtree: true })
+
+  function getFetchOpts(link: any) {
+    const fetchOpts = {} as any
+    if (link.integrity) fetchOpts.integrity = link.integrity
+    if (link.referrerPolicy) fetchOpts.referrerPolicy = link.referrerPolicy
+    if (link.crossOrigin === 'use-credentials')
+      fetchOpts.credentials = 'include'
+    else if (link.crossOrigin === 'anonymous') fetchOpts.credentials = 'omit'
+    else fetchOpts.credentials = 'same-origin'
+    return fetchOpts
+  }
+
+  function processPreload(link: any) {
+    if (link.ep)
+      // ep marker = processed
+      return
+    link.ep = true
+    // prepopulate the load record
+    const fetchOpts = getFetchOpts(link)
+    fetch(link.href, fetchOpts)
+  }
+})();
+```
+
+Quelque chose semble étonnant `if (link.crossOrigin === 'anonymous') fetchOpts.credentials = 'omit'`.
+Je n'avais jamais vu cela [crossorigin](https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/crossOrigin). dans mon esprit `anonymous` est associé la valeur `same-origin` pour `credentials`.
+
+
+# Annexes
+
+
+
+## Fichiers générés lors d'un build sans le plugin Legacy
+
 
 
 ```json
@@ -232,65 +326,10 @@ window.addEventListener("DOMContentLoaded", () => {
 ```
 
 
-l'option `build.modulePreload.polyfill` injecte ce code supplémentaire qui va créer explicitement un fetch sur les balises `<link rel="modulepreload" href="/script.js />` trouvées dans le code source.
-
-- le polyfill fonctionne uniquement pour `modulepreload` pas pour `preload`
-- grâce au `MutationObserver` le polyfill préchargera les `modulepreload` créés tout au long du cycle de vie de la page.
-- le polyfill est présent dans le fichier js du point d'entrée il n'est pas injecté dans le fichier `index.html`,
- pas besoin de l'ajouter nous-même.
-
-```ts
-(function polyfill() {
-  const relList = document.createElement('link').relList
-  if (relList && relList.supports && relList.supports('modulepreload')) {
-    return
-  }
-
-  for (const link of document.querySelectorAll('link[rel="modulepreload"]')) {
-    processPreload(link)
-  }
-
-  new MutationObserver((mutations: any) => {
-    for (const mutation of mutations) {
-      if (mutation.type !== 'childList') {
-        continue
-      }
-      for (const node of mutation.addedNodes) {
-        if (node.tagName === 'LINK' && node.rel === 'modulepreload')
-          processPreload(node)
-      }
-    }
-  }).observe(document, { childList: true, subtree: true })
-
-  function getFetchOpts(link: any) {
-    const fetchOpts = {} as any
-    if (link.integrity) fetchOpts.integrity = link.integrity
-    if (link.referrerPolicy) fetchOpts.referrerPolicy = link.referrerPolicy
-    if (link.crossOrigin === 'use-credentials')
-      fetchOpts.credentials = 'include'
-    // voir code source de git
-    // packages/vite/src/node/plugins/modulePreloadPolyfill.ts
-    // https://github.com/guybedford/es-module-shims/blob/13694283ec3b6aafdfd91ca1033df9f5f34bd4cf/src/es-module-shims.js#L603
-    else if (link.crossOrigin === 'anonymous') fetchOpts.credentials = 'omit'
-    else fetchOpts.credentials = 'same-origin'
-    return fetchOpts
-  }
-
-  function processPreload(link: any) {
-    if (link.ep)
-      // ep marker = processed
-      return
-    link.ep = true
-    // prepopulate the load record
-    const fetchOpts = getFetchOpts(link)
-    fetch(link.href, fetchOpts)
-  }
-})();
-```
 
 
+## Fichiers générés avec le plugin Legacy
 
-## plugin legacy
 
 ```json
 // entrypoints.json
