@@ -25,6 +25,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         pageWelcome: "./assets/page/welcome/index.js",
+        pageImports: "./assets/page/imports/index.js",
 
         app: "./assets/app.js",
         theme: "./assets/theme.scss",

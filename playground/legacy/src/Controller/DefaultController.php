@@ -15,4 +15,12 @@ class DefaultController extends AbstractController
             'currentPage' => 'welcome',
         ]);
     }
+
+    #[Route('/imports', name: 'imports')]
+    public function imports(): Response
+    {
+        return $this->render('default/imports.html.twig', [
+            'currentPage' => 'imports',
+        ]);
+    }
 }
