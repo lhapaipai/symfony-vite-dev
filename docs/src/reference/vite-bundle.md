@@ -124,8 +124,8 @@ For more details, see the [performances](/guide/performances#preloading-your-scr
 
 ## crossorigin
 
-- **Type :** `false` | `"anonymous"` | `"use-credentials"`
-- **Default value :** `false`
+- **Type :** `false` | `true` | `"anonymous"` | `"use-credentials"`
+- **Default value :** `true`
 
 If you specify this option, a `crossorigin` attribute will be added to all tags: `<script>`, `<link rel="stylesheet">`, `<link rel="modulepreload">` and internal tags of Vite.
 

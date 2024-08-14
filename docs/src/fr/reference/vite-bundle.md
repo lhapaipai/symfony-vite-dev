@@ -125,8 +125,8 @@ Pour plus de détail, voir la section [performances](/fr/guide/performances#prec
 
 ## crossorigin
 
-- **Type :** `false` | `"anonymous"` | `"use-credentials"`
-- **Valeur par défaut :** `false`
+- **Type :** `false` | `true` | `"anonymous"` | `"use-credentials"`
+- **Valeur par défaut :** `true`
 
 Si vous précisez cette option, un attribut `crossorigin` sera ajouté à toutes les balises : `<script>`, `<link rel="stylesheet">`, `<link rel="modulepreload">` et les balises internes de Vite.
 
