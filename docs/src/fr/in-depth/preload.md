@@ -1,6 +1,8 @@
 ## À discuter
 
 `crossorigin` valeur par défaut à `anonymous`.
+- les balises script de type `internal` n'héritent plus des `globalDefaultAttributes`. la plupart sont des scripts inline ce n'est pas logique d'indiquer un crossorigin.
+au contraire pour `@vite/client` c'est nécessaire.
 
 Code source pour le test
 

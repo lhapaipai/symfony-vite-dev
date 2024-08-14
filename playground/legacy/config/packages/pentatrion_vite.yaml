@@ -1,4 +1,7 @@
 pentatrion_vite:
+    preload: link-header
+
+
     script_attributes:
         # you can define your attributes that you want to apply
         # for all your script tags
