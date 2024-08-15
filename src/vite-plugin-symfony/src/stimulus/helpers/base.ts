@@ -4,7 +4,7 @@ import { getStimulusControllerFileInfos } from "~/stimulus/util";
 import { ControllerModule, ImportedModules, LazyModule } from "./types";
 
 declare module "@hotwired/stimulus" {
-  export class Controller {
+  interface Controller {
     __stimulusLazyController: boolean;
   }
 }

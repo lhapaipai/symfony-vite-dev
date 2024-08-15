@@ -1,3 +1,11 @@
+## v6.5.1
+
+- fix overriding types from '@hotwired/stimulus'
+
+## v6.5.0
+
+- move v6.4.7 to 6.5.0 : flex recipes accept only minor version number (not patch).
+
 ## v6.4.7
 
 - vite-bundle : prepare v7 flex recipe add pentatrion_vite.yaml route file into install directory 
