@@ -1,3 +1,7 @@
+## v6.5.3
+
+- fix vite-plugin-symfony tsup export when package is ESM.
+
 ## v6.5.2
 
 - fix dummy-non-existing-folder to be created when used with vitest UI.

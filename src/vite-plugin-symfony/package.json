@@ -1,38 +1,38 @@
 {
   "name": "vite-plugin-symfony",
-  "version": "6.5.2",
+  "version": "6.5.3",
   "description": "A Vite plugin to integrate easily Vite in your Symfony application",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./stimulus/helpers": {
-      "import": "./dist/stimulus/helpers/index.mjs",
-      "require": "./dist/stimulus/helpers/index.js"
+      "import": "./dist/stimulus/helpers/index.js",
+      "require": "./dist/stimulus/helpers/index.cjs"
     },
     "./stimulus/helpers/react/render_controller": {
-      "import": "./dist/stimulus/helpers/react/render_controller.mjs",
-      "require": "./dist/stimulus/helpers/react/render_controller.js"
+      "import": "./dist/stimulus/helpers/react/render_controller.js",
+      "require": "./dist/stimulus/helpers/react/render_controller.cjs"
     },
     "./stimulus/helpers/svelte/render_controller": {
-      "import": "./dist/stimulus/helpers/svelte/render_controller.mjs",
-      "require": "./dist/stimulus/helpers/svelte/render_controller.js"
+      "import": "./dist/stimulus/helpers/svelte/render_controller.js",
+      "require": "./dist/stimulus/helpers/svelte/render_controller.cjs"
     },
     "./stimulus/helpers/vue": {
-      "import": "./dist/stimulus/helpers/vue/index.mjs",
-      "require": "./dist/stimulus/helpers/vue/index.js"
+      "import": "./dist/stimulus/helpers/vue/index.js",
+      "require": "./dist/stimulus/helpers/vue/index.cjs"
     },
     "./stimulus/helpers/react": {
-      "import": "./dist/stimulus/helpers/react/index.mjs",
-      "require": "./dist/stimulus/helpers/react/index.js"
+      "import": "./dist/stimulus/helpers/react/index.js",
+      "require": "./dist/stimulus/helpers/react/index.cjs"
     },
     "./stimulus/helpers/svelte": {
-      "import": "./dist/stimulus/helpers/svelte/index.mjs",
-      "require": "./dist/stimulus/helpers/svelte/index.js"
+      "import": "./dist/stimulus/helpers/svelte/index.js",
+      "require": "./dist/stimulus/helpers/svelte/index.cjs"
     },
     "./package.json": "./package.json"
   },
