@@ -2,7 +2,9 @@
   "name": "vite-plugin-symfony",
   "version": "6.5.2",
   "description": "A Vite plugin to integrate easily Vite in your Symfony application",
+  "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -60,25 +62,25 @@
   ],
   "devDependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@types/node": "^20.10.5",
-    "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@types/node": "^22.3.0",
+    "@types/ws": "^8.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^2.0.5",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "jsdom": "^23.0.1",
-    "prettier": "^3.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.9.1",
-    "svelte": "^4.2.8",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.10",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jsdom": "^24.1.1",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rollup": "^4.20.0",
+    "svelte": "^4.2.18",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1",
     "vitest": "^2.0.5",
-    "vue": "^3.3.13"
+    "vue": "^3.4.38"
   },
   "keywords": [
     "vite-plugin",
@@ -97,10 +99,10 @@
     "node": "20.9.0"
   },
   "dependencies": {
-    "debug": "^4.3.4",
+    "debug": "^4.3.6",
     "fast-glob": "^3.3.2",
-    "picocolors": "^1.0.0",
-    "sirv": "^2.0.3"
+    "picocolors": "^1.0.1",
+    "sirv": "^2.0.4"
   },
   "symfony": {
     "controllers": {
