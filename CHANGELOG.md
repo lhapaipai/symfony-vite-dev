@@ -1,3 +1,7 @@
+## v6.5.2
+
+- fix dummy-non-existing-folder to be created when used with vitest UI.
+
 ## v6.5.1
 
 - fix overriding types from '@hotwired/stimulus'

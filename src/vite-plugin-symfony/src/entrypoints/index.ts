@@ -138,7 +138,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
       devServer.httpServer?.once("listening", () => {
         // empty the buildDir and create an entrypoints.json file inside.
-        if (viteConfig.env.DEV) {
+        if (viteConfig.env.DEV && !process.env.VITEST) {
           showDepreciationsWarnings(pluginOptions, logger);
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);

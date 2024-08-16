@@ -39,8 +39,7 @@
   },
   "devDependencies": {
     "sass": "^1.69.5",
-    "stimulus-color-picker": "^1.1.0",
-    "vitest": "^1.1.0"
+    "stimulus-color-picker": "^1.1.0"
   },
   "volta": {
     "node": "20.9.0"
