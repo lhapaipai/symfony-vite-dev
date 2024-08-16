@@ -65,7 +65,7 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
 if (import.meta.hot) {
   import.meta.hot.accept(newModule => {
     if (!window.${applicationGlobalVarName}) {
-      console.warn('Simulus app not available. Are you creating app with startStimulusApp() ?');
+      console.warn('Stimulus app not available. Are you creating app with startStimulusApp() ?');
       import.meta.hot.invalidate();
     } else {
       window.${applicationGlobalVarName}.register('${identifier}', newModule.default);

@@ -1,0 +1,24 @@
+{
+  "name": "vite-bundle-stimulus",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "20.9.0"
+  },
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@symfony/stimulus-bridge": "^3.2.0",
+    "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets"
+  },
+  "dependencies": {
+    "stimulus-color-picker": "^1.1.0"
+  }
+}
