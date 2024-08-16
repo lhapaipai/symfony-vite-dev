@@ -1,0 +1,1 @@
+`pnpm-lock.yaml` is generated and used only for ci-cd wich exclude workspace.
