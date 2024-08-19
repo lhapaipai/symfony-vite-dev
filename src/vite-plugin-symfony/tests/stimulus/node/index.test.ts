@@ -1,6 +1,6 @@
 import { ConfigEnv, Plugin, UserConfig, createLogger } from "vite";
 import { describe, it, expect } from "vitest";
-import symfonyStimulus from "~/stimulus";
+import symfonyStimulus from "~/stimulus/node";
 
 const generateStimulusPlugin = (command: "build" | "serve") => {
   const plugin: Plugin = symfonyStimulus(
@@ -54,7 +54,7 @@ describe("stimulus index", () => {
       if (import.meta.hot) {
         import.meta.hot.accept(newModule => {
           if (!window.$$stimulusApp$$) {
-            console.warn('Simulus app not available. Are you creating app with startStimulusApp() ?');
+            console.warn('Stimulus app not available. Are you creating app with startStimulusApp() ?');
             import.meta.hot.invalidate();
           } else {
             window.$$stimulusApp$$.register('welcome', newModule.default);

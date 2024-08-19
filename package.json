@@ -38,8 +38,12 @@
     "vue": "^3.4.38"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^8.57.0",
     "sass": "^1.77.8",
-    "stimulus-color-picker": "^1.1.0"
+    "stimulus-color-picker": "^1.1.0",
+    "typescript": "5.5.4",
+    "typescript-eslint": "^8.1.0"
   },
   "volta": {
     "node": "20.9.0"

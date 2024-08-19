@@ -1,4 +1,3 @@
-import { type ControllerConstructor } from "@hotwired/stimulus";
 import type { ComponentClass, FunctionComponent } from "react";
 import { Component as VueComponent } from "vue";
 import type { SvelteComponent } from "svelte";
@@ -6,10 +5,6 @@ import type { SvelteComponent } from "svelte";
 export type LazyModule<M> = () => Promise<M>;
 export type ImportedModule<M> = M | LazyModule<M>;
 export type ImportedModules<M> = Record<string, ImportedModule<M>>;
-
-export type ControllerModule = {
-  default: ControllerConstructor;
-};
 
 export type ReactComponent = string | FunctionComponent<object> | ComponentClass<object, any>;
 export type ReactModule = {
@@ -22,12 +17,6 @@ export type VueModule = {
 
 export type SvelteModule = {
   default: SvelteComponent;
-};
-
-export type LazyControllerModule = () => Promise<ControllerModule>;
-
-export type ControllerImportedModules = {
-  [filePath: string]: LazyControllerModule;
 };
 
 declare global {

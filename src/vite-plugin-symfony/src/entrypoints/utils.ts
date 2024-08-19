@@ -12,13 +12,17 @@ import { getInputPath } from "./pathMapping";
 
 export const isWindows = os.platform() === "win32";
 
-export function parseVersionString(str: string) {
+export function parseVersionString(str: string): [string, number, number, number] {
   const [major, minor, patch] = str.split(".").map((nb) => parseInt(nb));
   return [str, major ?? 0, minor ?? 0, patch ?? 0];
 }
 
 export function slash(p: string): string {
   return p.replace(/\\/g, "/");
+}
+
+export function trimSlashes(str: string): string {
+  return str.replace(/^\/+|\/+$/g, "");
 }
 
 export function isSubdirectory(parent: string, child: string) {
@@ -59,7 +63,7 @@ export function isIpv6(address: AddressInfo): boolean {
 export const writeJson = (filePath: string, jsonData: any) => {
   try {
     writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(`Error writing ${path.basename(filePath)}: ${err.message}`);
   }
 };
@@ -89,7 +93,7 @@ export const isInternalRequest = (url: string): boolean => InternalPrefixRE.test
 const CSS_LANGS_RE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 const cssModuleRE = new RegExp(`\\.module${CSS_LANGS_RE.source}`);
 const commonjsProxyRE = /\?commonjs-proxy/;
-const isCSSRequest = (request) => CSS_LANGS_RE.test(request);
+const isCSSRequest = (request: string) => CSS_LANGS_RE.test(request);
 
 const polyfillId = "\0vite/legacy-polyfills";
 
@@ -137,7 +141,7 @@ export const isCssEntryPoint = (chunk: RenderedChunk) => {
   }
 
   if (isPureCssChunk) {
-    return chunk?.viteMetadata.importedCss.size === 1;
+    return chunk?.viteMetadata?.importedCss.size === 1;
   }
 
   return false;
@@ -145,7 +149,7 @@ export const isCssEntryPoint = (chunk: RenderedChunk) => {
 
 export const getFileInfos = (
   chunk: OutputChunk | OutputAsset,
-  inputRelPath,
+  inputRelPath: string,
   pluginOptions: VitePluginSymfonyEntrypointsOptions,
 ): FileInfos => {
   const alg = pluginOptions.sriAlgorithm;
@@ -170,8 +174,8 @@ export const getFileInfos = (
     const { imports, dynamicImports, viteMetadata, fileName } = chunk;
 
     return {
-      assets: Array.from(viteMetadata.importedAssets),
-      css: Array.from(viteMetadata.importedCss),
+      assets: Array.from(viteMetadata?.importedAssets ?? []),
+      css: Array.from(viteMetadata?.importedCss ?? []),
       hash: alg === false ? null : generateHash(chunk.code, alg),
       imports: imports,
       inputRelPath,
@@ -182,6 +186,8 @@ export const getFileInfos = (
       type: "js",
     };
   }
+
+  throw new Error(`Unknown chunktype ${(chunk as OutputChunk).type} for ${(chunk as OutputChunk).fileName}`);
 };
 
 function generateHash(source: BinaryLike, alg: HashAlgorithm) {
@@ -198,7 +204,7 @@ function generateHash(source: BinaryLike, alg: HashAlgorithm) {
 export const prepareRollupInputs = (config: ResolvedConfig): ParsedInputs => {
   const inputParsed: ParsedInputs = {};
 
-  for (const [entryName, inputRelPath] of Object.entries(config.build.rollupOptions.input)) {
+  for (const [entryName, inputRelPath] of Object.entries(config.build.rollupOptions.input ?? {})) {
     const entryAbsolutePath = normalizePath(resolve(config.root, inputRelPath));
 
     const extension = extname(inputRelPath);
@@ -254,11 +260,11 @@ export const getInputRelPath = (
 export function resolveUserExternal(
   user: ExternalOption,
   id: string,
-  parentId: string | undefined,
+  parentId: string | null,
   isResolved: boolean,
 ): boolean | null | void {
   if (typeof user === "function") {
-    return user(id, parentId, isResolved);
+    return user(id, parentId ?? undefined, isResolved);
   } else if (Array.isArray(user)) {
     return user.some((test) => isExternal(id, test));
   } else {

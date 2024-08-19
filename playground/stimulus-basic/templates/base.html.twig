@@ -27,11 +27,12 @@
           Symfony & Vite
         </div>
         <div class="links">
-          <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
-          <a class="{{ currentPage == 'eager' ? 'active' : '' }}" href="{{ path('eager') }}">Eager</a>
-          <a class="{{ currentPage == 'lazy' ? 'active' : '' }}" href="{{ path('lazy') }}">Lazy</a>
+          <a class="{{ currentPage == 'root' ? 'active' : '' }}" href="{{ path('root') }}">Home</a>
+          <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome (eager)</a>
+          <a class="{{ currentPage == 'counter' ? 'active' : '' }}" href="{{ path('counter') }}">Counter (lazy)</a>
           <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
           <a class="{{ currentPage == 'third-party' ? 'active' : '' }}" href="{{ path('third-party') }}">Third party</a>
+          <a class="{{ currentPage == 'other' ? 'active' : '' }}" href="{{ path('other') }}">Other</a>
         </div>
       </div>
     </nav>

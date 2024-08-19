@@ -33,13 +33,21 @@ export type FilesMetadatas = {
   [k: string]: FileMetadatas;
 };
 
-export type EntryPoint = {
-  assets?: string[];
-  js?: string[];
-  css?: string[];
-  preload?: string[];
-  dynamic?: string[];
-  legacy?: boolean | string;
+export type EntryPoint =
+  | {
+      js?: string[];
+    }
+  | {
+      css?: string[];
+    }
+  | BuildEntryPoint;
+
+export type BuildEntryPoint = {
+  js: string[];
+  css: string[];
+  preload: string[];
+  dynamic: string[];
+  legacy: boolean | string;
 };
 
 export type EntryPoints = {
@@ -125,22 +133,6 @@ export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
 };
 
 export type VitePluginSymfonyEntrypointsOptions = {
-  /**
-   * Web directory root
-   * Relative file path from project directory root.
-   * @default 'public'
-   * @deprecated use `build.outDir`: join(publicDirectory, buildDirectory) from vite config
-   */
-  publicDirectory: string;
-
-  /**
-   * Build directory (or path)
-   * Relative path from web directory root
-   * @default 'build'
-   * @deprecated use `base`: "/" + buildDirectory + "/" from vite config
-   */
-  buildDirectory: string;
-
   /**
    * By default vite-plugin-symfony set vite option publicDir to false.
    * Because we don't want symfony entrypoint (index.php) and other files to

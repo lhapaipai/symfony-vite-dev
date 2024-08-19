@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { createRoot } from "react-dom/client";
 import { Controller } from "@hotwired/stimulus";
+import { ReactModule } from "../types";
 
 export default class extends Controller {
   declare readonly componentValue?: string;
@@ -22,7 +23,7 @@ export default class extends Controller {
 
     const importedReactModule = window.resolveReactComponent(this.componentValue);
 
-    const onload = (reactModule) => {
+    const onload = (reactModule: ReactModule) => {
       const component = reactModule.default;
       this._renderReactElement(React.createElement(component, props, null));
 

@@ -11,6 +11,7 @@ import {
   isCssEntryPoint,
   resolveUserExternal,
   normalizeConfig,
+  trimSlashes,
 } from "~/entrypoints/utils";
 import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
@@ -523,5 +524,28 @@ describe("normalizeConfig", () => {
     const normalizedConfig = normalizeConfig(resolvedConfig as any as ResolvedConfig);
 
     expect(JSON.parse(normalizedConfig)).toMatchObject(expectedValue);
+  });
+});
+
+describe("trimSlashes", () => {
+  test("should remove slashes at the beginning and end of the string", () => {
+    expect(trimSlashes("/example/path/")).toBe("example/path");
+    expect(trimSlashes("/example/path")).toBe("example/path");
+    expect(trimSlashes("example/path/")).toBe("example/path");
+    expect(trimSlashes("example/path")).toBe("example/path");
+  });
+
+  test("should handle strings with only slashes", () => {
+    expect(trimSlashes("/")).toBe("");
+    expect(trimSlashes("//")).toBe("");
+    expect(trimSlashes("///")).toBe("");
+  });
+
+  test("should return the same string if there are no slashes at the beginning or end", () => {
+    expect(trimSlashes("example/path")).toBe("example/path");
+  });
+
+  test("should handle empty strings", () => {
+    expect(trimSlashes("")).toBe("");
   });
 });

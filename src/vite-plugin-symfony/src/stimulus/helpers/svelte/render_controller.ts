@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
 import { SvelteComponent } from "svelte";
+import { SvelteModule } from "../types";
 
 export default class extends Controller<Element & { root?: SvelteComponent }> {
-  private app: SvelteComponent;
+  private app: SvelteComponent | undefined;
   declare readonly componentValue: string;
 
   private props: Record<string, any> | undefined;
@@ -27,12 +28,13 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
 
     const importedSvelteModule = window.resolveSvelteComponent(this.componentValue);
 
-    const onload = (svelteModule) => {
+    const onload = (svelteModule: SvelteModule) => {
       const Component = svelteModule.default;
 
       this._destroyIfExists();
 
       // @see https://svelte.dev/docs#run-time-client-side-component-api-creating-a-component
+      // @ts-ignore
       this.app = new Component({
         target: this.element,
         props: this.props,

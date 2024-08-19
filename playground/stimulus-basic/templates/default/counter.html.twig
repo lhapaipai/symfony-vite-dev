@@ -2,7 +2,7 @@
 
 {% block title %}HelloController!{% endblock %}
 
-{% block html_class %}page-welcome{% endblock %}
+{% block html_class %}page-counter{% endblock %}
 
 {% block content %}
 <div class="cards">
@@ -13,7 +13,7 @@
         <button {{ stimulus_action('counter', 'increment', 'click')}} {{ stimulus_target('counter', 'button') }}>count : 0</button>
       </div>
       <p>
-        <code>assets/controllers/counter_lazycontroller.js</code>
+        <code>assets/controllers/counter_controller.js</code>
       </p>
     </div>
 </div>

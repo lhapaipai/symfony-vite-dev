@@ -19,6 +19,7 @@
     "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets"
   },
   "dependencies": {
-    "stimulus-color-picker": "^1.1.0"
+    "@simonwep/pickr": "^1.9.1",
+    "@stimulus-components/color-picker": "^2.0.0"
   }
 }

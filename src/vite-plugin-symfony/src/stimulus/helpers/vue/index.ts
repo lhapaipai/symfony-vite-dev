@@ -1,8 +1,10 @@
 import { defineAsyncComponent } from "vue";
 import type { Component } from "vue";
-import { ImportedModules, LazyModule, VueModule } from "../types";
+import { ImportedModules, VueModule } from "../types";
 
-const vueComponentsOrLoaders: LazyModule<VueModule> | Component = {};
+const vueComponentsOrLoaders: {
+  [key: string]: (() => Promise<VueModule>) | Component;
+} = {};
 
 export function registerVueControllerComponents(
   modules: ImportedModules<VueModule>,
@@ -28,7 +30,7 @@ export function registerVueControllerComponents(
     }
 
     if (typeof vueComponentsOrLoaders[componentPath] === "function") {
-      const module = vueComponentsOrLoaders[componentPath] as LazyModule<VueModule>;
+      const module = vueComponentsOrLoaders[componentPath] as () => Promise<VueModule>;
       vueComponentsOrLoaders[componentPath] = defineAsyncComponent(module);
     }
 

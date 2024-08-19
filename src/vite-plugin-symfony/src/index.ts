@@ -1,6 +1,6 @@
 import { Plugin } from "vite";
 import symfonyEntrypoints from "./entrypoints";
-import symfonyStimulus from "./stimulus";
+import symfonyStimulus from "./stimulus/node";
 
 import { VitePluginSymfonyOptions } from "./types";
 import { resolvePluginOptions } from "./pluginOptions";

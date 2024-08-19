@@ -6,6 +6,15 @@
 
 {% block content %}
 <div class="cards">
+    <div class="card" {{ stimulus_controller('welcome', {name: 'Eager Stimulus'})}}>
+      <h2 {{ stimulus_target('welcome', 'title')}}>&nbsp;</h2>
+      <p>
+        <code>assets/controllers/welcome_controller.js</code>
+      </p>
+      <p>
+        Edit component and save to test HMR
+      </p>
+    </div>
 
 </div>
 {% endblock %}

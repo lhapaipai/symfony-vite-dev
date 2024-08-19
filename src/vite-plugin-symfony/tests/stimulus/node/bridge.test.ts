@@ -22,91 +22,94 @@ vi.mock("node:module", () => {
 
 describe("createControllersModule", () => {
   describe("empty.json", () => {
-    it("must return empty file", () => {
+    it("must return empty array", () => {
       const config = loadControllerJson("empty.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
-        "export default {
+        "export default [
 
-        };"
+        ];"
       `);
     });
   });
 
   describe("disabled-controller.json", () => {
-    it("must return an empty file", () => {
+    it("must return an empty array", () => {
       const config = loadControllerJson("disabled-controller.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
-        "export default {
+        "export default [
 
-        };"
+        ];"
       `);
     });
   });
 
   describe("disabled-autoimport.json", () => {
-    it("must return file with no autoimport", () => {
+    it("must return controller info without autoimport", () => {
       const config = loadControllerJson("disabled-autoimport.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
         "import controller_0 from '@symfony/mock-module/dist/controller.js';
 
-        export default {
-        'symfony--mock-module--mock': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "symfony--mock-module--mock",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });
 
   describe("eager-no-autoimport.json", () => {
-    it("must return file with no autoimport", () => {
+    it("must return controller info without autoimport", () => {
       const config = loadControllerJson("eager-no-autoimport.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
         "import controller_0 from '@symfony/mock-module/dist/controller.js';
 
-        export default {
-        'symfony--mock-module--mock': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "symfony--mock-module--mock",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });
 
   describe("eager-autoimport.json", () => {
-    it("must return a file with the enabled controller and auto-import", () => {
+    it("must return a controller info with the controller constructor and auto-import", () => {
       const config = loadControllerJson("eager-autoimport.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
         "import controller_0 from '@symfony/mock-module/dist/controller.js';
         import '@symfony/mock-module/dist/style.css';
 
-        export default {
-        'symfony--mock-module--mock': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "symfony--mock-module--mock",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });
 
   describe("lazy-no-autoimport.json", () => {
-    it("must return a file with a lazy controller", () => {
+    it("must return a controller info with a controller factory", () => {
       const config = loadControllerJson("lazy-no-autoimport.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
-        "import { Controller } from '@hotwired/stimulus';
-
-        export default {
-        'symfony--mock-module--mock': class extends Controller {
-              constructor(context) {
-                super(context);
-                this.__stimulusLazyController = true;
+        "export default [
+        {
+                enabled: true,
+                fetch: "lazy",
+                identifier: "symfony--mock-module--mock",
+                controller: () => import("@symfony/mock-module/dist/controller.js")
               }
-              initialize() {
-                if (this.application.controllers.find((controller) => {
-                    return controller.identifier === this.identifier && controller.__stimulusLazyController;
-                })) {
-                    return;
-                }
-                import('@symfony/mock-module/dist/controller.js').then((controller) => {
-                    this.application.register(this.identifier, controller.default);
-                });
-              }
-            }
-        };"
+        ];"
       `);
     });
   });
@@ -117,9 +120,14 @@ describe("createControllersModule", () => {
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
         "import controller_0 from '@symfony/mock-module/dist/named_controller.js';
 
-        export default {
-        'foo--custom_name': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "foo--custom_name",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });
@@ -130,9 +138,14 @@ describe("createControllersModule", () => {
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
         "import controller_0 from '@symfony/mock-module/dist/controller.js';
 
-        export default {
-        'foo--overridden_name': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "foo--overridden_name",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });
@@ -141,11 +154,16 @@ describe("createControllersModule", () => {
     it("can import stimulus controller without symfony property", () => {
       const config = loadControllerJson("third-party.json");
       expect(createControllersModule(config).trim()).toMatchInlineSnapshot(`
-        "import controller_0 from 'stimulus-clipboard';
+        "import controller_0 from 'stimulus-clipboard/dist/stimulus-clipboard.mjs';
 
-        export default {
-        'stimulus-clipboard': controller_0
-        };"
+        export default [
+        {
+                enabled: true,
+                fetch: "eager",
+                identifier: "stimulus-clipboard",
+                controller: controller_0
+              }
+        ];"
       `);
     });
   });

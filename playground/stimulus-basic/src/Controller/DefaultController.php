@@ -9,7 +9,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'welcome')]
+    #[Route('/', name: 'root')]
+    public function root(): Response
+    {
+        return $this->render('default/root.html.twig', [
+            'currentPage' => 'root',
+        ]);
+    }
+
+    #[Route('/welcome', name: 'welcome')]
     public function welcome(): Response
     {
         return $this->render('default/welcome.html.twig', [
@@ -17,19 +25,11 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/eager', name: 'eager')]
-    public function eager(): Response
+    #[Route('/counter', name: 'counter')]
+    public function counter(): Response
     {
-        return $this->render('default/eager.html.twig', [
-            'currentPage' => 'eager',
-        ]);
-    }
-
-    #[Route('/lazy', name: 'lazy')]
-    public function lazy(): Response
-    {
-        return $this->render('default/lazy.html.twig', [
-            'currentPage' => 'lazy',
+        return $this->render('default/counter.html.twig', [
+            'currentPage' => 'counter',
         ]);
     }
 
@@ -49,6 +49,14 @@ class DefaultController extends AbstractController
         return $this->render('default/toggle-password.html.twig', [
             'form' => $form,
             'currentPage' => 'toggle-password',
+        ]);
+    }
+
+    #[Route('/other', name: 'other')]
+    public function other(): Response
+    {
+        return $this->render('default/other.html.twig', [
+            'currentPage' => 'other',
         ]);
     }
 }

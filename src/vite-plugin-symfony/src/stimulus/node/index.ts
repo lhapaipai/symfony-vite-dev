@@ -1,16 +1,20 @@
-import { createControllersModule, virtualSymfonyControllersModuleId } from "./node/bridge";
+import { createControllersModule, virtualSymfonyControllersModuleId, parseStimulusRequest } from "./bridge";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Logger, Plugin, ResolvedConfig, UserConfig } from "vite";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
-import { getStimulusControllerFileInfos } from "./util";
+import { ControllersFileContent } from "../types";
+import { addBootstrapHmrCode, addControllerHmrCode } from "./hmr";
+import { getStimulusControllerId } from "../util";
 
-const applicationGlobalVarName = "$$stimulusApp$$";
+const stimulusRE = /\?stimulus\b/;
+
+const isStimulusRequest = (request: string): boolean => stimulusRE.test(request);
 
 export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulusOptions, logger: Logger): Plugin {
   let viteConfig: ResolvedConfig;
   let viteCommand: string;
-  let stimulusControllersContent = null;
+  let stimulusControllersContent: ControllersFileContent | null = null;
   let controllersFilePath: string;
   return {
     name: "symfony-stimulus",
@@ -37,43 +41,35 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
     },
     load(id) {
       if (id === virtualSymfonyControllersModuleId) {
-        return createControllersModule(stimulusControllersContent);
+        if (stimulusControllersContent) {
+          return createControllersModule(stimulusControllersContent);
+        } else {
+          return `export default [];`;
+        }
       }
     },
     transform(code, id, options) {
-      if (viteCommand !== "serve" || (options?.ssr && !process.env.VITEST) || id.includes("node_modules")) {
+      if ((options?.ssr && !process.env.VITEST) || id.includes("node_modules")) {
         return null;
       }
 
-      if (id.endsWith("bootstrap.js") || id.endsWith("bootstrap.ts")) {
-        const appRegex = /[^\n]*?\s(\w+)(?:\s*=\s*startStimulusApp\(\))/;
-        const appVariable = (code.match(appRegex) || [])[1];
-        if (appVariable) {
-          logger.info(`appVariable ${appVariable}`);
-          const exportFooter = `window.${applicationGlobalVarName} = ${appVariable}`;
-          return `${code}\n${exportFooter}`;
+      if (isStimulusRequest(id)) {
+        return parseStimulusRequest(code, id);
+      }
+
+      if (viteCommand === "serve") {
+        if (id.endsWith("bootstrap.js") || id.endsWith("bootstrap.ts")) {
+          return addBootstrapHmrCode(code, logger);
         }
-        return null;
+
+        const identifier = getStimulusControllerId(id, true);
+        if (identifier) {
+          logger.info(`import controller ${identifier}`);
+          return addControllerHmrCode(code, identifier);
+        }
       }
 
-      // we don't need lazy behavior, the module is already loaded and we are in a dev environment
-      const { identifier } = getStimulusControllerFileInfos(id, true);
-      if (!identifier) return null;
-      logger.info(`controller ${identifier}`);
-
-      const metaHotFooter = `
-if (import.meta.hot) {
-  import.meta.hot.accept(newModule => {
-    if (!window.${applicationGlobalVarName}) {
-      console.warn('Stimulus app not available. Are you creating app with startStimulusApp() ?');
-      import.meta.hot.invalidate();
-    } else {
-      window.${applicationGlobalVarName}.register('${identifier}', newModule.default);
-    }
-  })
-}`;
-
-      return `${code}\n${metaHotFooter}`;
+      return null;
     },
     configureServer(devServer) {
       const { watcher } = devServer;

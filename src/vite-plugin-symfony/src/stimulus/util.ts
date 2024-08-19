@@ -1,20 +1,14 @@
 export const CONTROLLER_FILENAME_REGEX = /^(?:.*?(controllers)\/|\.?\.\/)?(.+)\.[jt]sx?$/;
-export const CONTROLLER_SUFFIX_REGEX = /^(.*)(?:[/_-](lazy)?controller)$/;
-export function getStimulusControllerFileInfos(key: string, onlyControllersDir = false): StimulusControllerFileInfos {
+export const CONTROLLER_SUFFIX_REGEX = /^(.*)(?:[/_-]controller)$/;
+export function getStimulusControllerId(key: string, onlyControllersDir = false): string | null {
   const [, controllers, relativePath] = key.match(CONTROLLER_FILENAME_REGEX) || [];
   if (!relativePath || (onlyControllersDir && controllers !== "controllers")) {
-    return {
-      identifier: undefined,
-      lazy: false,
-    };
+    return null;
   }
 
-  const [, identifier, lazy] = relativePath.match(CONTROLLER_SUFFIX_REGEX) || [];
+  const [, identifier] = relativePath.match(CONTROLLER_SUFFIX_REGEX) || [];
 
-  return {
-    identifier: (identifier ?? relativePath).replace(/_/g, "-").replace(/\//g, "--"),
-    lazy: lazy === "lazy",
-  };
+  return (identifier ?? relativePath).toLowerCase().replace(/_/g, "-").replace(/\//g, "--");
 }
 
 // Normalize the controller name: remove the initial @ and use Stimulus format
@@ -23,4 +17,13 @@ export function generateStimulusId(packageName: string) {
     packageName = packageName.substring(1);
   }
   return packageName.replace(/_/g, "-").replace(/\//g, "--");
+}
+
+function kebabize(str: string): string {
+  return str
+    .split("")
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}` : letter;
+    })
+    .join("");
 }
