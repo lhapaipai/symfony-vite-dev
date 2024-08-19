@@ -33,8 +33,7 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
 
       this._destroyIfExists();
 
-      // @see https://svelte.dev/docs#run-time-client-side-component-api-creating-a-component
-      // @ts-ignore
+      // @ts-expect-error @see https://svelte.dev/docs#run-time-client-side-component-api-creating-a-component
       this.app = new Component({
         target: this.element,
         props: this.props,

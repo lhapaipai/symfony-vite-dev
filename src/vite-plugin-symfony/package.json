@@ -11,7 +11,7 @@
       "require": "./dist/index.cjs"
     },
     "./stimulus/env": {
-        "types": "./src/stimulus/env.d.ts"
+      "types": "./src/stimulus/env.d.ts"
     },
     "./stimulus/helpers": {
       "import": "./dist/stimulus/helpers/index.js",
@@ -56,7 +56,7 @@
     "test-run": "vitest --run",
     "coverage": "vitest --run --coverage",
     "tsc:check": "tsc --noEmit",
-    "lint:check": "eslint -c .eslintrc ./src"
+    "lint:check": "eslint -c eslint.config.js ./src"
   },
   "files": [
     "dist/",

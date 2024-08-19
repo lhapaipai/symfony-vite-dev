@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import { VitePluginSymfonyEntrypointsOptions, VitePluginSymfonyOptions } from "./types";
+import { VitePluginSymfonyOptions } from "./types";
 import { trimSlashes } from "./entrypoints/utils";
 
 export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOptions> = {}): VitePluginSymfonyOptions {
@@ -48,7 +48,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
 }
 
 export function resolveOutDir(base: string): string {
-  let publicDirectory = "public";
+  const publicDirectory = "public";
 
   return join(publicDirectory, trimSlashes(base));
 }

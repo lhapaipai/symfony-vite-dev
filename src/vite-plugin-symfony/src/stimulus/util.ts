@@ -18,12 +18,3 @@ export function generateStimulusId(packageName: string) {
   }
   return packageName.replace(/_/g, "-").replace(/\//g, "--");
 }
-
-function kebabize(str: string): string {
-  return str
-    .split("")
-    .map((letter, idx) => {
-      return letter.toUpperCase() === letter ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}` : letter;
-    })
-    .join("");
-}

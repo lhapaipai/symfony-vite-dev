@@ -40,6 +40,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "eslint": "^8.57.0",
+    "globals": "^15.9.0",
     "sass": "^1.77.8",
     "stimulus-color-picker": "^1.1.0",
     "typescript": "5.5.4",

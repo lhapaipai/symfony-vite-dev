@@ -1,5 +1,4 @@
 import { Logger } from "vite";
-import { getStimulusControllerId } from "../util";
 
 const applicationGlobalVarName = "$$stimulusApp$$";
 

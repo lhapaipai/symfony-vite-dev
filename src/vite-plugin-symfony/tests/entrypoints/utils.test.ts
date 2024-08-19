@@ -39,7 +39,7 @@ describe("isCssEntryPoint", () => {
     [
       {
         isEntry: false,
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -49,7 +49,7 @@ describe("isCssEntryPoint", () => {
           "/path/to/module.js": {},
           "/path/to/style.css": {},
         },
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -58,7 +58,7 @@ describe("isCssEntryPoint", () => {
         modules: {
           "/path/to/style.module.css": {},
         },
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -75,7 +75,7 @@ describe("isCssEntryPoint", () => {
           // Set of relative paths of generated css files
           importedCss: new Set(["assets/theme-hIRg7xK2.css"]),
         },
-      },
+      } as unknown as RenderedChunk,
       true,
     ],
   ])("find when entrypoint is a pure css file", (chunk: RenderedChunk, expectedValue: boolean) => {

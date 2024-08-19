@@ -1,5 +1,7 @@
 import { Logger } from "~/logger";
-import { resolveBase, resolveOutDir } from "~/pluginOptions";
 import { VitePluginSymfonyEntrypointsOptions } from "~/types";
 
-export function showDepreciationsWarnings(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger) {}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function showDepreciationsWarnings(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger) {
+  // no deprecation
+}

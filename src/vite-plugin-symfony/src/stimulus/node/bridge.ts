@@ -1,10 +1,11 @@
+import { Logger } from "vite";
 import { ControllersFileContent } from "../types";
 import { generateStimulusId } from "../util";
 import { createRequire } from "node:module";
 
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
 
-export function createControllersModule(config: ControllersFileContent) {
+export function createControllersModule(config: ControllersFileContent, logger?: Logger) {
   const require = createRequire(import.meta.url);
   const controllerContents: string[] = [];
   let importStatementContents = "";
@@ -29,21 +30,16 @@ export function createControllersModule(config: ControllersFileContent) {
       // TODO : change to this when stable
       // packageJsonContent = (await import(`${packageName}/package.json`, { assert: { type: "json" } })).default;
       packageJsonContent = require(`${packageNameResolved}/package.json`);
-    } catch (e) {
-      console.log(
+    } catch (error: any) {
+      logger?.error(
         `The file "${packageNameResolved}/package.json" could not be found. Try running "npm install --force".`,
+        { error },
       );
     }
 
     // package can define multiple stimulus controllers
     // used only by @symfony/ux-turbo : turbo-core, mercure-turbo-stream
     for (const controllerName in config.controllers[packageName]) {
-      // if (!packageJsonContent || !packageJsonContent?.symfony?.controllers?.[controllerName]) {
-      //   throw new Error(
-      //     `Controller "${controllerName}" does not exist in the package ${packageName} and cannot be compiled.`,
-      //   );
-      // }
-
       const controllerPackageConfig = packageJsonContent?.symfony?.controllers?.[controllerName] || {};
       const controllerUserConfig = config.controllers[packageName][controllerName];
 

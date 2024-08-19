@@ -42,7 +42,7 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
     load(id) {
       if (id === virtualSymfonyControllersModuleId) {
         if (stimulusControllersContent) {
-          return createControllersModule(stimulusControllersContent);
+          return createControllersModule(stimulusControllersContent, logger);
         } else {
           return `export default [];`;
         }
