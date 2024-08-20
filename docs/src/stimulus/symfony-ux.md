@@ -48,6 +48,11 @@ import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/he
 // register Vue components before startStimulusApp
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
+// or if you're using TypeScript
+import { type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue"; // [!code ++]
+registerVueControllerComponents(import.meta.glob<VueModule>("./vue/controllers/**/*.vue")); // [!code ++]
+
+
 const app = startStimulusApp();
 registerControllers(
   app,
@@ -122,6 +127,13 @@ registerReactControllerComponents(require.context('./react/controllers', true, /
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers/react" // [!code ++]
 registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
+
+
+// or if you're using TypeScript
+import { type ReactModule } from "vite-plugin-symfony/stimulus/helpers/react"; // [!code ++]
+registerReactControllerComponents( // [!code ++]
+  import.meta.glob<ReactModule>("./react/controllers/**/*.[jt]s(x)?"), // [!code ++]
+); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(
@@ -217,6 +229,12 @@ registerSvelteControllerComponents(require.context('./svelte/controllers', true,
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus/helpers/svelte" // [!code ++]
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
+
+// or if you're using TypeScript
+import { type SvelteModule } from "vite-plugin-symfony/stimulus/helpers/svelte"; // [!code ++]
+registerSvelteControllerComponents( // [!code ++]
+  import.meta.glob<SvelteModule>("./svelte/controllers/**/*.svelte"), // [!code ++]
+); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(

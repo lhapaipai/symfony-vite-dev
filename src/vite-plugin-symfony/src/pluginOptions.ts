@@ -47,7 +47,10 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
   };
 }
 
-export function resolveOutDir(base: string): string {
+export function resolveOutDir(unknownBase: string): string {
+  const baseURL = new URL(unknownBase, import.meta.url);
+
+  const base = baseURL.protocol === "file:" ? unknownBase : baseURL.pathname;
   const publicDirectory = "public";
 
   return join(publicDirectory, trimSlashes(base));

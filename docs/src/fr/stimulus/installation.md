@@ -56,6 +56,10 @@ registerControllers(
   app,
   import.meta.glob('./controllers/*_controller.js', {
     query: "?stimulus",
+    /**
+     * toujours à true, la comportement `lazy` est géré en interne avec
+     * import.meta.stimulusFetch (voir référence)
+     */
     eager: true,
   })
 )

@@ -26,5 +26,8 @@ describe("resolveOutDir", () => {
   it("resolve correctely `build.outDir` vite config option", ({ expect }) => {
     expect(resolveOutDir("/build/")).toBe("public/build");
     expect(resolveOutDir("custom/build")).toBe("public/custom/build");
+    expect(resolveOutDir("https://other.com/build")).toBe("public/build");
+    expect(resolveOutDir("https://other.com/")).toBe("public");
+    expect(resolveOutDir("https://other.com")).toBe("public");
   });
 });
