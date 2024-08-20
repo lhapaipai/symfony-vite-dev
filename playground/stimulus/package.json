@@ -16,7 +16,7 @@
   "devDependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^7.3.0",
-    "@simonwep/pickr": "^1.9.0",
+    "@simonwep/pickr": "^1.9.1",
     "@swup/debug-plugin": "^3.0.0",
     "@swup/fade-theme": "^1.0.5",
     "@swup/forms-plugin": "^2.0.1",
@@ -49,8 +49,8 @@
     "vue": "^3.3.13"
   },
   "dependencies": {
+    "@stimulus-components/color-picker": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
-    "bootstrap": "^5.3.2",
-    "stimulus-color-picker": "^1.1.0"
+    "bootstrap": "^5.3.2"
   }
 }

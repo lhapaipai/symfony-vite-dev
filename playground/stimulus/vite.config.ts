@@ -44,8 +44,8 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "pageTranslator": "./assets/page/translator/index.js",
-        "app": "./assets/app.js",
+        "pageTranslator": "./assets/page/translator/index.ts",
+        "app": "./assets/app.ts",
         "theme": "./assets/theme.scss"
       }
     },

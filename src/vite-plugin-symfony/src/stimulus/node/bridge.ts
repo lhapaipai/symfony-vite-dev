@@ -1,6 +1,6 @@
 import { Logger } from "vite";
 import { ControllersFileContent } from "../types";
-import { generateStimulusId } from "../util";
+import { generateStimulusId, getStimulusControllerId } from "../util";
 import { createRequire } from "node:module";
 
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
@@ -131,7 +131,7 @@ export function parseStimulusRequest(code: string, moduleId: string) {
   const fetch = (code.match(stimulusFetchRE) || [])[1] ?? "eager";
   let id = (code.match(stimulusControllerIdentifierRE) || [])[1];
   if (!id) {
-    id = generateStimulusId(moduleId);
+    id = getStimulusControllerId(filePath) ?? generateStimulusId(filePath);
   }
   const enabled = ((code.match(stimulusEnabledRE) || [])[1] ?? "true") === "false" ? false : true;
 

@@ -1,7 +1,7 @@
-import './bootstrap.js';
+import './bootstrap';
 
 function refreshStickStatus() {
-  $nav.classList.toggle("stuck", document.documentElement.scrollTop > 0);
+  $nav?.classList.toggle("stuck", document.documentElement.scrollTop > 0);
 }
 
 let $nav = document.querySelector("#nav");

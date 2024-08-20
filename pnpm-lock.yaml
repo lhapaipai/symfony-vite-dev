@@ -99,6 +99,9 @@ importers:
       '@eslint/js':
         specifier: ^9.9.0
         version: 9.9.0
+      '@stimulus-components/color-picker':
+        specifier: ^2.0.0
+        version: 2.0.0(@hotwired/stimulus@3.2.2)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -108,9 +111,6 @@ importers:
       sass:
         specifier: ^1.77.8
         version: 1.77.8
-      stimulus-color-picker:
-        specifier: ^1.1.0
-        version: 1.1.0(@hotwired/stimulus@3.2.2)
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -221,15 +221,15 @@ importers:
 
   playground/stimulus:
     dependencies:
+      '@stimulus-components/color-picker':
+        specifier: ^2.0.0
+        version: 2.0.0(@hotwired/stimulus@3.2.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.1
         version: 3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.3.0)(sass@1.77.8)(terser@5.31.6))
       bootstrap:
         specifier: ^5.3.2
         version: 5.3.3(@popperjs/core@2.11.8)
-      stimulus-color-picker:
-        specifier: ^1.1.0
-        version: 1.1.0(@hotwired/stimulus@3.2.2)
     devDependencies:
       '@hotwired/stimulus':
         specifier: ^3.2.2
@@ -238,7 +238,7 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       '@simonwep/pickr':
-        specifier: ^1.9.0
+        specifier: ^1.9.1
         version: 1.9.1
       '@swup/debug-plugin':
         specifier: ^3.0.0
@@ -1880,9 +1880,6 @@ packages:
 
   '@shikijs/transformers@1.13.0':
     resolution: {integrity: sha512-51aLIT6a93rVGoTxl2+p6hb7ILbTA4p/unoibEAjnPMzHto4cqxhuHyDVgtQur5ANpGsL3ihSGKaZDrpcWH8vQ==}
-
-  '@simonwep/pickr@1.8.2':
-    resolution: {integrity: sha512-/l5w8BIkrpP6n1xsetx9MWPWlU6OblN5YgZZphxan0Tq4BByTCETL6lyIeY8lagalS2Nbt4F2W034KHLIiunKA==}
 
   '@simonwep/pickr@1.9.0':
     resolution: {integrity: sha512-oEYvv15PyfZzjoAzvXYt3UyNGwzsrpFxLaZKzkOSd0WYBVwLd19iJerePDONxC1iF6+DpcswPdLIM2KzCJuYFg==}
@@ -5397,12 +5394,6 @@ packages:
   std-env@3.7.0:
     resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
 
-  stimulus-color-picker@1.1.0:
-    resolution: {integrity: sha512-VrsrSn5jipyWYPDANANae0XfVKPcnq1A6gQfcZ0jCQaJJxlqFKaLedSCxWYAcJnQ0DyueB588l+th5lI3c/qHg==}
-    deprecated: '''stimulus-color-picker'' is now ''@stimulus-components/color-picker'''
-    peerDependencies:
-      '@hotwired/stimulus': ^3.2.1
-
   string-hash@1.1.3:
     resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
 
@@ -7617,11 +7608,6 @@ snapshots:
   '@shikijs/transformers@1.13.0':
     dependencies:
       shiki: 1.13.0
-
-  '@simonwep/pickr@1.8.2':
-    dependencies:
-      core-js: 3.38.0
-      nanopop: 2.4.2
 
   '@simonwep/pickr@1.9.0':
     dependencies:
@@ -11689,11 +11675,6 @@ snapshots:
   stackback@0.0.2: {}
 
   std-env@3.7.0: {}
-
-  stimulus-color-picker@1.1.0(@hotwired/stimulus@3.2.2):
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      '@simonwep/pickr': 1.8.2
 
   string-hash@1.1.3: {}
 

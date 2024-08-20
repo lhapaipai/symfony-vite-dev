@@ -73,7 +73,7 @@ Explicitly set your controller identifier or it will be inferred from the file n
 | `./what-you-want/MyController.js` with `import.meta.stimulusControllerIdentifier = "welcome";`              | `welcome`       |
 
 
-## Chargement des contrôleurs
+## Registering your controllers
 
 It is possible to load your controllers in multiple ways. The plugin provides 4 helper functions.
 
@@ -209,6 +209,9 @@ You cannot use a variable with `import.meta.glob`. See the Vite documentation fo
 
 To help you better understand how these functions work, here is the equivalent code.
 
+
+#### `startStimulusApp`
+
 ```js
 import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers";
 const app = startStimulusApp();
@@ -242,6 +245,8 @@ for (const controllerInfos of thirdPartyControllers) {
   }
 }
 ```
+
+#### `registerController`
 
 
 ```js

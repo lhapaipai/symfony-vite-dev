@@ -1,6 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class controller extends Controller {
+  declare titleTarget: HTMLDivElement;
+  declare nameValue: string;
+
   static targets = [
     "title",
   ]

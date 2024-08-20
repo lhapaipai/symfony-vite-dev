@@ -71,7 +71,7 @@
         "@symfony/ux-swup": {
             "swup": {
                 "enabled": true,
-                "fetch": "lazy"
+                "fetch": "eager"
             }
         },
         "@symfony/ux-toggle-password": {
@@ -105,7 +105,7 @@
                 "fetch": "lazy"
             }
         },
-        "stimulus-color-picker": {
+        "@stimulus-components/color-picker": {
             "default": {
                 "name": "color-picker",
                 "enabled": true,

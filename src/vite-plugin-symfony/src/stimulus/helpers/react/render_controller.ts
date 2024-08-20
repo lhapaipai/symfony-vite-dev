@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { createRoot } from "react-dom/client";
 import { Controller } from "@hotwired/stimulus";
-import { ReactModule } from "../types";
+import { ReactModule } from "./index";
 
 export default class extends Controller {
   declare readonly componentValue?: string;

@@ -209,6 +209,8 @@ Vous ne pouvez pas utiliser de variable avec `import.meta.glob`. Voir la documen
 
 Afin de vous aider à mieux comprendre le fonctionnement de ces fonctions voici le code équivalent.
 
+#### `startStimulusApp`
+
 ```js
 import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers";
 const app = startStimulusApp();
@@ -242,6 +244,8 @@ for (const controllerInfos of thirdPartyControllers) {
   }
 }
 ```
+
+#### `registerController`
 
 
 ```js
