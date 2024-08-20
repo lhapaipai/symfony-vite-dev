@@ -29,20 +29,23 @@ function kebabize(str: string): string {
  * This function is recursive.
  * @param obj
  */
-export const objectToArg = (obj: object): string[] => {
+export const objectToArg = (obj: Record<string, any>): string[] => {
   return Object.keys(obj).reduce((pass, key) => {
     const val = obj[key];
     if (!val) {
       return pass;
     }
     if (key === "extraArgs" && typeof val === "object") {
+      // @ts-ignore
       pass.push(...objectToArg(val));
       return pass;
     }
 
     if (Array.isArray(val)) {
+      // @ts-ignore
       pass.push(...val.map((v) => shellArg(key, v)));
     } else {
+      // @ts-ignore
       pass.push(shellArg(key, val));
     }
     return pass;

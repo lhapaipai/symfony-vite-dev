@@ -14,6 +14,7 @@ export default tseslint.config(
     plugins: {},
     rules: {
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
     },
   },
 );

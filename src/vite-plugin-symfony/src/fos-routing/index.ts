@@ -13,9 +13,9 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
  * @param pluginOptions
  * @param logger
  */
-export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRoutingOptions, logger?: Logger): Plugin {
+export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRoutingOptions, logger: Logger): Plugin {
   let routesChanged = true; // Control when to inject
-  let prevContent = null; // Previous content of the routes
+  let prevContent: Buffer | null = null; // Previous content of the routes
   const entryModules = new Set();
 
   /**
@@ -73,7 +73,7 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
         } else {
           routesChanged = false;
         }
-      } catch (err) {
+      } catch (err: any) {
         logger.error(err.toString());
       }
     },
