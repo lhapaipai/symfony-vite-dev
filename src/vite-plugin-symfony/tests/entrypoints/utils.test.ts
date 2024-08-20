@@ -11,6 +11,7 @@ import {
   isCssEntryPoint,
   resolveUserExternal,
   normalizeConfig,
+  trimSlashes,
 } from "~/entrypoints/utils";
 import { resolvePluginOptions } from "~/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
@@ -38,7 +39,7 @@ describe("isCssEntryPoint", () => {
     [
       {
         isEntry: false,
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -48,7 +49,7 @@ describe("isCssEntryPoint", () => {
           "/path/to/module.js": {},
           "/path/to/style.css": {},
         },
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -57,7 +58,7 @@ describe("isCssEntryPoint", () => {
         modules: {
           "/path/to/style.module.css": {},
         },
-      },
+      } as unknown as RenderedChunk,
       false,
     ],
     [
@@ -74,7 +75,7 @@ describe("isCssEntryPoint", () => {
           // Set of relative paths of generated css files
           importedCss: new Set(["assets/theme-hIRg7xK2.css"]),
         },
-      },
+      } as unknown as RenderedChunk,
       true,
     ],
   ])("find when entrypoint is a pure css file", (chunk: RenderedChunk, expectedValue: boolean) => {
@@ -523,5 +524,28 @@ describe("normalizeConfig", () => {
     const normalizedConfig = normalizeConfig(resolvedConfig as any as ResolvedConfig);
 
     expect(JSON.parse(normalizedConfig)).toMatchObject(expectedValue);
+  });
+});
+
+describe("trimSlashes", () => {
+  test("should remove slashes at the beginning and end of the string", () => {
+    expect(trimSlashes("/example/path/")).toBe("example/path");
+    expect(trimSlashes("/example/path")).toBe("example/path");
+    expect(trimSlashes("example/path/")).toBe("example/path");
+    expect(trimSlashes("example/path")).toBe("example/path");
+  });
+
+  test("should handle strings with only slashes", () => {
+    expect(trimSlashes("/")).toBe("");
+    expect(trimSlashes("//")).toBe("");
+    expect(trimSlashes("///")).toBe("");
+  });
+
+  test("should return the same string if there are no slashes at the beginning or end", () => {
+    expect(trimSlashes("example/path")).toBe("example/path");
+  });
+
+  test("should handle empty strings", () => {
+    expect(trimSlashes("")).toBe("");
   });
 });

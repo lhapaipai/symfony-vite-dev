@@ -6,31 +6,31 @@
 
 {% block content %}
 <div class="cards">
-    <div class="card" {{ stimulus_controller('welcome-core', {name: 'Eager Stimulus'})}}>
-      <h2 {{ stimulus_target('welcome-core', 'title')}}>&nbsp;</h2>
+    <div class="card" {{ stimulus_controller('welcome', {name: 'Eager Stimulus'})}}>
+      <h2 {{ stimulus_target('welcome', 'title')}}>&nbsp;</h2>
       <p>
-        <code>assets/controllers/welcome-core_controller.js</code>
+        <code>assets/controllers/welcome_controller.js</code>
       </p>
       <p>
         Edit component and save to test HMR
       </p>
     </div>
 
-    <div class="card" {{ stimulus_controller('counter-optional')}}>
+    <div class="card" {{ stimulus_controller('counter')}}>
       <h2>hello Lazy Stimulus</h2>
       <div>
-        <button {{ stimulus_action('counter-optional', 'increment', 'click')}} {{ stimulus_target('counter-optional', 'button') }}>count : 0</button>
+        <button {{ stimulus_action('counter', 'increment', 'click')}} {{ stimulus_target('counter', 'button') }}>count : 0</button>
       </div>
       <p>
-        <code>assets/controllers/counter_optional_lazycontroller.js</code>
+        <code>assets/controllers/counter_controller.js</code>
       </p>
     </div>
 
-    <div class="card" {{ stimulus_controller('message-optional', {name: 'Dynamic Stimulus'})}}>
-      <h2 {{ stimulus_target('message-optional', 'title')}}>&nbsp;</h2>
+    <div class="card" {{ stimulus_controller('message', {name: 'Dynamic Stimulus'})}}>
+      <h2 {{ stimulus_target('message', 'title')}}>&nbsp;</h2>
 
       <p>
-        <code>assets/controllers/message_optional_controller.js</code>
+        <code>assets/controllers/message_controller.js</code>
       </p>
     </div>
 </div>

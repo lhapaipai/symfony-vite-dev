@@ -19,6 +19,10 @@ If you upgrade to a new major version
 
 ## from v6.x to v7.x
 
+### New route
+
+Version 7 adds a new route for the Symfony profiler and you will probably encounter an error with it (An error occurred while loading the web debug toolbar. Open the web profiler.) until you update your recipe.
+
 Update your recipe
 
 ```bash
@@ -26,6 +30,27 @@ composer recipes:update pentatrion/vite-bundle
 ```
 
 The `./config/routes/dev/pentatrion_vite.yaml` file is replaced by `./config/routes/pentatrion_vite.yaml` with `when@dev` and add a new route.
+
+If you want to do this update manually
+
+delete your `config/routes/dev/pentatrion_vite.yaml` file and add this one instead. If you have a multiple configuration see below.
+
+```yaml
+# config/routes/pentatrion_vite.yaml
+when@dev:
+    _pentatrion_vite:
+        prefix: /build
+        resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+
+    _profiler_vite:
+        path: /_profiler/vite
+        defaults:
+            _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+
+```
+
+### `crossorigin`
+
 
 the `crossorigin` option for vite-bundle is `true` by default (previously its default was `false`).
 Normally you would not need to change this behavior to `false`. If you encounter problems with this option, feel free to open an *issue*.
@@ -36,7 +61,65 @@ pentatrion_vite:
   crossorigin: true
 ```
 
-If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
+### Stimulus
+
+If you are using Stimulus, changes will need to be made to your `bootstrap.js` file with the appearance of the `?stimulus` suffix and the activation of the `eager` option to `true` for `import.meta.glob`.
+
+
+```js
+import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
+registerControllers( // [!code --]
+  app, // [!code --]
+  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?') // [!code --]
+) // [!code --]
+
+registerControllers( // [!code ++]
+  app, // [!code ++]
+  import.meta.glob('./controllers/*_controller.js', { // [!code ++]
+    query: "?stimulus", // [!code ++]
+    eager: true, // [!code ++]
+  }) // [!code ++]
+) // [!code ++]
+```
+
+the finer configuration of the controllers (notably the `lazy` behavior) will be done
+through the `import.meta`. see [Stimulus reference](/fr/stimulus/reference.html).
+
+If you don't have [multiple configurations](/en/guide/multiple-configurations) it's already over...
+
+### CDN
+
+if you use a CDN remember to fill in the options, `base` and `build.outDir`.
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+
+export default defineConfig(({ mode }) => {
+  return {
+    base:
+      mode === "development"
+        ? "/build/"
+        : "http://cdn.custom-domain.com",
+
+    publicDir: false,
+
+    build: {
+      outDir: "./public/build",
+      rollupOptions: {
+        input: {
+          app: "./assets/app.js",
+        },
+      },
+    },
+  };
+});
+
+```
+
+### Multiple configurations
+
 
 Else, you will need to update manually your `config/routes/pentatrion_vite.yaml` file.
 

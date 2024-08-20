@@ -9,6 +9,8 @@ Afin de faciliter l'intégration de Stimulus dans les applications Symfony, ce d
   - les contrôleurs stockés dans un dossier `assets/controllers`
 et renverra du code pour que l'application Stimulus se précharge automatiquement
 
+![Stimulus, comment ça marche ?](/graphs/stimulus.svg)
+
 Par dessus cela Symfony a construit tout un éco-système `Symfony UX` basé sur des bundles qui intègrent chacun d'eux des contrôleurs `Stimulus`.
 
 Le paquet npm `@symfony/stimulus-bridge` n'étant pas compatible avec Vite:

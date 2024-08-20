@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}page-other{% endblock %}
+
+{% block content %}
+<div class="cards">
+    <div class="card" {{ stimulus_controller('other', {name: 'Other'})}}>
+      <h2 {{ stimulus_target('other', 'title')}}>&nbsp;</h2>
+      <p>
+        <code>assets/controllers/otherController.js</code>
+      </p>
+      <p>
+        Edit component and save to test HMR
+      </p>
+    </div>
+
+</div>
+{% endblock %}
+

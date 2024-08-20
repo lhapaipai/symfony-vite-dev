@@ -1,0 +1,43 @@
+{% set body_class = '' %}
+<!DOCTYPE html>
+<html class="{% block html_class %}{% endblock %}">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Welcome!
+      {% endblock %}
+    </title>
+    <link rel="icon" href="data:;base64,iBORw0KGgo=">
+    {% block stylesheets %}
+      {{ vite_entry_link_tags('app') }}
+      {{ vite_entry_link_tags('theme') }}
+    {% endblock %}
+
+    {% block javascripts %}
+      {{ vite_entry_script_tags('app') }}
+      {{ vite_entry_script_tags('theme') }}
+    {% endblock %}
+  </head>
+  <body>
+    <nav id="nav">
+      <div class="navbar">
+        <div class="title">
+          <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg"/>
+          Symfony & Vite
+        </div>
+        <div class="links">
+          <a class="{{ currentPage == 'root' ? 'active' : '' }}" href="{{ path('root') }}">Home</a>
+          <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome (eager)</a>
+          <a class="{{ currentPage == 'counter' ? 'active' : '' }}" href="{{ path('counter') }}">Counter (lazy)</a>
+          <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
+          <a class="{{ currentPage == 'third-party' ? 'active' : '' }}" href="{{ path('third-party') }}">Third party</a>
+          <a class="{{ currentPage == 'other' ? 'active' : '' }}" href="{{ path('other') }}">Other</a>
+        </div>
+      </div>
+    </nav>
+    <div id="content"> {% block content %}{% endblock %}
+      </div>
+    </body>
+
+  </html>

@@ -27,7 +27,7 @@ import {
   INFO_PUBLIC_PATH,
   normalizeConfig,
 } from "./utils";
-import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../pluginOptions";
+import { resolveOutDir, refreshPaths } from "../pluginOptions";
 
 import { GeneratedFiles, ResolvedConfigWithOrderablePlugins, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { addIOMapping } from "./pathMapping";
@@ -35,8 +35,8 @@ import { showDepreciationsWarnings } from "./depreciations";
 
 // src and dist directory are in the same level;
 let pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
-let pluginVersion;
-let bundleVersion;
+let pluginVersion: [string] | [string, number, number, number];
+let bundleVersion: [string] | [string, number, number, number];
 
 if (process.env.VITEST) {
   pluginDir = dirname(pluginDir);
@@ -81,17 +81,19 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
       const extraEnvVars = extractExtraEnvVars(mode, envDir, pluginOptions.exposedEnvVars, userConfig.define);
 
-      if (userConfig.build.rollupOptions.input instanceof Array) {
+      if (userConfig.build?.rollupOptions?.input instanceof Array) {
         logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"));
         process.exit(1);
       }
 
+      const base = userConfig.base ?? "/build/";
+
       const extraConfig: UserConfig = {
-        base: userConfig.base ?? resolveBase(pluginOptions),
+        base,
         publicDir: false,
         build: {
           manifest: true,
-          outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
+          outDir: userConfig.build?.outDir ?? resolveOutDir(base),
         },
         define: extraEnvVars,
         optimizeDeps: {
@@ -213,7 +215,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       // inspired by https://github.com/vitejs/vite
       // file: packages/vite/src/node/server/middlewares/static.ts
       if (pluginOptions.servePublic !== false) {
-        const serve = sirv(resolvePublicDir(pluginOptions), {
+        const serve = sirv(pluginOptions.servePublic, {
           dev: true,
           etag: true,
           extensions: [],
@@ -256,7 +258,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       // chunk.viteMetadata.importedCss contains a Set of relative paths of generated css files
       // in our case we have only one file (it's a condition of isCssEntryPoint to be true).
       // eg: addIOMapping('assets/theme.scss', 'assets/theme-44b5be96.css');
-      chunk.viteMetadata.importedCss.forEach((cssBuildFilename) => {
+      chunk.viteMetadata?.importedCss.forEach((cssBuildFilename) => {
         addIOMapping(cssAssetName, cssBuildFilename);
       });
     },

@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Vitest all files",
-            "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
+            "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/vitest/vitest.mjs",
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",
@@ -17,7 +17,7 @@
         },
         {
             "name": "Vitest Current Test File",
-            "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/.bin/vitest",
+            "program": "${workspaceFolder}/src/vite-plugin-symfony/node_modules/vitest/vitest.mjs",
             "request": "launch",
             "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
             "type": "node",
@@ -58,7 +58,7 @@
         },
         {
             "name": "basic:vite:dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "-c",
                 "${workspaceFolder}/playground/basic/vite.config.js"
@@ -76,7 +76,7 @@
         },
         {
             "name": "basic:vite:build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "build",
                 "-c",
@@ -93,7 +93,7 @@
         },
         {
             "name": "sandbox:vite:dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "-c",
                 "${workspaceFolder}/playground/sandbox/vite.config.js"
@@ -111,7 +111,7 @@
         },
         {
             "name": "sandbox:vite:build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "build",
                 "-c",
@@ -127,8 +127,38 @@
             "outFiles": ["${workspaceFolder}/src/vite-plugin-symfony/dist/*.js"]
         },
         {
+            "name": "stimulus-basic:vite:dev",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+            "args": [
+                "-c",
+                "${workspaceFolder}/playground/stimulus-basic/vite.config.js"
+            ],
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/playground/stimulus-basic",
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },
+        {
+            "name": "stimulus-basic:vite:build",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+            "args": [
+                "build",
+                "-c",
+                "${workspaceFolder}/playground/stimulus-basic/vite.config.js"
+            ],
+            "request": "launch",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/playground/stimulus-basic",
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },{
             "name": "stimulus:vite:dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "-c",
                 "${workspaceFolder}/playground/stimulus/vite.config.js"
@@ -146,7 +176,7 @@
         },
         {
             "name": "stimulus:vite:build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "build",
                 "-c",
@@ -216,7 +246,7 @@
         },
         {
             "name": "with-cdn:vite:build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "build",
                 "-c",
@@ -233,7 +263,7 @@
         },
         {
             "name": "ssr:vite:build:server",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": [
                 "build",
                 "-c",
@@ -250,7 +280,7 @@
         },
         {
             "name": "Vite dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["-c", "vite.default.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
@@ -265,8 +295,7 @@
         },
         {
             "name": "Vite build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
-            // "program": "${workspaceFolder}/src/vite/packages/vite/dist/node/cli.js",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["build", "-c", "vite.default.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
@@ -279,7 +308,7 @@
         },
         {
             "name": "Minimal Vite dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["-c", "vite.minimal.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
@@ -294,7 +323,7 @@
         },
         {
             "name": "Minimal Vite build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["build", "-c", "vite.minimal.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
@@ -309,7 +338,7 @@
         },
         {
             "name": "Legacy Vite dev",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["-c", "vite.legacy.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],
@@ -324,7 +353,7 @@
         },
         {
             "name": "Legacy Vite build",
-            "program": "${workspaceFolder}/node_modules/.bin/vite",
+            "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
             "args": ["build", "-c", "vite.legacy.config.js"],
             "request": "launch",
             "skipFiles": ["<node_internals>/**"],

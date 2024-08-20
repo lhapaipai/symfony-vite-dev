@@ -58,13 +58,13 @@ importers:
         version: file:extra/ux-assets/ux-vue(@hotwired/stimulus@3.2.2)(vue@3.4.38(typescript@5.5.4))
       '@vitejs/plugin-legacy':
         specifier: ^5.4.2
-        version: 5.4.2(terser@5.31.6)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 5.4.2(terser@5.31.6)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       '@vitejs/plugin-react':
         specifier: ^4.3.1
-        version: 4.3.1(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 4.3.1(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       '@vitejs/plugin-vue':
         specifier: ^5.1.2
-        version: 5.1.2(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
+        version: 5.1.2(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
       '@vue/runtime-core':
         specifier: ^3.4.38
         version: 3.4.38
@@ -85,10 +85,10 @@ importers:
         version: 5.31.6
       vite:
         specifier: ^5.4.1
-        version: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+        version: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vite-plugin-inspect:
         specifier: ^0.8.5
-        version: 0.8.6(rollup@4.21.0)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 0.8.6(rollup@4.21.0)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       vite-plugin-symfony:
         specifier: workspace:*
         version: link:src/vite-plugin-symfony
@@ -96,12 +96,27 @@ importers:
         specifier: ^3.4.38
         version: 3.4.38(typescript@5.5.4)
     devDependencies:
+      '@eslint/js':
+        specifier: ^9.9.0
+        version: 9.9.0
+      '@stimulus-components/color-picker':
+        specifier: ^2.0.0
+        version: 2.0.0(@hotwired/stimulus@3.2.2)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      globals:
+        specifier: ^15.9.0
+        version: 15.9.0
       sass:
         specifier: ^1.77.8
         version: 1.77.8
-      stimulus-color-picker:
-        specifier: ^1.1.0
-        version: 1.1.0(@hotwired/stimulus@3.2.2)
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
+      typescript-eslint:
+        specifier: ^8.1.0
+        version: 8.2.0(eslint@8.57.0)(typescript@5.5.4)
 
   docs:
     dependencies:
@@ -144,16 +159,16 @@ importers:
         version: 5.5.4
       vite:
         specifier: ^5.4.1
-        version: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+        version: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vitepress:
         specifier: 1.3.2
-        version: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
+        version: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.1)(@types/react@18.3.3)(postcss@8.4.41)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4)
 
   playground/basic:
     dependencies:
       vite-plugin-static-copy:
         specifier: ^1.0.4
-        version: 1.0.6(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 1.0.6(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
 
   playground/basic-real: {}
 
@@ -170,10 +185,10 @@ importers:
     dependencies:
       vite:
         specifier: ^5.0.11
-        version: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+        version: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vite-plugin-symfony:
         specifier: ^6.3.2
-        version: 6.5.3(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 6.5.3(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
 
   playground/fos-js-routing:
     dependencies:
@@ -215,15 +230,15 @@ importers:
 
   playground/stimulus:
     dependencies:
+      '@stimulus-components/color-picker':
+        specifier: ^2.0.0
+        version: 2.0.0(@hotwired/stimulus@3.2.2)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.1
-        version: 3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+        version: 3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       bootstrap:
         specifier: ^5.3.2
         version: 5.3.3(@popperjs/core@2.11.8)
-      stimulus-color-picker:
-        specifier: ^1.1.0
-        version: 1.1.0(@hotwired/stimulus@3.2.2)
     devDependencies:
       '@hotwired/stimulus':
         specifier: ^3.2.2
@@ -232,7 +247,7 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       '@simonwep/pickr':
-        specifier: ^1.9.0
+        specifier: ^1.9.1
         version: 1.9.1
       '@swup/debug-plugin':
         specifier: ^3.0.0
@@ -325,6 +340,25 @@ importers:
         specifier: ^3.3.13
         version: 3.4.38(typescript@4.9.5)
 
+  playground/stimulus-basic:
+    dependencies:
+      '@simonwep/pickr':
+        specifier: ^1.9.1
+        version: 1.9.1
+      '@stimulus-components/color-picker':
+        specifier: ^2.0.0
+        version: 2.0.0(@hotwired/stimulus@3.2.2)
+    devDependencies:
+      '@hotwired/stimulus':
+        specifier: ^3.2.2
+        version: 3.2.2
+      '@symfony/stimulus-bridge':
+        specifier: ^3.2.0
+        version: 3.2.2(@hotwired/stimulus@3.2.2)
+      '@symfony/ux-toggle-password':
+        specifier: file:vendor/symfony/ux-toggle-password/assets
+        version: file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)
+
   playground/symfony64: {}
 
   playground/symfony7: {}
@@ -356,27 +390,18 @@ importers:
       '@types/node':
         specifier: ^22.3.0
         version: 22.4.1
+      '@types/react':
+        specifier: ^18.3.3
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
       '@types/ws':
         specifier: ^8.5.12
         version: 8.5.12
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^7.18.0
-        version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
-      '@typescript-eslint/parser':
-        specifier: ^7.18.0
-        version: 7.18.0(eslint@8.57.0)(typescript@5.5.4)
       '@vitest/coverage-v8':
         specifier: ^2.0.5
         version: 2.0.5(vitest@2.0.5(@types/node@22.4.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.6))
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.0)
-      eslint-plugin-prettier:
-        specifier: ^5.2.1
-        version: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.3)
       jsdom:
         specifier: ^24.1.1
         version: 24.1.1
@@ -398,12 +423,9 @@ importers:
       tsup:
         specifier: ^8.2.4
         version: 8.2.4(postcss@8.4.41)(typescript@5.5.4)
-      typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
       vite:
         specifier: ^5.4.1
-        version: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+        version: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vitest:
         specifier: ^2.0.5
         version: 2.0.5(@types/node@22.4.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.6)
@@ -1594,6 +1616,10 @@ packages:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
+  '@eslint/js@9.9.0':
+    resolution: {integrity: sha512-hhetes6ZHP3BlXLxmd8K2SNgkhNSi+UcecbnwWKwpP7kyi/uC75DJ1lOOBO3xrC4jyojtGE3YxKZPHfk4yrgug==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
   '@formatjs/ecma402-abstract@2.0.0':
     resolution: {integrity: sha512-rRqXOqdFmk7RYvj4khklyqzcfQl9vEL/usogncBHRZfZBDOwMGuSRNFl02fu5KGHXdbinju+YXyuR+Nk8xlr/g==}
 
@@ -1864,8 +1890,8 @@ packages:
   '@shikijs/transformers@1.14.1':
     resolution: {integrity: sha512-JJqL8QBVCJh3L61jqqEXgFq1cTycwjcGj7aSmqOEsbxnETM9hRlaB74QuXvY/fVJNjbNt8nvWo0VwAXKvMSLRg==}
 
-  '@simonwep/pickr@1.8.2':
-    resolution: {integrity: sha512-/l5w8BIkrpP6n1xsetx9MWPWlU6OblN5YgZZphxan0Tq4BByTCETL6lyIeY8lagalS2Nbt4F2W034KHLIiunKA==}
+  '@simonwep/pickr@1.9.0':
+    resolution: {integrity: sha512-oEYvv15PyfZzjoAzvXYt3UyNGwzsrpFxLaZKzkOSd0WYBVwLd19iJerePDONxC1iF6+DpcswPdLIM2KzCJuYFg==}
 
   '@simonwep/pickr@1.9.1':
     resolution: {integrity: sha512-fR3qmfAcPf/HSFS7GEnTmZLM3+xERv1+jyMBbzT63ilRRM8veYjI7ELvkHHKk0/du3lHp7uh/FqatjM3646X1g==}
@@ -1905,6 +1931,11 @@ packages:
 
   '@stiligita/utils@1.0.0-0':
     resolution: {integrity: sha512-8RRAMOB+vEC8FknZtoNKQnttATUN9uERYFC7+qjsd3X3UTb3o2oqVmLFU/kUY5Q72PxbBQqX7u0NAEnEytuMtA==}
+
+  '@stimulus-components/color-picker@2.0.0':
+    resolution: {integrity: sha512-ITQGvQ1RNLsoiZMmlc6R60pn36UuGD3lLv76LMRcipUbp1Sn3EenkMf5fABRd8MKz2ZIbJcTqZlMx4+I8FyHXA==}
+    peerDependencies:
+      '@hotwired/stimulus': ^3.0.0
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
@@ -2025,6 +2056,11 @@ packages:
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
 
+  '@symfony/ux-toggle-password@file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets':
+    resolution: {directory: playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets, type: directory}
+    peerDependencies:
+      '@hotwired/stimulus': ^3.0.0
+
   '@symfony/ux-translator@file:extra/ux-assets/ux-translator':
     resolution: {directory: extra/ux-assets/ux-translator, type: directory}
     peerDependencies:
@@ -2136,8 +2172,17 @@ packages:
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
 
+  '@types/prop-types@15.7.12':
+    resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+
   '@types/q@1.5.8':
     resolution: {integrity: sha512-hroOstUScF6zhIi+5+x0dzqrHA1EJi+Irri6b1fxolMTqqHIV/Cg77EtnQcZqZCu8hR3mX2BzIxN4/GzI68Kfw==}
+
+  '@types/react-dom@18.3.0':
+    resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
+
+  '@types/react@18.3.3':
+    resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
 
   '@types/resolve@1.17.1':
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -2171,6 +2216,17 @@ packages:
       typescript:
         optional: true
 
+  '@typescript-eslint/eslint-plugin@8.2.0':
+    resolution: {integrity: sha512-02tJIs655em7fvt9gps/+4k4OsKULYGtLBPJfOsmOq1+3cdClYiF0+d6mHu6qDnTcg88wJBkcPLpQhq7FyDz0A==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      '@typescript-eslint/parser': ^8.0.0 || ^8.0.0-alpha.0
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@typescript-eslint/parser@7.18.0':
     resolution: {integrity: sha512-4Z+L8I2OqhZV8qA132M4wNL30ypZGYOQVBfMgxDH/K5UX0PNqTu1c6za9ST5r9+tavvHiTWmBnKzpCJ/GlVFtg==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -2181,9 +2237,23 @@ packages:
       typescript:
         optional: true
 
+  '@typescript-eslint/parser@8.2.0':
+    resolution: {integrity: sha512-j3Di+o0lHgPrb7FxL3fdEy6LJ/j2NE8u+AP/5cQ9SKb+JLH6V6UHDqJ+e0hXBkHP1wn1YDFjYCS9LBQsZDlDEg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@typescript-eslint/scope-manager@7.18.0':
     resolution: {integrity: sha512-jjhdIE/FPF2B7Z1uzc6i3oWKbGcHb87Qw7AWj6jmEqNOfDFbJWtjt/XfwCpvNkpGWlcJaog5vTR+VV8+w9JflA==}
     engines: {node: ^18.18.0 || >=20.0.0}
+
+  '@typescript-eslint/scope-manager@8.2.0':
+    resolution: {integrity: sha512-OFn80B38yD6WwpoHU2Tz/fTz7CgFqInllBoC3WP+/jLbTb4gGPTy9HBSTsbDWkMdN55XlVU0mMDYAtgvlUspGw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/type-utils@7.18.0':
     resolution: {integrity: sha512-XL0FJXuCLaDuX2sYqZUUSOJ2sG5/i1AAze+axqmLnSkNEVMVYLF+cbwlB2w8D1tinFuSikHmFta+P+HOofrLeA==}
@@ -2195,13 +2265,35 @@ packages:
       typescript:
         optional: true
 
+  '@typescript-eslint/type-utils@8.2.0':
+    resolution: {integrity: sha512-g1CfXGFMQdT5S+0PSO0fvGXUaiSkl73U1n9LTK5aRAFnPlJ8dLKkXr4AaLFvPedW8lVDoMgLLE3JN98ZZfsj0w==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@typescript-eslint/types@7.18.0':
     resolution: {integrity: sha512-iZqi+Ds1y4EDYUtlOOC+aUmxnE9xS/yCigkjA7XpTKV6nCBd3Hp/PRGGmdwnfkV2ThMyYldP1wRpm/id99spTQ==}
     engines: {node: ^18.18.0 || >=20.0.0}
 
+  '@typescript-eslint/types@8.2.0':
+    resolution: {integrity: sha512-6a9QSK396YqmiBKPkJtxsgZZZVjYQ6wQ/TlI0C65z7vInaETuC6HAHD98AGLC8DyIPqHytvNuS8bBVvNLKyqvQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
   '@typescript-eslint/typescript-estree@7.18.0':
     resolution: {integrity: sha512-aP1v/BSPnnyhMHts8cf1qQ6Q1IFwwRvAQGRvBFkWlo3/lH29OXA3Pts+c10nxRxIBrDnoMqzhgdwVe5f2D6OzA==}
     engines: {node: ^18.18.0 || >=20.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@typescript-eslint/typescript-estree@8.2.0':
+    resolution: {integrity: sha512-kiG4EDUT4dImplOsbh47B1QnNmXSoUqOjWDvCJw/o8LgfD0yr7k2uy54D5Wm0j4t71Ge1NkynGhpWdS0dEIAUA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -2214,9 +2306,19 @@ packages:
     peerDependencies:
       eslint: ^8.56.0
 
+  '@typescript-eslint/utils@8.2.0':
+    resolution: {integrity: sha512-O46eaYKDlV3TvAVDNcoDzd5N550ckSe8G4phko++OCSC1dYIb9LTc3HDGYdWqWIAT5qDUKphO6sd9RrpIJJPfg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+
   '@typescript-eslint/visitor-keys@7.18.0':
     resolution: {integrity: sha512-cDF0/Gf81QpY3xYyJKDV14Zwdmid5+uuENhjH2EqFaF0ni+yAyq/LzMaIJdhNJXZI7uLzwIlA+V7oWoyn6Curg==}
     engines: {node: ^18.18.0 || >=20.0.0}
+
+  '@typescript-eslint/visitor-keys@8.2.0':
+    resolution: {integrity: sha512-sbgsPMW9yLvS7IhCi8IpuK1oBmtbWUNP+hBdwl/I9nzqVsszGnNGti5r9dUtF5RLivHUFFIdRvLiTsPhzSyJ3Q==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -2838,6 +2940,9 @@ packages:
   core-js-compat@3.38.1:
     resolution: {integrity: sha512-JRH6gfXxGmrzF3tZ57lFx97YARxCXPaMzPo6jELZhv88pBH5VXpQ+y0znKGlFnzuaihqhLbefxSJxWJMPtfDzw==}
 
+  core-js@3.32.2:
+    resolution: {integrity: sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==}
+
   core-js@3.37.0:
     resolution: {integrity: sha512-fu5vHevQ8ZG4og+LXug8ulUtVxjOcEYvifJr7L5Bfq9GOztVqsKd9/59hUk2ZSbCrS3BqUr3EpaYGIYzq7g3Ug==}
 
@@ -3123,8 +3228,8 @@ packages:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
 
-  dayjs@1.11.12:
-    resolution: {integrity: sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==}
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -3674,6 +3779,10 @@ packages:
   globals@13.24.0:
     resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==}
     engines: {node: '>=8'}
+
+  globals@15.9.0:
+    resolution: {integrity: sha512-SmSKyLLKFbSr6rptvP8izbyxJL4ILwqO9Jg23UA0sDlGlu58V59D1//I3vlc0KJphVdUR7vMjHIplYnzBxorQA==}
+    engines: {node: '>=18'}
 
   globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
@@ -4425,6 +4534,9 @@ packages:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  nanopop@2.3.0:
+    resolution: {integrity: sha512-fzN+T2K7/Ah25XU02MJkPZ5q4Tj5FpjmIYq4rvoHX4yb16HzFdCO6JxFFn5Y/oBhQ8no8fUZavnyIv9/+xkBBw==}
 
   nanopop@2.4.2:
     resolution: {integrity: sha512-NzOgmMQ+elxxHeIha+OG/Pv3Oc3p4RU2aBhwWwAqDpXrdTbtRylbRLQztLy8dMMwfl6pclznBdfUhccEn9ZIzw==}
@@ -5388,8 +5500,8 @@ packages:
   spdx-expression-parse@3.0.1:
     resolution: {integrity: sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==}
 
-  spdx-license-ids@3.0.18:
-    resolution: {integrity: sha512-xxRs31BqRYHwiMzudOrpSiHtZ8i/GeionCBDSilhYRj+9gIcI8wCZTlXZKu9vZIVqViP3dcp9qE5G6AlIaD+TQ==}
+  spdx-license-ids@3.0.20:
+    resolution: {integrity: sha512-jg25NiDV/1fLtSgEgyvVyDunvaNHbuwF9lfNV17gSmPFAlYzdfNBlLtLzXTevwkPj7DhGbmN9VnmJIgLnhvaBw==}
 
   speakingurl@14.0.1:
     resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
@@ -5407,12 +5519,6 @@ packages:
 
   std-env@3.7.0:
     resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
-
-  stimulus-color-picker@1.1.0:
-    resolution: {integrity: sha512-VrsrSn5jipyWYPDANANae0XfVKPcnq1A6gQfcZ0jCQaJJxlqFKaLedSCxWYAcJnQ0DyueB588l+th5lI3c/qHg==}
-    deprecated: '''stimulus-color-picker'' is now ''@stimulus-components/color-picker'''
-    peerDependencies:
-      '@hotwired/stimulus': ^3.2.1
 
   string-hash@1.1.3:
     resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
@@ -5758,6 +5864,15 @@ packages:
   typed.js@2.1.0:
     resolution: {integrity: sha512-bDuXEf7YcaKN4g08NMTUM6G90XU25CK3bh6U0THC/Mod/QPKlEt9g/EjvbYB8x2Qwr2p6J6I3NrsoYaVnY6wsQ==}
 
+  typescript-eslint@8.2.0:
+    resolution: {integrity: sha512-DmnqaPcML0xYwUzgNbM1XaKXpEb7BShYf2P1tkUmmcl8hyeG7Pj08Er7R9bNy6AufabywzJcOybQAtnD/c9DGw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   typescript@4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
@@ -5904,8 +6019,8 @@ packages:
       terser:
         optional: true
 
-  vite@5.4.1:
-    resolution: {integrity: sha512-1oE6yuNXssjrZdblI9AfBbHCC41nnyoVoEZxQnID6yvQZAFBzxxkqoFLtHUMkYunL8hwOLEjgTuxpkRxvba3kA==}
+  vite@5.4.2:
+    resolution: {integrity: sha512-dDrQTRHp5C1fTFzcSaMxjk6vdpKvT+2/mIdE07Gw2ykehT49O0z/VHS3zZ8iV/Gh8BJJKHWOe5RjaNrW5xf/GA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -7140,9 +7255,9 @@ snapshots:
 
   '@docsearch/css@3.6.1': {}
 
-  '@docsearch/js@3.6.1(@algolia/client-search@4.24.0)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)':
+  '@docsearch/js@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)':
     dependencies:
-      '@docsearch/react': 3.6.1(@algolia/client-search@4.24.0)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)
+      '@docsearch/react': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)
       preact: 10.23.2
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -7151,13 +7266,14 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.6.1(@algolia/client-search@4.24.0)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)':
+  '@docsearch/react@3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)':
     dependencies:
       '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)(search-insights@2.16.3)
       '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.24.0)(algoliasearch@4.24.0)
       '@docsearch/css': 3.6.1
       algoliasearch: 4.24.0
     optionalDependencies:
+      '@types/react': 18.3.3
       react: 16.14.0
       react-dom: 18.3.1(react@16.14.0)
       search-insights: 2.16.3
@@ -7393,6 +7509,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.57.0': {}
+
+  '@eslint/js@9.9.0': {}
 
   '@formatjs/ecma402-abstract@2.0.0':
     dependencies:
@@ -7660,10 +7778,10 @@ snapshots:
     dependencies:
       shiki: 1.14.1
 
-  '@simonwep/pickr@1.8.2':
+  '@simonwep/pickr@1.9.0':
     dependencies:
-      core-js: 3.38.1
-      nanopop: 2.4.2
+      core-js: 3.32.2
+      nanopop: 2.3.0
 
   '@simonwep/pickr@1.9.1':
     dependencies:
@@ -7731,6 +7849,11 @@ snapshots:
 
   '@stiligita/utils@1.0.0-0': {}
 
+  '@stimulus-components/color-picker@2.0.0(@hotwired/stimulus@3.2.2)':
+    dependencies:
+      '@hotwired/stimulus': 3.2.2
+      '@simonwep/pickr': 1.9.0
+
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     dependencies:
       ejs: 3.1.10
@@ -7738,26 +7861,26 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.11
 
-  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)))(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
+  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)))(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+      '@sveltejs/vite-plugin-svelte': 3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       debug: 4.3.6
       svelte: 4.2.18
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
+  '@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)))(svelte@4.2.18)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)))(svelte@4.2.18)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
       debug: 4.3.6
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.11
       svelte: 4.2.18
       svelte-hmr: 0.16.0(svelte@4.2.18)
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
-      vitefu: 0.2.5(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vitefu: 0.2.5(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))
     transitivePeerDependencies:
       - supports-color
 
@@ -7870,6 +7993,10 @@ snapshots:
       swup: 3.1.1
 
   '@symfony/ux-toggle-password@file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2)':
+    dependencies:
+      '@hotwired/stimulus': 3.2.2
+
+  '@symfony/ux-toggle-password@file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)':
     dependencies:
       '@hotwired/stimulus': 3.2.2
 
@@ -7992,7 +8119,18 @@ snapshots:
 
   '@types/parse-json@4.0.2': {}
 
+  '@types/prop-types@15.7.12': {}
+
   '@types/q@1.5.8': {}
+
+  '@types/react-dom@18.3.0':
+    dependencies:
+      '@types/react': 18.3.3
+
+  '@types/react@18.3.3':
+    dependencies:
+      '@types/prop-types': 15.7.12
+      csstype: 3.1.3
 
   '@types/resolve@1.17.1':
     dependencies:
@@ -8033,6 +8171,24 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@typescript-eslint/eslint-plugin@8.2.0(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)':
+    dependencies:
+      '@eslint-community/regexpp': 4.11.0
+      '@typescript-eslint/parser': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/scope-manager': 8.2.0
+      '@typescript-eslint/type-utils': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/visitor-keys': 8.2.0
+      eslint: 8.57.0
+      graphemer: 1.4.0
+      ignore: 5.3.2
+      natural-compare: 1.4.0
+      ts-api-utils: 1.3.0(typescript@5.5.4)
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - supports-color
+
   '@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/scope-manager': 7.18.0
@@ -8046,10 +8202,28 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4)':
+    dependencies:
+      '@typescript-eslint/scope-manager': 8.2.0
+      '@typescript-eslint/types': 8.2.0
+      '@typescript-eslint/typescript-estree': 8.2.0(typescript@5.5.4)
+      '@typescript-eslint/visitor-keys': 8.2.0
+      debug: 4.3.6
+      eslint: 8.57.0
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - supports-color
+
   '@typescript-eslint/scope-manager@7.18.0':
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
+
+  '@typescript-eslint/scope-manager@8.2.0':
+    dependencies:
+      '@typescript-eslint/types': 8.2.0
+      '@typescript-eslint/visitor-keys': 8.2.0
 
   '@typescript-eslint/type-utils@7.18.0(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
@@ -8063,12 +8237,41 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@typescript-eslint/type-utils@8.2.0(eslint@8.57.0)(typescript@5.5.4)':
+    dependencies:
+      '@typescript-eslint/typescript-estree': 8.2.0(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      debug: 4.3.6
+      ts-api-utils: 1.3.0(typescript@5.5.4)
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+
   '@typescript-eslint/types@7.18.0': {}
+
+  '@typescript-eslint/types@8.2.0': {}
 
   '@typescript-eslint/typescript-estree@7.18.0(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
+      debug: 4.3.6
+      globby: 11.1.0
+      is-glob: 4.0.3
+      minimatch: 9.0.5
+      semver: 7.6.3
+      ts-api-utils: 1.3.0(typescript@5.5.4)
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/typescript-estree@8.2.0(typescript@5.5.4)':
+    dependencies:
+      '@typescript-eslint/types': 8.2.0
+      '@typescript-eslint/visitor-keys': 8.2.0
       debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
@@ -8091,9 +8294,25 @@ snapshots:
       - supports-color
       - typescript
 
+  '@typescript-eslint/utils@8.2.0(eslint@8.57.0)(typescript@5.5.4)':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
+      '@typescript-eslint/scope-manager': 8.2.0
+      '@typescript-eslint/types': 8.2.0
+      '@typescript-eslint/typescript-estree': 8.2.0(typescript@5.5.4)
+      eslint: 8.57.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   '@typescript-eslint/visitor-keys@7.18.0':
     dependencies:
       '@typescript-eslint/types': 7.18.0
+      eslint-visitor-keys: 3.4.3
+
+  '@typescript-eslint/visitor-keys@8.2.0':
+    dependencies:
+      '@typescript-eslint/types': 8.2.0
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
@@ -8108,7 +8327,7 @@ snapshots:
       terser: 5.31.6
       vite: 4.5.3(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
 
-  '@vitejs/plugin-legacy@5.4.2(terser@5.31.6)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
+  '@vitejs/plugin-legacy@5.4.2(terser@5.31.6)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/preset-env': 7.25.3(@babel/core@7.25.2)
@@ -8119,24 +8338,24 @@ snapshots:
       regenerator-runtime: 0.14.1
       systemjs: 6.15.1
       terser: 5.31.6
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@5.1.2(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))':
+  '@vitejs/plugin-vue@5.1.2(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))':
     dependencies:
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vue: 3.4.38(typescript@5.5.4)
 
   '@vitest/coverage-v8@2.0.5(vitest@2.0.5(@types/node@22.4.1)(@vitest/ui@2.0.5)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.6))':
@@ -8859,6 +9078,8 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
 
+  core-js@3.32.2: {}
+
   core-js@3.37.0: {}
 
   core-js@3.38.1: {}
@@ -9223,7 +9444,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.0
 
-  dayjs@1.11.12: {}
+  dayjs@1.11.13: {}
 
   debug@4.3.4:
     dependencies:
@@ -9927,6 +10148,8 @@ snapshots:
     dependencies:
       type-fest: 0.20.2
 
+  globals@15.9.0: {}
+
   globalthis@1.0.4:
     dependencies:
       define-properties: 1.2.1
@@ -10535,7 +10758,7 @@ snapshots:
       d3: 7.9.0
       d3-sankey: 0.12.3
       dagre-d3-es: 7.0.10
-      dayjs: 1.11.12
+      dayjs: 1.11.13
       dompurify: 3.1.6
       elkjs: 0.9.3
       katex: 0.16.11
@@ -10790,6 +11013,8 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.7: {}
+
+  nanopop@2.3.0: {}
 
   nanopop@2.4.2: {}
 
@@ -11745,16 +11970,16 @@ snapshots:
   spdx-correct@3.2.0:
     dependencies:
       spdx-expression-parse: 3.0.1
-      spdx-license-ids: 3.0.18
+      spdx-license-ids: 3.0.20
 
   spdx-exceptions@2.5.0: {}
 
   spdx-expression-parse@3.0.1:
     dependencies:
       spdx-exceptions: 2.5.0
-      spdx-license-ids: 3.0.18
+      spdx-license-ids: 3.0.20
 
-  spdx-license-ids@3.0.18: {}
+  spdx-license-ids@3.0.20: {}
 
   speakingurl@14.0.1: {}
 
@@ -11765,11 +11990,6 @@ snapshots:
   stackback@0.0.2: {}
 
   std-env@3.7.0: {}
-
-  stimulus-color-picker@1.1.0(@hotwired/stimulus@3.2.2):
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-      '@simonwep/pickr': 1.8.2
 
   string-hash@1.1.3: {}
 
@@ -12202,6 +12422,17 @@ snapshots:
 
   typed.js@2.1.0: {}
 
+  typescript-eslint@8.2.0(eslint@8.57.0)(typescript@5.5.4):
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.2.0(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+
   typescript@4.9.5: {}
 
   typescript@5.5.4: {}
@@ -12293,7 +12524,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -12305,7 +12536,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-inspect@0.8.6(rollup@4.21.0)(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
+  vite-plugin-inspect@0.8.6(rollup@4.21.0)(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
@@ -12316,26 +12547,26 @@ snapshots:
       perfect-debounce: 1.0.0
       picocolors: 1.0.1
       sirv: 2.0.4
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - rollup
       - supports-color
 
-  vite-plugin-static-copy@1.0.6(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
+  vite-plugin-static-copy@1.0.6(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
     dependencies:
       chokidar: 3.6.0
       fast-glob: 3.3.2
       fs-extra: 11.2.0
       picocolors: 1.0.1
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
 
-  vite-plugin-symfony@6.5.3(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
+  vite-plugin-symfony@6.5.3(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
     dependencies:
       debug: 4.3.6
       fast-glob: 3.3.2
       picocolors: 1.0.1
       sirv: 2.0.4
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
     transitivePeerDependencies:
       - supports-color
 
@@ -12350,7 +12581,7 @@ snapshots:
       sass: 1.77.8
       terser: 5.31.6
 
-  vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6):
+  vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.41
@@ -12361,18 +12592,18 @@ snapshots:
       sass: 1.77.8
       terser: 5.31.6
 
-  vitefu@0.2.5(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
+  vitefu@0.2.5(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)):
     optionalDependencies:
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
 
-  vitepress@1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.1)(postcss@8.4.41)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4):
+  vitepress@1.3.2(@algolia/client-search@4.24.0)(@types/node@22.4.1)(@types/react@18.3.3)(postcss@8.4.41)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(sass@1.77.8)(search-insights@2.16.3)(terser@5.31.6)(typescript@5.5.4):
     dependencies:
       '@docsearch/css': 3.6.1
-      '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)
+      '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@16.14.0))(react@16.14.0)(search-insights@2.16.3)
       '@shikijs/core': 1.14.1
       '@shikijs/transformers': 1.14.1
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.1.2(vite@5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
+      '@vitejs/plugin-vue': 5.1.2(vite@5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6))(vue@3.4.38(typescript@5.5.4))
       '@vue/devtools-api': 7.3.8
       '@vue/shared': 3.4.38
       '@vueuse/core': 10.11.1(vue@3.4.38(typescript@5.5.4))
@@ -12381,7 +12612,7 @@ snapshots:
       mark.js: 8.11.1
       minisearch: 7.1.0
       shiki: 1.14.1
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vue: 3.4.38(typescript@5.5.4)
     optionalDependencies:
       postcss: 8.4.41
@@ -12431,7 +12662,7 @@ snapshots:
       tinybench: 2.9.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.1(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
+      vite: 5.4.2(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       vite-node: 2.0.5(@types/node@22.4.1)(sass@1.77.8)(terser@5.31.6)
       why-is-node-running: 2.3.0
     optionalDependencies:

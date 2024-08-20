@@ -1,0 +1,145 @@
+{
+    "controllers": {
+        "@symfony/ux-autocomplete": {
+            "autocomplete": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "tom-select/dist/css/tom-select.default.css": true,
+                    "tom-select/dist/css/tom-select.bootstrap5.css": false
+                }
+            }
+        },
+        "@symfony/ux-chartjs": {
+            "chart": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-cropperjs": {
+            "cropper": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "cropperjs/dist/cropper.min.css": true,
+                    "@symfony/ux-cropperjs/dist/style.min.css": true
+                }
+            }
+        },
+        "@symfony/ux-dropzone": {
+            "main": "dist/controller.js",
+            "webpackMode": "eager",
+            "fetch": "eager",
+            "enabled": true,
+            "autoimport": {
+                "@symfony/ux-dropzone/dist/style.min.css": true
+            }
+        },
+        "@symfony/ux-lazy-image": {
+            "lazy-image": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-live-component": {
+            "live": {
+                "main": "dist/live_controller.js",
+                "name": "live",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "@symfony/ux-live-component/dist/live.min.css": true
+                }
+            }
+        },
+        "@symfony/ux-notify": {
+            "notify": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-react": {
+            "react": {
+                "main": "dist/render_controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-svelte": {
+            "svelte": {
+                "main": "dist/render_controller.js",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-swup": {
+            "swup": {
+                "main": "dist/controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-toggle-password": {
+            "toggle-password": {
+                "main": "dist/controller.js",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "@symfony/ux-toggle-password/dist/style.min.css": true
+                }
+            }
+        },
+        "@symfony/ux-turbo": {
+            "turbo-core": {
+                "main": "dist/turbo_controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            },
+            "mercure-turbo-stream": {
+                "main": "dist/turbo_stream_controller.js",
+                "fetch": "eager",
+                "enabled": false
+            }
+        },
+        "@symfony/ux-typed": {
+            "typed": {
+                "main": "dist/controller.js",
+                "name": "symfony/ux-typed",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "@symfony/ux-vue": {
+            "vue": {
+                "main": "dist/render_controller.js",
+                "webpackMode": "eager",
+                "fetch": "eager",
+                "enabled": true
+            }
+        },
+        "stimulus-color-picker": {
+            "name": "color-picker",
+            "enabled": true,
+            "fetch": "lazy",
+            "autoimport": {
+                "@simonwep/pickr/dist/themes/classic.min.css": true
+            }
+        }
+    },
+    "entrypoints": []
+}

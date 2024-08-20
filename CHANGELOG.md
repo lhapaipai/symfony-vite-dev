@@ -1,3 +1,10 @@
+## v7.0.0
+
+- new Profiler
+- change crossorin default value
+- better `PreloadAssetsEventListener`
+- stimulus refactorisation
+
 ## v6.5.3
 
 - fix vite-plugin-symfony tsup export when package is ESM.

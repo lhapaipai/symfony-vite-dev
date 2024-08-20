@@ -28,6 +28,10 @@ export default defineConfig({
           replacement: fileURLToPath(new URL('./theme/components/VPImage.vue', import.meta.url))
         },
         {
+          find: /^.*\/VPDoc.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPDoc.vue', import.meta.url))
+        },
+        {
           find: '~theme',
           replacement: fileURLToPath(new URL('./theme', import.meta.url))
         }
@@ -101,8 +105,8 @@ export default defineConfig({
             text: 'Stimulus / Symfony UX',
             items: [
               { text: 'Installation', link: '/stimulus/installation' },
-              { text: 'Symfony UX', link: '/stimulus/symfony-ux' },
-              { text: 'Lazy controllers', link: '/stimulus/lazy-controllers' }
+              { text: 'Reference', link: '/stimulus/reference' },
+              { text: 'Symfony UX', link: '/stimulus/symfony-ux' }
             ]
           },
           {
@@ -192,8 +196,8 @@ export default defineConfig({
             text: 'Stimulus / Symfony UX',
             items: [
               { text: 'Installation', link: '/fr/stimulus/installation' },
-              { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux' },
-              { text: 'Controleurs asynchrones', link: '/fr/stimulus/lazy-controllers' }
+              { text: 'Référence', link: '/fr/stimulus/reference' },
+              { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux' }
             ]
           },
           {
@@ -242,6 +246,10 @@ export default defineConfig({
       provider: 'local'
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/vite-bundle' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/vite-bundle' }],
+
+    outline: {
+      level: [2, 3]
+    }
   }
 });
