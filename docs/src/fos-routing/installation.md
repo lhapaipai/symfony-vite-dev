@@ -50,7 +50,9 @@ import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
 
 export default defineConfig({
-  plugins: [symfonyPlugin()],
+  plugins: [symfonyPlugin({
+    fosRouting: true
+  })],
   // that is for vite dev server
   optimizeDeps: {
     include: ["fos-router"],

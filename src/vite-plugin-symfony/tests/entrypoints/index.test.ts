@@ -36,7 +36,7 @@ function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
 
 function plugin(userOptions: Partial<VitePluginSymfonyOptions>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { stimulus, ...entrypointsOptions } = resolvePluginOptions(userOptions);
+  const { stimulus, fosRouting, ...entrypointsOptions } = resolvePluginOptions(userOptions);
   return vitePluginSymfonyEntrypoints(entrypointsOptions, createLogger());
 }
 

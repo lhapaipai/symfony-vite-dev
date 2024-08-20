@@ -1,8 +1,14 @@
 import { join } from "node:path";
-import { VitePluginSymfonyEntrypointsOptions, VitePluginSymfonyOptions } from "./types";
+import {
+  VitePluginSymfonyEntrypointsOptions,
+  VitePluginSymfonyFosRoutingOptions,
+  VitePluginSymfonyOptions,
+  VitePluginSymfonyPartialOptions,
+  VitePluginSymfonyStimulusOptions,
+} from "./types";
 import { deepMerge } from "~/fos-routing/utils";
 
-export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOptions> = {}): VitePluginSymfonyOptions {
+export function resolvePluginOptions(userConfig: VitePluginSymfonyPartialOptions = {}): VitePluginSymfonyOptions {
   if (typeof userConfig.publicDirectory === "string") {
     userConfig.publicDirectory = userConfig.publicDirectory.trim().replace(/^\/+/, "").replace(/\/+$/, "");
 
@@ -30,23 +36,24 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     userConfig.sriAlgorithm = false;
   }
 
+  let definitiveStimulusOptions: VitePluginSymfonyStimulusOptions | false;
   if (userConfig.stimulus === true) {
-    userConfig.stimulus = {
+    definitiveStimulusOptions = {
       controllersFilePath: "./assets/controllers.json",
       hmr: true,
     };
   } else if (typeof userConfig.stimulus === "string") {
-    userConfig.stimulus = {
+    definitiveStimulusOptions = {
       controllersFilePath: userConfig.stimulus,
       hmr: true,
     };
   } else if (typeof userConfig.stimulus === "object") {
-    userConfig.stimulus = {
+    definitiveStimulusOptions = {
       controllersFilePath: userConfig.stimulus.controllersFilePath ?? "./assets/controllers.json",
       hmr: userConfig.stimulus.hmr !== false ? true : false,
     };
   } else {
-    userConfig.stimulus = false;
+    definitiveStimulusOptions = false;
   }
 
   /**
@@ -67,14 +74,14 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     possibleRoutesConfigFilesExt: ["php"],
     verbose: false,
     php: "php",
-  };
-
+  } satisfies VitePluginSymfonyFosRoutingOptions;
+  let definitiveFosRoutingOptions: VitePluginSymfonyFosRoutingOptions | false;
   if (userConfig.fosRouting === true) {
-    userConfig.fosRouting = defaultFosRouterPluginOptions;
+    definitiveFosRoutingOptions = defaultFosRouterPluginOptions;
   } else if (typeof userConfig.fosRouting === "object") {
-    userConfig.fosRouting = deepMerge(defaultFosRouterPluginOptions, userConfig.fosRouting);
+    definitiveFosRoutingOptions = deepMerge(defaultFosRouterPluginOptions, userConfig.fosRouting);
   } else {
-    userConfig.fosRouting = false;
+    definitiveFosRoutingOptions = false;
   }
 
   return {
@@ -88,8 +95,8 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     refresh: userConfig.refresh ?? false,
     servePublic: userConfig.servePublic,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
-    stimulus: userConfig.stimulus,
-    fosRouting: userConfig.fosRouting,
+    stimulus: definitiveStimulusOptions,
+    fosRouting: definitiveFosRoutingOptions,
     viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
   };
 }

@@ -1,11 +1,10 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
 import { objectToArg } from "~/fos-routing/utils";
 import { normalizePath } from "~/entrypoints/utils";
-import { Logger, ViteDevServer } from "vite";
+import { Logger, Plugin, ViteDevServer } from "vite";
 import { execFileSync } from "node:child_process";
-import * as path from "node:path";
-import process from "node:process";
-import fs from "node:fs";
+import { dirname, resolve } from "node:path";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 
 /**
  * Vite plugin to generate fos routes and inject them into the code.
@@ -14,7 +13,7 @@ import fs from "node:fs";
  * @param pluginOptions
  * @param logger
  */
-export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRoutingOptions, logger?: Logger) {
+export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRoutingOptions, logger?: Logger): Plugin {
   let routesChanged = true; // Control when to inject
   let prevContent = null; // Previous content of the routes
   const entryModules = new Set();
@@ -22,7 +21,7 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
   /**
    * Resolves the target path.
    */
-  const target = path.resolve(process.cwd(), pluginOptions.args.target);
+  const target = resolve(process.cwd(), pluginOptions.args.target);
 
   function runDumpRoutesCmdSync() {
     if (pluginOptions.verbose) {
@@ -49,7 +48,7 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
        * The "isEntry" property of ModuleInfo is not supported." when using it in transform function.
        */
       Object.values(inputOptions.input).forEach((input) =>
-        entryModules.add(normalizePath(path.resolve(process.cwd(), input))),
+        entryModules.add(normalizePath(resolve(process.cwd(), input))),
       );
 
       /**
@@ -60,14 +59,14 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
       try {
         runDumpRoutesCmdSync();
 
-        const content = fs.readFileSync(target);
-        if (fs.existsSync(target)) {
-          fs.rmSync(target); // Remove the temporary file
+        const content = readFileSync(target);
+        if (existsSync(target)) {
+          rmSync(target); // Remove the temporary file
         }
         // Check if there are new routes
         if (!prevContent || content.compare(prevContent) !== 0) {
-          fs.mkdirSync(path.dirname(target), { recursive: true });
-          fs.writeFileSync(target, content);
+          mkdirSync(dirname(target), { recursive: true });
+          writeFileSync(target, content);
 
           prevContent = content;
           routesChanged = true;

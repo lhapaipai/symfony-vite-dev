@@ -94,8 +94,7 @@ export default defineConfig({
             text: 'FOS Routing',
             items: [
               { text: 'Installation', link: '/fos-routing/installation' },
-              { text: 'Configuration', link: '/fos-routing/configuration' },
-              { text: 'In Depth', link: '/fos-routing/in-depth' }
+              { text: 'Configuration', link: '/fos-routing/configuration' }
             ]
           },
           {
@@ -180,6 +179,13 @@ export default defineConfig({
               { text: 'Conseils', link: '/fr/guide/tips' },
               { text: 'Résolutions de problèmes', link: '/fr/guide/troubleshooting' },
               { text: 'Exemples', link: '/fr/guide/examples' }
+            ]
+          },
+          {
+            text: 'FOS Routing',
+            items: [
+              { text: 'Installation', link: '/fr/fos-routing/installation' },
+              { text: 'Configuration', link: '/fr/fos-routing/configuration' }
             ]
           },
           {

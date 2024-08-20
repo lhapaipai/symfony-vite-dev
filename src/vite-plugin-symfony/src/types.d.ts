@@ -121,8 +121,13 @@ export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
    * enable controllers.json loader for Symfony UX.
    * @default false
    */
-  stimulus: boolean | string | VitePluginSymfonyStimulusOptions;
-  fosRouting: boolean | VitePluginSymfonyFosRoutingOptions;
+  stimulus: false | VitePluginSymfonyStimulusOptions;
+  fosRouting: false | VitePluginSymfonyFosRoutingOptions;
+};
+
+export type VitePluginSymfonyPartialOptions = Omit<Partial<VitePluginSymfonyOptions>, "fosRouting" | "stimulus"> & {
+  stimulus?: boolean | string | Partial<VitePluginSymfonyStimulusOptions>;
+  fosRouting?: boolean | Partial<VitePluginSymfonyFosRoutingOptions>;
 };
 
 export type VitePluginSymfonyEntrypointsOptions = {
@@ -235,7 +240,8 @@ export type VitePluginSymfonyFosRoutingOptions = {
   /**
    * Arguments to pass to the fos:js-routing:dump command
    */
-  args?: {
+  args: {
+    format: "json";
     /**
      * You can check the available options by running
      * `php bin/console fos:js-routing:dump --help`
@@ -243,39 +249,39 @@ export type VitePluginSymfonyFosRoutingOptions = {
      *
      * @default "var/cache/fosRoutes.json"
      */
-    target?: string;
+    target: string;
 
     /**
      * @default ""
      */
-    locale?: string;
+    locale: string;
     /**
      * @default false
      */
-    prettyPrint?: boolean;
+    prettyPrint: boolean;
     /**
      * @default []
      */
-    domain?: string[];
+    domain: string[];
     /**
      * Extra arguments to pass to the command, in case the bundle gets
      * updated and the vite plugin does not.
      * This way you won't have to wait for the vite plugin to be updated.
      * @default {}
      */
-    extraArgs?: object;
+    extraArgs: object;
   };
   /**
    * If true, the plugin will add the import statement to the entry file automatically.
    * So you don't have to do it manually.
    * @default true
    */
-  addImportByDefault?: boolean;
+  addImportByDefault: boolean;
   /**
    * The package name of the routing plugin.
    * @default "fos-router"
    */
-  routingPluginPackageName?: string;
+  routingPluginPackageName: string;
   /**
    * A list of files to check for changes. When a file in this array changes,
    * the plugin will dump the routes and eventually if there are new routes we
@@ -285,7 +291,7 @@ export type VitePluginSymfonyFosRoutingOptions = {
    * other file types.
    * @default ["src//**//*.php"]"
    */
-  watchPaths?: string[];
+  watchPaths: string[];
   /**
    * Some Symfony projects use different file extensions for the routes
    * configuration files.
@@ -297,17 +303,17 @@ export type VitePluginSymfonyFosRoutingOptions = {
    *
    * @default ["php"]
    */
-  possibleRoutesConfigFilesExt?: string[];
+  possibleRoutesConfigFilesExt: string[];
   /**
    * The command to run to dump the routes.
    *
    * @default "php"
    */
-  php?: string;
+  php: string;
   /**
    * If true, the plugin will output errors and information to the console.
    *
    * @default false
    */
-  verbose?: boolean;
+  verbose: boolean;
 };

@@ -1,18 +1,29 @@
 import { VitePluginSymfonyFosRoutingOptions } from "~/types";
-import symfonyFosRouting from "~/fos-routing";
+import vitePluginSymfonyFosRouting from "~/fos-routing";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import * as fs from "node:fs";
-import * as path from "node:path";
+import { createLogger } from "vite";
+import { resolvePluginOptions } from "~/pluginOptions";
+import { resolve } from "node:path";
+import { readFileSync } from "node:fs";
 
 vi.mock("node:child_process", () => ({
   execFileSync: vi.fn(),
 }));
 
-vi.mock("node:fs", async () => {
-  const actualFs = await vi.importActual("node:fs");
+vi.mock("node:process", async (importOriginal) => {
+  const originalProcess = await importOriginal<typeof import("node:process")>();
 
   return {
-    ...actualFs,
+    ...originalProcess,
+    cwd: vi.fn(() => "/path/to/project"),
+  };
+});
+
+vi.mock("node:fs", async (importOriginal) => {
+  const originalFs = await importOriginal<typeof import("node:fs")>();
+
+  return {
+    ...originalFs,
     readFileSync: vi.fn(),
     writeFileSync: vi.fn(),
     rmSync: vi.fn(),
@@ -21,37 +32,28 @@ vi.mock("node:fs", async () => {
   };
 });
 
-vi.mock("node:path", () => ({
-  resolve: vi.fn((...args) => args.join("/")),
-  dirname: vi.fn((p) => p.split("/").slice(0, -1).join("/")),
-  sep: "/",
-}));
+vi.mock("node:path", async (importOriginal) => {
+  const originalPath = await importOriginal<typeof import("node:path")>();
 
-describe("symfonyFosRouting Plugin", () => {
-  let pluginOptions: VitePluginSymfonyFosRoutingOptions;
-  let logger: Logger;
+  return {
+    ...originalPath,
+    resolve: vi.fn((...args) => args.join("/")),
+    dirname: vi.fn((p) => p.split("/").slice(0, -1).join("/")),
+    sep: "/",
+  };
+});
 
+function createPlugin(fosRoutingOptions: Partial<VitePluginSymfonyFosRoutingOptions> = {}): any {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { fosRouting, ...otherOptions } = resolvePluginOptions({ fosRouting: fosRoutingOptions });
+  if (!fosRouting) {
+    throw new Error("resolved options are not boolean");
+  }
+  return vitePluginSymfonyFosRouting(fosRouting, createLogger());
+}
+
+describe("vitePluginSymfonyFosRouting", () => {
   beforeEach(() => {
-    pluginOptions = {
-      args: {
-        target: "var/cache/fosRoutes.json",
-        format: "json",
-        locale: "",
-        prettyPrint: false,
-        domain: [],
-        extraArgs: {},
-      },
-      transformCheckFileTypes: /\.(js|jsx|ts|tsx|vue)$/,
-      watchPaths: ["src/**/*.php"],
-      possibleRoutesConfigFilesExt: ["php"],
-      verbose: false,
-      php: "php",
-    };
-    logger = {
-      warn: vi.fn(),
-      error: vi.fn(),
-    } as unknown as Logger;
-
     vi.resetAllMocks();
   });
 
@@ -65,16 +67,16 @@ describe("symfonyFosRouting Plugin", () => {
     [`import Routing from "symfony-ts-router"`, "symfony-ts-router"],
     [`import Routing from 'symfony-ts-router'`, "symfony-ts-router"],
   ])("should inject routes into the code if conditions are met", async (code, type) => {
-    pluginOptions.routingPluginPackageName = type;
-    const plugin = symfonyFosRouting(pluginOptions, logger);
-    path.resolve.mockReturnValue("/some-file.js");
+    const plugin = createPlugin({
+      routingPluginPackageName: type,
+    });
+    vi.mocked(resolve).mockReturnValue("/some-file.js");
 
     plugin.buildStart({
       input: "./some-file.js",
     });
 
     const id = "/some-file.js";
-    fs.readFileSync.mockReturnValue(Buffer.from("{\"route\":\"data\"}"));
     const result = await plugin.transform(code, id);
 
     expect(result.code).toContain(`
@@ -85,42 +87,49 @@ Routing.setRoutingData(routes); \n
   });
 
   it("should add routing by default if file is entrypoint", async () => {
-    const plugin = symfonyFosRouting(pluginOptions, logger);
-    path.resolve.mockReturnValue("/some-file.js");
+    const plugin = createPlugin();
+
+    vi.mocked(resolve).mockReturnValue("/some-file.js");
 
     plugin.buildStart({
       input: "./some-file.js",
     });
 
     const id = "/some-file.js";
-    fs.readFileSync.mockReturnValue(Buffer.from("{\"route\":\"data\"}"));
+    vi.mocked(readFileSync).mockReturnValue(Buffer.from('{"route":"data"}'));
 
     const result = await plugin.transform("", id);
-    expect(result.code).toContain(`
-import Routing from "fos-router";
-import routes from undefined;
-Routing.setRoutingData(routes); \n
-        `);
+    expect(result.code).toMatchInlineSnapshot(`
+      "
+      import Routing from "fos-router";
+      import routes from undefined;
+      Routing.setRoutingData(routes); 
+
+              "
+    `);
   });
 
   it("should not add routing by default if file is entrypoint", async () => {
-    pluginOptions.addImportByDefault = false;
-    const plugin = symfonyFosRouting(pluginOptions, logger);
-    path.resolve.mockReturnValue("/some-file.js");
+    const plugin = createPlugin({
+      addImportByDefault: false,
+    });
+    vi.mocked(resolve).mockReturnValue("/some-file.js");
 
     plugin.buildStart({
       input: "./some-file.js",
     });
 
     const id = "/some-file.js";
-    fs.readFileSync.mockReturnValue(Buffer.from("{\"route\":\"data\"}"));
+    vi.mocked(readFileSync).mockReturnValue(Buffer.from('{"route":"data"}'));
 
     const result = await plugin.transform("", id);
-    expect(result.code).toContain(``);
+    expect(result.code).toMatchInlineSnapshot(`""`);
   });
 
   it("should not inject routes if conditions are not met", async () => {
-    const plugin = symfonyFosRouting(pluginOptions, logger);
+    const plugin = createPlugin({
+      addImportByDefault: false,
+    });
     const code = `import Routing from "fos-router";`;
     const id = "some-file.css";
 
