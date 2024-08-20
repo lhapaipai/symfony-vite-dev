@@ -1,6 +1,9 @@
 
 # Symfony UX
 
+You can use [Symfony UX](https://ux.symfony.com/) components in your
+application. The `symfony/ux-react`, `symfony/ux-vue` and `symfony/ux-svelte` components require some adjustments. See their dedicated sections.
+
 | UX packages       | Compatibility | UX packages       | Compatibility |
 |-------------------|---------------|-------------------|---------------|
 | ux-autocomplete   | ✅            | ux-svelte         | ✅ (*)        |
@@ -46,8 +49,16 @@ import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/he
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
 
 const app = startStimulusApp();
-registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
-```
+registerControllers(
+  app,
+  import.meta.glob(
+    "./controllers/*_controller.js",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);```
 
 ```js
 // vite.config.js
@@ -113,10 +124,20 @@ import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/
 registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
 const app = startStimulusApp();
-registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
+registerControllers(
+  app,
+  import.meta.glob(
+    "./controllers/*_controller.js",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);
 ```
 
-Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
+Because `registerReactControllerComponents` was invoked with `import.meta.glob` in `lazy` mode, you need to define in your `controllers.json` fetch `eager` (otherwise you will have promise nesting).
+
 ```json
 {
     "controllers": {
@@ -198,10 +219,20 @@ import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
 
 const app = startStimulusApp();
-registerControllers(app, import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?'))
+registerControllers(
+  app,
+  import.meta.glob(
+    "./controllers/*_controller.js",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);
 ```
 
-Because `import.meta.glob` create already `lazy` imports, you need to set fetch `eager` (otherwise your component will become **really too lazy**).
+Because `registerSvelteControllerComponents` was invoked with `import.meta.glob` in `lazy` mode, you need to set in your `controllers.json` fetch `eager` (otherwise you will have promise nesting).
+
 ```json
 {
     "controllers": {

@@ -2,13 +2,9 @@
 
 ## Installation
 
-::: warning
-🧪 Please note that Stimulus implementation is marked unstable and may be subject to breaking changes without a major release. The code is fully functional, some implementations with Symfony UX are not finished (see compatibility table at the bottom of the page) and some function names may change.
-:::
-
 Stimulus is a lightweight JavaScript framework that aims to facilitate the integration of JavaScript components into a project. It connects JavaScript objects called `controllers` to HTML elements on a page via `data-*` attributes.
 
-![Stimulus How does it works ?](/graphs/stimulus.svg)
+
 
 ```bash
 composer require symfony/stimulus-bundle
@@ -27,7 +23,7 @@ export default defineConfig({
     symfonyPlugin({
       stimulus: true // [!code ++]
 
-      // or define custom path for your controllers.json
+      // or specify the path to your controllers.json
       // stimulus: './assets/other-dir/controllers.json'
     }),
   ],
@@ -42,25 +38,30 @@ export default defineConfig({
 });
 ```
 
-If you have run the Flex recipe the import has certainly already been added.
+If you ran the Flex recipe the import has probably already been added.
 
 ```js
 // assets/app.js
 import './bootstrap.js';
 ```
 
-Add the routines for generating a stimulus application compatible with `symfony/stimulus-bundle` and `vite`.
+Add the stimulus application generation routines compatible with `symfony/stimulus-bundle` and `vite`.
 
 ```js
 // assets/bootstrap.js
 
-import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers"
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
 const app = startStimulusApp();
 registerControllers(
   app,
-  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?')
+  import.meta.glob('./controllers/*_controller.js', {
+    query: "?stimulus",
+    eager: true,
+  })
 )
 ```
+
 ```twig
 {# base.html.twig #}
 
@@ -72,14 +73,35 @@ registerControllers(
   {{ vite_entry_script_tags('app') }}
 {% endblock %}
 ```
+
 ```twig
 {# in some template #}
-<h1 {{ stimulus_controller('hello') }}></h1>
+<h1 {{ stimulus_controller('welcome') }}></h1>
+```
+
+```js
+// ./assets/controllers/welcome_controller.js
+import { Controller } from "@hotwired/stimulus";
+
+import.meta.stimulusFetch = "eager";
+import.meta.stimulusControllerIdentifier = "welcome";
+
+export default class controller extends Controller {
+
+  static targets = ["title"];
+  static values = {
+    name: String,
+  };
+  connect() {
+    this.titleTarget.textContent = `hello ${this.nameValue}`;
+  }
+}
 ```
 
 ## Examples
 
-The development repository [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contains a `playground/stimulus` directory containing a complete implementation of Stimulus with Symfony UX.
+The development repository [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contains a folder `playground/stimulus-basic` and another `playground/stimulus` containing a complete implementation of Stimulus with Symfony UX.
+
 
 ```bash
 git clone https://github.com/lhapaipai/symfony-vite-dev.git

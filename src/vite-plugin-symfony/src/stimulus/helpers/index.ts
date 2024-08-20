@@ -8,10 +8,7 @@ declare module "@hotwired/stimulus" {
   }
 }
 
-export default function createLazyController(
-  dynamicImportFactory: LazyLoadedStimulusControllerModule,
-  exportName = "default",
-) {
+export function createLazyController(dynamicImportFactory: LazyLoadedStimulusControllerModule, exportName = "default") {
   return class extends Controller {
     constructor(context: Context) {
       context.logDebugActivity = function (functionName) {

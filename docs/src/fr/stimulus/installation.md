@@ -2,19 +2,13 @@
 
 ## Installation
 
-::: warning
-🧪 L'implémentation est encore expérimentale. Le code est totalement fonctionnel, certaines implémentations avec Symfony UX ne sont pas terminées (voir tableau des compatibilité en pied de page) et certains noms de fonctions peuvent être amenés à changer. Les fonctionnalités présentées dans cette page ne respecteront pas la sémantique de gestion de version `semver`.
-:::
-
 Stimulus est un framework Javascript léger qui a comme ambition de faciliter l'intégration de composants JavaScript dans un projet. Il connecte des objets JavaScript appelés `controllers` aux éléments HTML d'une page via les attributs `data-*`.
-
-![Stimulus, comment ça marche ?](/graphs/stimulus.svg)
 
 ```bash
 composer require symfony/stimulus-bundle
 
 # désinstallez le package @symfony/stimulus-bridge
-# uniquement compatible webpack
+# celui-ci n'est pas compatible avec Vite
 npm rm @symfony/stimulus-bridge
 ```
 
@@ -55,11 +49,15 @@ Ajoutez les routines de génération d'une application stimulus compatible avec 
 ```js
 // assets/bootstrap.js
 
-import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers"
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
 const app = startStimulusApp();
 registerControllers(
   app,
-  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?')
+  import.meta.glob('./controllers/*_controller.js', {
+    query: "?stimulus",
+    eager: true,
+  })
 )
 ```
 ```twig
@@ -75,12 +73,30 @@ registerControllers(
 ```
 ```twig
 {# in some template #}
-<h1 {{ stimulus_controller('hello') }}></h1>
+<h1 {{ stimulus_controller('welcome') }}></h1>
+```
+```js
+// ./assets/controllers/welcome_controller.js
+import { Controller } from "@hotwired/stimulus";
+
+import.meta.stimulusFetch = "eager";
+import.meta.stimulusControllerIdentifier = "welcome";
+
+export default class controller extends Controller {
+
+  static targets = ["title"];
+  static values = {
+    name: String,
+  };
+  connect() {
+    this.titleTarget.textContent = `hello ${this.nameValue}`;
+  }
+}
 ```
 
 ## Exemples
 
-Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.
+Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus-basic` et un autre `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.
 
 
 ```bash

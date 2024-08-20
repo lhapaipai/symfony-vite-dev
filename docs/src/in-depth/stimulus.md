@@ -9,6 +9,7 @@ In order to facilitate the integration of Stimulus into Symfony applications, th
    - controllers stored in an `assets/controllers` folder
 and will return code for the Stimulus app to automatically preload.
 
+![Stimulus How does it works ?](/graphs/stimulus.svg)
 
 On top of that Symfony has built an entire `Symfony UX` eco-system based on bundles which each integrate `Stimulus` controllers.
 

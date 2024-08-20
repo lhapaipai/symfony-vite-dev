@@ -1,4 +1,5 @@
-import createLazyController, {
+import {
+  createLazyController,
   startStimulusApp,
   registerControllers,
   registerController,
@@ -20,16 +21,6 @@ app.register(
 
 registerControllers(
   app,
-  import.meta.glob<StimulusControllerInfosImport>(
-    "./controllers/*_controller.ts",
-    {
-      query: "?stimulus",
-      eager: true,
-    },
-  ),
-);
-
-console.log(
   import.meta.glob<StimulusControllerInfosImport>(
     "./controllers/*_controller.ts",
     {
