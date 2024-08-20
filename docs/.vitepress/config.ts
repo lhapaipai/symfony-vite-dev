@@ -91,6 +91,14 @@ export default defineConfig({
             ]
           },
           {
+            text: 'FOS Routing',
+            items: [
+              { text: 'Installation', link: '/fos-routing/installation' },
+              { text: 'Configuration', link: '/fos-routing/configuration' },
+              { text: 'In Depth', link: '/fos-routing/in-depth' }
+            ]
+          },
+          {
             text: 'Stimulus / Symfony UX',
             items: [
               { text: 'Installation', link: '/stimulus/installation' },

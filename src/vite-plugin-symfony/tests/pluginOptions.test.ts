@@ -13,6 +13,7 @@ describe("resolvePluginOptions", () => {
         "exposedEnvVars": [
           "APP_ENV",
         ],
+        "fosRouting": undefined,
         "originOverride": null,
         "publicDirectory": undefined,
         "refresh": false,
@@ -39,6 +40,7 @@ describe("resolvePluginOptions", () => {
         "exposedEnvVars": [
           "APP_ENV",
         ],
+        "fosRouting": undefined,
         "originOverride": null,
         "publicDirectory": "www",
         "refresh": false,

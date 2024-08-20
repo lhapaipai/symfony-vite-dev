@@ -1,5 +1,6 @@
 import { join } from "node:path";
 import { VitePluginSymfonyEntrypointsOptions, VitePluginSymfonyOptions } from "./types";
+import { deepMerge } from "~/fos-routing/utils";
 
 export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOptions> = {}): VitePluginSymfonyOptions {
   if (typeof userConfig.publicDirectory === "string") {
@@ -48,6 +49,34 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     userConfig.stimulus = false;
   }
 
+  /**
+   * Default options for fos-routing plugin.
+   */
+  const defaultFosRouterPluginOptions = {
+    args: {
+      target: "var/cache/fosRoutes.json",
+      format: "json",
+      locale: "",
+      prettyPrint: false,
+      domain: [],
+      extraArgs: {},
+    },
+    addImportByDefault: true,
+    routingPluginPackageName: "fos-router",
+    watchPaths: ["src/**/*.php"],
+    possibleRoutesConfigFilesExt: ["php"],
+    verbose: false,
+    php: "php",
+  };
+
+  if (userConfig.fosRouting === true) {
+    userConfig.fosRouting = defaultFosRouterPluginOptions;
+  } else if (typeof userConfig.fosRouting === "object") {
+    userConfig.fosRouting = deepMerge(defaultFosRouterPluginOptions, userConfig.fosRouting);
+  } else {
+    userConfig.fosRouting = false;
+  }
+
   return {
     buildDirectory: userConfig.buildDirectory,
     debug: userConfig.debug === true,
@@ -60,6 +89,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     servePublic: userConfig.servePublic,
     sriAlgorithm: userConfig.sriAlgorithm ?? false,
     stimulus: userConfig.stimulus,
+    fosRouting: userConfig.fosRouting,
     viteDevServerHostname: userConfig.viteDevServerHostname ?? null,
   };
 }
