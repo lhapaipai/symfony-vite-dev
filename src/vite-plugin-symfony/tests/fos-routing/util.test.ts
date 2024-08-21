@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { objectToArg } from "~/fos-routing/utils";
+import { getImportRE, objectToArg } from "~/fos-routing/utils";
 
 describe("symfonyFosRouting Utility Functions", () => {
   describe("objectToArg", () => {
@@ -33,6 +33,20 @@ describe("symfonyFosRouting Utility Functions", () => {
       };
       const result = objectToArg(obj);
       expect(result).toEqual(["--key=value1", "--key=value2", "--another-key=123"]);
+    });
+
+    it.each([
+      [`import Routing from 'fos-router';`, "fos-router", true],
+      [`import Routing from "fos-router";`, "fos-router", true],
+      [`import Routing from 'fos-router'`, "fos-router", true],
+      [`import Routing from "fos-router"`, "fos-router", true],
+      [`  import    othEr01    from  'symfony-ts-router';`, "symfony-ts-router", true],
+      [`  import Routing from "symfony-ts-router"\n`, "symfony-ts-router", true],
+      [`import Routing from "@namespace/other"`, "@namespace/other", true],
+      [`import Routing from 'other"`, "other", false],
+    ])("should detect if there is an import of the Routing package", async (code, packageName, isMatching) => {
+      const regex = getImportRE(packageName);
+      expect(regex.test(code)).toBe(isMatching);
     });
   });
 });

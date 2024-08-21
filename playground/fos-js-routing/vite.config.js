@@ -1,21 +1,23 @@
-import { defineConfig } from 'vite'
-import { dirname, resolve } from 'path';
+import { defineConfig } from "vite";
+import { dirname, resolve } from "path";
 
-import symfonyPlugin from 'vite-plugin-symfony';
-import { fileURLToPath } from 'url';
+import symfonyPlugin from "vite-plugin-symfony";
+import { fileURLToPath } from "url";
 import inspect from "vite-plugin-inspect";
 
 const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
-const sharedDir = resolve(basicPlaygroundDir, '../../shared')
+const sharedDir = resolve(basicPlaygroundDir, "../../shared");
 
 export default defineConfig({
   plugins: [
     symfonyPlugin({
       debug: false,
       servePublic: false,
-      fosRouting: {}
+      fosRouting: {
+        verbose: true,
+      },
     }),
-    inspect()
+    inspect(),
   ],
 
   publicDir: false,
@@ -25,38 +27,37 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "app": "./assets/app.js",
-        "theme": "./assets/theme.scss"
+        app: "./assets/app.js",
+        theme: "./assets/theme.scss",
       },
       output: {
         manualChunks: {
-          vue: ['vue']
-        }
-      }
+          vue: ["vue"],
+        },
+      },
     },
 
     minify: false,
   },
 
-
   server: {
     fs: {
-      allow: [
-        '.',
-        sharedDir
-      ]
+      allow: [".", sharedDir],
     },
     watch: {
-      ignored: ['**/.idea/**', '**/tests/**', '**/var/**', '**/vendor/**'],
-    }
+      ignored: [
+        "**/.idea/**",
+        "**/tests/**",
+        "**/var/cache/dev/**",
+        "**/vendor/**",
+      ],
+    },
   },
 
   resolve: {
     alias: {
-      '~': resolve(basicPlaygroundDir, 'assets'),
-      '~shared': sharedDir
-    }
+      "~": resolve(basicPlaygroundDir, "assets"),
+      "~shared": sharedDir,
+    },
   },
-
-
 });

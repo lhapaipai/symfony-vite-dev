@@ -23,4 +23,12 @@ class DefaultController extends AbstractController
             'currentPage' => 'other',
         ]);
     }
+
+    #[Route('/testerareeee', name: 'test', options: ['expose' => true])]
+    public function test(): Response
+    {
+        return $this->render('default/test.html.twig', [
+            'currentPage' => 'test',
+        ]);
+    }
 }

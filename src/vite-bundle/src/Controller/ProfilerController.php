@@ -3,7 +3,7 @@
 namespace Pentatrion\ViteBundle\Controller;
 
 use Pentatrion\ViteBundle\Service\Debug;
-use Pentatrion\ViteBundle\Twig\TypeExtension;
+// use Pentatrion\ViteBundle\Twig\TypeExtension;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
@@ -19,7 +19,7 @@ class ProfilerController
     {
         $viteConfigs = $this->debug->getViteCompleteConfigs();
 
-        $this->twig->addExtension(new TypeExtension());
+        // $this->twig->addExtension(new TypeExtension());
 
         $response = new Response(
             $this->twig->render('@PentatrionVite/Profiler/info.html.twig', [

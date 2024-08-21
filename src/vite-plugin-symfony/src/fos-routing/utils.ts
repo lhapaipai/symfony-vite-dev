@@ -82,3 +82,7 @@ export const deepMerge = (target: any, source: any) => {
   }
   return output;
 };
+
+export const getImportRE = (packageName: string) => {
+  return new RegExp(`import\\s+\\w+\\s+from\\s+(?:"${packageName}"|'${packageName}')\\s*;?`, "g");
+};

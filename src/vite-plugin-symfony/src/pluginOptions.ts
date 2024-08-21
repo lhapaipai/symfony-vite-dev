@@ -46,7 +46,8 @@ export function resolvePluginOptions(userConfig: VitePluginSymfonyPartialOptions
    */
   const defaultFosRouterPluginOptions = {
     args: {
-      target: "var/cache/fosRoutes.json",
+      // target: "var/cache/fosRoutes.json",
+      target: "assets/fosRoutes.json",
       format: "json",
       locale: "",
       prettyPrint: false,
@@ -55,7 +56,8 @@ export function resolvePluginOptions(userConfig: VitePluginSymfonyPartialOptions
     },
     addImportByDefault: true,
     routingPluginPackageName: "fos-router",
-    watchPaths: ["src/**/*.php"],
+    // watchPaths: ["**/src/**/*.php"],
+    watchPaths: ["**/src/Controller/**/*.php"],
     possibleRoutesConfigFilesExt: ["php"],
     verbose: false,
     php: "php",

@@ -1,0 +1,35 @@
+{
+  "base_url": "",
+  "routes": {
+    "welcome": {
+      "tokens": [["text", "/"]],
+      "defaults": [],
+      "requirements": [],
+      "hosttokens": [],
+      "methods": [],
+      "schemes": []
+    },
+
+    "other": {
+      "tokens": [["text", "/other"]],
+      "defaults": [],
+      "requirements": [],
+      "hosttokens": [],
+      "methods": [],
+      "schemes": []
+    },
+    "test": {
+      "tokens": [["text", "/testerareeee"]],
+      "defaults": [],
+      "requirements": [],
+      "hosttokens": [],
+      "methods": [],
+      "schemes": []
+    }
+  },
+  "prefix": "",
+  "host": "localhost",
+  "port": "",
+  "scheme": "http",
+  "locale": ""
+}
