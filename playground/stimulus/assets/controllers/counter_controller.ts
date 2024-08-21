@@ -1,32 +1,28 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import "./counter_controller.scss";
 
 import.meta.stimulusFetch = "lazy";
-import.meta.stimulusControllerIdentifier = "counter";
-
+import.meta.stimulusIdentifier = "counter";
 
 export default class controller extends Controller {
   declare buttonTarget: HTMLButtonElement;
   declare countValue: number;
 
-  static targets = [
-    "button"
-  ]
+  static targets = ["button"];
   static values = {
     count: {
       type: Number,
-      default: 0
-    }
-  }
-  connect() {
-  }
+      default: 0,
+    },
+  };
+  connect() {}
   increment() {
-    this.countValue++
+    this.countValue++;
   }
   countValueChanged() {
-    this.updateButtonText()
+    this.updateButtonText();
   }
   updateButtonText() {
-    this.buttonTarget.textContent = `count : ${this.countValue}`
+    this.buttonTarget.textContent = `count : ${this.countValue}`;
   }
 }

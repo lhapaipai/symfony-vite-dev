@@ -10,7 +10,7 @@ import { Controller } from "@hotwired/stimulus";
 
 import.meta.stimulusEnabled = true;
 import.meta.stimulusFetch = "eager";
-import.meta.stimulusControllerIdentifier = "welcome";
+import.meta.stimulusIdentifier = "welcome";
 
 export default class controller extends Controller {
 
@@ -55,7 +55,7 @@ allows you to temporarily disable your controller without having to move the fil
 set how your controller will load. With `lazy`, your controller will be
 built in a separate file that will only be loaded when a element of the page's DOM will explicitly reference it.
 
-### `import.meta.stimulusControllerIdentifier`
+### `import.meta.stimulusIdentifier`
 
 - **Type :** `string`
 - **Default value:** generate identifier from file path
@@ -70,7 +70,7 @@ Explicitly set your controller identifier or it will be inferred from the file n
 | `./library/welcome_controller.js` if `controllers` is absent compute from the project directory.            | `library--welcome` |
 | `./before/controllers/welcome_controller.js` directories before `controllers` are ignored                   | `welcome`       |
 | `./controllers/welcome_back_controller.js` the underscore is replaced by the middle dash                    | `welcome-back`  |
-| `./what-you-want/MyController.js` with `import.meta.stimulusControllerIdentifier = "welcome";`              | `welcome`       |
+| `./what-you-want/MyController.js` with `import.meta.stimulusIdentifier = "welcome";`              | `welcome`       |
 
 
 ## Registering your controllers
@@ -160,7 +160,7 @@ import { Controller } from "@hotwired/stimulus";
 
 import.meta.stimulusEnabled = true;
 import.meta.stimulusFetch = "eager";
-import.meta.stimulusControllerIdentifier = "color-picker";
+import.meta.stimulusIdentifier = "color-picker";
 
 export default class controller extends Controller {
   // ...
@@ -195,7 +195,7 @@ to refine the configuration of your controllers.
 
 Use the `./controllers/*_controller.js` string you want to best configure your import.
 
-If you don't use `import.meta.stimulusControllerIdentifier`, be careful because the name of your
+If you don't use `import.meta.stimulusIdentifier`, be careful because the name of your
 controllers will directly depend on the location of your file.
 
 If your directory only contains controllers, you could very well specify `./controllers/*.js`.

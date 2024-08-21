@@ -26,7 +26,7 @@ declare module "virtual:symfony/controllers" {
 
 interface ImportMeta {
   stimulusFetch: "lazy" | "eager";
-  stimulusControllerIdentifier: string;
+  stimulusIdentifier: string;
   stimulusEnabled: boolean;
 }
 

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 import.meta.stimulusFetch = "eager";
-import.meta.stimulusControllerIdentifier = "other";
+import.meta.stimulusIdentifier = "other";
 
 export default class controller extends Controller {
   declare titleTarget: HTMLDivElement;

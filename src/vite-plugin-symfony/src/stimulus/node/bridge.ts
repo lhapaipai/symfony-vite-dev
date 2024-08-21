@@ -121,15 +121,14 @@ export function createControllersModule(config: ControllersFileContent, logger?:
 }
 
 const stimulusFetchRE = /\bimport\.meta\.stimulusFetch\s*=\s*["'](eager|lazy)["']/;
-const stimulusControllerIdentifierRE =
-  /\bimport\.meta\.stimulusControllerIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
+const stimulusIdentifierRE = /\bimport\.meta\.stimulusIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
 const stimulusEnabledRE = /\bimport\.meta\.stimulusEnabled\s*=\s*(true|false)/;
 
 export function parseStimulusRequest(code: string, moduleId: string) {
   const filePath = moduleId.slice(0, -"?stimulus".length);
 
   const fetch = (code.match(stimulusFetchRE) || [])[1] ?? "eager";
-  let id = (code.match(stimulusControllerIdentifierRE) || [])[1];
+  let id = (code.match(stimulusIdentifierRE) || [])[1];
   if (!id) {
     id = getStimulusControllerId(filePath) ?? generateStimulusId(filePath);
   }

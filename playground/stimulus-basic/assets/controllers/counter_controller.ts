@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import "./counter_controller.scss";
 
 import.meta.stimulusFetch = "lazy";
-import.meta.stimulusControllerIdentifier = "counter";
+import.meta.stimulusIdentifier = "counter";
 
 export default class controller extends Controller {
   declare buttonTarget: HTMLButtonElement;

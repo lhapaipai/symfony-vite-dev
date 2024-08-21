@@ -10,7 +10,7 @@ import { Controller } from "@hotwired/stimulus";
 
 import.meta.stimulusEnabled = true;
 import.meta.stimulusFetch = "eager";
-import.meta.stimulusControllerIdentifier = "welcome";
+import.meta.stimulusIdentifier = "welcome";
 
 export default class controller extends Controller {
 
@@ -55,7 +55,7 @@ permet de désactiver temporairement votre contrôleur sans nécessiter de dépl
 définissez la manière dont votre contrôleur se chargera. Avec la valeur `lazy`, votre contrôleur sera
 construit dans un fichier séparé qui ne sera chargé que lorsqu'un élément du DOM de la page fera explicitement référence à celui-ci.
 
-### `import.meta.stimulusControllerIdentifier`
+### `import.meta.stimulusIdentifier`
 
 - **Type :** `string`
 - **Valeur par défaut :** génère l'identifier à partir du chemin du fichier.
@@ -70,7 +70,7 @@ définissez explicitement l'identifiant de votre contrôleur sinon il sera dédu
 | `./library/welcome_controller.js` if `controllers` is absent compute from the project directory.            | `library--welcome` |
 | `./before/controllers/welcome_controller.js` directories before `controllers` are ignored                   | `welcome`       |
 | `./controllers/welcome_back_controller.js` the underscore is replaced by the middle dash                    | `welcome-back`  |
-| `./what-you-want/MyController.js` with `import.meta.stimulusControllerIdentifier = "welcome";`              | `welcome`       |
+| `./what-you-want/MyController.js` with `import.meta.stimulusIdentifier = "welcome";`              | `welcome`       |
 
 
 ## Chargement des contrôleurs
@@ -160,7 +160,7 @@ import { Controller } from "@hotwired/stimulus";
 
 import.meta.stimulusEnabled = true;
 import.meta.stimulusFetch = "eager";
-import.meta.stimulusControllerIdentifier = "color-picker";
+import.meta.stimulusIdentifier = "color-picker";
 
 export default class controller extends Controller {
   // ...
@@ -195,7 +195,7 @@ pour affiner la configuration de vos contrôleurs.
 
 Utilisez la chaîne `./controllers/*_controller.js` que vous voulez pour configurer au mieux votre import.
 
-Si vous n'utilisez pas `import.meta.stimulusControllerIdentifier`, faites attention car le nom de vos
+Si vous n'utilisez pas `import.meta.stimulusIdentifier`, faites attention car le nom de vos
 contrôleurs dépendra directement de l'emplacement de votre fichier.
 
 Si votre dossier contient uniquement des contrôleurs, vous pourriez très bien spécifier `./controllers/*.js`.
