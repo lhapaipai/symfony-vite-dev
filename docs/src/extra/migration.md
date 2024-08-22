@@ -86,8 +86,6 @@ registerControllers( // [!code ++]
 the finer configuration of the controllers (notably the `lazy` behavior) will be done
 through the `import.meta`. see [Stimulus reference](/stimulus/reference.html).
 
-If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
-
 ### CDN
 
 if you use a CDN remember to fill in the options, `base` and `build.outDir`.
@@ -117,6 +115,8 @@ export default defineConfig(({ mode }) => {
 });
 
 ```
+
+If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
 
 ### Multiple configurations
 

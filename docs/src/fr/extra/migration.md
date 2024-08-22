@@ -86,9 +86,6 @@ registerControllers( // [!code ++]
 la configuration plus fine des contrôleurs (notamment le comportement `lazy`) se fera
 à travers les `import.meta`. voir [Stimulus reference](/fr/stimulus/reference.html).
 
-
-Si vous n'avez pas des [configurations multiples](/fr/guide/multiple-configurations) c'est déja terminé...
-
 ### CDN
 
 si vous utilisez un CDN pensez à bien remplir les options, `base` et `build.outDir`.
@@ -118,6 +115,8 @@ export default defineConfig(({ mode }) => {
 });
 
 ```
+
+Si vous n'avez pas des [configurations multiples](/fr/guide/multiple-configurations) c'est déja terminé...
 
 ### Configurations multiples
 
