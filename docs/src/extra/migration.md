@@ -84,7 +84,7 @@ registerControllers( // [!code ++]
 ```
 
 the finer configuration of the controllers (notably the `lazy` behavior) will be done
-through the `import.meta`. see [Stimulus reference](/fr/stimulus/reference.html).
+through the `import.meta`. see [Stimulus reference](/stimulus/reference.html).
 
 If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
 
