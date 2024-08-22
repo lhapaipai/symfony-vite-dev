@@ -61,7 +61,7 @@ if (process.env.VITEST) {
   }
 }
 
-export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger): Plugin {
+export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger) {
   let viteConfig: ResolvedConfigWithOrderablePlugins;
   let viteDevServerUrl: string;
 
@@ -297,5 +297,5 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         });
       }
     },
-  };
+  } satisfies Plugin;
 }

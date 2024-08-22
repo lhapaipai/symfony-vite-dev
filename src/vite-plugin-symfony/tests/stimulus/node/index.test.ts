@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { ConfigEnv, Logger, Plugin, UserConfig, createLogger } from "vite";
+import { ConfigEnv, Logger, UserConfig, createLogger } from "vite";
 import { describe, it, vi } from "vitest";
 import symfonyStimulus from "~/stimulus/node";
 import { resolvePluginStimulusOptions } from "~/stimulus/pluginOptions";
@@ -18,14 +18,13 @@ const generateStimulusPlugin = async (
     ...createLogger(),
     info: vi.fn(),
   };
-  const plugin: Plugin<any> = symfonyStimulus(stimulusOptions, logger);
+  const plugin = symfonyStimulus(stimulusOptions, logger);
   const userConfig: UserConfig = {};
   const envConfig: ConfigEnv = { command, mode: "development" };
   // @ts-ignore
   await plugin.configResolved({
     root: "/path/to/project",
   });
-  // @ts-ignore
   plugin.config(userConfig, envConfig);
 
   return plugin;

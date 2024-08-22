@@ -14,7 +14,7 @@ const virtualRE = /^virtual:/;
 const isStimulusRequest = (request: string): boolean => stimulusRE.test(request);
 const isVirtualRequest = (request: string): boolean => virtualRE.test(request);
 
-export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulusOptions, logger: Logger): Plugin {
+export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulusOptions, logger: Logger) {
   let viteConfig: ResolvedConfig;
   let viteCommand: string;
   let controllersJsonContent: ControllersFileContent | null = null;
@@ -93,5 +93,5 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
         }
       });
     },
-  };
+  } satisfies Plugin;
 }
