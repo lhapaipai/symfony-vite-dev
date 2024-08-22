@@ -16,7 +16,7 @@
   "devDependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@symfony/stimulus-bridge": "^3.2.0",
-    "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets"
+    "@symfony/ux-toggle-password": "file:../../extra/ux-assets/ux-toggle-password"
   },
   "dependencies": {
     "@simonwep/pickr": "^1.9.1",

@@ -347,8 +347,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.2(@hotwired/stimulus@3.2.2)
       '@symfony/ux-toggle-password':
-        specifier: file:vendor/symfony/ux-toggle-password/assets
-        version: file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)
+        specifier: file:../../extra/ux-assets/ux-toggle-password
+        version: file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2)
 
   playground/symfony64: {}
 
@@ -2044,11 +2044,6 @@ packages:
 
   '@symfony/ux-toggle-password@file:extra/ux-assets/ux-toggle-password':
     resolution: {directory: extra/ux-assets/ux-toggle-password, type: directory}
-    peerDependencies:
-      '@hotwired/stimulus': ^3.0.0
-
-  '@symfony/ux-toggle-password@file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets':
-    resolution: {directory: playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets, type: directory}
     peerDependencies:
       '@hotwired/stimulus': ^3.0.0
 
@@ -7824,10 +7819,6 @@ snapshots:
       swup: 3.1.1
 
   '@symfony/ux-toggle-password@file:extra/ux-assets/ux-toggle-password(@hotwired/stimulus@3.2.2)':
-    dependencies:
-      '@hotwired/stimulus': 3.2.2
-
-  '@symfony/ux-toggle-password@file:playground/stimulus-basic/vendor/symfony/ux-toggle-password/assets(@hotwired/stimulus@3.2.2)':
     dependencies:
       '@hotwired/stimulus': 3.2.2
 
