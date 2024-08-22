@@ -38,20 +38,16 @@ npm i --force
 
 After installing the Flex recipe from `symfony/ux-vue` you will need to correct these lines.
 
-```js
-// assets/bootstrap.js
+::: code-group
+```js [assets/bootstrap.js]
 import { registerVueControllerComponents } from '@symfony/ux-vue'; // [!code --]
 registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/)); // [!code --]
 
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 import { registerVueControllerComponents } from "vite-plugin-symfony/stimulus/helpers/vue" // [!code ++]
+
 // register Vue components before startStimulusApp
 registerVueControllerComponents(import.meta.glob('./vue/controllers/**/*.vue')) // [!code ++]
-
-// or if you're using TypeScript
-import { type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue"; // [!code ++]
-registerVueControllerComponents(import.meta.glob<VueModule>("./vue/controllers/**/*.vue")); // [!code ++]
-
 
 const app = startStimulusApp();
 registerControllers(
@@ -63,7 +59,35 @@ registerControllers(
       eager: true,
     },
   ),
-);```
+);
+
+```
+```ts [assets/bootstrap.ts]
+import { registerVueControllerComponents } from '@symfony/ux-vue'; // [!code --]
+registerVueControllerComponents(require.context('./vue/controllers', true, /\.vue$/)); // [!code --]
+
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerVueControllerComponents, type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue" // [!code ++]
+
+// register Vue components before startStimulusApp
+import { type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue"; // [!code ++]
+registerVueControllerComponents(import.meta.glob<VueModule>("./vue/controllers/**/*.vue")); // [!code ++]
+
+const app = startStimulusApp();
+registerControllers(
+  app,
+  import.meta.glob<StimulusControllerInfosImport>(
+    "./controllers/*_controller.ts",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);
+
+```
+:::
+
 
 ```js
 // vite.config.js
@@ -119,21 +143,15 @@ npm i --force
 
 After installing the Flex recipe from `symfony/ux-react` you will need to correct these lines.
 
-```js
-// assets/bootstrap.js
+::: code-group
+```js [assets/bootstrap.js]
 import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
 
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 import { registerReactControllerComponents } from "vite-plugin-symfony/stimulus/helpers/react" // [!code ++]
-registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.[jt]s(x)\?')); // [!code ++]
 
-
-// or if you're using TypeScript
-import { type ReactModule } from "vite-plugin-symfony/stimulus/helpers/react"; // [!code ++]
-registerReactControllerComponents( // [!code ++]
-  import.meta.glob<ReactModule>("./react/controllers/**/*.[jt]s(x)?"), // [!code ++]
-); // [!code ++]
+registerReactControllerComponents(import.meta.glob('./react/controllers/**/*.js(x)\?')); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(
@@ -147,6 +165,31 @@ registerControllers(
   ),
 );
 ```
+```ts [assets/bootstrap.ts]
+import { registerReactControllerComponents } from '@symfony/ux-react'; // [!code --]
+registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/)); // [!code --]
+
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerReactControllerComponents, type ReactModule } from "vite-plugin-symfony/stimulus/helpers/react" // [!code ++]
+
+// register your React components before startStimulusApp
+registerReactControllerComponents( // [!code ++]
+  import.meta.glob<ReactModule>("./react/controllers/**/*.ts(x)?"), // [!code ++]
+); // [!code ++]
+
+const app = startStimulusApp();
+registerControllers(
+  app,
+  import.meta.glob<StimulusControllerInfosImport>(
+    "./controllers/*_controller.ts",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);
+```
+:::
 
 Because `registerReactControllerComponents` was invoked with `import.meta.glob` in `lazy` mode, you need to define in your `controllers.json` fetch `eager` (otherwise you will have promise nesting).
 
@@ -191,7 +234,7 @@ export default defineConfig({
 {# base.html.twig #}
 {{ vite_entry_link_tags('app') }}
 {{ vite_entry_script_tags('app', {
-    dependency: 'react' // [!code ++]
+    dependency: 'react' # [!code ++]
   }) }}
 ```
 ```twig
@@ -221,20 +264,14 @@ npm i --force
 
 After installing the Flex recipe from `symfony/ux-svelte` you will need to correct these lines.
 
-```js
-// assets/bootstrap.js
+::: code-group
+```js [assets/bootstrap.js]
 import { registerSvelteControllerComponents } from '@symfony/ux-svelte'; // [!code --]
 registerSvelteControllerComponents(require.context('./svelte/controllers', true, /\.svelte$/)); // [!code --]
 
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
 import { registerSvelteControllerComponents } from "vite-plugin-symfony/stimulus/helpers/svelte" // [!code ++]
 registerSvelteControllerComponents(import.meta.glob('./svelte/controllers/**/*.svelte')); // [!code ++]
-
-// or if you're using TypeScript
-import { type SvelteModule } from "vite-plugin-symfony/stimulus/helpers/svelte"; // [!code ++]
-registerSvelteControllerComponents( // [!code ++]
-  import.meta.glob<SvelteModule>("./svelte/controllers/**/*.svelte"), // [!code ++]
-); // [!code ++]
 
 const app = startStimulusApp();
 registerControllers(
@@ -248,6 +285,30 @@ registerControllers(
   ),
 );
 ```
+```ts [assets/bootstrap.ts]
+import { registerSvelteControllerComponents } from '@symfony/ux-svelte'; // [!code --]
+registerSvelteControllerComponents(require.context('./svelte/controllers', true, /\.svelte$/)); // [!code --]
+
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers" // [!code ++]
+import { registerSvelteControllerComponents, type SvelteModule } from "vite-plugin-symfony/stimulus/helpers/svelte" // [!code ++]
+
+registerSvelteControllerComponents( // [!code ++]
+  import.meta.glob<SvelteModule>("./svelte/controllers/**/*.svelte"), // [!code ++]
+); // [!code ++]
+
+const app = startStimulusApp();
+registerControllers(
+  app,
+  import.meta.glob<StimulusControllerInfosImport>(
+    "./controllers/*_controller.ts",
+    {
+      query: "?stimulus",
+      eager: true,
+    },
+  ),
+);
+```
+:::
 
 Because `registerSvelteControllerComponents` was invoked with `import.meta.glob` in `lazy` mode, you need to set in your `controllers.json` fetch `eager` (otherwise you will have promise nesting).
 

@@ -1,5 +1,6 @@
 ## v7.0.2
 
+- stimulus plugin check module entrypoint inside controllers.json
 - fix vite-plugin-symfony partial options TypeScript type.
 
 ## v7.0.1

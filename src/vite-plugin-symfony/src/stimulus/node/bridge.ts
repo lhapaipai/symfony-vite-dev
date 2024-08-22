@@ -73,7 +73,15 @@ export function createControllersModule(
        *   }
        * }
        */
-      const controllerMain = `${packageNameResolved}/${controllerUserConfig.main ?? controllerPackageConfig.main ?? packageJsonContent.module ?? packageJsonContent.main}`;
+      const packageMain =
+        controllerUserConfig.module ??
+        controllerUserConfig.main ??
+        controllerPackageConfig.module ??
+        controllerPackageConfig.main ??
+        packageJsonContent.module ??
+        packageJsonContent.main;
+      const controllerMain = `${packageNameResolved}/${packageMain}`;
+
       const fetchMode = controllerUserConfig.fetch ?? controllerPackageConfig.fetch ?? pluginOptions.fetchMode;
 
       let moduleValueContents = ``;

@@ -9,7 +9,18 @@ export type ControllerConfig = {
   autoimport?: {
     [path: string]: boolean;
   };
+
+  /**
+   * Entrypoint.
+   * if module is set : commonjs entrypoint
+   */
   main?: string;
+
+  /**
+   * for the future ?
+   * ESM entrypoint
+   */
+  module?: string;
 };
 
 export type ControllersFileContent = {
