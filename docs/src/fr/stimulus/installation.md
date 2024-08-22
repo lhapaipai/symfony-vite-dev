@@ -126,11 +126,16 @@ Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lha
 ```bash
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
-make install
-cd playground/stimulus
-composer install
-npm i
 
+# installe les dépendances de vite-bundle
+# compile vite-plugin-symfony
+make install
+
+cd playground/stimulus-basic
+# ou bien pour Symfony UX
+cd playground/stimulus
+
+composer install
 symfony serve
-npm run dev
+pnpm dev
 ```

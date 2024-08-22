@@ -128,11 +128,16 @@ The development repository [lhapaipai/symfony-vite-dev](https://github.com/lhapa
 ```bash
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
-make install
-cd playground/stimulus
-composer install
-npm i
 
+# install vite-bundle dependencies
+# build vite-plugin-symfony
+make install
+
+cd playground/stimulus-basic
+# or for Symfony UX
+cd playground/stimulus
+
+composer install
 symfony serve
-npm run dev
+pnpm dev
 ```
