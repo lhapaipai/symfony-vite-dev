@@ -1,3 +1,7 @@
+## v7.0.1
+
+- fix Symfony try to register twice `TypeExtension`.
+
 ## v7.0.0
 
 - new Profiler
