@@ -73,7 +73,7 @@ and your package.json :
     },
     "devDependencies": {
         "vite": "^5.0",
-        "vite-plugin-symfony": "^6.5"
+        "vite-plugin-symfony": "^7.0"
     }
 }
 ```
