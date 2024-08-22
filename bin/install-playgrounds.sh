@@ -9,6 +9,12 @@ PLAYGROUNDS_DIR="$PROJECT_DIR/playground"
 for PLAYGROUND_DIR in $PLAYGROUNDS_DIR/*
 do
   PLAYGROUND="$(basename $PLAYGROUND_DIR)"
+
+  if [ $PLAYGROUND == "docker" ]
+  then
+    continue
+  fi
+
   echo "* installing playground $PLAYGROUND"
   cd "$PLAYGROUND_DIR"
 
@@ -19,18 +25,7 @@ do
       && echo '    [ok]' || echo '    [failed]'
   fi
 
-  echo '  > pnpm i'
-  pnpm i 1> /dev/null \
-    && echo '    [ok]' || echo '    [failed]'
-
   echo '  > pnpm run build'
   pnpm run build 1> /dev/null \
     && echo '    [ok]' || echo '    [failed]'
-
-  if [ $PLAYGROUND != "vite-only" ]
-  then
-    echo '  > symfony composer install'
-    symfony composer install 1> /dev/null 2>&1 \
-      && echo '    [ok]' || echo '    [failed]'
-  fi
 done

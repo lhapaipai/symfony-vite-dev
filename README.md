@@ -13,8 +13,6 @@
 
 
 
-
-
 # Symfony Vite Development Repository
 
 In this repository you can contribute to `pentatrion/vite-bundle` and `vite-plugin-symfony`. You can find playgrounds for development.
@@ -26,16 +24,26 @@ In this repository you can contribute to `pentatrion/vite-bundle` and `vite-plug
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
 
-
-## Install vite-bundle/vite-plugin-symfony dependencies
+# Install vite-bundle/vite-plugin-symfony dependencies
 make install
 
+# if you want to test the features in a playground
+# - "basic" is the principal playground
+# - "stimulus-basic" is for the core feature of stimulus
+# - "stimulus" is for Symfony UX
+# - other playgrounds are for specific use cases
 
-## Install playgrounds (npm i/composer i for each of them)
+cd playground/<your-playground>
+symfony composer install
+
+
+# if you want to install all the playgrounds in one time (for each of them)
+# - composer install
+# - pnpm run build
 make install-playgrounds
 ```
 
-Note: If you want to install without makefile, first install composer dependencies of `.` and `./playground/stimulus` projects because the `./vendor` and `./playground/stimulus/vendor` directories contain npm dependencies needed for `pnpm install` which is recursive.
+
 
 ## Execution
 

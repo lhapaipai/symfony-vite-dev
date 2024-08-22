@@ -15,6 +15,7 @@
         "symfony/framework-bundle": "6.*",
         "symfony/runtime": "6.*",
         "symfony/twig-bundle": "6.*",
+        "symfony/web-link": "6.*",
         "symfony/yaml": "6.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
