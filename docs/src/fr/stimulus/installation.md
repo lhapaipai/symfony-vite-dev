@@ -46,9 +46,8 @@ import './bootstrap.js';
 
 Ajoutez les routines de génération d'une application stimulus compatible avec `symfony/stimulus-bundle` et `vite`.
 
-```js
-// assets/bootstrap.js
-
+:::code-group
+```js [assets/bootstrap.js]
 import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
 
 const app = startStimulusApp();
@@ -64,6 +63,27 @@ registerControllers(
   })
 )
 ```
+```ts [assets/bootstrap.ts]
+import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
+registerControllers(
+  app,
+  import.meta.glob<StimulusControllerInfosImport>(
+    "./controllers/*_controller.ts",
+    {
+      query: "?stimulus",
+      /**
+       * toujours à true, la comportement `lazy` est géré en interne avec
+       * import.meta.stimulusFetch (voir référence)
+       */
+      eager: true,
+    },
+  ),
+);
+```
+:::
+
+
 ```twig
 {# base.html.twig #}
 
