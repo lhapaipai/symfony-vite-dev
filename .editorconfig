@@ -1,10 +1,10 @@
 root = true
 
-[composer.{json,lock}]
-indent_size = 4
-
 [*.json]
 indent_size = 2
+
+[{composer.json,composer.lock,controllers.json}]
+indent_size = 4
 
 [*.{yaml,yml}]
 indent_size = 4

@@ -1,0 +1,41 @@
+{% set body_class = '' %}
+<!DOCTYPE html>
+<html class="{% block html_class %}{% endblock %}">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Welcome!
+      {% endblock %}
+    </title>
+    <link rel="icon" href="data:;base64,iBORw0KGgo=">
+    {% block stylesheets %}
+      {{ vite_entry_link_tags('app') }}
+      {{ vite_entry_link_tags('theme') }}
+    {% endblock %}
+
+    {% block javascripts %}
+      {{ vite_entry_script_tags('app', { dependency: 'react' }) }}
+      {{ vite_entry_script_tags('theme') }}
+    {% endblock %}
+  </head>
+  <body {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] } ) }}>
+    <nav id="nav">
+      <div class="navbar">
+        <div class="title">
+          <img class="img logo" width="24" height="24" src="/images/symfony-vite.svg"/>
+          Symfony & Vite
+        </div>
+        <div class="links">
+          <a data-no-swup class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
+          <a class="{{ currentPage == 'swup-page-1' ? 'active' : '' }}" href="{{ path('swup-page-1') }}">Page 1</a>
+          <a class="{{ currentPage == 'swup-page-2' ? 'active' : '' }}" href="{{ path('swup-page-2') }}">Page 2</a>
+          <a class="{{ currentPage == 'swup-page-3' ? 'active' : '' }}" href="{{ path('swup-page-3') }}">Page 3</a>
+        </div>
+      </div>
+    </nav>
+    <div id="content"> {% block content %}{% endblock %}
+      </div>
+    </body>
+
+  </html>

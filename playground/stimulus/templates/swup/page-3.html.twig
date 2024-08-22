@@ -1,0 +1,19 @@
+{% extends 'base-swup.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}swup-page-3{% endblock %}
+
+{% block content %}
+<div class="cards">
+
+    <div class="card" {{ stimulus_controller('message', {name: 'Dynamic Stimulus'})}}>
+      <h2 {{ stimulus_target('message', 'title')}}>&nbsp;</h2>
+
+      <p>
+        <code>assets/controllers/message_controller.js</code>
+      </p>
+    </div>
+</div>
+{% endblock %}
+

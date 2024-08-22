@@ -2,12 +2,12 @@ import { Plugin } from "vite";
 import symfonyEntrypoints from "./entrypoints";
 import symfonyStimulus from "./stimulus/node";
 
-import { VitePluginSymfonyOptions } from "./types";
+import { VitePluginSymfonyPartialOptions } from "./types";
 import { createLogger } from "./logger";
 import { resolvePluginEntrypointsOptions } from "./entrypoints/pluginOptions";
 import { resolvePluginStimulusOptions } from "./stimulus/pluginOptions";
 
-export default function symfony(userPluginOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
+export default function symfony(userPluginOptions: VitePluginSymfonyPartialOptions = {}): Plugin[] {
   const { stimulus: userStimulusOptions, ...userEntrypointsOptions } = userPluginOptions;
 
   const entrypointsOptions = resolvePluginEntrypointsOptions(userEntrypointsOptions);

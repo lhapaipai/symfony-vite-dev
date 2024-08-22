@@ -1,0 +1,22 @@
+{% extends 'base-swup.html.twig' %}
+
+{% block title %}HelloController!{% endblock %}
+
+{% block html_class %}swup-page-2{% endblock %}
+
+{% block content %}
+<div class="cards">
+
+    <div class="card" {{ stimulus_controller('counter')}}>
+      <h2>hello Lazy Stimulus</h2>
+      <div>
+        <button {{ stimulus_action('counter', 'increment', 'click')}} {{ stimulus_target('counter', 'button') }}>count : 0</button>
+      </div>
+      <p>
+        <code>assets/controllers/counter_controller.js</code>
+      </p>
+    </div>
+
+</div>
+{% endblock %}
+

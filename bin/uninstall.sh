@@ -9,9 +9,12 @@ PLAYGROUNDS_DIR="$PROJECT_DIR/playground"
 for PLAYGROUND_DIR in $PLAYGROUNDS_DIR/*
 do
   PLAYGROUND="$(basename $PLAYGROUND_DIR)"
-  echo "* installing playground $PLAYGROUND"
+  echo "* uninstall playground $PLAYGROUND"
   cd "$PLAYGROUND_DIR"
 
+  rm -rf var/cache/*
+  rm -rf composer.lock
+  rm -rf vendor
   rm -rf node_modules
   rm -rf pnpm-lock.yaml
 done

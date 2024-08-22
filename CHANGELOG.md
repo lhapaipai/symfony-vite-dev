@@ -1,3 +1,7 @@
+## v7.0.2
+
+- fix vite-plugin-symfony partial options TypeScript type.
+
 ## v7.0.1
 
 - fix Symfony try to register twice `TypeExtension`.
