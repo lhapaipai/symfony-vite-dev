@@ -69,7 +69,7 @@ export default class controller extends Controller {}
     const result = parseStimulusRequest(
       code,
       path,
-      { fetchMode: "lazy" } as VitePluginSymfonyStimulusOptions,
+      { fetchMode: "lazy", identifierResolutionMethod: "snakeCase" } as VitePluginSymfonyStimulusOptions,
       { root: "/path/to/project" } as ResolvedConfig,
     );
 
@@ -99,7 +99,7 @@ export default class controller extends Controller {}
     const result = parseStimulusRequest(
       code,
       path,
-      { fetchMode: "lazy" } as VitePluginSymfonyStimulusOptions,
+      { fetchMode: "lazy", identifierResolutionMethod: "snakeCase" } as VitePluginSymfonyStimulusOptions,
       { root: "/path/to/project" } as ResolvedConfig,
     );
 
@@ -107,7 +107,7 @@ export default class controller extends Controller {}
       "export default {
             enabled: true,
             fetch: 'lazy',
-            identifier: 'welcome-_controller',
+            identifier: 'welcome',
             controller: () => import('/path/to/project/assets/controllers/welcome_controller.js')
           }"
     `);

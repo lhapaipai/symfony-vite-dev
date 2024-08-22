@@ -27,6 +27,10 @@ describe("stimulus getStimulusControllerId", () => {
       input: "./some-content-before/controllers/welcome_controller.js",
       expectedId: "welcome",
     },
+    {
+      input: "/path/to/project/assets/controllers/welcome_controller.js",
+      expectedId: "welcome",
+    },
     // without controllers
     { input: "../welcome_controller.js", expectedId: "welcome" },
     // bare module

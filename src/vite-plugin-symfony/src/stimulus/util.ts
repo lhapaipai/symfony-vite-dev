@@ -19,10 +19,11 @@ export function getStimulusControllerId(
   if (identifierResolutionMethod === "snakeCase") {
     const [, identifier] = relativePath.match(SNAKE_CONTROLLER_SUFFIX_REGEX) || [];
     return (identifier ?? relativePath).toLowerCase().replace(/_/g, "-").replace(/\//g, "--");
-  } else {
+  } else if (identifierResolutionMethod === "camelCase") {
     const [, identifier] = relativePath.match(CAMEL_CONTROLLER_SUFFIX_REGEX) || [];
     return kebabize(identifier ?? relativePath);
   }
+  throw new Error("unknown identifierResolutionMethod valid entries 'snakeCase' or 'camelCase' or custom function");
 }
 
 // Normalize the controller identifier from `${packageName}/${controllerName}`

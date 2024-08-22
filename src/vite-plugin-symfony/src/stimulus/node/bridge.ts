@@ -135,9 +135,9 @@ export function createControllersModule(
 }
 
 const notACommentRE = /^(?<!\/[\\/\\*])\s*/;
-const importMetaStimulusFetchRE = /^(?<!\/[\\/\\*])\s*import\.meta\.stimulusFetch\s*=\s*["'](eager|lazy)["']/;
-const importMetaStimulusIdentifierRE = /\bimport\.meta\.stimulusIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
-const importMetaStimulusEnabledRE = /\bimport\.meta\.stimulusEnabled\s*=\s*(true|false)/;
+const importMetaStimulusFetchRE = /import\.meta\.stimulusFetch\s*=\s*["'](eager|lazy)["']/;
+const importMetaStimulusIdentifierRE = /import\.meta\.stimulusIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
+const importMetaStimulusEnabledRE = /import\.meta\.stimulusEnabled\s*=\s*(true|false)/;
 
 export const stimulusFetchRE = new RegExp(notACommentRE.source + importMetaStimulusFetchRE.source, "m");
 const stimulusIdentifierRE = new RegExp(notACommentRE.source + importMetaStimulusIdentifierRE.source, "m");

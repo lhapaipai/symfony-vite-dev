@@ -1,3 +1,7 @@
+## v7.0.3
+
+- stimulus fix import.meta regex to support comments
+
 ## v7.0.2
 
 - stimulus plugin check module entrypoint inside controllers.json
