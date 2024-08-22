@@ -61,8 +61,8 @@ This is how your application will behave depending on the `preload` option you c
 With the `none` option:
 
 ```html
-<link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
-<script type="module" src="/build/assets/app-1b490458.js"></script>
+<link rel="stylesheet" href="/build/assets/app-05a88f8a.css" crossorigin>
+<script type="module" src="/build/assets/app-1b490458.js" crossorigin></script>
 ```
 
 With the `link-tag` option (default behavior):
@@ -70,9 +70,9 @@ With the `link-tag` option (default behavior):
 Your JS dependencies are preloaded when the html page is processed.
 
 ```html
-<link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
-<link rel="modulepreload" href="/build/assets/vue-1efeee8e.js">
-<script type="module" src="/build/assets/app-1b490458.js"></script>
+<link rel="stylesheet" href="/build/assets/app-05a88f8a.css" crossorigin>
+<link rel="modulepreload" href="/build/assets/vue-1efeee8e.js" crossorigin>
+<script type="module" src="/build/assets/app-1b490458.js" crossorigin></script>
 ```
 
 With the `link-header` option:
@@ -82,15 +82,19 @@ All your files are preloaded before processing the html page. Requires installin
 ```css
 /* HTTP header added by the Symfony Web-Link component */
 Link: \
-  </build/assets/vue-1efeee8e.js>; rel="preload"; as="script", \
-  </build/assets/app-1b490458.js>; rel="preload"; as="script", \
-  </build/assets/app-05a88f8a.css>; rel="preload"; as="style"
+  </build/assets/vue-1efeee8e.js>; rel="modulepreload"; crossorigin, \
+  </build/assets/app-1b490458.js>; rel="modulepreload"; crossorigin, \
+  </build/assets/app-05a88f8a.css>; rel="preload"; as="style" crossorigin
 ```
 ```html
 <link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
 <script type="module" src="/build/assets/app-1b490458.js"></script>
 ```
 
+Even finer settings:
+
+If you want to choose even finer which files will be preloaded and
+which ones will not, you will need to listen to the event `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` see section [custom attributes](/guide/custom-attributes.html).
 
 ## Caching configuration files 🏃
 

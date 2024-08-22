@@ -51,6 +51,19 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
             $tag->setAttribute('nonce', 'lookup nonce');
         }
         $tag->setAttribute('foo', 'bar-modified');
+
+        // vous pouvez récupérer ici le nom du point d'entrée à l'origine
+        $origin = $tag->getOrigin();
+
+        // vous souhaitez désactiver l'en-tête HTTP de préchargement de tous
+        // les scripts pour le point d'entrée app.
+        if (
+          $tag->getOrigin() === "app"
+          && $tag->isPreload()
+          && $tag->isRenderAsLinkHeader()
+        ) {
+          $tag->setRenderAsLinkHeader(false);
+        }
     }
 
 

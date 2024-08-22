@@ -50,6 +50,18 @@ class ScriptNonceSubscriber implements EventSubscriberInterface
             $tag->setAttribute('nonce', 'lookup nonce');
         }
         $tag->setAttribute('foo', 'bar-modified');
+
+        // you can retrieve the name of the original entry point here
+        $origin = $tag->getOrigin();
+
+        // you want to disable the preload HTTP header for all scripts
+        // for the app entry point.
+        if (
+          $tag->getOrigin() === "app"
+          && $tag->isPreload()
+          && $tag->isRenderAsLinkHeader()
+        ) {
+          $tag->setRenderAsLinkHeader(false);
     }
 
 
