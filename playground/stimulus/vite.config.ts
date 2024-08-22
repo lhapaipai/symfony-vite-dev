@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite'
-import { dirname, resolve } from 'path';
+import { defineConfig, Plugin } from "vite";
+import { dirname, resolve } from "path";
 
-import symfonyPlugin from 'vite-plugin-symfony';
+import symfonyPlugin from "vite-plugin-symfony";
 import vuePlugin from "@vitejs/plugin-vue";
-import reactPlugin from '@vitejs/plugin-react';
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import reactPlugin from "@vitejs/plugin-react";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import inspect from "vite-plugin-inspect";
 
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
 const playgroundDir = dirname(fileURLToPath(import.meta.url));
-const sharedDir = resolve(playgroundDir, '../../shared')
+const sharedDir = resolve(playgroundDir, "../../shared");
 
 export default defineConfig({
   plugins: [
@@ -19,9 +19,10 @@ export default defineConfig({
     svelte(),
     symfonyPlugin({
       // debug: true,
-      stimulus: true
+      stimulus: true,
     }),
-    inspect()
+
+    inspect(),
   ],
 
   optimizeDeps: {
@@ -34,8 +35,8 @@ export default defineConfig({
       "chart.js/auto",
       "cropperjs",
       "tom-select",
-      "typed.js"
-    ]
+      "typed.js",
+    ],
   },
 
   publicDir: false,
@@ -44,33 +45,27 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        "pageTranslator": "./assets/page/translator/index.ts",
-        "app": "./assets/app.ts",
-        "theme": "./assets/theme.scss"
-      }
+        pageTranslator: "./assets/page/translator/index.ts",
+        app: "./assets/app.ts",
+        theme: "./assets/theme.scss",
+      },
     },
-    
+
     minify: false,
   },
-
 
   server: {
     // origin: 'http://localhost:5173',
     fs: {
-      allow: [
-        '.',
-        sharedDir
-      ]
-    }
+      allow: [".", sharedDir],
+    },
   },
 
   resolve: {
     alias: {
-      '~': resolve(playgroundDir, 'assets'),
-      '~project': playgroundDir,
-      '~shared': sharedDir
-    }
+      "~": resolve(playgroundDir, "assets"),
+      "~project": playgroundDir,
+      "~shared": sharedDir,
+    },
   },
-
-
 });

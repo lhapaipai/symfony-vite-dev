@@ -13,35 +13,11 @@ export default defineConfig({
   plugins: [
     symfonyPlugin({
       // debug: true,
-      stimulus: true,
+      stimulus: {
+        fetchMode: "lazy",
+      },
     }),
-    {
-      name: "tests",
-      // resolveId: {
-      //   order: "pre",
-      //   handler(id) {
-      //     console.log("resolveId", id);
-      //   },
-      // },
-      // async load(id) {
-      //   console.log("load", id);
 
-      //   if (isStimulusRequest(id)) {
-      //     const importee = id.slice(0, -"?stimulus".length);
-      //     const resolution = await this.resolve(importee);
-      //     const info = this.getModuleInfo(importee);
-      //     const moduleInfos = await this.load(resolution);
-      //     const code = moduleInfos.code;
-      //     console.log("parsing");
-      //   }
-      // },
-      // transform(code, id, options) {
-      //   console.log("transform", id, options);
-      // },
-      // moduleParsed(a, b, c, d) {
-      //   console.log("module parsed");
-      // },
-    },
     inspect(),
   ],
 

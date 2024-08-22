@@ -95,18 +95,18 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Reference',
+            items: [
+              { text: 'Vite Bundle', link: '/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/reference/vite-plugin-symfony' }
+            ]
+          },
+          {
             text: 'Stimulus / Symfony UX',
             items: [
               { text: 'Installation', link: '/stimulus/installation' },
               { text: 'Reference', link: '/stimulus/reference' },
               { text: 'Symfony UX', link: '/stimulus/symfony-ux' }
-            ]
-          },
-          {
-            text: 'Reference',
-            items: [
-              { text: 'Vite Bundle', link: '/reference/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/reference/vite-plugin-symfony' }
             ]
           },
           {
@@ -179,18 +179,18 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Référence',
+            items: [
+              { text: 'Vite Bundle', link: '/fr/reference/vite-bundle' },
+              { text: 'Vite plugin Symfony', link: '/fr/reference/vite-plugin-symfony' }
+            ]
+          },
+          {
             text: 'Stimulus / Symfony UX',
             items: [
               { text: 'Installation', link: '/fr/stimulus/installation' },
               { text: 'Référence', link: '/fr/stimulus/reference' },
               { text: 'Symfony UX', link: '/fr/stimulus/symfony-ux' }
-            ]
-          },
-          {
-            text: 'Configuration',
-            items: [
-              { text: 'Vite Bundle', link: '/fr/reference/vite-bundle' },
-              { text: 'Vite plugin Symfony', link: '/fr/reference/vite-plugin-symfony' }
             ]
           },
           {

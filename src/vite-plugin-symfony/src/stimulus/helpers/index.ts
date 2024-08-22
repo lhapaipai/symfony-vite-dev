@@ -46,7 +46,7 @@ export function startStimulusApp() {
   }
 
   if (app.debug) {
-    console.groupCollapsed("application register controllers from controllers.json");
+    console.groupCollapsed("application #startStimulusApp and register controllers from controllers.json");
     console.log(
       "controllers",
       thirdPartyControllers.map((infos) => infos.identifier),
@@ -93,8 +93,12 @@ function isStimulusControllerInfosImport(
 export function registerControllers(app: Application, modules: Modules) {
   const controllersAdded: string[] = [];
 
+  if (app.debug) {
+    console.groupCollapsed("application #registerControllers");
+  }
+
   Object.entries(modules).forEach(([filePath, unknownController]) => {
-    const identifier = getStimulusControllerId(filePath);
+    const identifier = getStimulusControllerId(filePath, "snakeCase");
     if (!identifier) {
       throw new Error(`Invalid filePath ${filePath}`);
     }
@@ -105,7 +109,7 @@ export function registerControllers(app: Application, modules: Modules) {
       app.register(identifier, unknownController);
       controllersAdded.push(identifier);
     } else if (isStimulusControllerInfosImport(unknownController)) {
-      registerController(app, unknownController.default, false);
+      registerController(app, unknownController.default);
       controllersAdded.push(unknownController.default.identifier);
     } else {
       throw new Error(
@@ -115,13 +119,11 @@ export function registerControllers(app: Application, modules: Modules) {
   });
 
   if (app.debug) {
-    console.groupCollapsed("application register controllers from glob");
-    console.log("controllers", controllersAdded);
     console.groupEnd();
   }
 }
 
-export function registerController(app: Application, controllerInfos: StimulusControllerInfos, notify = true) {
+export function registerController(app: Application, controllerInfos: StimulusControllerInfos) {
   if (!controllerInfos.enabled) {
     return;
   }
@@ -131,7 +133,7 @@ export function registerController(app: Application, controllerInfos: StimulusCo
     app.register(controllerInfos.identifier, controllerInfos.controller);
   }
 
-  if (app.debug && notify) {
-    console.log(`application register controller ${controllerInfos.identifier}`);
+  if (app.debug) {
+    console.log(`application #registerController ${controllerInfos.identifier}`);
   }
 }

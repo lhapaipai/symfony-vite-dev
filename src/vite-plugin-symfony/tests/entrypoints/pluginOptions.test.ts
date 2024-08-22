@@ -1,9 +1,9 @@
 import { describe, it } from "vitest";
-import { resolvePluginOptions, resolveOutDir } from "~/pluginOptions";
+import { resolvePluginEntrypointsOptions, resolveOutDir } from "~/entrypoints/pluginOptions";
 
-describe("resolvePluginOptions", () => {
+describe("resolvePluginEntrypointsOptions", () => {
   it("resolves with default options when no config", ({ expect }) => {
-    expect(resolvePluginOptions()).toMatchInlineSnapshot(`
+    expect(resolvePluginEntrypointsOptions()).toMatchInlineSnapshot(`
       {
         "debug": false,
         "enforcePluginOrderingPosition": true,
@@ -15,7 +15,6 @@ describe("resolvePluginOptions", () => {
         "refresh": false,
         "servePublic": "public",
         "sriAlgorithm": false,
-        "stimulus": false,
         "viteDevServerHostname": null,
       }
     `);

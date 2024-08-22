@@ -1,5 +1,66 @@
 # Reference
 
+## Stimulus configuration from Vite plugin
+
+You can configure Stimulus from the `vite-plugin-symfony` plugin with the `stimulus` property.
+
+```ts
+// vite.config.js
+import { defineConfig } from "vite";
+import symfonyPlugin from "vite-plugin-symfony";
+
+export default defineConfig({
+  plugins: [
+    symfonyPlugin({
+      stimulus: {
+        // your options
+      } satisfies VitePluginSymfonyStimulusOptions,
+    }),
+  ],
+  // ...
+});
+```
+
+
+```ts
+type VitePluginSymfonyStimulusOptions = {
+  /**
+   * path to controllers.json relative to vite root
+   * @default ./assets/controller.json
+   */
+  controllersFilePath: string;
+
+  /**
+   * enable hmr for controllers
+   * @default true
+   */
+  hmr: boolean;
+
+  /**
+   * default fetch mode when importing Stimulus Controller
+   * @default "eager"
+   */
+  fetchMode: "eager" | "lazy";
+
+  /**
+   * choose the default method for resolving Stimulus controller identifier
+   * from the file path
+   * "snakeCase": "./assets/controllers/welcome_controller.js" -> "welcome"
+   * "camelCase": "./assets/controllers/WelcomeController.js" -> "welcome"
+   * @default "snakeCase"
+   * if you provide a function, it will be called with the path relative
+   * to the project root directory as its first argument and it should return an
+   * identifier for your controller
+   */
+  identifierResolutionMethod: "snakeCase" | "camelCase" | ((path: string) => string);
+
+}
+```
+
+:::warning
+By default, HMR is activated on your Stimulus controllers. If these are not idempotent (see [Stimulus doc](https://turbo.hotwired.dev/handbook/building#making-transformations-idempotent)), you may encounter problems (HMRs will not work as expected and you will have to manually refresh your page). In this case it is preferable to deactivate the `hmr: false` option. Therefore, any modification of the file will still result in an automatic refresh of the page.
+:::
+
 ## `import.meta`
 
 The `vite-plugin-symfony` plugin introduces `import.meta.stimulusXXX` to configure your Stimulus controllers.

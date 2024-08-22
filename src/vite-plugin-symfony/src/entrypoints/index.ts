@@ -27,7 +27,7 @@ import {
   INFO_PUBLIC_PATH,
   normalizeConfig,
 } from "./utils";
-import { resolveOutDir, refreshPaths } from "../pluginOptions";
+import { resolveOutDir, refreshPaths } from "./pluginOptions";
 
 import { GeneratedFiles, ResolvedConfigWithOrderablePlugins, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { addIOMapping } from "./pathMapping";

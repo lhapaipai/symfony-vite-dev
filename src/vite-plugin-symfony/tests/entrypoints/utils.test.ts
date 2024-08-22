@@ -13,7 +13,7 @@ import {
   normalizeConfig,
   trimSlashes,
 } from "~/entrypoints/utils";
-import { resolvePluginOptions } from "~/pluginOptions";
+import { resolvePluginEntrypointsOptions } from "~/entrypoints/pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -200,7 +200,7 @@ describe("resolveDevServerUrl", () => {
         };
 
     const viteResolvedConfig = await resolveConfig(viteConfig, "serve");
-    const pluginConfig = resolvePluginOptions(pluginOptions);
+    const pluginConfig = resolvePluginEntrypointsOptions(pluginOptions);
     expect(resolveDevServerUrl(address, viteResolvedConfig, pluginConfig)).toBe(expectedUrl);
   });
 });

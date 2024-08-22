@@ -1,21 +1,27 @@
-import { Logger } from "vite";
+import { Logger, ResolvedConfig } from "vite";
 import { ControllersFileContent } from "../types";
 import { generateStimulusId, getStimulusControllerId } from "../util";
 import { createRequire } from "node:module";
+import { VitePluginSymfonyStimulusOptions } from "~/types";
+import { relative } from "node:path";
 
 export const virtualSymfonyControllersModuleId = "virtual:symfony/controllers";
 
-export function createControllersModule(config: ControllersFileContent, logger?: Logger) {
+export function createControllersModule(
+  controllersJsonContent: ControllersFileContent,
+  pluginOptions: VitePluginSymfonyStimulusOptions,
+  logger?: Logger,
+) {
   const require = createRequire(import.meta.url);
   const controllerContents: string[] = [];
   let importStatementContents = "";
   let controllerIndex = 0;
 
-  if ("undefined" === typeof config["controllers"]) {
+  if ("undefined" === typeof controllersJsonContent["controllers"]) {
     throw new Error('Your Stimulus configuration file (assets/controllers.json) lacks a "controllers" key.');
   }
 
-  for (const packageName in config.controllers) {
+  for (const packageName in controllersJsonContent.controllers) {
     let packageJsonContent: any = null;
     let packageNameResolved;
 
@@ -39,9 +45,9 @@ export function createControllersModule(config: ControllersFileContent, logger?:
 
     // package can define multiple stimulus controllers
     // used only by @symfony/ux-turbo : turbo-core, mercure-turbo-stream
-    for (const controllerName in config.controllers[packageName]) {
+    for (const controllerName in controllersJsonContent.controllers[packageName]) {
       const controllerPackageConfig = packageJsonContent?.symfony?.controllers?.[controllerName] || {};
-      const controllerUserConfig = config.controllers[packageName][controllerName];
+      const controllerUserConfig = controllersJsonContent.controllers[packageName][controllerName];
 
       if (!controllerUserConfig.enabled) {
         continue;
@@ -68,7 +74,7 @@ export function createControllersModule(config: ControllersFileContent, logger?:
        * }
        */
       const controllerMain = `${packageNameResolved}/${controllerUserConfig.main ?? controllerPackageConfig.main ?? packageJsonContent.module ?? packageJsonContent.main}`;
-      const fetchMode = controllerUserConfig.fetch ?? controllerPackageConfig.fetch ?? "eager";
+      const fetchMode = controllerUserConfig.fetch ?? controllerPackageConfig.fetch ?? pluginOptions.fetchMode;
 
       let moduleValueContents = ``;
 
@@ -120,17 +126,35 @@ export function createControllersModule(config: ControllersFileContent, logger?:
   return moduleContent;
 }
 
-const stimulusFetchRE = /\bimport\.meta\.stimulusFetch\s*=\s*["'](eager|lazy)["']/;
-const stimulusIdentifierRE = /\bimport\.meta\.stimulusIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
-const stimulusEnabledRE = /\bimport\.meta\.stimulusEnabled\s*=\s*(true|false)/;
+const notACommentRE = /^(?<!\/[\\/\\*])\s*/;
+const importMetaStimulusFetchRE = /^(?<!\/[\\/\\*])\s*import\.meta\.stimulusFetch\s*=\s*["'](eager|lazy)["']/;
+const importMetaStimulusIdentifierRE = /\bimport\.meta\.stimulusIdentifier\s*=\s*["']([a-zA-Z][-_a-zA-Z0-9]*)["']/;
+const importMetaStimulusEnabledRE = /\bimport\.meta\.stimulusEnabled\s*=\s*(true|false)/;
 
-export function parseStimulusRequest(code: string, moduleId: string) {
-  const filePath = moduleId.slice(0, -"?stimulus".length);
+export const stimulusFetchRE = new RegExp(notACommentRE.source + importMetaStimulusFetchRE.source, "m");
+const stimulusIdentifierRE = new RegExp(notACommentRE.source + importMetaStimulusIdentifierRE.source, "m");
+const stimulusEnabledRE = new RegExp(notACommentRE.source + importMetaStimulusEnabledRE.source, "m");
 
-  const fetch = (code.match(stimulusFetchRE) || [])[1] ?? "eager";
+export function parseStimulusRequest(
+  code: string,
+  moduleId: string,
+  pluginOptions: VitePluginSymfonyStimulusOptions,
+  viteConfig: ResolvedConfig,
+) {
+  let filePath: string;
+  if (moduleId.endsWith("?stimulus")) {
+    filePath = moduleId.slice(0, -"?stimulus".length);
+  } else {
+    filePath = moduleId;
+  }
+
+  const fetch = (code.match(stimulusFetchRE) || [])[1] ?? pluginOptions.fetchMode;
   let id = (code.match(stimulusIdentifierRE) || [])[1];
   if (!id) {
-    id = getStimulusControllerId(filePath) ?? generateStimulusId(filePath);
+    const relativePath = relative(viteConfig.root, filePath);
+    id =
+      getStimulusControllerId(relativePath, pluginOptions.identifierResolutionMethod) ??
+      generateStimulusId(relativePath);
   }
   const enabled = ((code.match(stimulusEnabledRE) || [])[1] ?? "true") === "false" ? false : true;
 

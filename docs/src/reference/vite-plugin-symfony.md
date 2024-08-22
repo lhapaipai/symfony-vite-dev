@@ -107,27 +107,8 @@ Enables the bridge that will interpret the `assets/controllers.json` file for th
 
 Enter `true` if your file is located in the default location `assets/controllers.json` otherwise specify the path to your reference file.
 
-You can also specify a configuration object.
+You can also specify a configuration object of type `VitePluginSymfonyStimulusOptions`. to see the options in detail see the [Stimulus reference](/stimulus/reference) section.
 
-```ts
-type VitePluginSymfonyStimulusOptions = {
-  /**
-   * path to controllers.json relative to vite root
-   * @default ./assets/controller.json
-   */
-  controllersFilePath: string;
-
-  /**
-   * enable hmr for controllers
-   * @default true
-   */
-  hmr: boolean;
-}
-```
-
-:::warning
-By default, HMR is activated on your Stimulus controllers. If these are not idempotent (see [Stimulus doc](https://turbo.hotwired.dev/handbook/building#making-transformations-idempotent)), you may encounter problems (HMRs will not work as expected and you will have to manually refresh your page). In this case it is preferable to deactivate the `hmr: false` option. Therefore, any modification of the file will still result in an automatic refresh of the page.
-:::
 
 ## viteDevServerHostname
 

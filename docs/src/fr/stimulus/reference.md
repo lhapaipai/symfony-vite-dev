@@ -1,5 +1,65 @@
 # Référence
 
+## Configuration de Stimulus depuis le plugin Vite
+
+Vous pouvez configurer Stimulus depuis le plugin `vite-plugin-symfony` avec la propriété `stimulus`.
+
+```ts
+// vite.config.js
+import { defineConfig } from "vite";
+import symfonyPlugin from "vite-plugin-symfony";
+
+export default defineConfig({
+  plugins: [
+    symfonyPlugin({
+      stimulus: {
+        // vos options
+      } satisfies VitePluginSymfonyStimulusOptions,
+    }),
+  ],
+  // ...
+});
+```
+
+```ts
+type VitePluginSymfonyStimulusOptions = {
+  /**
+   * path to controllers.json relative to vite root
+   * @default ./assets/controller.json
+   */
+  controllersFilePath: string;
+
+  /**
+   * enable hmr for controllers
+   * @default true
+   */
+  hmr: boolean;
+
+  /**
+   * méthode de chargement par défaut de vos contrôleurs Stimulus
+   * lors d'un import
+   * @default "eager"
+   */
+  fetchMode: "eager" | "lazy";
+
+  /**
+   * choisissez la méthode de résolution par défaut des identifiants des
+   * contrôleurs Stimulus à partir du chemin du fichier
+   * "snakeCase": "./assets/controllers/welcome_controller.js" -> "welcome"
+   * "camelCase": "./assets/controllers/WelcomeController.js" -> "welcome"
+   * @default "snakeCase"
+   * si vous fournissez une fonction elle sera appelée avec comme premier
+   * argument le chemin relative à la racine du projet et vous devrez retourner
+   * une chaîne de caractère correspondant à l'identifiant du contrôleur.
+   */
+  identifierResolutionMethod: "snakeCase" | "camelCase" | ((path: string) => string);
+}
+```
+
+:::warning
+Par défaut le HMR est activé sur vos controlleurs Stimulus. Si ces derniers ne sont pas idempotents (voir [doc Stimulus](https://turbo.hotwired.dev/handbook/building#making-transformations-idempotent)), vous risquez de rencontrez des problèmes (les HMR ne fonctionnera pas comme attendu et vous devrez rafraîchir manuellement votre page). Dans ce cas il est préférable de désactiver l'option `hmr: false`. Ainsi, toute modification du fichier entrainera quand même un rafraichissement automatique de la page.
+:::
+
 ## `import.meta`
 
 Le plugin `vite-plugin-symfony` introduit des `import.meta.stimulusXXX` pour configurer vos contrôleurs Stimulus.

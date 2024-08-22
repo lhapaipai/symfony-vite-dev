@@ -1,20 +1,23 @@
 import { createControllersModule, virtualSymfonyControllersModuleId, parseStimulusRequest } from "./bridge";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { relative, resolve } from "node:path";
 import { Logger, Plugin, ResolvedConfig, UserConfig } from "vite";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
 import { ControllersFileContent } from "../types";
 import { addBootstrapHmrCode, addControllerHmrCode } from "./hmr";
 import { getStimulusControllerId } from "../util";
+import { isPathIncluded } from "./utils";
+import { readFile, stat } from "node:fs/promises";
 
 const stimulusRE = /\?stimulus\b/;
+const virtualRE = /^virtual:/;
 
 const isStimulusRequest = (request: string): boolean => stimulusRE.test(request);
+const isVirtualRequest = (request: string): boolean => virtualRE.test(request);
 
 export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulusOptions, logger: Logger): Plugin {
   let viteConfig: ResolvedConfig;
   let viteCommand: string;
-  let stimulusControllersContent: ControllersFileContent | null = null;
+  let controllersJsonContent: ControllersFileContent | null = null;
   let controllersFilePath: string;
   return {
     name: "symfony-stimulus",
@@ -28,11 +31,19 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
 
       return extraConfig;
     },
-    configResolved(config) {
+    async configResolved(config) {
       viteConfig = config;
 
       controllersFilePath = resolve(viteConfig.root, pluginOptions.controllersFilePath);
-      stimulusControllersContent = JSON.parse(readFileSync(controllersFilePath).toString());
+      try {
+        await stat(controllersFilePath);
+        controllersJsonContent = JSON.parse((await readFile(controllersFilePath)).toString());
+      } catch {
+        controllersJsonContent = {
+          controllers: {},
+          entrypoints: {},
+        };
+      }
     },
     resolveId(id: string) {
       if (id === virtualSymfonyControllersModuleId) {
@@ -41,20 +52,20 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
     },
     load(id) {
       if (id === virtualSymfonyControllersModuleId) {
-        if (stimulusControllersContent) {
-          return createControllersModule(stimulusControllersContent, logger);
+        if (controllersJsonContent) {
+          return createControllersModule(controllersJsonContent, pluginOptions, logger);
         } else {
           return `export default [];`;
         }
       }
     },
     transform(code, id, options) {
-      if ((options?.ssr && !process.env.VITEST) || id.includes("node_modules")) {
+      if ((options?.ssr && !process.env.VITEST) || id.includes("node_modules") || isVirtualRequest(id)) {
         return null;
       }
 
       if (isStimulusRequest(id)) {
-        return parseStimulusRequest(code, id);
+        return parseStimulusRequest(code, id, pluginOptions, viteConfig);
       }
 
       if (viteCommand === "serve") {
@@ -62,10 +73,12 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
           return addBootstrapHmrCode(code, logger);
         }
 
-        const identifier = getStimulusControllerId(id, true);
-        if (identifier) {
-          logger.info(`import controller ${identifier}`);
-          return addControllerHmrCode(code, identifier);
+        if (isPathIncluded(viteConfig.root, id)) {
+          const relativePath = relative(viteConfig.root, id);
+          const identifier = getStimulusControllerId(relativePath, pluginOptions.identifierResolutionMethod);
+          if (identifier) {
+            return addControllerHmrCode(code, identifier);
+          }
         }
       }
 

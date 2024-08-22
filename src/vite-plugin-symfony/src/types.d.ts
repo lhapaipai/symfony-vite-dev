@@ -129,7 +129,11 @@ export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
    * enable controllers.json loader for Symfony UX.
    * @default false
    */
-  stimulus: boolean | string | VitePluginSymfonyStimulusOptions;
+  stimulus: false | VitePluginSymfonyStimulusOptions;
+};
+
+export type VitePluginSymfonyPartialOptions = Omit<Partial<VitePluginSymfonyOptions>, "stimulus"> & {
+  stimulus?: boolean | string | Partial<VitePluginSymfonyStimulusOptions>;
 };
 
 export type VitePluginSymfonyEntrypointsOptions = {
@@ -220,4 +224,18 @@ export type VitePluginSymfonyStimulusOptions = {
    * @default true
    */
   hmr: boolean;
+
+  /**
+   * default fetch mode when importing Stimulus Controller
+   * @default "eager"
+   */
+  fetchMode: "eager" | "lazy";
+
+  /**
+   * @default "snakeCase"
+   * if you provide a function, it will be called with the path relative
+   * to the project root directory as its first argument and it should return an
+   * identifier for your controller
+   */
+  identifierResolutionMethod: "snakeCase" | "camelCase" | ((path: string) => string);
 };

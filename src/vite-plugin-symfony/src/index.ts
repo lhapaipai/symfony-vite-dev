@@ -3,11 +3,15 @@ import symfonyEntrypoints from "./entrypoints";
 import symfonyStimulus from "./stimulus/node";
 
 import { VitePluginSymfonyOptions } from "./types";
-import { resolvePluginOptions } from "./pluginOptions";
 import { createLogger } from "./logger";
+import { resolvePluginEntrypointsOptions } from "./entrypoints/pluginOptions";
+import { resolvePluginStimulusOptions } from "./stimulus/pluginOptions";
 
-export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
-  const { stimulus: stimulusOptions, ...entrypointsOptions } = resolvePluginOptions(userOptions);
+export default function symfony(userPluginOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
+  const { stimulus: userStimulusOptions, ...userEntrypointsOptions } = userPluginOptions;
+
+  const entrypointsOptions = resolvePluginEntrypointsOptions(userEntrypointsOptions);
+  const stimulusOptions = resolvePluginStimulusOptions(userStimulusOptions);
 
   const plugins: Plugin[] = [
     symfonyEntrypoints(

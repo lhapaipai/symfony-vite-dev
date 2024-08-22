@@ -10,7 +10,7 @@ export function addBootstrapHmrCode(code: string, logger: Logger) {
   const appRegex = /[^\n]*?\s(\w+)(?:\s*=\s*startStimulusApp\(\))/;
   const appVariable = (code.match(appRegex) || [])[1];
   if (appVariable) {
-    logger.info(`appVariable ${appVariable}`);
+    logger.info(`stimulus app available globally for HMR with window.${applicationGlobalVarName}`);
     const exportFooter = `window.${applicationGlobalVarName} = ${appVariable}`;
     return `${code}\n${exportFooter}`;
   }
