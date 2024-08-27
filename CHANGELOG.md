@@ -1,3 +1,7 @@
+## v7.0.4
+
+- fix use `proxy_origin` in Debugger if configured (@andyexeter)
+
 ## v7.0.3
 
 - stimulus fix import.meta regex to support comments
