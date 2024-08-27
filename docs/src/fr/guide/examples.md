@@ -33,15 +33,25 @@ C'est l'exemple qui présente la majorité des cas d'usage.
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
 
-## Install vite-bundle/vite-plugin-symfony dependencies
+## Installation des dépendances principales vite-bundle/vite-plugin-symfony
 make install
 
-## Install playgrounds (npm i/composer i for each of them)
-make install-playgrounds
+# si vous souhaitez tester un exemple en particulier
+# - "basic" exemple principal
+# - "stimulus-basic" pour stimulus seul
+# - "stimulus" pour stimulus couplé avec Symfony UX
+# - les autres exemples sont pour des cas spécifiques
 
-# Tester l'exemple basic
-cd playground/basic
+cd playground/<your-playground>
+symfony composer install
+
+# démarrage de l'environnement de développement.
 symfony local:server:start
 npm run dev
 # depuis votre navigateur rendez-vous sur : https://127.0.0.1:8000/
+
+# si vous souhaitez installer tous les exemples en une fois
+# - composer install
+# - pnpm run build
+make install-playgrounds
 ```

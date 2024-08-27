@@ -4,10 +4,9 @@ The [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) 
 
 ```
 .
-├── extra
-│ ├── symfony-vite-docs
-│ ├── fast-bundle
-│ └── fast-plugin-symfony
+├── src
+│ ├── vite-bundle
+│ └── vite-plugin-symfony
 ├── node_modules
 │ ├── acorn
 │ ├── ...
@@ -34,17 +33,26 @@ This is the example that presents the majority of use cases.
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
 
-
 ## Install vite-bundle/vite-plugin-symfony dependencies
 make install
 
+# if you want to test the features in one playground
+# - "basic" is the principal playground
+# - "stimulus-basic" is for the core feature of stimulus
+# - "stimulus" is for Symfony UX
+# - other playgrounds are for specific use cases
 
-## Install playgrounds (npm i/composer i for each of them)
-make install-playgrounds
+cd playground/<your-playground>
+symfony composer install
+
 
 # launch the development environment for the `basic` playground.
-cd playground/basic
 symfony local:server:start
 npm run dev
 # from your browser go to: https://127.0.0.1:8000/
+
+# if you want to install all the playgrounds in one time (for each of them)
+# - composer install
+# - pnpm run build
+make install-playgrounds
 ```

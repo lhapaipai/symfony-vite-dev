@@ -62,7 +62,7 @@ export default defineConfig({
     outDir: 'public/build-2',
     rollupOptions: {
       input: {
-        "multiple": "./assets/page/multiple/config2.js",
+        "other": "./assets/page/other/index.js",
       },
     },
   },
@@ -103,7 +103,7 @@ dans vos modèles
 ```twig
 {% block stylesheets %}
     {# definissez le nom de votre config dans le 3e paramètre #}
-    {{ vite_entry_link_tags('multiple', [], 'config2') }}
+    {{ vite_entry_link_tags('other', [], 'config2') }}
 
     {# pas de 3e paramètre, ce sera default_config -> config1 #}
     {{ vite_entry_link_tags('welcome') }}
@@ -111,7 +111,7 @@ dans vos modèles
 
 {% block javascripts %}
     {# definissez le nom de votre config dans le 3e paramètre #}
-    {{ vite_entry_script_tags('multiple', [], 'config2') }}
+    {{ vite_entry_script_tags('other', [], 'config2') }}
 
     {# pas de 3e paramètre, ce sera default_config -> config1 #}
     {{ vite_entry_script_tags('welcome') }}
@@ -144,6 +144,11 @@ _pentatrion_vite_config2: // [!code ++]
         configName: config2 // [!code ++]
     requirements: // [!code ++]
         path: ".+" // [!code ++]
+
+_profiler_vite:
+    path: /_profiler/vite
+    defaults:
+        _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
 ```
 
 ## Configuration du composant Symfony Asset
