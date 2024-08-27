@@ -38,6 +38,12 @@ export default defineConfig({
 });
 ```
 
+If you are using TypeScript. Add these type definitions for the `import.meta.stimulusXXX` and `*?stimulus` type imports in an `env.d.ts` file.
+
+```ts
+/// <reference types="vite-plugin-symfony/stimulus/env" />
+```
+
 If you ran the Flex recipe the import has probably already been added.
 
 ```js
