@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "ROOT",
+      "path": ".",
+    },
+    {
+      "path": "./docs",
+    },
+    {
+      "path": "./src/vite-bundle",
+    },
+    {
+      "path": "./src/vite-plugin-symfony",
+    },
+    {
+      "path": "./playground",
+    },
+  ],
+}
