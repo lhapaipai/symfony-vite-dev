@@ -77,7 +77,7 @@ In your `config/packages/pentatrion_vite.yaml` file:
 pentatrion_vite:
 
     default_config: config1
-    builds:
+    configs:
         config1:
             build_directory: build-1
             script_attributes:
