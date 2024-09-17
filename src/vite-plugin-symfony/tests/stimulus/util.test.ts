@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getStimulusControllerFileInfos, generateStimulusId } from "~/stimulus/util";
+import { getStimulusControllerId, generateStimulusId } from "~/stimulus/util";
 
 describe("stimulus generateStimulusId", () => {
   it("identifierFromThirdParty generate correct identifier", ({ expect }) => {
@@ -13,64 +13,91 @@ describe("stimulus generateStimulusId", () => {
   });
 });
 
-describe("stimulus getStimulusControllerFileInfos", () => {
+describe("stimulus getStimulusControllerId", () => {
   it.each([
     {
       input: "./controllers/welcome_controller.js",
-      onlyControllersDir: false,
       expectedId: "welcome",
-      expectedLazy: false,
     },
     {
-      input: "./controllers/welcome_lazycontroller.js",
-      onlyControllersDir: false,
+      input: "./controllers/Welcome.js",
       expectedId: "welcome",
-      expectedLazy: true,
     },
     {
       input: "./some-content-before/controllers/welcome_controller.js",
-      onlyControllersDir: false,
       expectedId: "welcome",
-      expectedLazy: false,
+    },
+    {
+      input: "/path/to/project/assets/controllers/welcome_controller.js",
+      expectedId: "welcome",
     },
     // without controllers
-    { input: "../welcome_controller.js", onlyControllersDir: false, expectedId: "welcome", expectedLazy: false },
+    { input: "../welcome_controller.js", expectedId: "welcome" },
     // bare module
     {
       input: "library/welcome_controller.js",
-      onlyControllersDir: false,
       expectedId: "library--welcome",
-      expectedLazy: false,
+    },
+    {
+      // ./ is removed from computation
+      input: "./library/welcome_controller.js",
+      expectedId: "library--welcome",
     },
     // some content after we add --
     {
       input: "./controllers/foo/bar_controller.js",
-      onlyControllersDir: false,
       expectedId: "foo--bar",
-      expectedLazy: false,
     },
     // we replace _ -> -
     {
       input: "./controllers/foo_bar_controller.js",
-      onlyControllersDir: false,
       expectedId: "foo-bar",
-      expectedLazy: false,
     },
-    { input: "./controllers/my_module.js", onlyControllersDir: false, expectedId: "my-module", expectedLazy: false },
-    { input: "./path/to/file.js", onlyControllersDir: false, expectedId: "path--to--file", expectedLazy: false },
-    { input: "not a controller", onlyControllersDir: false, expectedId: undefined, expectedLazy: false },
+    { input: "./controllers/my_module.js", expectedId: "my-module" },
+    { input: "./path/to/file.js", expectedId: "path--to--file" },
+    { input: "not a controller", expectedId: null },
+  ])("getStimulusControllerId generate correct infos with snakecase resolution method", ({ input, expectedId }) => {
+    const identifier = getStimulusControllerId(input, "snakeCase");
+    expect(identifier).toBe(expectedId);
+  });
+
+  it.each([
     {
-      input: "/home/lhapaipai/projets/symfony-vite-dev/playground/stimulus/assets/app.js",
-      onlyControllersDir: true,
-      expectedId: undefined,
-      expectedLazy: false,
+      input: "./controllers/WelcomeController.js",
+      expectedId: "welcome",
     },
-  ])(
-    "getStimulusControllerFileInfos generate correct infos",
-    ({ input, onlyControllersDir, expectedId, expectedLazy }) => {
-      const { identifier, lazy } = getStimulusControllerFileInfos(input, onlyControllersDir);
-      expect(identifier).toBe(expectedId);
-      expect(lazy).toBe(expectedLazy);
+    {
+      input: "./controllers/Welcome.js",
+      expectedId: "welcome",
     },
-  );
+    {
+      input: "./some-content-before/controllers/WelcomeController.js",
+      expectedId: "welcome",
+    },
+    // without controllers
+    { input: "../WelcomeController.js", expectedId: "welcome" },
+    // bare module
+    {
+      input: "library/WelcomeController.js",
+      expectedId: "library--welcome",
+    },
+    {
+      input: "./library/WelcomeController.js",
+      expectedId: "library--welcome",
+    },
+    {
+      input: "./controllers/foo/BarController.js",
+      expectedId: "foo--bar",
+    },
+    {
+      input: "./controllers/FooBarController.js",
+      expectedId: "foo-bar",
+    },
+    { input: "./controllers/MyModule.js", expectedId: "my-module" },
+    { input: "./path/to/file.js", expectedId: "path--to--file" },
+    { input: "not a controller", expectedId: null },
+  ])("getStimulusControllerId generate correct infos with camelCase resolution method", ({ input, expectedId }) => {
+    const identifier = getStimulusControllerId(input, "camelCase");
+    expect(identifier).toBe(expectedId);
+  });
 });

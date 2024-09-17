@@ -1,18 +1,23 @@
 import { Plugin } from "vite";
 import symfonyEntrypoints from "./entrypoints";
-import symfonyStimulus from "./stimulus";
 import symfonyFosRouting from "./fos-routing";
+import symfonyStimulus from "./stimulus/node";
 
-import { VitePluginSymfonyOptions } from "./types";
-import { resolvePluginOptions } from "./pluginOptions";
+import { VitePluginSymfonyPartialOptions } from "./types";
 import { createLogger } from "./logger";
+import { resolvePluginEntrypointsOptions } from "./entrypoints/pluginOptions";
+import { resolvePluginStimulusOptions } from "./stimulus/pluginOptions";
+import { resolvePluginFosRoutingOptions } from "~/fos-routing/pluginOptions";
 
-export default function symfony(userOptions: Partial<VitePluginSymfonyOptions> = {}): Plugin[] {
+export default function symfony(userPluginOptions: VitePluginSymfonyPartialOptions = {}): Plugin[] {
   const {
-    stimulus: stimulusOptions,
+    stimulus: userStimulusOptions,
     fosRouting: fosRoutingOptions,
-    ...entrypointsOptions
-  } = resolvePluginOptions(userOptions);
+    ...userEntrypointsOptions } = userPluginOptions;
+
+  const entrypointsOptions = resolvePluginEntrypointsOptions(userEntrypointsOptions);
+  const stimulusOptions = resolvePluginStimulusOptions(userStimulusOptions);
+  const fosRoutingOptions = resolvePluginFosRoutingOptions(fosRoutingOptions);
 
   const plugins: Plugin[] = [
     symfonyEntrypoints(

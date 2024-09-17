@@ -33,13 +33,21 @@ export type FilesMetadatas = {
   [k: string]: FileMetadatas;
 };
 
-export type EntryPoint = {
-  assets?: string[];
-  js?: string[];
-  css?: string[];
-  preload?: string[];
-  dynamic?: string[];
-  legacy?: boolean | string;
+export type EntryPoint =
+  | {
+      js?: string[];
+    }
+  | {
+      css?: string[];
+    }
+  | BuildEntryPoint;
+
+export type BuildEntryPoint = {
+  js: string[];
+  css: string[];
+  preload: string[];
+  dynamic: string[];
+  legacy: boolean | string;
 };
 
 export type EntryPoints = {
@@ -121,27 +129,15 @@ export type VitePluginSymfonyOptions = VitePluginSymfonyEntrypointsOptions & {
    * enable controllers.json loader for Symfony UX.
    * @default false
    */
-  stimulus: boolean | string | VitePluginSymfonyStimulusOptions;
-  fosRouting: boolean | VitePluginSymfonyFosRoutingOptions;
+  stimulus: false | VitePluginSymfonyStimulusOptions;
+};
+
+export type VitePluginSymfonyPartialOptions = Omit<Partial<VitePluginSymfonyOptions>, "stimulus"> & {
+  stimulus?: boolean | string | Partial<VitePluginSymfonyStimulusOptions>;
+  fosRouting: boolean | Partial<VitePluginSymfonyFosRoutingOptions>;
 };
 
 export type VitePluginSymfonyEntrypointsOptions = {
-  /**
-   * Web directory root
-   * Relative file path from project directory root.
-   * @default 'public'
-   * @deprecated use `build.outDir`: join(publicDirectory, buildDirectory) from vite config
-   */
-  publicDirectory: string;
-
-  /**
-   * Build directory (or path)
-   * Relative path from web directory root
-   * @default 'build'
-   * @deprecated use `base`: "/" + buildDirectory + "/" from vite config
-   */
-  buildDirectory: string;
-
   /**
    * By default vite-plugin-symfony set vite option publicDir to false.
    * Because we don't want symfony entrypoint (index.php) and other files to
@@ -229,6 +225,20 @@ export type VitePluginSymfonyStimulusOptions = {
    * @default true
    */
   hmr: boolean;
+
+  /**
+   * default fetch mode when importing Stimulus Controller
+   * @default "eager"
+   */
+  fetchMode: "eager" | "lazy";
+
+  /**
+   * @default "snakeCase"
+   * if you provide a function, it will be called with the path relative
+   * to the project root directory as its first argument and it should return an
+   * identifier for your controller
+   */
+  identifierResolutionMethod: "snakeCase" | "camelCase" | ((path: string) => string);
 };
 
 export type VitePluginSymfonyFosRoutingOptions = {

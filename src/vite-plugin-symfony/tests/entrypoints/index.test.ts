@@ -19,9 +19,9 @@ import {
   circular2Js,
   viteUserConfigNoRoot,
 } from "../mocks";
-import { VitePluginSymfonyOptions } from "~/types";
-import { resolvePluginOptions } from "~/pluginOptions";
-import { createLogger } from "vite";
+import { VitePluginSymfonyEntrypointsOptions } from "~/types";
+import { createLogger, Logger } from "vite";
+import { resolvePluginEntrypointsOptions } from "~/entrypoints/pluginOptions";
 
 function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   const bundles: {
@@ -34,10 +34,13 @@ function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   return bundles;
 }
 
-function plugin(userOptions: Partial<VitePluginSymfonyOptions>) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { stimulus, ...entrypointsOptions } = resolvePluginOptions(userOptions);
-  return vitePluginSymfonyEntrypoints(entrypointsOptions, createLogger());
+function plugin(userPluginEntrypointsOptions: Partial<VitePluginSymfonyEntrypointsOptions>) {
+  const entrypointsOptions = resolvePluginEntrypointsOptions(userPluginEntrypointsOptions);
+  const logger: Logger = {
+    ...createLogger(),
+    info: vi.fn(),
+  };
+  return vitePluginSymfonyEntrypoints(entrypointsOptions, logger);
 }
 
 describe("vitePluginSymfonyEntrypoints", () => {

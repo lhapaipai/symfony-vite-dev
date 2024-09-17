@@ -2,19 +2,13 @@
 
 ## Installation
 
-::: warning
-🧪 L'implémentation est encore expérimentale. Le code est totalement fonctionnel, certaines implémentations avec Symfony UX ne sont pas terminées (voir tableau des compatibilité en pied de page) et certains noms de fonctions peuvent être amenés à changer. Les fonctionnalités présentées dans cette page ne respecteront pas la sémantique de gestion de version `semver`.
-:::
-
 Stimulus est un framework Javascript léger qui a comme ambition de faciliter l'intégration de composants JavaScript dans un projet. Il connecte des objets JavaScript appelés `controllers` aux éléments HTML d'une page via les attributs `data-*`.
-
-![Stimulus, comment ça marche ?](/graphs/stimulus.svg)
 
 ```bash
 composer require symfony/stimulus-bundle
 
 # désinstallez le package @symfony/stimulus-bridge
-# uniquement compatible webpack
+# celui-ci n'est pas compatible avec Vite
 npm rm @symfony/stimulus-bridge
 ```
 
@@ -43,6 +37,13 @@ export default defineConfig({
 });
 ```
 
+Si vous utilisez TypeScript. Ajoutez ces définitions de types pour le `import.meta.stimulusXXX` et les imports de type `*?stimulus` dans un fichier `env.d.ts`.
+
+```ts
+/// <reference types="vite-plugin-symfony/stimulus/env" />
+```
+
+
 Si vous avez exécuté la recette Flex l'import a certainement déjà été ajouté.
 
 ```js
@@ -52,16 +53,44 @@ import './bootstrap.js';
 
 Ajoutez les routines de génération d'une application stimulus compatible avec `symfony/stimulus-bundle` et `vite`.
 
-```js
-// assets/bootstrap.js
+:::code-group
+```js [assets/bootstrap.js]
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
 
-import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers"
 const app = startStimulusApp();
 registerControllers(
   app,
-  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?')
+  import.meta.glob('./controllers/*_controller.js', {
+    query: "?stimulus",
+    /**
+     * toujours à true, la comportement `lazy` est géré en interne avec
+     * import.meta.stimulusFetch (voir référence)
+     */
+    eager: true,
+  })
 )
 ```
+```ts [assets/bootstrap.ts]
+import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
+registerControllers(
+  app,
+  import.meta.glob<StimulusControllerInfosImport>(
+    "./controllers/*_controller.ts",
+    {
+      query: "?stimulus",
+      /**
+       * toujours à true, la comportement `lazy` est géré en interne avec
+       * import.meta.stimulusFetch (voir référence)
+       */
+      eager: true,
+    },
+  ),
+);
+```
+:::
+
+
 ```twig
 {# base.html.twig #}
 
@@ -75,22 +104,45 @@ registerControllers(
 ```
 ```twig
 {# in some template #}
-<h1 {{ stimulus_controller('hello') }}></h1>
+<h1 {{ stimulus_controller('welcome') }}></h1>
+```
+```js
+// ./assets/controllers/welcome_controller.js
+import { Controller } from "@hotwired/stimulus";
+
+import.meta.stimulusFetch = "eager";
+import.meta.stimulusIdentifier = "welcome";
+
+export default class controller extends Controller {
+
+  static targets = ["title"];
+  static values = {
+    name: String,
+  };
+  connect() {
+    this.titleTarget.textContent = `hello ${this.nameValue}`;
+  }
+}
 ```
 
 ## Exemples
 
-Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.
+Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus-basic` et un autre `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.
 
 
 ```bash
 git clone https://github.com/lhapaipai/symfony-vite-dev.git
 cd symfony-vite-dev
-make install
-cd playground/stimulus
-composer install
-npm i
 
+# installe les dépendances de vite-bundle
+# compile vite-plugin-symfony
+make install
+
+cd playground/stimulus-basic
+# ou bien pour Symfony UX
+cd playground/stimulus
+
+composer install
 symfony serve
-npm run dev
+pnpm dev
 ```

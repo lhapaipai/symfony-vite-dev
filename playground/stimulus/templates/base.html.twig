@@ -19,7 +19,7 @@
       {{ vite_entry_script_tags('theme') }}
     {% endblock %}
   </head>
-  <body {{ stimulus_controller('symfony/ux-swup/swup', { containers: ['#content', '#nav'] } ) }}>
+  <body>
     <nav id="nav">
       <div class="navbar">
         <div class="title">
@@ -28,17 +28,17 @@
         </div>
         <div class="links">
           <a class="{{ currentPage == 'welcome' ? 'active' : '' }}" href="{{ path('welcome') }}">Welcome</a>
-
+          <a class="{{ currentPage == 'swup-page-1' ? 'active' : '' }}" href="{{ path('swup-page-1') }}">Swup</a>
           <a class="{{ currentPage == 'third-party' ? 'active' : '' }}" href="{{ path('third-party') }}">Third party</a>
           <a class="{{ currentPage == 'autocomplete' ? 'active' : '' }}" href="{{ path('autocomplete') }}">Autocomplete</a>
           <a class="{{ currentPage == 'chartjs' ? 'active' : '' }}" href="{{ path('chartjs') }}">Chart js</a>
           <a class="{{ currentPage == 'cropperjs' ? 'active' : '' }}" href="{{ path('cropperjs') }}">Cropper js</a>
           <a class="{{ currentPage == 'dropzone' ? 'active' : '' }}" href="{{ path('dropzone') }}">Dropzone</a>
           <a class="{{ currentPage == 'lazy-image' ? 'active' : '' }}" href="{{ path('lazy-image') }}">Lazy image</a>
-          <a data-no-swup class="{{ currentPage == 'live-component' ? 'active' : '' }}" href="{{ path('live-component') }}">Live component</a>
+          <a class="{{ currentPage == 'live-component' ? 'active' : '' }}" href="{{ path('live-component') }}">Live component</a>
           <a class="{{ currentPage == 'notifier' ? 'active' : '' }}" href="{{ path('notifier') }}">Notifier</a>
           <a class="{{ currentPage == 'toggle-password' ? 'active' : '' }}" href="{{ path('toggle-password') }}">Toggle password</a>
-          <a data-no-swup class="{{ currentPage == 'translator' ? 'active' : '' }}" href="{{ path('translator') }}">Translator</a>
+          <a class="{{ currentPage == 'translator' ? 'active' : '' }}" href="{{ path('translator') }}">Translator</a>
           {# <a class="{{ currentPage == 'turbo' ? 'active' : '' }}" href="{{ path('turbo') }}">Turbo</a> #}
           <a class="{{ currentPage == 'twig' ? 'active' : '' }}" href="{{ path('twig') }}">Twig</a>
           <a class="{{ currentPage == 'typed' ? 'active' : '' }}" href="{{ path('typed') }}">Typed</a>

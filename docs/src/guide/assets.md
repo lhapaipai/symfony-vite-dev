@@ -33,7 +33,7 @@ You can then use the `asset()` Twig function by specifying your asset file path 
 ```
 You can use this `asset()` function **only with assets referenced by JavaScript or CSS files**. The `manifest.json` file is generated during the compilation step of your JavaScript code by Vite. It's a kind of summary of the files it processed. If your file is not referenced anywhere it will not appear in the `manifest.json`.
 
-If you want to make Vite aware of other assets you can import a directory of assets into your application's entry point. For example il you want to version all images stored in `assets/images` you could add the following in your `app` entrypoint. (I do not really recommend this method but rather the following one by defining multiple strategies)
+If you want to make Vite aware of other assets you can import a directory of assets into your application's entry point. For example if you want to version all images stored in `assets/images` you could add the following in your `app` entrypoint. (I do not really recommend this method but rather the following one by defining multiple strategies)
 
 Please note, by default Vite will make all its assets smaller than 4kb inline, so you will not be able to reference these files. (see explanations and solution in [troubleshooting](/guide/troubleshooting.html#troubleshooting)).
 

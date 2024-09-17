@@ -1,7 +1,7 @@
 {
   "controllers": {
     "stimulus-clipboard": {
-      "stimulus-clipboard": {
+      "clipboard": {
         "name": "stimulus-clipboard",
         "enabled": true,
         "fetch": "eager"

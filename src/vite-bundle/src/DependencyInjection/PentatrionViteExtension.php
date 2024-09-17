@@ -20,9 +20,10 @@ use Symfony\Component\WebLink\EventListener\AddLinkHeaderListener;
  *  proxy_origin: null|string,
  *  absolute_url: bool,
  *  throw_on_missing_entry: bool,
+ *  throw_on_missing_asset: bool,
  *  cache: bool,
  *  preload: "none"|"link-tag"|"link-header",
- *  crossorigin: false|"anonymous"|"use-credentials",
+ *  crossorigin: false|true|"anonymous"|"use-credentials",
  *  script_attributes: array<string, bool|string|null>,
  *  link_attributes: array<string, bool|string|null>,
  *  preload_attributes: array<string, bool|string|null>,
@@ -78,6 +79,7 @@ class PentatrionViteExtension extends Extension
         $container->setParameter('pentatrion_vite.absolute_url', $bundleConfig['absolute_url']);
         $container->setParameter('pentatrion_vite.proxy_origin', $bundleConfig['proxy_origin']);
         $container->setParameter('pentatrion_vite.throw_on_missing_entry', $bundleConfig['throw_on_missing_entry']);
+        $container->setParameter('pentatrion_vite.throw_on_missing_asset', $bundleConfig['throw_on_missing_asset']);
         $container->setParameter('pentatrion_vite.crossorigin', $bundleConfig['crossorigin']);
 
         if (
@@ -105,7 +107,8 @@ class PentatrionViteExtension extends Extension
                     $container,
                     $defaultAttributes,
                     $configName,
-                    $configPrepared
+                    $configPrepared,
+                    $bundleConfig['preload']
                 );
             }
         } else {
@@ -123,7 +126,8 @@ class PentatrionViteExtension extends Extension
                     $container,
                     $defaultAttributes,
                     $defaultConfigName,
-                    $configPrepared
+                    $configPrepared,
+                    $bundleConfig['preload']
                 ),
             ];
         }
@@ -155,7 +159,7 @@ class PentatrionViteExtension extends Extension
 
     private function entrypointsLookupFactory(
         ContainerBuilder $container,
-        string $configName
+        string $configName,
     ): Reference {
         $id = $this->getServiceId('entrypoints_lookup', $configName);
         $arguments = [
@@ -177,7 +181,8 @@ class PentatrionViteExtension extends Extension
         ContainerBuilder $container,
         array $defaultAttributes,
         string $configName,
-        array $config
+        array $config,
+        string $preload,
     ): Reference {
         $id = $this->getServiceId('tag_renderer', $configName);
         $arguments = [
@@ -185,6 +190,7 @@ class PentatrionViteExtension extends Extension
             $config['script_attributes'],
             $config['link_attributes'],
             $config['preload_attributes'],
+            $preload,
         ];
         $definition = new Definition(TagRenderer::class, $arguments);
         $container->setDefinition($id, $definition);

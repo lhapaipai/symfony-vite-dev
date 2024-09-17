@@ -11,6 +11,7 @@
 
 /extra/vite
 /extra/webpack-encore-bundle
+/extra/VichUploaderBundle
 
 node_modules
 
@@ -39,3 +40,9 @@ node_modules
 
 /docs/*/.vitepress/cache/
 /docs/*/.vitepress/dist/
+
+/.vscode/settings.json
+/.vscode/launch.json
+
+# Local Netlify folder
+.netlify

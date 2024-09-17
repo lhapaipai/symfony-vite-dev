@@ -3,7 +3,8 @@
  */
 import { describe, expect, it } from "vitest";
 import { registerVueControllerComponents } from "~/stimulus/helpers/vue";
-import { ImportedModules, VueModule } from "~/stimulus/helpers/types";
+import { ImportedModules } from "~/stimulus/helpers/types";
+import { VueModule } from "~/stimulus/helpers/vue/types";
 
 const fakeVueComponent = () => ({});
 

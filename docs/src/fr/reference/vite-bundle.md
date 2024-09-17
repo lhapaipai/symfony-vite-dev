@@ -38,6 +38,44 @@ Lors d'une utilisation avec Docker, vous pouvez désirer spécifier une origine 
 
 Génère des URL complètes de vos fichiers js/css/assets générés (schema + domaine + chemin).
 
+## throw_on_missing_asset
+
+- **Type :** `boolean`
+- **Valeur par défaut :** `true`
+
+Par défaut, vite-bundle lèvera une exception si vous utilisez la function Twig `asset()` avec un chemin qui n'est pas présent dans le fichier `manifest.json`, dans certains cas des plugins peuvent copier des fichiers statiques sans qu'ils ne soient référencés dans le manifeste, vous devrez donc assigner la valeur à `false` pour pouvoir y faire référence.
+
+```js
+import { defineConfig } from 'vite'
+
+import symfonyPlugin from 'vite-plugin-symfony';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+
+export default defineConfig({
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "assets/images/angular.svg",
+          dest: "static"
+        }
+      ]
+    }),
+    symfonyPlugin(),
+  ],
+  // ...
+});
+```
+```yaml
+# config/packages/framework.yaml
+framework:
+    assets:
+        version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
+```
+```twig
+<img src="{{ asset('static/angular.svg')}}" />
+```
+
 ## throw_on_missing_entry
 
 - **Type :** `boolean`
@@ -87,8 +125,8 @@ Pour plus de détail, voir la section [performances](/fr/guide/performances#prec
 
 ## crossorigin
 
-- **Type :** `false` | `"anonymous"` | `"use-credentials"`
-- **Valeur par défaut :** `false`
+- **Type :** `false` | `true` | `"anonymous"` | `"use-credentials"`
+- **Valeur par défaut :** `true`
 
 Si vous précisez cette option, un attribut `crossorigin` sera ajouté à toutes les balises : `<script>`, `<link rel="stylesheet">`, `<link rel="modulepreload">` et les balises internes de Vite.
 

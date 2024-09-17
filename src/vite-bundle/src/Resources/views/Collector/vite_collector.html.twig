@@ -1,0 +1,82 @@
+{% extends "@WebProfiler/Profiler/layout.html.twig" %}
+
+{% block toolbar %}
+    {% set icon %}
+    {{ include('@PentatrionVite/Collector/icon.svg') }}
+    <span class="sf-toolbar-value">Vite</span>
+    {% endset %}
+    {% set text %}
+    <div class="sf-toolbar-info-piece">
+        <b>Vite dev Server</b>
+        <span>
+        <a href="{{ path('_profiler_vite') }}">Config</a>
+        </span>
+    </div>
+
+    <div class="sf-toolbar-info-piece">
+        <b>Rendered scripts</b>
+        <span class="sf-toolbar-status">{{ collector.renderedScripts | length }}</span>
+    </div>
+    <div class="sf-toolbar-info-piece">
+        <b>Rendered links</b>
+        <span class="sf-toolbar-status">{{ collector.renderedStylesheets | length }}</span>
+    </div>
+    {% endset %}
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': true }) }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+    <span class="icon">
+    {{ include('@PentatrionVite/Collector/icon.svg') }}
+    </span>
+    <strong>Vite</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Rendered tags</h2>
+    {% for tag in collector.renderedTags %}
+        <table>
+            <thead>
+                <tr>
+                    <th class="key" colspan="2">{{ tag.filename }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>tag</td>
+                    <td>&lt;{{ tag.tagName }}&gt;</td>
+                </tr>
+                <tr>
+                    <td>origin</td>
+                    <td>{{ tag.origin }}</td>
+                </tr>
+                <tr>
+                    <td>renderAsTag</td>
+                    <td>{{ tag.renderAsTag | symfonyvite_stringify }}</td>
+                </tr>
+                <tr>
+                    <td>renderAsLinkHeader</td>
+                    <td>{{ tag.renderAsLinkHeader | symfonyvite_stringify }}</td>
+                </tr>
+                <tr>
+                    <td>content</td>
+                    <td>{{ tag.content | symfonyvite_stringify }}</td>
+                </tr>
+                <tr>
+                    <th class="font-normal" colspan="2">Attributes</th>
+                </tr>
+                {% for key, value in tag.validAttributes %}
+                    <tr>
+                        <th>{{ key }}</th>
+                        <td>
+                            <pre class="sf-dump">{{ value | symfonyvite_stringify }}</pre>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+
+{% endblock %}

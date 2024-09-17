@@ -62,8 +62,8 @@ Voici comment se comportera votre application en fonction de l'option `preload` 
 Avec l'option `none` :
 
 ```html
-<link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
-<script type="module" src="/build/assets/app-1b490458.js"></script>
+<link rel="stylesheet" href="/build/assets/app-05a88f8a.css" crossorigin>
+<script type="module" src="/build/assets/app-1b490458.js" crossorigin></script>
 ```
 
 Avec l'option `link-tag` (comportement par défaut):
@@ -71,9 +71,9 @@ Avec l'option `link-tag` (comportement par défaut):
 Vos dépendances JS sont préchargées au moment du traitement de la page html.
 
 ```html
-<link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
-<link rel="modulepreload" href="/build/assets/vue-1efeee8e.js">
-<script type="module" src="/build/assets/app-1b490458.js"></script>
+<link rel="stylesheet" href="/build/assets/app-05a88f8a.css" crossorigin>
+<link rel="modulepreload" href="/build/assets/vue-1efeee8e.js" crossorigin>
+<script type="module" src="/build/assets/app-1b490458.js" crossorigin></script>
 ```
 
 Avec l'option `link-header` :
@@ -82,14 +82,19 @@ Tous vos fichiers sont préchargés avant le traitement de la page html. Nécess
 ```css
 /* En-tête HTTP ajoutée par le composant Symfony Web-Link */
 Link: \
-  </build/assets/vue-1efeee8e.js>; rel="preload"; as="script", \
-  </build/assets/app-1b490458.js>; rel="preload"; as="script", \
-  </build/assets/app-05a88f8a.css>; rel="preload"; as="style"
+  </build/assets/vue-1efeee8e.js>; rel="modulepreload"; crossorigin, \
+  </build/assets/app-1b490458.js>; rel="modulepreload"; crossorigin, \
+  </build/assets/app-05a88f8a.css>; rel="preload"; as="style" crossorigin
 ```
 ```html
 <link rel="stylesheet" href="/build/assets/app-05a88f8a.css">
 <script type="module" src="/build/assets/app-1b490458.js"></script>
 ```
+
+Paramétrage encore plus fin :
+
+Si vous souhaitez choisir encore plus finement quels fichiers seront préchargés et
+ceux qui ne le seront pas, il vous faudra écouter l'événement `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` voir section [attributs personnalisés](/fr/guide/custom-attributes.html).
 
 
 ## Mise en cache des fichiers de configuration 🏃

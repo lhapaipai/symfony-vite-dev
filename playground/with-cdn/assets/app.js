@@ -7,4 +7,3 @@ if ($nav) {
   window.addEventListener("scroll", refreshStickStatus);
   refreshStickStatus();
 }
-

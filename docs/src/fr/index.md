@@ -31,11 +31,9 @@ hero:
       text: Installation
       link: /fr/guide/installation
     - theme: alt
-      text: Migration v6
+      text: Migration v7
       link: /extra/migration
-  extra:
-    title: 📢 Note
-    description: La version anglaise de la documentation contient de nombreuses erreurs de traduction. Si quelqu'un était motivé à donner un petit coup de main, ce serait vraiment génial... 🙏 Le dépôt <a href="https://github.com/lhapaipai/symfony-vite-dev">symfony-vite-dev</a> rassemble dans un dossier tous les outils pour participer au développement.
+  extra: ~
 features:
   - icon: ⚡️
     title: Configuration facile

@@ -1,3 +1,57 @@
+## v7.0.4
+
+- fix use `proxy_origin` in Debugger if configured (@andyexeter)
+
+## v7.0.3
+
+- stimulus fix import.meta regex to support comments
+
+## v7.0.2
+
+- stimulus plugin check module entrypoint inside controllers.json
+- fix vite-plugin-symfony partial options TypeScript type.
+
+## v7.0.1
+
+- fix Symfony try to register twice `TypeExtension`.
+
+## v7.0.0
+
+- new Profiler
+- change crossorin default value
+- better `PreloadAssetsEventListener`
+- stimulus refactorisation
+
+## v6.5.3
+
+- fix vite-plugin-symfony tsup export when package is ESM.
+
+## v6.5.2
+
+- fix dummy-non-existing-folder to be created when used with vitest UI.
+
+## v6.5.1
+
+- fix overriding types from '@hotwired/stimulus'
+
+## v6.5.0
+
+- move v6.4.7 to 6.5.0 : flex recipes accept only minor version number (not patch).
+
+## v6.4.7
+
+- vite-bundle : prepare v7 flex recipe add pentatrion_vite.yaml route file into install directory 
+
+## v6.4.6
+
+- vite-bundle : add throw_on_missing_asset option
+
+## v6.4.5
+
+- vite-bundle : fix Crossorigin attribute needs adding to Link headers (@andyexeter)
+- vite-bundle : Skip devServer lookup if proxy is defined (@Blackskyliner)
+- vite-bundle : fix typo in error message when outDir is outside project root (@acran)
+
 ## v6.4.4
 
 - vite-plugin-symfony : fix typo in error message when outDir is outside project root (@acran)

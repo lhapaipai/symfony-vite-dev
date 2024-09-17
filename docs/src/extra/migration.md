@@ -5,25 +5,162 @@
 # and get what is the latest version
 composer outdated
 
-# at the time of writing this, it was the version 6.0
-# so update your bundle to this version
-composer require pentatrion/vite-bundle:^6.0
+# update your bundle to this version
+composer require pentatrion/vite-bundle:^7.0
 
 # Important ! update your vite-plugin-symfony npm package
-# to the same Major and version.
-npm i vite-plugin-symfony@^6.0
+# to the same Major and minor and version.
+npm i vite-plugin-symfony@^7.0
 # or
-yarn upgrade vite-plugin-symfony@^6.0
+yarn upgrade vite-plugin-symfony@^7.0
 ```
 
 If you upgrade to a new major version
+
+## from v6.x to v7.x
+
+### New route
+
+Version 7 adds a new route for the Symfony profiler and you will probably encounter an error with it (An error occurred while loading the web debug toolbar. Open the web profiler.) until you update your recipe.
+
+Update your recipe
+
+```bash
+composer recipes:update pentatrion/vite-bundle
+```
+
+The `./config/routes/dev/pentatrion_vite.yaml` file is replaced by `./config/routes/pentatrion_vite.yaml` with `when@dev` and add a new route.
+
+If you want to do this update manually
+
+delete your `config/routes/dev/pentatrion_vite.yaml` file and add this one instead. If you have a multiple configuration see below.
+
+```yaml
+# config/routes/pentatrion_vite.yaml
+when@dev:
+    _pentatrion_vite:
+        prefix: /build
+        resource: "@PentatrionViteBundle/Resources/config/routing.yaml"
+
+    _profiler_vite:
+        path: /_profiler/vite
+        defaults:
+            _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+
+```
+
+### `crossorigin`
+
+
+the `crossorigin` option for vite-bundle is `true` by default (previously its default was `false`).
+Normally you would not need to change this behavior to `false`. If you encounter problems with this option, feel free to open an *issue*.
+
+```yaml
+# config/packages/pentatrion_vite.yaml
+pentatrion_vite:
+  crossorigin: true
+```
+
+### Stimulus
+
+If you are using Stimulus, changes will need to be made to your `bootstrap.js` file with the appearance of the `?stimulus` suffix and the activation of the `eager` option to `true` for `import.meta.glob`.
+
+
+```js
+import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+
+registerControllers( // [!code --]
+  app, // [!code --]
+  import.meta.glob('./controllers/*_(lazy)\?controller.[jt]s(x)\?') // [!code --]
+) // [!code --]
+
+registerControllers( // [!code ++]
+  app, // [!code ++]
+  import.meta.glob('./controllers/*_controller.js', { // [!code ++]
+    query: "?stimulus", // [!code ++]
+    eager: true, // [!code ++]
+  }) // [!code ++]
+) // [!code ++]
+```
+
+the finer configuration of the controllers (notably the `lazy` behavior) will be done
+through the `import.meta`. see [Stimulus reference](/stimulus/reference.html).
+
+### CDN
+
+if you use a CDN remember to fill in the options, `base` and `build.outDir`.
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+
+export default defineConfig(({ mode }) => {
+  return {
+    base:
+      mode === "development"
+        ? "/build/"
+        : "http://cdn.custom-domain.com",
+
+    publicDir: false,
+
+    build: {
+      outDir: "./public/build",
+      rollupOptions: {
+        input: {
+          app: "./assets/app.js",
+        },
+      },
+    },
+  };
+});
+
+```
+
+If you don't have [multiple configurations](/guide/multiple-configurations) it's already over...
+
+### Multiple configurations
+
+
+Else, you will need to update manually your `config/routes/pentatrion_vite.yaml` file.
+
+
+```yaml
+# config/routes/pentatrion_vite.yaml
+when@dev:
+    # remove this default config
+    _pentatrion_vite: // [!code --]
+        prefix: /build // [!code --]
+        resource: "@PentatrionViteBundle/Resources/config/routing.yaml" // [!code --]
+
+    # add one route by build path
+    _pentatrion_vite_config1: // [!code ++]
+        path: /build-1/{path} #same as your config1 base // [!code ++]
+        defaults: // [!code ++]
+            _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+            configName: config1 // [!code ++]
+        requirements: // [!code ++]
+            path: ".+" // [!code ++]
+
+    _pentatrion_vite_config2: // [!code ++]
+        path: /build-2/{path} #same as your config2 base // [!code ++]
+        defaults: // [!code ++]
+            _controller: Pentatrion\ViteBundle\Controller\ViteController::proxyBuild // [!code ++]
+            configName: config2 // [!code ++]
+        requirements: // [!code ++]
+            path: ".+" // [!code ++]
+
+    _profiler_vite:
+        path: /_profiler/vite
+        defaults:
+            _controller: Pentatrion\ViteBundle\Controller\ProfilerController::info
+```
 
 ## from v5.x to v6.x
 
 ### `RenderAssetTagEvent`
 
 If you created a class that listened to the `Pentatrion\ViteBundle\Event\RenderAssetTagEvent` event.
-The `$event` instance has different methods that allow more complete control of the generation of html tags. See the source code for [RenderAssetTagEvent](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php) and [Tag](https://github.com/lhapaipai/ vite-bundle/blob/main/src/Model/Tag.php).
+The `$event` instance has different methods that allow more complete control of the generation of html tags. See the source code for [RenderAssetTagEvent](https://github.com/lhapaipai/vite-bundle/blob/main/src/Event/RenderAssetTagEvent.php) and [Tag](https://github.com/lhapaipai/vite-bundle/blob/main/src/Model/Tag.php).
 
 
 ```php

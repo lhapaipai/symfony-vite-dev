@@ -1,7 +1,7 @@
 import process from "node:process";
 import type { ResolvedConfig } from "vite";
 import { getLegacyName, prepareRollupInputs, resolveUserExternal } from "./utils";
-import { EntryPoints, EntryPoint, GeneratedFiles, FileInfos, FilesMetadatas } from "../types";
+import { EntryPoints, GeneratedFiles, FileInfos, FilesMetadatas, BuildEntryPoint } from "../types";
 import { getOutputPath } from "./pathMapping";
 
 export const getDevEntryPoints = (config: ResolvedConfig, viteDevServerUrl: string): EntryPoints => {
@@ -37,22 +37,27 @@ export const getBuildEntryPoints = (generatedFiles: GeneratedFiles, viteConfig: 
 
   for (const [entryName, entry] of Object.entries(entryFiles)) {
     const outputRelPath = getOutputPath(entry.inputRelPath);
+    if (!outputRelPath) {
+      console.error("unable to get outputPath", entry.inputRelPath);
+      process.exit(1);
+    }
+
     const fileInfos = generatedFiles[outputRelPath];
 
-    if (!outputRelPath || !fileInfos) {
+    if (!fileInfos) {
       console.error("unable to map generatedFile", entry, outputRelPath, fileInfos);
       process.exit(1);
     }
 
     const legacyInputRelPath = getLegacyName(entry.inputRelPath);
-    const legacyFileInfos = generatedFiles[getOutputPath(legacyInputRelPath)] ?? null;
+    const legacyFileInfos = generatedFiles[getOutputPath(legacyInputRelPath)!] ?? null;
 
     if (legacyFileInfos) {
       hasLegacyEntryPoint = true;
-      entryPoints[`${entryName}-legacy`] = resolveEntrypoint(legacyFileInfos, generatedFiles, viteConfig, false);
+      entryPoints[`${entryName}-legacy`] = resolveBuildEntrypoint(legacyFileInfos, generatedFiles, viteConfig, false);
     }
 
-    entryPoints[entryName] = resolveEntrypoint(
+    entryPoints[entryName] = resolveBuildEntrypoint(
       fileInfos,
       generatedFiles,
       viteConfig,
@@ -61,22 +66,22 @@ export const getBuildEntryPoints = (generatedFiles: GeneratedFiles, viteConfig: 
   }
 
   if (hasLegacyEntryPoint && getOutputPath("vite/legacy-polyfills")) {
-    const fileInfos = generatedFiles[getOutputPath("vite/legacy-polyfills")] ?? null;
+    const fileInfos = generatedFiles[getOutputPath("vite/legacy-polyfills")!] ?? null;
     if (fileInfos) {
-      entryPoints["polyfills-legacy"] = resolveEntrypoint(fileInfos, generatedFiles, viteConfig, false);
+      entryPoints["polyfills-legacy"] = resolveBuildEntrypoint(fileInfos, generatedFiles, viteConfig, false);
     }
   }
 
   return entryPoints;
 };
 
-export const resolveEntrypoint = (
+export const resolveBuildEntrypoint = (
   fileInfos: FileInfos,
   generatedFiles: GeneratedFiles,
   config: ResolvedConfig,
   legacyEntryName: boolean | string,
   resolvedImportOutputRelPaths: string[] = [],
-): EntryPoint => {
+): BuildEntryPoint => {
   const css: string[] = [];
   const js: string[] = [];
   const preload: string[] = [];
@@ -115,7 +120,7 @@ export const resolveEntrypoint = (
         dynamic: importDynamic,
         js: importJs,
         preload: importPreload,
-      } = resolveEntrypoint(importFileInfos, generatedFiles, config, false, resolvedImportOutputRelPaths);
+      } = resolveBuildEntrypoint(importFileInfos, generatedFiles, config, false, resolvedImportOutputRelPaths);
 
       for (const dependency of importCss) {
         if (css.indexOf(dependency) === -1) {

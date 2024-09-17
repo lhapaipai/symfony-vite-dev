@@ -1,0 +1,163 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "basic:vite:dev",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["-c", "${workspaceFolder}/basic/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/basic",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "basic:vite:build",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["build", "-c", "${workspaceFolder}/basic/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/basic",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "sandbox:vite:dev",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["-c", "${workspaceFolder}/sandbox/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/sandbox",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "sandbox:vite:build",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["build", "-c", "${workspaceFolder}/sandbox/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/sandbox",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "stimulus-basic:vite:dev",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["-c", "${workspaceFolder}/stimulus-basic/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/stimulus-basic",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "stimulus-basic:vite:build",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": [
+        "build",
+        "-c",
+        "${workspaceFolder}/stimulus-basic/vite.config.js"
+      ],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/stimulus-basic",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "stimulus:vite:dev",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["-c", "${workspaceFolder}/stimulus/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/stimulus",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "stimulus:vite:build",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["build", "-c", "${workspaceFolder}/stimulus/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/stimulus",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "with-cdn:vite:dev",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["-c", "${workspaceFolder}/with-cdn/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/with-cdn",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "with-cdn:vite:build",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["build", "-c", "${workspaceFolder}/with-cdn/vite.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/with-cdn",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "ssr:vite:build:server",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["build", "-c", "${workspaceFolder}/ssr/vite.ssr.config.js"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/ssr",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003
+    },
+    {
+      "name": "Launch currently open script",
+      "type": "php",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "port": 0,
+      "runtimeArgs": ["-dxdebug.start_with_request=yes"],
+      "env": {
+        "XDEBUG_MODE": "debug,develop",
+        "XDEBUG_CONFIG": "client_port=${port}"
+      }
+    }
+  ]
+}

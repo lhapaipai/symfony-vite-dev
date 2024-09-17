@@ -2,27 +2,30 @@
 
 namespace Pentatrion\ViteBundle\Tests\Service;
 
+use Pentatrion\ViteBundle\Event\RenderAssetTagEvent;
 use Pentatrion\ViteBundle\Service\EntrypointRenderer;
 use Pentatrion\ViteBundle\Service\EntrypointsLookup;
 use Pentatrion\ViteBundle\Service\EntrypointsLookupCollection;
 use Pentatrion\ViteBundle\Service\FileAccessor;
-use Pentatrion\ViteBundle\Util\InlineContent;
 use Pentatrion\ViteBundle\Service\TagRenderer;
 use Pentatrion\ViteBundle\Service\TagRendererCollection;
-use Pentatrion\ViteBundle\Event\RenderAssetTagEvent;
+use Pentatrion\ViteBundle\Util\InlineContent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\RequestContext;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class EntrypointRendererTest extends TestCase
 {
-    private function getBasicTagRendererCollection($scriptAttributes = [], $linkAttributes = []): TagRendererCollection
-    {
-        $tagRenderer = new TagRenderer([], $scriptAttributes, $linkAttributes);
+    private function getBasicTagRendererCollection(
+        array $defaultAttributes = [],
+        array $scriptAttributes = [],
+        array $linkAttributes = [],
+        array $preloadAttributes = [],
+        string $preload = 'link-tag'
+    ): TagRendererCollection {
+        $tagRenderer = new TagRenderer($defaultAttributes, $scriptAttributes, $linkAttributes, $preloadAttributes, $preload);
         /**
          * @var TagRendererCollection|Stub $tagRendererCollection
          */
@@ -134,7 +137,7 @@ class EntrypointRendererTest extends TestCase
                 'app',
                 [
                     'mode' => 'dev',
-                    'scripts' => '<script type="module" src="http://127.0.0.1:5173/build/@vite/client"></script>'
+                    'scripts' => '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin></script>'
                         .'<script type="module" src="http://127.0.0.1:5173/build/assets/app.js"></script>',
                     'links' => '',
                 ],
@@ -144,7 +147,7 @@ class EntrypointRendererTest extends TestCase
                 'theme',
                 [
                     'mode' => 'dev',
-                    'scripts' => '<script type="module" src="http://127.0.0.1:5173/build/@vite/client"></script>',
+                    'scripts' => '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin></script>',
                     'links' => '<link rel="stylesheet" href="http://127.0.0.1:5173/build/assets/theme.scss">',
                 ],
             ],
@@ -224,7 +227,7 @@ class EntrypointRendererTest extends TestCase
         );
 
         $this->assertEquals(
-            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client"></script>'
+            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin></script>'
             .'<script type="module" src="http://127.0.0.1:5173/build/assets/app.js"></script>'
             .'<script type="module" src="http://127.0.0.1:5173/build/assets/other-app.js"></script>',
             $entrypointRenderer->renderScripts('app').$entrypointRenderer->renderScripts('other-app')
@@ -240,7 +243,7 @@ class EntrypointRendererTest extends TestCase
         );
 
         $this->assertEquals(
-            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client"></script>'
+            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin></script>'
             .'<script type="module">'.InlineContent::getReactRefreshInlineCode('http://127.0.0.1:5173/build/').'</script>'
             .'<script type="module" src="http://127.0.0.1:5173/build/assets/app.js"></script>'
             .'<script type="module" src="http://127.0.0.1:5173/build/assets/other-app.js"></script>',
@@ -331,7 +334,7 @@ class EntrypointRendererTest extends TestCase
         $request
             ->method('getUriForPath')
             ->willReturnCallback(function ($path) {
-                return 'http://mydomain.local' . $path;
+                return 'http://mydomain.local'.$path;
             })
         ;
 
@@ -349,8 +352,8 @@ class EntrypointRendererTest extends TestCase
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookupBasicBuild),
             $this->getBasicTagRendererCollection(),
+            '_default',
             true,
-            'link-tag',
             $requestStack,
             null,
         );
@@ -363,8 +366,8 @@ class EntrypointRendererTest extends TestCase
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookupBasicBuild),
             $this->getBasicTagRendererCollection(),
+            '_default',
             false,
-            'link-tag',
             $requestStack,
             null,
         );
@@ -377,13 +380,13 @@ class EntrypointRendererTest extends TestCase
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookupBasicDev),
             $this->getBasicTagRendererCollection(),
+            '_default',
             true,
-            'link-tag',
             $requestStack,
             null,
         );
         $this->assertEquals(
-            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client">'
+            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin>'
             .'</script><script type="module" src="http://127.0.0.1:5173/build/assets/app.js"></script>',
             $entrypointRenderer->renderScripts('app'),
             'render correct url when absolute_url defined and vite dev server is started'
@@ -395,9 +398,7 @@ class EntrypointRendererTest extends TestCase
         $entrypointsLookup = $this->getEntrypointsLookup('basic-build');
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookup),
-            $this->getBasicTagRendererCollection(),
-            false,
-            'none'
+            $this->getBasicTagRendererCollection([], [], [], [], 'none')
         );
 
         $this->assertEquals(
@@ -410,9 +411,7 @@ class EntrypointRendererTest extends TestCase
 
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookup),
-            $this->getBasicTagRendererCollection(),
-            false,
-            'link-header'
+            $this->getBasicTagRendererCollection([], [], [], [], 'link-header')
         );
 
         $this->assertEquals(
@@ -466,7 +465,7 @@ class EntrypointRendererTest extends TestCase
                     $tag->setAttribute('nonce', 'custom-nonce');
                 } elseif ($tag->isStylesheet()) {
                     $tag->removeAttribute('referrerpolicy');
-                } elseif ($tag->isModulePreload()) {
+                } elseif ($tag->isPreload()) {
                     $tag->setAttribute('data-foo', 'bar');
                 }
 
@@ -476,7 +475,7 @@ class EntrypointRendererTest extends TestCase
         $entrypointsLookup = $this->getEntrypointsLookup('basic-build');
         $entrypointRenderer = new EntrypointRenderer(
             $this->getEntrypointsLookupCollection($entrypointsLookup),
-            $this->getBasicTagRendererCollection(['defer' => true], ['referrerpolicy' => 'origin']),
+            $this->getBasicTagRendererCollection([], ['defer' => true], ['referrerpolicy' => 'origin']),
             false,
             'link-tag',
             null,
@@ -570,8 +569,8 @@ class EntrypointRendererTest extends TestCase
                 ['config2-dev', $entrypointsLookupConfig2],
             ]));
 
-        $tagRendererConfig1 = new TagRenderer();
-        $tagRendererConfig2 = new TagRenderer();
+        $tagRendererConfig1 = new TagRenderer(['crossorigin' => true]);
+        $tagRendererConfig2 = new TagRenderer(['crossorigin' => true]);
 
         /**
          * @var TagRendererCollection|Stub $tagRendererCollection
@@ -589,10 +588,10 @@ class EntrypointRendererTest extends TestCase
             $tagRendererCollection
         );
 
-        $expectedScripts = '<script type="module" src="http://127.0.0.1:5173/build-config1/@vite/client"></script>'
-        .'<script type="module" src="http://127.0.0.1:5173/build-config1/assets/app-1.js"></script>'
-        .'<script type="module" src="http://127.0.0.1:5174/build-config2/@vite/client"></script>'
-        .'<script type="module" src="http://127.0.0.1:5174/build-config2/assets/app-2.js"></script>';
+        $expectedScripts = '<script type="module" src="http://127.0.0.1:5173/build-config1/@vite/client" crossorigin></script>'
+        .'<script crossorigin type="module" src="http://127.0.0.1:5173/build-config1/assets/app-1.js"></script>'
+        .'<script type="module" src="http://127.0.0.1:5174/build-config2/@vite/client" crossorigin></script>'
+        .'<script crossorigin type="module" src="http://127.0.0.1:5174/build-config2/assets/app-2.js"></script>';
 
         $this->assertEquals(
             $expectedScripts,

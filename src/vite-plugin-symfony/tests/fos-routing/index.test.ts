@@ -42,7 +42,7 @@ describe("symfonyFosRouting Plugin", () => {
         extraArgs: {},
       },
       transformCheckFileTypes: /\.(js|jsx|ts|tsx|vue)$/,
-      watchPaths: ["src/**/*.php"],
+      watchPaths: ["src/Controller/**/.php", "config/routes/.yaml", "config/routes.yaml"],
       possibleRoutesConfigFilesExt: ["php"],
       verbose: false,
       php: "php",

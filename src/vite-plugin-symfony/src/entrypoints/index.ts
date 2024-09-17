@@ -1,4 +1,4 @@
-import { resolve, join, relative, dirname } from "node:path";
+import path, { resolve, join, relative, dirname } from "node:path";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import glob from "fast-glob";
@@ -24,8 +24,10 @@ import {
   getInputRelPath,
   parseVersionString,
   extractExtraEnvVars,
+  INFO_PUBLIC_PATH,
+  normalizeConfig,
 } from "./utils";
-import { resolveBase, resolveOutDir, refreshPaths, resolvePublicDir } from "../pluginOptions";
+import { resolveOutDir, refreshPaths } from "./pluginOptions";
 
 import { GeneratedFiles, ResolvedConfigWithOrderablePlugins, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { addIOMapping } from "./pathMapping";
@@ -33,8 +35,8 @@ import { showDepreciationsWarnings } from "./depreciations";
 
 // src and dist directory are in the same level;
 let pluginDir = dirname(dirname(fileURLToPath(import.meta.url)));
-let pluginVersion;
-let bundleVersion;
+let pluginVersion: [string] | [string, number, number, number];
+let bundleVersion: [string] | [string, number, number, number];
 
 if (process.env.VITEST) {
   pluginDir = dirname(pluginDir);
@@ -59,7 +61,7 @@ if (process.env.VITEST) {
   }
 }
 
-export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger): Plugin {
+export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntrypointsOptions, logger: Logger) {
   let viteConfig: ResolvedConfigWithOrderablePlugins;
   let viteDevServerUrl: string;
 
@@ -79,17 +81,19 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
       const extraEnvVars = extractExtraEnvVars(mode, envDir, pluginOptions.exposedEnvVars, userConfig.define);
 
-      if (userConfig.build.rollupOptions.input instanceof Array) {
+      if (userConfig.build?.rollupOptions?.input instanceof Array) {
         logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"));
         process.exit(1);
       }
 
+      const base = userConfig.base ?? "/build/";
+
       const extraConfig: UserConfig = {
-        base: userConfig.base ?? resolveBase(pluginOptions),
+        base,
         publicDir: false,
         build: {
           manifest: true,
-          outDir: userConfig.build?.outDir ?? resolveOutDir(pluginOptions),
+          outDir: userConfig.build?.outDir ?? resolveOutDir(base),
         },
         define: extraEnvVars,
         optimizeDeps: {
@@ -138,7 +142,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
       devServer.httpServer?.once("listening", () => {
         // empty the buildDir and create an entrypoints.json file inside.
-        if (viteConfig.env.DEV) {
+        if (viteConfig.env.DEV && !process.env.VITEST) {
           showDepreciationsWarnings(pluginOptions, logger);
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
@@ -190,10 +194,28 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         });
       }
 
+      devServer.middlewares.use(function symfonyInternalsMiddleware(req, res, next) {
+        if (req.url === "/" || req.url === viteConfig.base) {
+          res.statusCode = 404;
+          res.end(readFileSync(join(pluginDir, "static/dev-server-404.html")));
+          return;
+        }
+
+        if (req.url === path.posix.join(viteConfig.base, INFO_PUBLIC_PATH)) {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+
+          res.end(normalizeConfig(viteConfig));
+          return;
+        }
+
+        return next();
+      });
+
+      // inspired by https://github.com/vitejs/vite
+      // file: packages/vite/src/node/server/middlewares/static.ts
       if (pluginOptions.servePublic !== false) {
-        // inspired by https://github.com/vitejs/vite
-        // file: packages/vite/src/node/server/middlewares/static.ts
-        const serve = sirv(resolvePublicDir(pluginOptions), {
+        const serve = sirv(pluginOptions.servePublic, {
           dev: true,
           etag: true,
           extensions: [],
@@ -210,17 +232,14 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
             res.setHeader("Access-Control-Allow-Origin", "*");
           },
         });
-        devServer.middlewares.use(function viteServePublicMiddleware(req, res, next) {
-          if (req.url === "/" || req.url === "/build/") {
-            res.statusCode = 404;
-            res.end(readFileSync(join(pluginDir, "static/dev-server-404.html")));
-            return;
-          }
 
+        devServer.middlewares.use(function viteServePublicMiddleware(req, res, next) {
           // skip import request and internal requests `/@fs/ /@vite-client` etc...
           if (isImportRequest(req.url!) || isInternalRequest(req.url!)) {
             return next();
           }
+
+          // only if servePublic is enabled
           serve(req, res, next);
         });
       }
@@ -239,7 +258,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       // chunk.viteMetadata.importedCss contains a Set of relative paths of generated css files
       // in our case we have only one file (it's a condition of isCssEntryPoint to be true).
       // eg: addIOMapping('assets/theme.scss', 'assets/theme-44b5be96.css');
-      chunk.viteMetadata.importedCss.forEach((cssBuildFilename) => {
+      chunk.viteMetadata?.importedCss.forEach((cssBuildFilename) => {
         addIOMapping(cssAssetName, cssBuildFilename);
       });
     },
@@ -278,5 +297,5 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         });
       }
     },
-  };
+  } satisfies Plugin;
 }

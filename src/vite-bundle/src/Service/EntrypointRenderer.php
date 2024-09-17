@@ -16,7 +16,11 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 class EntrypointRenderer implements ResetInterface
 {
-    /** @var array<string, bool> */
+    /**
+     * key is configName (ex: ['_default' => true]).
+     *
+     * @var array<string, bool>
+     */
     private array $returnedViteClients = [];
 
     /** @var array<string, bool> */
@@ -25,19 +29,22 @@ class EntrypointRenderer implements ResetInterface
     /** @var array<string, bool> */
     private array $returnedViteLegacyScripts = [];
 
-    /** @var array<'scripts'|'styles', array<string, Tag>> */
-    private array $renderedFiles = [
-        'scripts' => [],
-        'styles' => [],
-    ];
+    /**
+     * ex: [
+     *  "http://127.0.0.1:5173/build/assets/app.js" => $tag
+     * ].
+     *
+     * @var array<string, Tag>
+     */
+    private array $renderedTags = [];
 
     public function __construct(
         private EntrypointsLookupCollection $entrypointsLookupCollection,
         private TagRendererCollection $tagRendererCollection,
+        private string $defaultConfigName = '_default',
         private bool $useAbsoluteUrl = false,
-        private string $preload = 'link-tag',
         private ?RequestStack $requestStack = null,
-        private ?EventDispatcherInterface $eventDispatcher = null
+        private ?EventDispatcherInterface $eventDispatcher = null,
     ) {
     }
 
@@ -86,26 +93,15 @@ class EntrypointRenderer implements ResetInterface
         $this->returnedViteClients = [];
         $this->returnedReactRefresh = [];
         $this->returnedViteLegacyScripts = [];
-        $this->renderedFiles = [
-            'scripts' => [],
-            'styles' => [],
-        ];
+        $this->renderedTags = [];
     }
 
     /**
-     * @return array<string, Tag>
+     * @return array<Tag>
      */
-    public function getRenderedScripts(): array
+    public function getRenderedTags(): array
     {
-        return $this->renderedFiles['scripts'];
-    }
-
-    /**
-     * @return array<string, Tag>
-     */
-    public function getRenderedStyles(): array
-    {
-        return $this->renderedFiles['styles'];
+        return array_values($this->renderedTags);
     }
 
     /**
@@ -117,8 +113,9 @@ class EntrypointRenderer implements ResetInterface
         string $entryName,
         array $options = [],
         ?string $configName = null,
-        bool $toString = true
+        bool $toString = true,
     ): string|array {
+        $configName = $configName ?? $this->defaultConfigName;
         $entrypointsLookup = $this->getEntrypointsLookup($configName);
         $tagRenderer = $this->getTagRenderer($configName);
 
@@ -158,15 +155,17 @@ class EntrypointRenderer implements ResetInterface
             $tags[] = $tagRenderer->createDynamicFallbackScript();
             $tags[] = $tagRenderer->createSafariNoModuleScript();
 
-            foreach ($entrypointsLookup->getJSFiles('polyfills-legacy') as $filePath) {
+            foreach ($entrypointsLookup->getJSFiles('polyfills-legacy') as $url) {
                 // normally only one js file
                 $tags[] = $tagRenderer->createScriptTag(
                     [
                         'nomodule' => true,
                         'crossorigin' => true,
-                        'src' => $this->completeURL($filePath, $useAbsoluteUrl),
+                        'src' => $this->completeURL($url, $useAbsoluteUrl),
                         'id' => 'vite-legacy-polyfill',
-                    ]
+                    ],
+                    '',
+                    '_internal'
                 );
             }
 
@@ -174,22 +173,24 @@ class EntrypointRenderer implements ResetInterface
         }
 
         /* normal js scripts */
-        foreach ($entrypointsLookup->getJSFiles($entryName) as $filePath) {
-            if (!isset($this->renderedFiles['scripts'][$filePath])) {
+        foreach ($entrypointsLookup->getJSFiles($entryName) as $url) {
+            if (!isset($this->renderedTags[$url])) {
                 $tag = $tagRenderer->createScriptTag(
                     array_merge(
                         [
                             'type' => 'module',
-                            'src' => $this->completeURL($filePath, $useAbsoluteUrl),
-                            'integrity' => $entrypointsLookup->getFileHash($filePath),
+                            'src' => $this->completeURL($url, $useAbsoluteUrl),
+                            'integrity' => $entrypointsLookup->getFileHash($url),
                         ],
                         $options['attr'] ?? []
-                    )
+                    ),
+                    '',
+                    $entryName
                 );
 
                 $tags[] = $tag;
 
-                $this->renderedFiles['scripts'][$filePath] = $tag;
+                $this->renderedTags[$url] = $tag;
             }
         }
 
@@ -197,23 +198,24 @@ class EntrypointRenderer implements ResetInterface
         if ($entrypointsLookup->hasLegacy($entryName)) {
             $id = self::pascalToKebab("vite-legacy-entry-$entryName");
 
-            $filePath = $entrypointsLookup->getLegacyJSFile($entryName);
-            if (!isset($this->renderedFiles['scripts'][$filePath])) {
+            $url = $entrypointsLookup->getLegacyJSFile($entryName);
+            if (!isset($this->renderedTags[$url])) {
                 $tag = $tagRenderer->createScriptTag(
                     [
                         'nomodule' => true,
-                        'data-src' => $this->completeURL($filePath, $useAbsoluteUrl),
+                        'data-src' => $this->completeURL($url, $useAbsoluteUrl),
                         'id' => $id,
                         'crossorigin' => true,
                         'class' => 'vite-legacy-entry',
-                        'integrity' => $entrypointsLookup->getFileHash($filePath),
+                        'integrity' => $entrypointsLookup->getFileHash($url),
                     ],
-                    InlineContent::getSystemJSInlineCode($id)
+                    InlineContent::getSystemJSInlineCode($id),
+                    $entryName
                 );
 
                 $tags[] = $tag;
 
-                $this->renderedFiles['scripts'][$filePath] = $tag;
+                $this->renderedTags[$url] = $tag;
             }
         }
 
@@ -229,8 +231,9 @@ class EntrypointRenderer implements ResetInterface
         string $entryName,
         array $options = [],
         ?string $configName = null,
-        bool $toString = true
+        bool $toString = true,
     ): string|array {
+        $configName = $configName ?? $this->defaultConfigName;
         $entrypointsLookup = $this->getEntrypointsLookup($configName);
         $tagRenderer = $this->getTagRenderer($configName);
 
@@ -243,45 +246,48 @@ class EntrypointRenderer implements ResetInterface
 
         $tags = [];
 
-        foreach ($entrypointsLookup->getCSSFiles($entryName) as $filePath) {
-            if (!isset($this->renderedFiles['styles'][$filePath])) {
+        foreach ($entrypointsLookup->getCSSFiles($entryName) as $url) {
+            if (!isset($this->renderedTags[$url])) {
                 $tag = $tagRenderer->createLinkStylesheetTag(
-                    $this->completeURL($filePath, $useAbsoluteUrl),
-                    array_merge(['integrity' => $entrypointsLookup->getFileHash($filePath)], $options['attr'] ?? [])
+                    $this->completeURL($url, $useAbsoluteUrl),
+                    array_merge(['integrity' => $entrypointsLookup->getFileHash($url)], $options['attr'] ?? []),
+                    $entryName
                 );
 
                 $tags[] = $tag;
 
-                $this->renderedFiles['styles'][$filePath] = $tag;
+                $this->renderedTags[$url] = $tag;
             }
         }
 
         if ($isBuild) {
-            foreach ($entrypointsLookup->getJavascriptDependencies($entryName) as $filePath) {
-                if (!isset($this->renderedFiles['scripts'][$filePath])) {
+            foreach ($entrypointsLookup->getJavascriptDependencies($entryName) as $url) {
+                if (!isset($this->renderedTags[$url])) {
                     $tag = $tagRenderer->createModulePreloadLinkTag(
-                        $this->completeURL($filePath, $useAbsoluteUrl),
-                        ['integrity' => $entrypointsLookup->getFileHash($filePath)]
+                        $this->completeURL($url, $useAbsoluteUrl),
+                        ['integrity' => $entrypointsLookup->getFileHash($url)],
+                        $entryName
                     );
 
                     $tags[] = $tag;
 
-                    $this->renderedFiles['scripts'][$filePath] = $tag;
+                    $this->renderedTags[$url] = $tag;
                 }
             }
         }
 
         if ($isBuild && isset($options['preloadDynamicImports']) && true === $options['preloadDynamicImports']) {
-            foreach ($entrypointsLookup->getJavascriptDynamicDependencies($entryName) as $filePath) {
-                if (!isset($this->renderedFiles['scripts'][$filePath])) {
+            foreach ($entrypointsLookup->getJavascriptDynamicDependencies($entryName) as $url) {
+                if (!isset($this->renderedTags[$url])) {
                     $tag = $tagRenderer->createModulePreloadLinkTag(
-                        $this->completeURL($filePath, $useAbsoluteUrl),
-                        ['integrity' => $entrypointsLookup->getFileHash($filePath)]
+                        $this->completeURL($url, $useAbsoluteUrl),
+                        ['integrity' => $entrypointsLookup->getFileHash($url)],
+                        $entryName
                     );
 
                     $tags[] = $tag;
 
-                    $this->renderedFiles['scripts'][$filePath] = $tag;
+                    $this->renderedTags[$url] = $tag;
                 }
             }
         }
@@ -302,11 +308,9 @@ class EntrypointRenderer implements ResetInterface
             }
         }
 
-        if ('link-tag' !== $this->preload) {
-            $tags = array_filter($tags, function (Tag $tag) {
-                return !$tag->isModulePreload();
-            });
-        }
+        $tags = array_filter($tags, function (Tag $tag) {
+            return $tag->isRenderAsTag();
+        });
 
         return $toString
         ? implode('', array_map(function ($tagEvent) {

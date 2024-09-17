@@ -12,7 +12,6 @@ class PreloadAssetsEventListener implements EventSubscriberInterface
 {
     public function __construct(
         private EntrypointRenderer $entrypointRenderer,
-        private string|bool $crossOriginAttribute
     ) {
     }
 
@@ -34,22 +33,55 @@ class PreloadAssetsEventListener implements EventSubscriberInterface
         /** @var GenericLinkProvider $linkProvider */
         $linkProvider = $request->attributes->get('_links');
 
-        foreach ($this->entrypointRenderer->getRenderedScripts() as $href => $tag) {
-            $link = $this->createLink('preload', $href)->withAttribute('as', 'script');
+        foreach ($this->entrypointRenderer->getRenderedTags() as $tag) {
+            if (!$tag->isRenderAsLinkHeader()) {
+                continue;
+            }
 
-            if ('module' === $tag->getAttribute('type')) {
-                $link = $link->withAttribute('crossorigin', $this->crossOriginAttribute ?: 'anonymous');
+            $link = null;
+
+            if ($tag->isStylesheet()) {
+                $href = $tag->getAttribute('href');
+                if (!is_string($href)) {
+                    continue;
+                }
+
+                $link = $this->createLink('preload', $href)->withAttribute('as', 'style');
+            } elseif ($tag->isPreload()) {
+                $href = $tag->getAttribute('href');
+                $rel = $tag->getAttribute('rel');
+                if (!is_string($href) || !is_string($rel)) {
+                    continue;
+                }
+
+                if ('modulepreload' === $rel) {
+                    $link = $this->createLink('modulepreload', $href);
+                } elseif ('preload' === $rel) {
+                    $link = $this->createLink('preload', $href)->withAttribute('as', $tag->getAttribute('as') ?? false);
+                }
+            } elseif ($tag->isScriptTag()) {
+                $src = $tag->getAttribute('src');
+                if (!is_string($src)) {
+                    continue;
+                }
+
+                if ($tag->isModule()) {
+                    $link = $this->createLink('modulepreload', $src);
+                } else {
+                    $link = $this->createLink('preload', $src)->withAttribute('as', 'script');
+                }
+            }
+
+            if (is_null($link)) {
+                continue;
+            }
+
+            $crossOrigin = $tag->getAttribute('crossorigin');
+            if (true === $crossOrigin || is_string($crossOrigin)) {
+                $link = $link->withAttribute('crossorigin', $crossOrigin);
             }
 
             $linkProvider = $linkProvider->withLink($link);
-        }
-
-        foreach ($this->entrypointRenderer->getRenderedStyles() as $filePath => $tag) {
-            $href = $tag->getAttribute('href');
-            if (is_string($href)) {
-                $link = $this->createLink('preload', $href)->withAttribute('as', 'style');
-                $linkProvider = $linkProvider->withLink($link);
-            }
         }
 
         $request->attributes->set('_links', $linkProvider);

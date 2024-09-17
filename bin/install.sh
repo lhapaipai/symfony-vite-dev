@@ -13,5 +13,4 @@ cd "$PROJECT_DIR/src/vite-bundle"
 symfony composer install
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
-pnpm install
 pnpm run build

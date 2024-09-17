@@ -9,9 +9,13 @@
 </div>
 
 
-
-
 # Vite plugin Symfony
+
+> [!IMPORTANT]
+> This repository is a "subtree split": a read-only subset of that main repository [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) which delivers to packagist only the necessary code.
+
+> [!IMPORTANT]
+> If you want to open issues, contribute, make PRs or consult examples you will have to go to the [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) repository.
 
 A Vite plugin to easily integrate Vite into your Symfony application.
 
@@ -20,11 +24,6 @@ A Vite plugin to easily integrate Vite into your Symfony application.
 
 This package is intended for use with the Symfony Bundle : [pentatrion/vite-bundle](https://github.com/lhapaipai/vite-bundle).
 
-⚠️ This repository is a "subtree split": a read-only subset of that main repository [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) which delivers to packagist only the necessary code.
-
-if you want to view the source code or open issues you are in the right place.
-
-If you want to contribute, make PRs or consult examples you will have to go to the [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) repository.
 
 ## Installation
 
@@ -75,7 +74,7 @@ and your package.json :
     },
     "devDependencies": {
         "vite": "^5.0",
-        "vite-plugin-symfony": "^6.4"
+        "vite-plugin-symfony": "^7.0"
     }
 }
 ```
@@ -87,7 +86,6 @@ and your package.json :
 | Package                                                                 | Description               |
 | ----------------------------------------------------------------------- | :------------------------ |
 | [vite-bundle](https://github.com/lhapaipai/vite-bundle)                 | Symfony Bundle (read-only)|
-| [vite-plugin-symfony](https://github.com/lhapaipai/vite-plugin-symfony) | Vite plugin (read-only)   |
 | [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev)       | Package for contributors  |
 
 ## License
