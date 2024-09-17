@@ -283,7 +283,7 @@ export type VitePluginSymfonyFosRoutingOptions = {
    * in files with the `php` extension in the `src` directory. Combine this
    * option with the `transformCheckFileTypes` option to watch for changes in
    * other file types.
-   * @default ["src//**//*.php"]"
+   * @default ["src/Controller/**//*.php", "config/routes/.yaml", "config/routes.yaml"]
    */
   watchPaths?: string[];
   /**

@@ -61,11 +61,13 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
         runDumpRoutesCmdSync();
 
         const content = fs.readFileSync(target);
-        if (fs.existsSync(target)) {
-          fs.rmSync(target); // Remove the temporary file
-        }
+
         // Check if there are new routes
         if (!prevContent || content.compare(prevContent) !== 0) {
+          if (fs.existsSync(target)) {
+            fs.rmSync(target); // Remove the file
+          }
+
           fs.mkdirSync(path.dirname(target), { recursive: true });
           fs.writeFileSync(target, content);
 
@@ -122,7 +124,7 @@ export default function symfonyFosRouting(pluginOptions: VitePluginSymfonyFosRou
     async transform(code, id) {
       const isInputFile = entryModules.has(id);
 
-      // Inject if shouldInject is true and the file is matched by the transformCheckFileTypes regex.
+      // Inject if the current file is an input file and the routes have changed.
       if (isInputFile && routesChanged) {
         if (pluginOptions.verbose) {
           logger.warn(`Injecting routes in ${id}...`);

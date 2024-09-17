@@ -63,7 +63,7 @@ export function resolvePluginOptions(userConfig: Partial<VitePluginSymfonyOption
     },
     addImportByDefault: true,
     routingPluginPackageName: "fos-router",
-    watchPaths: ["src/**/*.php"],
+    watchPaths: ["src/Controller/**/.php", "config/routes/.yaml", "config/routes.yaml"],
     possibleRoutesConfigFilesExt: ["php"],
     verbose: false,
     php: "php",
