@@ -57,7 +57,7 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en',
-      description: 'Developper guide',
+      description: 'Developer guide',
 
       themeConfig: {
         editLink: {
