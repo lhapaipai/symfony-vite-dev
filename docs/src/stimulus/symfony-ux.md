@@ -70,7 +70,6 @@ import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimu
 import { registerVueControllerComponents, type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue" // [!code ++]
 
 // register Vue components before startStimulusApp
-import { type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue"; // [!code ++]
 registerVueControllerComponents(import.meta.glob<VueModule>("./vue/controllers/**/*.vue")); // [!code ++]
 
 const app = startStimulusApp();
