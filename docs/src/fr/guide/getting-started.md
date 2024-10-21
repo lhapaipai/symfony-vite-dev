@@ -10,8 +10,6 @@ Il met à disposition :
 
 ## Comment Vite fonctionne-t-il ?
 
-![vite fonctionnement](/graphs/vite.svg)
-
 Par défaut, Vite utilise un fichier `index.html` comme point d'entrée de votre application.
 
 ```html
@@ -174,3 +172,7 @@ Quant à lui, le bundle Symfony `pentatrion/vite-bundle` se chargera principalem
 :::
 
 Maintenant que nous avons vu la théorie, voyons comment installer tout cela dans votre application Symfony !
+
+## Diagramme de l'infrastructure
+
+![vite fonctionnement](/graphs/vite.svg)

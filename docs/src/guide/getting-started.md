@@ -10,8 +10,6 @@ It provides:
 
 ## How does Vite work?
 
-![How does Vite work](/graphs/vite.svg)
-
 By default, Vite uses an `index.html` file as your application's entry point.
 
 ```html
@@ -175,3 +173,8 @@ The `pentatrion/vite-bundle` Symfony bundle will mainly provide the two Twig fun
 :::
 
 Now that we've seen the theory, let's see how to install all of this in your Symfony application!
+
+
+## Infrastructure Diagram
+
+![How does Vite work](/graphs/vite.svg)

@@ -1,3 +1,7 @@
+## v7.0.5
+
+- add origin to internal tags ([@seggewiss](https://github.com/seggewiss))
+
 ## v7.0.4
 
 - fix use `proxy_origin` in Debugger if configured (@andyexeter)

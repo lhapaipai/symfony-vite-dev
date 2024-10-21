@@ -3,6 +3,12 @@
 Le bundle fournit 2 fonctions Twig qui acceptent toutes deux un deuxième paramètre optionnel d'options.
 Un troisième paramètre optionnel "config_name" est disponible si vous avez plusieurs builds. Regardez la page [configurations multiples](/fr/guide/multiple-configurations) si vous voulez plus de détails.
 
+Ces fonctions rendent dans vos templates Twig les balises `<script>` ou `<style>` associées à vos points d'entrée. En fonction du contexte (dévelopment, production, compatibilité) certaines balises supplémentaires internes seront automatiquement incluses (ajout du client Vite, ajout de `polyfills`).
+
+::: warning
+Les attributs supplémentaires que vous pourrez définir dans les options ne seront pas associés aux balises internes. Si vous souhaitez ajouter des attributs spécifiques à vos balises internes (ex: `nonce`), vous pouvez le faire en souscrivant à l'événement `RenderAssetTagEvent` (voir [Attributs personnalisés](/fr/guide/custom-attributes.html#en-ecoutant-l-evenement-renderassettagevent-%F0%9F%A7%A9)).
+:::
+
 ## vite_entry_script_tags 📜
 
 détails des arguments :

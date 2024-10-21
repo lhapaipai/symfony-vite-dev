@@ -3,6 +3,12 @@
 The bundle provides two Twig functions, both of which accept an optional second parameter of options.
 An optional third parameter `config_name` is available if you have multiple builds. Look at [multiple configurations](/guide/multiple-configurations) page for more details.
 
+These functions render in your Twig templates the `<script>` or `<style>` tags associated with your entry points. Depending on the context (development, production, legacy) some additional internal tags will be automatically included (adding the Vite client, adding `polyfills`).
+
+::: warning
+The additional attributes that you can define in the options will not be associated with the internal tags. If you want to add specific attributes to your internal tags (e.g. `nonce`), you can do so by subscribing to the `RenderAssetTagEvent` event (see [Custom attributes](/guide/custom-attributes.html#subscribe-to-renderassettagevent-%F0%9F%A7%A9)).
+:::
+
 ## vite_entry_script_tags 📜
 
 arguments details:
