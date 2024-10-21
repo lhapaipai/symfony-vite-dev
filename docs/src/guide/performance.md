@@ -1,4 +1,4 @@
-# Performances 🚀
+# Performance 🚀
 
 ## Preloading your scripts ⏳
 

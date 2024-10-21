@@ -2,3 +2,11 @@
 base = "docs"
 command = "pnpm build"
 publish = ".vitepress/dist"
+
+[[redirects]]
+from = "/guide/performances.html"
+to = "/guide/performance.html"
+
+[[redirects]]
+from = "/fr/guide/performances.html"
+to = "/fr/guide/performance.html"
