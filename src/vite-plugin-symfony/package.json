@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-symfony",
-  "version": "7.0.4",
+  "version": "7.0.5",
   "description": "A Vite plugin to integrate easily Vite in your Symfony application",
   "type": "module",
   "main": "dist/index.cjs",
