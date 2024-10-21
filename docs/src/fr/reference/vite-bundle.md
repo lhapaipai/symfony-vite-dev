@@ -107,7 +107,7 @@ npm run build
 symfony console cache:clear
 ```
 
-Pour plus d'informations voir la section [performances](/fr/guide/performances#mise-en-cache-des-fichiers-de-configuration).
+Pour plus d'informations voir la section [performances](/fr/guide/performance#mise-en-cache-des-fichiers-de-configuration).
 
 ## preload
 
@@ -120,7 +120,7 @@ Avec `"link-tag"`, vos dépendances JS seront préchargées en utilisant une bal
 
 Avec `"link-header"`, préchargez automatiquement tous les scripts rendus et les balises de lien via l'en-tête http2 Link. Nécessite le composant Symfony [symfony/web-link](https://github.com/symfony/web-link).
 
-Pour plus de détail, voir la section [performances](/fr/guide/performances#prechargement-de-vos-scripts).
+Pour plus de détail, voir la section [performances](/fr/guide/performance#prechargement-de-vos-scripts).
 
 
 ## crossorigin
