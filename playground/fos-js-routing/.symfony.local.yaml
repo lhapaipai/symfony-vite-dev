@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - fos-js-routing.symfony-vite
