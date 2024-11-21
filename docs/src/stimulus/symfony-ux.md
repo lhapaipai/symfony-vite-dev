@@ -4,18 +4,22 @@
 You can use [Symfony UX](https://ux.symfony.com/) components in your
 application. The `symfony/ux-react`, `symfony/ux-vue` and `symfony/ux-svelte` components require some adjustments. See their dedicated sections.
 
-| UX packages       | Compatibility | UX packages       | Compatibility |
-|-------------------|---------------|-------------------|---------------|
-| ux-autocomplete   | ✅            | ux-svelte         | ✅ (*)        |
-| ux-chartjs        | ✅            | ux-swup           | ✅            |
-| ux-cropperjs      | ✅            | ux-toggle         | ✅            |
-| ux-dropzone       | ✅            | ux-translator     | ✅            |
-| ux-lazy           | ✅            | ux-turbo          | Not yet Tested (**) |
-| ux-live-component | ✅            | ux-twig           | ✅            |
-| ux-notify         | ✅            | ux-typed          | ✅            |
-| ux-react          | ✅ (*)        | ux-vue            | ✅ (*)        |
+| UX packages       | Compatibility       | UX packages        | Compatibility       |
+|-------------------|---------------------|--------------------|---------------------|
+| ux-autocomplete   | ✅                   | ux-svelte          | ✅ (*)               |
+| ux-chartjs        | ✅                   | ux-swup            | ✅                   |
+| ux-cropperjs      | ✅                   | ux-toggle-password | ✅                   |
+| ux-dropzone       | ✅                   | ux-translator      | ✅                   |
+| ux-lazy-image     | ✅                   | ux-turbo           | ✅                   |
+| ux-live-component | ✅                   | ux-twig-component  | ✅                   |
+| ux-notify         | ✅                   | ux-typed           | ✅                   |
+| ux-react          | ✅ (*)               | ux-vue             | ✅ (*)               |
+| ux-map            | Not yet tested (**) | ux-icons           | ✅                   |
+| ux-leaflet-map    | Not yet tested (**) | ux-google-map      | Not yet tested (**) |
+| ux-turbo-mercure  | Not yet tested (**) |                    |                     |
 
 (*) requires some modifications with imports (see below)
+
 (**) in theory there is no reason why it is not compatible, your feedback is welcome.
 
 ## Prerequisites
