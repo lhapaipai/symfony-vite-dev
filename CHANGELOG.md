@@ -1,3 +1,7 @@
+## v7.1.0
+
+- allow Vite 6 as peer dependency ([@skmedix](https://github.com/skmedix))
+
 ## v7.0.5
 
 - add origin to internal tags ([@seggewiss](https://github.com/seggewiss))
