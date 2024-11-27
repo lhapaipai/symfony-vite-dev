@@ -22,6 +22,7 @@ describe("registerVueControllerComponents", () => {
     expect(resolveVueComponent).not.toBeUndefined();
     expect(resolveVueComponent("Hello")).toMatchInlineSnapshot(`
       {
+        "__asyncHydrate": [Function],
         "__asyncLoader": [Function],
         "__asyncResolved": undefined,
         "name": "AsyncComponentWrapper",
