@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { type Ref, inject } from 'vue'
-import type { DefaultTheme } from 'vitepress/theme'
-import VPButton from './VPButton.vue'
-import VPImage from './VPImage.vue'
+import { type Ref, inject } from 'vue';
+import type { DefaultTheme } from 'vitepress/theme';
+import VPButton from './VPButton.vue';
+import VPImage from './VPImage.vue';
 
 export interface HeroAction {
-  theme?: 'brand' | 'alt'
-  text: string
-  link: string
+  theme?: 'brand' | 'alt';
+  text: string;
+  link: string;
 }
 export interface Dependency {
   icon: {
@@ -20,20 +20,20 @@ export interface Dependency {
 }
 export interface Extra {
   title: string;
-  description: string
+  description: string;
 }
 
 const props = defineProps<{
-  name?: string
-  text?: string
-  tagline?: string
-  image?: DefaultTheme.ThemeableImage
-  actions?: HeroAction[]
+  name?: string;
+  text?: string;
+  tagline?: string;
+  image?: DefaultTheme.ThemeableImage;
+  actions?: HeroAction[];
   dependencies: Dependency[];
   extra?: Extra;
-}>()
+}>();
 
-const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
+const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>;
 </script>
 
 <template>
@@ -49,7 +49,12 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
           <div class="dependencies" v-if="dependencies">
             <div class="dependency" v-for="dependency in dependencies" :key="dependency.name">
               <div class="dependency-image-container">
-                <img :src="dependency.icon.src" :alt="dependency.name" :width="dependency.icon.width" :height="dependency.icon.height">
+                <img
+                  :src="dependency.icon.src"
+                  :alt="dependency.name"
+                  :width="dependency.icon.width"
+                  :height="dependency.icon.height"
+                />
               </div>
               <pre><code><span class="prefix">{{ dependency.prefix }}</span> {{ dependency.name }}</code></pre>
             </div>
@@ -79,12 +84,15 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
       </div>
     </div>
     <div class="container extra" v-if="extra">
-      <div class="warning custom-block"><p class="custom-block-title">{{ extra.title }}</p><p v-html="extra.description"></p></div>
+      <div class="warning custom-block">
+        <p class="custom-block-title">{{ extra.title }}</p>
+        <p v-html="extra.description"></p>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .VPHero {
   margin-top: calc((var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1);
   padding: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 64px) 24px 48px;
@@ -157,9 +165,6 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   font-weight: 700;
   white-space: pre-wrap;
 }
-
-
-
 
 .VPHero.has-image .name,
 .VPHero.has-image .text {
@@ -366,10 +371,8 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
   color: var(--vp-c-text-2);
   margin: 1rem 0;
   width: 440px;
-    max-width: 100%;
-
+  max-width: 100%;
 }
-
 
 .dependency {
   display: flex;
@@ -378,7 +381,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>
 }
 .dependency-image-container {
   width: 50px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,12 +399,15 @@ pre {
     color: var(--vp-c-text-1);
 
     .prefix {
-      color: #A6ACCD;
+      color: #a6accd;
     }
   }
 }
 :root:not(.dark) pre {
-  box-shadow: 0px 0.8px 2px rgba(0,0,0,.032),0px 2.7px 6.7px rgba(0,0,0,.048),0px 12px 30px rgba(0,0,0,.08);
+  box-shadow:
+    0px 0.8px 2px rgba(0, 0, 0, 0.032),
+    0px 2.7px 6.7px rgba(0, 0, 0, 0.048),
+    0px 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 960px) {

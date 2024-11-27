@@ -1,4 +1,4 @@
-import './VRipple.scss';
+import './VRipple.css';
 import { isObject, keyCodes } from '~theme/lib/utils';
 import type { DirectiveBinding } from 'vue';
 
