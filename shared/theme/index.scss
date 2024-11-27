@@ -1,14 +1,14 @@
-@import "./_variables.scss";
-@import "./layout.scss";
-@import "./components/card.scss";
-@import "./components/alert.scss";
-@import "./components/button.scss";
-@import "./typography.scss";
-@import "./navbar.scss";
+@use "_variables.scss";
+@use "layout.scss";
+@use "components/card.scss";
+@use "components/alert.scss";
+@use "components/button.scss";
+@use "typography.scss";
+@use "navbar.scss";
 
-@import "./pages/welcome.scss";
-@import "./pages/assets.scss";
-@import "./pages/stimulus.scss";
+@use "pages/welcome.scss";
+@use "pages/assets.scss";
+@use "pages/stimulus.scss";
 
 * {
   box-sizing: border-box;

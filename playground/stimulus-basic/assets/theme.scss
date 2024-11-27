@@ -1,4 +1,4 @@
-@import "~shared/theme/index.scss";
+@use "~shared/theme/index.scss";
 
 html #content {
   height: calc(100% - var(--nav-height));

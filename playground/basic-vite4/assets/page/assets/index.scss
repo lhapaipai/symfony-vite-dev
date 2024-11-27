@@ -1,4 +1,4 @@
-@import "./nested/index.scss";
+@use "./nested/index.scss";
 
 #vite-asset-scss-img-1 {
   background-image: url(../../images/logo-react.svg);

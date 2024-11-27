@@ -333,6 +333,8 @@ importers:
 
   playground/symfony7: {}
 
+  playground/vite-only: {}
+
   playground/with-cdn: {}
 
   playground/worker-mode: {}
