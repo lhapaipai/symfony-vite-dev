@@ -17,4 +17,9 @@
       "path": "./playground",
     },
   ],
+  "settings": {
+    "phpstan.binPath": "src/vite-bundle/vendor/bin/phpstan",
+    "phpstan.configFile": "src/vite-bundle/phpstan.neon",
+    "intelephense.diagnostics.enable": false,
+  },
 }
