@@ -6,48 +6,11 @@
   "keywords": [],
   "author": "Lhapaipai",
   "license": "ISC",
-  "dependencies": {
-    "@small-tech/vite-plugin-sri": "^1.0.1",
-    "@symfony/ux-autocomplete": "file:extra/ux-assets/ux-autocomplete",
-    "@symfony/ux-chartjs": "file:extra/ux-assets/ux-chartjs",
-    "@symfony/ux-cropperjs": "file:extra/ux-assets/ux-cropperjs",
-    "@symfony/ux-dropzone": "file:extra/ux-assets/ux-dropzone",
-    "@symfony/ux-lazy-image": "file:extra/ux-assets/ux-lazy-image",
-    "@symfony/ux-live-component": "file:extra/ux-assets/ux-live-component",
-    "@symfony/ux-notify": "file:extra/ux-assets/ux-notify",
-    "@symfony/ux-react": "file:extra/ux-assets/ux-react",
-    "@symfony/ux-svelte": "file:extra/ux-assets/ux-svelte",
-    "@symfony/ux-swup": "file:extra/ux-assets/ux-swup",
-    "@symfony/ux-toggle-password": "file:extra/ux-assets/ux-toggle-password",
-    "@symfony/ux-translator": "file:extra/ux-assets/ux-translator",
-    "@symfony/ux-turbo": "file:extra/ux-assets/ux-turbo",
-    "@symfony/ux-typed": "file:extra/ux-assets/ux-typed",
-    "@symfony/ux-vue": "file:extra/ux-assets/ux-vue",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-legacy": "^6.0.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/runtime-core": "^3.5.13",
-    "@vue/runtime-dom": "^3.5.13",
-    "concurrently": "^9.1.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "terser": "^5.38.1",
-    "vite": "^6.1.0",
-    "vite-plugin-inspect": "^10.1.1",
-    "vite-plugin-symfony": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "@stimulus-components/color-picker": "^2.0.0",
-    "eslint": "^9.20.0",
-    "globals": "^15.14.0",
-    "sass": "^1.84.0",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.23.0"
+    "eslint": "^9.20.0"
   },
   "volta": {
-    "node": "20.9.0"
+    "node": "22.13.1"
   }
 }

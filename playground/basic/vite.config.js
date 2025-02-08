@@ -4,7 +4,7 @@ import { dirname, resolve } from "path";
 import symfonyPlugin from "vite-plugin-symfony";
 import vuePlugin from "@vitejs/plugin-vue";
 import reactPlugin from "@vitejs/plugin-react";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));

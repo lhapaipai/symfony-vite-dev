@@ -4,5 +4,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build"
+    },
+    "devDependencies": {
+        "vite": "^6.1.0",
+        "vite-plugin-symfony": "workspace:^"
     }
 }

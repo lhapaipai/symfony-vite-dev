@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
-import { dirname, resolve } from "path";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
 
+import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
-import { fileURLToPath } from "url";
 
 const basicPlaygroundDir = dirname(fileURLToPath(import.meta.url));
 const sharedDir = resolve(basicPlaygroundDir, "../../shared");
