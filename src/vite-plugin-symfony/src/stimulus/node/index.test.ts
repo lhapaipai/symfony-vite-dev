@@ -2,7 +2,7 @@
 
 import { ConfigEnv, Logger, UserConfig, createLogger } from "vite";
 import { describe, it, vi } from "vitest";
-import symfonyStimulus from "~/stimulus/node";
+import symfonyStimulus from "./index";
 import { resolvePluginStimulusOptions } from "~/stimulus/pluginOptions";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
 

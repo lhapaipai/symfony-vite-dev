@@ -1,5 +1,5 @@
 import { vi, describe, test, expect } from "vitest";
-import { extractExtraEnvVars } from "~/entrypoints/utils";
+import { extractExtraEnvVars } from "./utils";
 
 vi.mock("vite", async (original) => {
   return {

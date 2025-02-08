@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getStimulusControllerId, generateStimulusId } from "~/stimulus/util";
+import { getStimulusControllerId, generateStimulusId } from "./util";
 
 describe("stimulus generateStimulusId", () => {
   it("identifierFromThirdParty generate correct identifier", ({ expect }) => {

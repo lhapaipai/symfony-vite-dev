@@ -2,9 +2,9 @@
  * @vitest-environment jsdom
  */
 import { describe, expect, it } from "vitest";
-import { registerVueControllerComponents } from "~/stimulus/helpers/vue";
-import { ImportedModules } from "~/stimulus/helpers/types";
-import { VueModule } from "~/stimulus/helpers/vue/types";
+import { registerVueControllerComponents } from "./index";
+import { ImportedModules } from "../types";
+import { VueModule } from "./types";
 
 const fakeVueComponent = () => ({});
 

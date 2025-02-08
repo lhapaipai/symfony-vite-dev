@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 
-import vitePluginSymfonyEntrypoints from "~/entrypoints/index";
+import vitePluginSymfonyEntrypoints from "./index";
 import type { OutputChunk, OutputAsset } from "rollup";
 
 import {
@@ -18,10 +18,10 @@ import {
   circular1Js,
   circular2Js,
   viteUserConfigNoRoot,
-} from "../mocks";
+} from "~tests/mocks";
 import { VitePluginSymfonyEntrypointsOptions } from "~/types";
 import { createLogger, Logger } from "vite";
-import { resolvePluginEntrypointsOptions } from "~/entrypoints/pluginOptions";
+import { resolvePluginEntrypointsOptions } from "./pluginOptions";
 
 function createBundleObject(files: (OutputChunk | OutputAsset)[]) {
   const bundles: {

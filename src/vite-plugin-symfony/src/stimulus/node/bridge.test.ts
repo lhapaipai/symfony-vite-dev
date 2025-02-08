@@ -1,18 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
-import {
-  createControllersModule,
-  extractStimulusIdentifier,
-  parseStimulusRequest,
-  stimulusFetchRE,
-} from "~/stimulus/node/bridge";
+import { createControllersModule, extractStimulusIdentifier, parseStimulusRequest, stimulusFetchRE } from "./bridge";
 
 import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
 import { ResolvedConfig } from "vite";
 
-const testDir = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
+const testDir = resolve(fileURLToPath(import.meta.url), "../../../../tests");
+
+console.log("TEST DIR", testDir);
 
 function loadControllerJson(filename: string) {
   return JSON.parse(readFileSync(resolve(testDir, `fixtures/${filename}`)).toString());

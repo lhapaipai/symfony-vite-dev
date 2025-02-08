@@ -12,8 +12,8 @@ import {
   resolveUserExternal,
   normalizeConfig,
   trimSlashes,
-} from "~/entrypoints/utils";
-import { resolvePluginEntrypointsOptions } from "~/entrypoints/pluginOptions";
+} from "./utils";
+import { resolvePluginEntrypointsOptions } from "./pluginOptions";
 import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
 import {
   asyncDepChunk,
@@ -24,7 +24,7 @@ import {
   themeCss,
   welcomeJs,
   welcomeLegacyJs,
-} from "../mocks";
+} from "~tests/mocks";
 import { resolveConfig, type ResolvedConfig } from "vite";
 import { VitePluginSymfonyOptions } from "~/types";
 import type { RenderedChunk } from "rollup";
