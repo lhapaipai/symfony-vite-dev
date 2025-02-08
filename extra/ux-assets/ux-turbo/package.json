@@ -4,9 +4,15 @@
     "license": "MIT",
     "private": true,
     "version": "0.1.0",
-    "module": "dist/turbo_controller.js",
-    "type": "module",
+    "main": "dist/turbo_controller.js",
     "types": "dist/turbo_controller.d.ts",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "turbo-core": {
@@ -22,16 +28,16 @@
             }
         },
         "importmap": {
-            "@hotwired/turbo": "^7.0.1",
+            "@hotwired/turbo": "^7.1.0 || ^8.0",
             "@hotwired/stimulus": "^3.0.0"
         }
     },
     "peerDependencies": {
-        "@hotwired/turbo": "^7.0.1",
-        "@hotwired/stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0.0",
+        "@hotwired/turbo": "^7.1.1 || ^8.0"
     },
     "devDependencies": {
-        "@hotwired/turbo": "^7.1.0",
-        "@hotwired/stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0.0",
+        "@hotwired/turbo": "^7.1.0 || ^8.0"
     }
 }

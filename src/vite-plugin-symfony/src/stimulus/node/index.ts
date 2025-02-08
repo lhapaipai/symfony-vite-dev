@@ -50,12 +50,12 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
         };
       }
     },
-    resolveId(id: string) {
+    resolveId(this: unknown, id) {
       if (id === virtualSymfonyControllersModuleId) {
         return id;
       }
     },
-    load(id) {
+    load(this: unknown, id) {
       if (id === virtualSymfonyControllersModuleId) {
         if (controllersJsonContent) {
           return createControllersModule(controllersJsonContent, pluginOptions, logger);
@@ -64,7 +64,7 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
         }
       }
     },
-    transform(code, id, options) {
+    transform(this: unknown, code, id, options) {
       if ((options?.ssr && !process.env.VITEST) || id.includes("node_modules") || isVirtualRequest(id)) {
         return null;
       }

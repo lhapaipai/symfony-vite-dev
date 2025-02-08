@@ -1,14 +1,20 @@
 {
     "name": "@symfony/ux-live-component",
     "description": "Live Component: bring server-side re-rendering & model binding to any element.",
-    "module": "dist/live_controller.js",
-    "type": "module",
+    "main": "dist/live_controller.js",
     "types": "dist/live_controller.d.ts",
     "version": "1.0.0",
     "config": {
         "css_source": "styles/live.css"
     },
     "license": "MIT",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "live": {
@@ -23,11 +29,12 @@
             }
         },
         "importmap": {
-            "@hotwired/stimulus": "^3.0.0"
+            "@hotwired/stimulus": "^3.0.0",
+            "@symfony/ux-live-component": "path:%PACKAGE%/dist/live_controller.js"
         }
     },
     "dependencies": {
-        "morphdom": "^2.6.1"
+        "idiomorph": "^0.3.0"
     },
     "peerDependencies": {
         "@hotwired/stimulus": "^3.0.0"

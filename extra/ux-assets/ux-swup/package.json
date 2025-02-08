@@ -3,9 +3,15 @@
     "description": "Swup integration for Symfony",
     "license": "MIT",
     "version": "1.1.0",
-    "module": "dist/controller.js",
-    "type": "module",
+    "main": "dist/controller.js",
     "types": "dist/controller.d.ts",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "swup": {
@@ -25,19 +31,19 @@
         }
     },
     "peerDependencies": {
-        "@swup/fade-theme": "^1.0",
-        "@swup/slide-theme": "^1.0",
-        "@swup/forms-plugin": "^2.0",
+        "@hotwired/stimulus": "^3.0.0",
         "@swup/debug-plugin": "^3.0",
-        "swup": "^3.0",
-        "@hotwired/stimulus": "^3.0.0"
+        "@swup/fade-theme": "^1.0",
+        "@swup/forms-plugin": "^2.0",
+        "@swup/slide-theme": "^1.0",
+        "swup": "^3.0"
     },
     "devDependencies": {
-        "@swup/fade-theme": "^1.0",
-        "@swup/slide-theme": "^1.0",
-        "@swup/forms-plugin": "^2.0",
+        "@hotwired/stimulus": "^3.0.0",
         "@swup/debug-plugin": "^3.0",
-        "swup": "^3.0",
-        "@hotwired/stimulus": "^3.0.0"
+        "@swup/fade-theme": "^1.0",
+        "@swup/forms-plugin": "^2.0",
+        "@swup/slide-theme": "^1.0",
+        "swup": "^3.0"
     }
 }

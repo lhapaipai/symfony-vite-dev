@@ -6,6 +6,7 @@
                 "fetch": "lazy",
                 "autoimport": {
                     "tom-select/dist/css/tom-select.default.css": true,
+                    "tom-select/dist/css/tom-select.bootstrap4.css": false,
                     "tom-select/dist/css/tom-select.bootstrap5.css": false
                 }
             }
@@ -103,16 +104,6 @@
             "vue": {
                 "enabled": true,
                 "fetch": "lazy"
-            }
-        },
-        "@stimulus-components/color-picker": {
-            "default": {
-                "name": "color-picker",
-                "enabled": true,
-                "fetch": "lazy",
-                "autoimport": {
-                    "@simonwep/pickr/dist/themes/classic.min.css": true
-                }
             }
         }
     },

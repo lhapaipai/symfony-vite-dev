@@ -3,9 +3,15 @@
     "description": "Integration of Vue.js in Symfony",
     "license": "MIT",
     "version": "1.0.0",
-    "module": "dist/register_controller.js",
-    "type": "module",
+    "main": "dist/register_controller.js",
     "types": "dist/register_controller.d.ts",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "vue": {

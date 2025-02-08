@@ -1,10 +1,16 @@
 {
     "name": "@symfony/ux-svelte",
     "description": "Integration of Svelte in Symfony",
-    "module": "dist/register_controller.js",
-    "type": "module",
+    "main": "dist/register_controller.js",
     "version": "1.0.0",
     "license": "MIT",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "svelte": {

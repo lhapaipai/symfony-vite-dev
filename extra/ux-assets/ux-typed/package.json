@@ -3,9 +3,15 @@
     "description": "Typed integration for Symfony",
     "license": "MIT",
     "version": "1.0.0",
-    "module": "dist/controller.js",
-    "type": "module",
+    "main": "dist/controller.js",
     "types": "dist/controller.d.ts",
+    "scripts": {
+        "build": "node ../../../bin/build_package.js .",
+        "watch": "node ../../../bin/build_package.js . --watch",
+        "test": "../../../bin/test_package.sh .",
+        "check": "biome check",
+        "ci": "biome ci"
+    },
     "symfony": {
         "controllers": {
             "typed": {
@@ -22,11 +28,11 @@
         }
     },
     "peerDependencies": {
-        "typed.js": "^2.0",
-        "@hotwired/stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0.0",
+        "typed.js": "^2.0"
     },
     "devDependencies": {
-        "typed.js": "^2.0",
-        "@hotwired/stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0.0",
+        "typed.js": "^2.0"
     }
 }

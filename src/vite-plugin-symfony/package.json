@@ -65,21 +65,21 @@
   ],
   "devDependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@types/node": "^22.3.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@types/ws": "^8.5.12",
-    "@vitest/coverage-v8": "^2.0.5",
-    "jsdom": "^24.1.1",
-    "prettier": "^3.3.3",
+    "@types/node": "^22.13.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/ws": "^8.5.14",
+    "@vitest/coverage-v8": "^3.0.5",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "rollup": "^4.20.0",
-    "svelte": "^4.2.18",
-    "tsup": "^8.2.4",
-    "vite": "^5.4.1",
-    "vitest": "^2.0.5",
-    "vue": "^3.4.38"
+    "rollup": "^4.34.6",
+    "svelte": "^4.2.19",
+    "tsup": "^8.3.6",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5",
+    "vue": "^3.5.13"
   },
   "keywords": [
     "vite-plugin",
@@ -98,10 +98,10 @@
     "node": "20.9.0"
   },
   "dependencies": {
-    "debug": "^4.3.6",
-    "fast-glob": "^3.3.2",
-    "picocolors": "^1.0.1",
-    "sirv": "^2.0.4"
+    "debug": "^4.4.0",
+    "fast-glob": "^3.3.3",
+    "picocolors": "^1.1.1",
+    "sirv": "^3.0.0"
   },
   "symfony": {
     "controllers": {

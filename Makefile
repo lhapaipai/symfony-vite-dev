@@ -8,6 +8,9 @@ install: ## Install vite-bundle/vite-plugin-symfony dependencies
 install-playgrounds: ## Install playgrounds (pnpm i/composer i)
 	./bin/install-playgrounds.sh
 
+update-playgrounds: ## Update playgrounds (pnpm update --latest/composer update)
+	./bin/update-playgrounds.sh
+
 ci-cd:
 	cd src/vite-bundle && composer run ci-check
 	cd src/vite-plugin-symfony && pnpm run tsc:check && pnpm run lint:check

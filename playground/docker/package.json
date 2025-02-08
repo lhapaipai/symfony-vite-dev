@@ -12,7 +12,7 @@
         "node": "20.9.0"
     },
     "dependencies": {
-        "vite": "^5.0.11",
-        "vite-plugin-symfony": "^6.3.2"
+        "vite": "^6.1.0",
+        "vite-plugin-symfony": "^7.1.0"
     }
 }
