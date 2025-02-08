@@ -6,6 +6,7 @@ export function resolvePluginStimulusOptions(
   let config: false | VitePluginSymfonyStimulusOptions;
   if (userConfig === true) {
     config = {
+      controllersDir: "./assets/controllers",
       controllersFilePath: "./assets/controllers.json",
       hmr: true,
       fetchMode: "eager",
@@ -13,6 +14,7 @@ export function resolvePluginStimulusOptions(
     };
   } else if (typeof userConfig === "string") {
     config = {
+      controllersDir: "./assets/controllers",
       controllersFilePath: userConfig,
       hmr: true,
       fetchMode: "eager",
@@ -20,6 +22,7 @@ export function resolvePluginStimulusOptions(
     };
   } else if (typeof userConfig === "object") {
     config = {
+      controllersDir: userConfig.controllersDir ?? "./assets/controllers",
       controllersFilePath: userConfig.controllersFilePath ?? "./assets/controllers.json",
       hmr: userConfig.hmr !== false ? true : false,
       fetchMode: userConfig.fetchMode === "lazy" ? "lazy" : "eager",

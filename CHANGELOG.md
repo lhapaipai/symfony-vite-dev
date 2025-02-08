@@ -1,3 +1,10 @@
+## v8.0.0
+
+- stimulus fix hmr option from `VitePluginSymfonyStimulusOptions`
+- stimulus fix hmr with lazy loaded controllers
+- stimulus prevent hmr when controller is not already registered (#56)
+- stimulus add `controllersDir` option to prevent analyse Stimulus meta for other files.
+
 ## v7.1.0
 
 - allow Vite 6 as peer dependency ([@skmedix](https://github.com/skmedix))

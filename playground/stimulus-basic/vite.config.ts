@@ -18,11 +18,11 @@ export default defineConfig({
       },
     }),
 
-    inspect(),
+    // inspect(),
   ],
 
   optimizeDeps: {
-    include: [],
+    include: ["@symfony/ux-toggle-password/dist/controller.js"],
   },
 
   publicDir: false,

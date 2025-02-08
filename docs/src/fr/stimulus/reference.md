@@ -24,8 +24,15 @@ export default defineConfig({
 ```ts
 type VitePluginSymfonyStimulusOptions = {
   /**
-   * path to controllers.json relative to vite root
-   * @default ./assets/controller.json
+   * chemin vers le dossier le plus profond qui contient les controleurs stimulus
+   * relativement à vite root
+   * @default "./assets/controllers"
+   */
+  controllersDir: string;
+
+  /**
+   * chemin vers le fichier controllers.json relativement à vite root
+   * @default "./assets/controller.json"
    */
   controllersFilePath: string;
 
@@ -57,7 +64,7 @@ type VitePluginSymfonyStimulusOptions = {
 ```
 
 :::warning
-Par défaut le HMR est activé sur vos controlleurs Stimulus. Si ces derniers ne sont pas idempotents (voir [doc Stimulus](https://turbo.hotwired.dev/handbook/building#making-transformations-idempotent)), vous risquez de rencontrez des problèmes (les HMR ne fonctionnera pas comme attendu et vous devrez rafraîchir manuellement votre page). Dans ce cas il est préférable de désactiver l'option `hmr: false`. Ainsi, toute modification du fichier entrainera quand même un rafraichissement automatique de la page.
+Par défaut le HMR est activé sur vos contrôleurs Stimulus. Si ces derniers ne sont pas idempotents (voir [doc Stimulus](https://turbo.hotwired.dev/handbook/building#making-transformations-idempotent)), vous risquez de rencontrez des problèmes (les HMR ne fonctionnera pas comme attendu et vous devrez rafraîchir manuellement votre page). Dans ce cas il est préférable de désactiver l'option `hmr: false`. Ainsi, toute modification du fichier entrainera quand même un rafraichissement automatique de la page.
 :::
 
 ## `import.meta`
@@ -242,7 +249,7 @@ registerControllers(
       // pensez à ajouter le suffixe "?stimulus"
       query: "?stimulus",
 
-      // les imports dynamiques et les `Lazy-`controlleurs sont gérés en interne, dans tous les
+      // les imports dynamiques et les `Lazy-`contrôleurs sont gérés en interne, dans tous les
       // cas il faut spécifier eager à true pour éviter des imbrications de promesses.
       eager: true,
     },

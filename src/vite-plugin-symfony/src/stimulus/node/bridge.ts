@@ -140,11 +140,15 @@ const importMetaStimulusIdentifierRE = /import\.meta\.stimulusIdentifier\s*=\s*[
 const importMetaStimulusEnabledRE = /import\.meta\.stimulusEnabled\s*=\s*(true|false)/;
 
 export const stimulusFetchRE = new RegExp(notACommentRE.source + importMetaStimulusFetchRE.source, "m");
-const stimulusIdentifierRE = new RegExp(notACommentRE.source + importMetaStimulusIdentifierRE.source, "m");
+export const stimulusIdentifierRE = new RegExp(notACommentRE.source + importMetaStimulusIdentifierRE.source, "m");
 const stimulusEnabledRE = new RegExp(notACommentRE.source + importMetaStimulusEnabledRE.source, "m");
 
+export function extractStimulusIdentifier(code: string): string | null {
+  return (code.match(stimulusIdentifierRE) || [])[1] ?? null;
+}
+
 export function parseStimulusRequest(
-  code: string,
+  srcCode: string,
   moduleId: string,
   pluginOptions: VitePluginSymfonyStimulusOptions,
   viteConfig: ResolvedConfig,
@@ -156,31 +160,33 @@ export function parseStimulusRequest(
     filePath = moduleId;
   }
 
-  const fetch = (code.match(stimulusFetchRE) || [])[1] ?? pluginOptions.fetchMode;
-  let id = (code.match(stimulusIdentifierRE) || [])[1];
+  const fetch = (srcCode.match(stimulusFetchRE) || [])[1] ?? pluginOptions.fetchMode;
+  let id = extractStimulusIdentifier(srcCode);
   if (!id) {
     const relativePath = relative(viteConfig.root, filePath);
     id =
       getStimulusControllerId(relativePath, pluginOptions.identifierResolutionMethod) ??
       generateStimulusId(relativePath);
   }
-  const enabled = ((code.match(stimulusEnabledRE) || [])[1] ?? "true") === "false" ? false : true;
+  const enabled = ((srcCode.match(stimulusEnabledRE) || [])[1] ?? "true") === "false" ? false : true;
 
-  if (fetch === "eager") {
-    return `
+  const dstCode =
+    fetch === "eager"
+      ? `
         import Controller from '${filePath}';
         export default {
-        enabled: ${enabled},
-        fetch: 'eager',
-        identifier: '${id}',
-        controller: Controller
-      }`;
-  } else {
-    return `export default {
-      enabled: ${enabled},
-      fetch: 'lazy',
-      identifier: '${id}',
-      controller: () => import('${filePath}')
-    }`;
-  }
+          enabled: ${enabled},
+          fetch: 'eager',
+          identifier: '${id}',
+          controller: Controller
+        }`
+      : `
+        export default {
+          enabled: ${enabled},
+          fetch: 'lazy',
+          identifier: '${id}',
+          controller: () => import('${filePath}')
+        }`;
+
+  return `${dstCode}\nif (import.meta.hot) { import.meta.hot.accept(); }`;
 }

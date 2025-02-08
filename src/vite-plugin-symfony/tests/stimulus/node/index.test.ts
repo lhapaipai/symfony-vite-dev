@@ -57,7 +57,7 @@ describe("stimulus index", () => {
     // @ts-ignore
     const returnValue = plugin.transform(
       `export default class controller extends Controller {}`,
-      "/path/to/project/controllers/welcome_controller.js",
+      "/path/to/project/assets/controllers/welcome_controller.js",
       {},
     );
     expect(returnValue).toMatchInlineSnapshot(`
@@ -69,7 +69,12 @@ describe("stimulus index", () => {
             console.warn('Stimulus app not available. Are you creating app with startStimulusApp() ?');
             import.meta.hot.invalidate();
           } else {
-            window.$$stimulusApp$$.register('welcome', newModule.default);
+            if (window.$$stimulusApp$$.router.modulesByIdentifier.has('welcome') && newModule.default) {
+              window.$$stimulusApp$$.register('welcome', newModule.default);
+            } else {
+              console.warn('Try to HMR not registered Stimulus controller', 'welcome', 'full-reload');
+              import.meta.hot.invalidate();
+            }
           }
         })
       }"

@@ -1,5 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
-import { createControllersModule, parseStimulusRequest, stimulusFetchRE } from "~/stimulus/node/bridge";
+import {
+  createControllersModule,
+  extractStimulusIdentifier,
+  parseStimulusRequest,
+  stimulusFetchRE,
+} from "~/stimulus/node/bridge";
 
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -23,6 +28,7 @@ vi.mock("node:module", () => {
 });
 
 const pluginDefaultOptions: VitePluginSymfonyStimulusOptions = {
+  controllersDir: "./assets/controllers",
   controllersFilePath: "./assets.controllers.json",
   hmr: true,
   fetchMode: "eager",
@@ -55,6 +61,13 @@ describe("parseStimulusRequest", () => {
     expect(stimulusFetchRE.test(code)).toBe(isMatching);
   });
 
+  it.each([
+    [`import.meta.stimulusIdentifier = "foo"`, "foo"],
+    [``, null],
+  ])("extract identifier %s from code or null", (code, result) => {
+    expect(extractStimulusIdentifier(code)).toBe(result);
+  });
+
   it("parse import.meta from source code", () => {
     const code = `
 import { Controller } from "@hotwired/stimulus";
@@ -77,11 +90,12 @@ export default class controller extends Controller {}
       "
               import Controller from '/path/to/project/assets/controllers/welcome_controller.js';
               export default {
-              enabled: false,
-              fetch: 'eager',
-              identifier: 'other',
-              controller: Controller
-            }"
+                enabled: false,
+                fetch: 'eager',
+                identifier: 'other',
+                controller: Controller
+              }
+      if (import.meta.hot) { import.meta.hot.accept(); }"
     `);
   });
 
@@ -104,12 +118,14 @@ export default class controller extends Controller {}
     );
 
     expect(result).toMatchInlineSnapshot(`
-      "export default {
-            enabled: true,
-            fetch: 'lazy',
-            identifier: 'welcome',
-            controller: () => import('/path/to/project/assets/controllers/welcome_controller.js')
-          }"
+      "
+              export default {
+                enabled: true,
+                fetch: 'lazy',
+                identifier: 'welcome',
+                controller: () => import('/path/to/project/assets/controllers/welcome_controller.js')
+              }
+      if (import.meta.hot) { import.meta.hot.accept(); }"
     `);
   });
 });

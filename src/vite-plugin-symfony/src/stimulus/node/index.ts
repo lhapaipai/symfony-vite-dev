@@ -1,5 +1,10 @@
-import { createControllersModule, virtualSymfonyControllersModuleId, parseStimulusRequest } from "./bridge";
-import { relative, resolve } from "node:path";
+import {
+  createControllersModule,
+  virtualSymfonyControllersModuleId,
+  parseStimulusRequest,
+  extractStimulusIdentifier,
+} from "./bridge";
+import { join, relative, resolve } from "node:path";
 import { Logger, Plugin, ResolvedConfig, UserConfig } from "vite";
 import { VitePluginSymfonyStimulusOptions } from "~/types";
 import { ControllersFileContent } from "../types";
@@ -68,17 +73,25 @@ export default function symfonyStimulus(pluginOptions: VitePluginSymfonyStimulus
         return parseStimulusRequest(code, id, pluginOptions, viteConfig);
       }
 
-      if (viteCommand === "serve") {
+      if (viteCommand === "serve" && pluginOptions.hmr) {
         if (id.endsWith("bootstrap.js") || id.endsWith("bootstrap.ts")) {
           return addBootstrapHmrCode(code, logger);
         }
 
-        if (isPathIncluded(viteConfig.root, id)) {
-          const relativePath = relative(viteConfig.root, id);
-          const identifier = getStimulusControllerId(relativePath, pluginOptions.identifierResolutionMethod);
-          if (identifier) {
-            return addControllerHmrCode(code, identifier);
-          }
+        const isInsideControllerDir = isPathIncluded(join(viteConfig.root, pluginOptions.controllersDir), id);
+
+        if (!isInsideControllerDir) {
+          return null;
+        }
+
+        const relativePath = relative(viteConfig.root, id);
+
+        const identifier =
+          extractStimulusIdentifier(code) ??
+          getStimulusControllerId(relativePath, pluginOptions.identifierResolutionMethod);
+
+        if (identifier) {
+          return addControllerHmrCode(code, identifier);
         }
       }
 

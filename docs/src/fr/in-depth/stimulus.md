@@ -4,7 +4,7 @@ Afin de faciliter l'intégration de Stimulus dans les applications Symfony, ce d
 
 - des fonctions et filtres Twig pour générer facilement des attributs `data-*`
 - des services pour créer des `data-*` attributs compatible Stimulus et les utiliser dans vos propres services.
-- un système de chargement automatique et paresseux des controlleurs Stimulus via un paquet npm `@symfony/stimulus-bridge` lié au bundle. Ce dernier va analyser
+- un système de chargement automatique et paresseux des contrôleurs Stimulus via un paquet npm `@symfony/stimulus-bridge` lié au bundle. Ce dernier va analyser
   - le fichier `assets/controllers.json` pour vos contrôleurs tiers
   - les contrôleurs stockés dans un dossier `assets/controllers`
 et renverra du code pour que l'application Stimulus se précharge automatiquement

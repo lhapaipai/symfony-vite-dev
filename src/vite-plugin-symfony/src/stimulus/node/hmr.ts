@@ -18,9 +18,6 @@ export function addBootstrapHmrCode(code: string, logger: Logger) {
 }
 
 export function addControllerHmrCode(code: string, identifier: string) {
-  // we don't need lazy behavior, the module is already loaded and we are in a dev environment
-  // TODO explain comment
-
   const metaHotFooter = `
 if (import.meta.hot) {
   import.meta.hot.accept(newModule => {
@@ -28,7 +25,12 @@ if (import.meta.hot) {
       console.warn('Stimulus app not available. Are you creating app with startStimulusApp() ?');
       import.meta.hot.invalidate();
     } else {
-      window.${applicationGlobalVarName}.register('${identifier}', newModule.default);
+      if (window.${applicationGlobalVarName}.router.modulesByIdentifier.has('${identifier}') && newModule.default) {
+        window.${applicationGlobalVarName}.register('${identifier}', newModule.default);
+      } else {
+        console.warn('Try to HMR not registered Stimulus controller', '${identifier}', 'full-reload');
+        import.meta.hot.invalidate();
+      }
     }
   })
 }`;

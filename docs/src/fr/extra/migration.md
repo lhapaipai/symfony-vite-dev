@@ -18,8 +18,43 @@ yarn upgrade vite-plugin-symfony@^7.0
 Si vous faites une mise à jour vers une nouvelle version majeure,
 vous aurez également quelques lignes de code à modifier.
 
-## v6.x vers v7.x
+## v7.x vers v8.x
 
+Si vous n'utilisez pas Stimulus où que vos contrôleurs Stimulus se trouvent dans le dossier `./assets/controllers` vous pouvez faire la mise à jour sans rien changer.
+
+Si vos contrôleurs Stimulus se trouvent dans un autre dossier.
+
+```
+.
+├── assets
+│   ├── my-stimulus-controllers
+│   │   └── welcome_controller.ts
+│   ├── bootstrap.ts
+│   └── controllers.json
+├── src
+└── vite.config.ts
+```
+
+vous devrez mettre à jour cette option dans `vite-plugin-symfony` en spécifiant le chemin relatif à la racine de votre projet (le `root` de votre config vite).
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+
+import symfonyPlugin from "vite-plugin-symfony";
+
+export default defineConfig({
+  plugins: [
+    symfonyPlugin({
+      stimulus: {
+        controllersDir: "./assets/my-stimulus-controllers", // [!code ++]
+      },
+    }),
+  ],
+});
+```
+
+## v6.x vers v7.x
 
 ### Nouvelle route
 

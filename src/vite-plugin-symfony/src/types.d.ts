@@ -214,8 +214,15 @@ export type VitePluginSymfonyEntrypointsOptions = {
 
 export type VitePluginSymfonyStimulusOptions = {
   /**
+   * path to the deepest folder that contains all your stimulus controllers
+   * relative to vite root
+   * @default "./assets/controllers"
+   */
+  controllersDir: string;
+
+  /**
    * path to controllers.json relative to vite root
-   * @default ./assets/controller.json
+   * @default "./assets/controller.json"
    */
   controllersFilePath: string;
 
