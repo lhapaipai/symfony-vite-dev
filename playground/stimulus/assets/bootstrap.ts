@@ -2,11 +2,22 @@ import {
   startStimulusApp,
   registerControllers,
 } from "vite-plugin-symfony/stimulus/helpers";
-import { registerReactControllerComponents, type ReactModule } from "vite-plugin-symfony/stimulus/helpers/react";
-import { registerVueControllerComponents, type VueModule } from "vite-plugin-symfony/stimulus/helpers/vue";
-import { registerSvelteControllerComponents, type SvelteModule } from "vite-plugin-symfony/stimulus/helpers/svelte";
+import {
+  registerReactControllerComponents,
+  type ReactModule,
+} from "vite-plugin-symfony/stimulus/helpers/react";
+import {
+  registerVueControllerComponents,
+  type VueModule,
+} from "vite-plugin-symfony/stimulus/helpers/vue";
+import {
+  registerSvelteControllerComponents,
+  type SvelteModule,
+} from "vite-plugin-symfony/stimulus/helpers/svelte";
 
-registerVueControllerComponents(import.meta.glob<VueModule>("./vue/controllers/**/*.vue"));
+registerVueControllerComponents(
+  import.meta.glob<VueModule>("./vue/controllers/**/*.vue"),
+);
 registerReactControllerComponents(
   import.meta.glob<ReactModule>("./react/controllers/**/*.[jt]s(x)?"),
 );
@@ -26,4 +37,3 @@ registerControllers(
     },
   ),
 );
-

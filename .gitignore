@@ -15,6 +15,7 @@
 
 node_modules
 
+/playground/template
 /playground/sandbox/
 /playground/ssr/
 /playground/vite-only/

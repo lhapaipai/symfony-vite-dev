@@ -120,6 +120,27 @@ importers:
         specifier: workspace:^
         version: link:../../src/vite-plugin-symfony
 
+  playground/sandbox:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.20.0
+        version: 9.20.0
+      globals:
+        specifier: ^15.14.0
+        version: 15.14.0
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+      typescript-eslint:
+        specifier: ^8.23.0
+        version: 8.23.0(eslint@9.20.0(jiti@1.21.7))(typescript@5.7.3)
+      vite:
+        specifier: ^6.0
+        version: 6.1.0(@types/node@22.13.1)(jiti@1.21.7)(sass@1.84.0)(terser@5.38.1)(tsx@4.19.2)(yaml@2.7.0)
+      vite-plugin-symfony:
+        specifier: workspace:^
+        version: link:../../src/vite-plugin-symfony
+
   playground/stimulus:
     dependencies:
       '@stimulus-components/color-picker':
@@ -329,6 +350,15 @@ importers:
         version: 5.2.1(vite@6.1.0(@types/node@22.13.1)(jiti@1.21.7)(sass@1.84.0)(terser@5.38.1)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
       vite:
         specifier: ^6.1.0
+        version: 6.1.0(@types/node@22.13.1)(jiti@1.21.7)(sass@1.84.0)(terser@5.38.1)(tsx@4.19.2)(yaml@2.7.0)
+      vite-plugin-symfony:
+        specifier: workspace:^
+        version: link:../../src/vite-plugin-symfony
+
+  playground/template:
+    devDependencies:
+      vite:
+        specifier: ^6.0
         version: 6.1.0(@types/node@22.13.1)(jiti@1.21.7)(sass@1.84.0)(terser@5.38.1)(tsx@4.19.2)(yaml@2.7.0)
       vite-plugin-symfony:
         specifier: workspace:^

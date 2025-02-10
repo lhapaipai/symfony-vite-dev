@@ -27,7 +27,8 @@ arguments details:
     attr: {
         referrerpolicy: "origin"
     }
-  }
+  },
+  '<custom-config-name-1>'
 ) }}
 ```
 
@@ -51,7 +52,7 @@ arguments details:
         media: "screen and (prefers-color-scheme: dark)"
     }
   },
-  '<custom_build_name_1>'
+  '<custom-config-name-1>'
 ) }}
 ```
 
@@ -65,7 +66,7 @@ arguments details:
 return value : `"dev"` | `"build"` | `null`
 
 ```twig
-{{ vite_mode('<custom_build_name_1>') }}
+{{ vite_mode('<custom-config-name-1>') }}
 ```
 
 example:

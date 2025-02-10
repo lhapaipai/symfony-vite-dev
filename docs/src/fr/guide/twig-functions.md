@@ -27,7 +27,8 @@ détails des arguments :
     attr: {
         referrerpolicy: "origin"
     }
-  }
+  },
+  '<custom-config-name-1>'
 ) }}
 ```
 
@@ -51,7 +52,7 @@ détails des arguments :- `<entry_name>` **type: string** Name of your entrypoin
         media: "screen and (prefers-color-scheme: dark)"
     }
   },
-  '<custom-build-name-1>'
+  '<custom-config-name-1>'
 ) }}
 ```
 
@@ -66,7 +67,7 @@ détails des arguments :
 valeur de retour : `"dev"` | `"build"` | `null`
 
 ```twig
-{{ vite_mode('<custom-build-name-1>') }}
+{{ vite_mode('<custom-config-name-1>') }}
 ```
 
 exemple :

@@ -24,7 +24,7 @@ export type EntryPointsFile = {
   base: string;
   entryPoints: EntryPoints;
   legacy: boolean;
-  metadatas: FileMetadatas;
+  metadatas: FilesMetadatas;
   version: [string, number, number, number];
   viteServer: string | null;
 };
