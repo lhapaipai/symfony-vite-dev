@@ -1,3 +1,5 @@
+# `pentatrion/vite-bundle` / `vite-plugin-symfony` Changelog
+
 ## v8.0.1
 
 - vite-plugin-symfony fix #60 move postinstall hook to pre-dev.
@@ -165,3 +167,155 @@
 - change default_build/builds to default_config/configs
 - fix baseUrl to files #67
 - refactor RenderAssetTagEvent 
+
+## v5.0.1
+
+- remove deprecated options
+- fix `absolute_url` error in `shouldUseAbsoluteURL`.
+
+## v5.0.0
+
+- change `entrypoints.json` property `isProd` to `isBuild` because you can be in dev env and want to build your js files.
+
+## v4.3.2
+
+- fix #26 TypeError when no root option (@andyexeter) 
+
+## v4.3.1
+
+- add vendor, var and public to ignored directory for file watcher.
+
+## v4.3.0
+
+- add `absolute_url` bundle option.
+- add `absolute_url` twig option. (@drazik)
+
+## v4.2.0
+
+- add enforcePluginOrderingPosition option
+- fix Integrity hash issue
+- add `vite_mode` twig function
+
+## v4.1.0
+
+- add `originOverride` (@elliason)
+- deprecate `viteDevServerHostname`
+
+## v4.0.2
+
+- fix #24 normalized path
+
+## v4.0.1
+
+- fix conditional imports generate modulepreloads for everything
+
+## v4.0.0
+
+- add `sriAlgorithm`
+- fix react refresh when vite client is returned
+- add CDN feature
+
+## v3.3.2
+
+- fix #16 entrypoints outside vite root directory
+
+## v3.3.1
+
+- fix circular reference with imports.
+- deprecate `public_dir` / `base`
+- add `public_directory` / `build_directory`
+
+## v3.3.0
+
+- add tests
+- versionning synchronization between pentatrion/vite-bundle and vite-plugin-symfony
+
+---
+
+before version 3.3 the versions of ViteBundle and vite-plugin-symfony were not synchronized
+
+
+# `pentatrion/vite-bundle` Changelog
+
+## v3.2.0
+
+- add throw_on_missing_entry option (@Magiczne)
+
+## v3.1.4
+
+- add proxy_origin option (@FluffyDiscord)
+
+## v3.1.0
+
+- allow vite multiple configuration files
+
+## v3.0.0
+
+- Add vite 4 compatibility
+
+## v2.2.1
+
+- the choice of the vite dev server port is no longer strict, if it is already used the application will use the next available port.
+
+## v2.2.0
+
+- add extra attributes to script/link tags
+
+## v2.1.1
+
+- update documentation, update with vite-plugin-symfony v0.6.0
+
+## v2.1.0
+
+- add CSS Entrypoints management to prevent FOUC.
+
+## v1.1.4
+
+- add EntrypointsLookup / EntrypointsRenderer as a service.
+
+## v1.1.0
+
+- Add public_dir conf
+
+## v1.0.2
+
+- fix vite.config path error with windows
+
+## v1.0.1 
+
+- fix exception when entrypoints.json is missing
+
+## v1.0.0
+
+- Twig functions refer to named entry points not js file
+- Add vite-plugin-symfony
+
+## v0.2.0
+
+Add proxy Controller
+
+
+---
+
+# `vite-plugin-symfony` changelog
+
+## v0.6.3
+
+- takes into account vite legacy plugin.
+
+## v0.6.2
+
+- add `viteDevServerHost` plugin option
+
+## v0.6.1
+
+- remove `strictPort: true`
+
+## v0.6.0
+
+- add `publicDirectory`, `buildDirectory`, `refresh`, `verbose` plugin option
+- add `dev-server-404.html` page
+
+## v0.5.2
+
+- add `servePublic` plugin option

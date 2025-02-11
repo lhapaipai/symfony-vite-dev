@@ -65,7 +65,8 @@ then
     exit 1
 fi
 
-
+cp "$PROJECT_DIR/CHANGELOG.md" "$PROJECT_DIR/src/vite-plugin-symfony/"
+cp "$PROJECT_DIR/CHANGELOG.md" "$PROJECT_DIR/src/vite-bundle/"
 
 cd "$PROJECT_DIR/src/vite-plugin-symfony"
 npm --no-git-tag-version --allow-same-version version $VERSION
