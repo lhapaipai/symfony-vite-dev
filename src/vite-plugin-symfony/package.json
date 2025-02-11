@@ -50,7 +50,8 @@
     "url": "https://github.com/lhapaipai/vite-plugin-symfony.git"
   },
   "scripts": {
-    "dev": "tsx ./scripts/pre-dev.ts && tsup --watch",
+    "predev": "tsx ./scripts/pre-dev.ts",
+    "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest",
     "test-run": "vitest --run",

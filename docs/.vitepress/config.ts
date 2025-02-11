@@ -232,7 +232,7 @@ export default defineConfig({
       provider: 'local'
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/vite-bundle' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/lhapaipai/symfony-vite-dev' }],
 
     outline: {
       level: [2, 3]
