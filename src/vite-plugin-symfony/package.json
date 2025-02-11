@@ -50,14 +50,13 @@
     "url": "https://github.com/lhapaipai/vite-plugin-symfony.git"
   },
   "scripts": {
-    "dev": "tsup --watch",
+    "dev": "tsx ./scripts/pre-dev.ts && tsup --watch",
     "build": "tsup",
     "test": "vitest",
     "test-run": "vitest --run",
     "coverage": "vitest --run --coverage",
     "tsc:check": "tsc --noEmit",
-    "lint:check": "eslint -c eslint.config.js ./src",
-    "postinstall": "tsx ./scripts/postinstall.ts"
+    "lint:check": "eslint -c eslint.config.js ./src"
   },
   "files": [
     "dist/",

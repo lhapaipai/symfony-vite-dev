@@ -1,3 +1,7 @@
+## v8.0.1
+
+- vite-plugin-symfony fix #60 move postinstall hook to pre-dev.
+
 ## v8.0.0
 
 - stimulus fix hmr option from `VitePluginSymfonyStimulusOptions`
