@@ -1,3 +1,6 @@
+parameters:
+    vite_default_config: '%env(VITE_DEFAULT_CONFIG)%'
+
 pentatrion_vite:
     script_attributes:
         # you can define your attributes that you want to apply
@@ -9,7 +12,7 @@ pentatrion_vite:
 
     throw_on_missing_entry: true
 
-    default_config: config1
+    default_config: '%vite_default_config%'
     configs:
         config1:
             build_directory: build-1
