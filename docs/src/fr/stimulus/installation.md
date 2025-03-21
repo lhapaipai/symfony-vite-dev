@@ -20,10 +20,16 @@ import symfonyPlugin from 'vite-plugin-symfony';
 export default defineConfig({
   plugins: [
     symfonyPlugin({
+      // un booléen pour activer stimulus avec les options par défaut
       stimulus: true // [!code ++]
 
       // ou précisez le chemin de votre controllers.json
-      // stimulus: './assets/other-dir/controllers.json'
+      stimulus: './assets/other-dir/controllers.json' // [!code ++]
+
+      // vous pouvez aussi spécifier un objet de configuration [!code ++]
+      stimulus: { // [!code ++]
+        fetchMode: "lazy" // [!code ++]
+      } // [!code ++]
     }),
   ],
 
@@ -36,6 +42,8 @@ export default defineConfig({
   },
 });
 ```
+
+Si vous voulez connaître toutes les options disponibles, consultez la page de [référence](/fr/stimulus/reference).
 
 Si vous utilisez TypeScript. Ajoutez ces définitions de types pour le `import.meta.stimulusXXX` et les imports de type `*?stimulus` dans un fichier `env.d.ts`.
 
@@ -71,8 +79,9 @@ registerControllers(
 )
 ```
 ```ts [assets/bootstrap.ts]
-import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
 
+const app = startStimulusApp();
 registerControllers(
   app,
   import.meta.glob<StimulusControllerInfosImport>(
@@ -125,6 +134,21 @@ export default class controller extends Controller {
 }
 ```
 
+:::warning
+Veuillez noter que pour que le HMR fonctionne correctement, votre fichier d'initialisation (le fichier qui appelle la fonction `startStimulusApp`) doit être nommé `bootstrap.js` ou `bootstrap.ts`. Si vous avez nommé votre fichier autrement, vous devrez ajouter manuellement ces quelques lignes.
+
+```diff
+// assets/stimulus.js
+import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers";
+const app = startStimulusApp();
+
+// some logic
+
++ if (import.meta.hot) {
++   window.$$stimulusApp$$ = stimulusApp;
++ }
+```
+:::
 ## Exemples
 
 Le dépôt de développement [lhapaipai/symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) contient un dossier `playground/stimulus-basic` et un autre `playground/stimulus` regroupant une implémentation complète de Stimulus avec Symfony UX.

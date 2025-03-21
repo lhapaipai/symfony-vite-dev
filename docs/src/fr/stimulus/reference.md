@@ -12,9 +12,15 @@ import symfonyPlugin from "vite-plugin-symfony";
 export default defineConfig({
   plugins: [
     symfonyPlugin({
-      stimulus: {
-        // vos options
-      } satisfies VitePluginSymfonyStimulusOptions,
+      // un booléen pour activer stimulus avec les options par défaut
+      stimulus: true // [!code ++]
+
+      // ou précisez le chemin de votre controllers.json
+      stimulus: './assets/other-dir/controllers.json' // [!code ++]
+
+      stimulus: { // [!code ++]
+        /* vos options */ // [!code ++]
+      } satisfies VitePluginSymfonyStimulusOptions, // [!code ++]
     }),
   ],
   // ...

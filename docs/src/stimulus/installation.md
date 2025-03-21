@@ -21,10 +21,16 @@ import symfonyPlugin from 'vite-plugin-symfony';
 export default defineConfig({
   plugins: [
     symfonyPlugin({
+      // a boolean to activate stimulus with default options
       stimulus: true // [!code ++]
 
       // or specify the path to your controllers.json
-      // stimulus: './assets/other-dir/controllers.json'
+      stimulus: './assets/other-dir/controllers.json' // [!code ++]
+
+      // or specify a configuration object [!code ++]
+      stimulus: { // [!code ++]
+        fetchMode: "lazy" // [!code ++]
+      } // [!code ++]
     }),
   ],
 
@@ -37,6 +43,8 @@ export default defineConfig({
   },
 });
 ```
+
+If you want to see all available options, see the [reference](/stimulus/reference) section
 
 If you are using TypeScript. Add these type definitions for the `import.meta.stimulusXXX` and `*?stimulus` type imports in an `env.d.ts` file.
 
@@ -71,8 +79,9 @@ registerControllers(
 )
 ```
 ```ts [assets/bootstrap.ts]
-import { registerControllers } from "vite-plugin-symfony/stimulus/helpers";
+import { startStimulusApp, registerControllers } from "vite-plugin-symfony/stimulus/helpers";
 
+const app = startStimulusApp();
 registerControllers(
   app,
   import.meta.glob<StimulusControllerInfosImport>(
@@ -125,6 +134,22 @@ export default class controller extends Controller {
   }
 }
 ```
+
+:::warning
+Please note that for HMR to work properly, your initialization file (the file that calls the `startStimulusApp` function) must be named `bootstrap.js` or `bootstrap.ts`. If you named your file something else, you will need to manually add these few lines.
+
+```diff
+// assets/stimulus.js
+import { startStimulusApp } from "vite-plugin-symfony/stimulus/helpers";
+const app = startStimulusApp();
+
+// some logic
+
++ if (import.meta.hot) {
++   window.$$stimulusApp$$ = stimulusApp;
++ }
+```
+:::
 
 ## Examples
 
