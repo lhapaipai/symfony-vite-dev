@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
-import { SvelteComponent } from "svelte";
+import { SvelteComponent,mount,unmount } from "svelte";
 import { SvelteModule } from "./types";
+
 
 export default class extends Controller<Element & { root?: SvelteComponent }> {
   private app: SvelteComponent | undefined;
@@ -34,7 +35,7 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
       this._destroyIfExists();
 
       // @ts-expect-error @see https://svelte.dev/docs#run-time-client-side-component-api-creating-a-component
-      this.app = new Component({
+      this.app = mount(Component,{
         target: this.element,
         props: this.props,
         intro: this.intro,
@@ -61,7 +62,7 @@ export default class extends Controller<Element & { root?: SvelteComponent }> {
 
   _destroyIfExists() {
     if (this.element.root !== undefined) {
-      this.element.root.$destroy();
+      unmount(this.element.root);
       delete this.element.root;
     }
   }
