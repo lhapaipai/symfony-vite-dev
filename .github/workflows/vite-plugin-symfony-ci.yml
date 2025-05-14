@@ -13,10 +13,13 @@ jobs:
     name: Eslint and Tsc
     strategy:
       fail-fast: true
+      matrix:
+        node-versions: [ '20' ]
+
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           sparse-checkout: |
             /package.json
@@ -29,11 +32,12 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
+          run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-versions }}
           cache: 'pnpm'
 
       - name: 'Install JS dependencies'
