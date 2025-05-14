@@ -17,6 +17,36 @@ yarn upgrade vite-plugin-symfony@^7.0
 
 If you upgrade to a new major version
 
+## v8.0 vers v8.1
+
+If you're using `symfony/ux-svelte`, you'll need to migrate to Svelte 5.x.
+
+If you want to stay on Svelte 3.x or Svelte 4.x, you'll need to make these two code changes:
+
+```jsonc
+// ./assets/controllers.json
+{
+    "controllers": {
+        "@symfony/ux-svelte": {
+            "svelte": {
+                "main": "stimulus/helpers/svelte4/render_controller" // [!code ++]
+            }
+        },
+
+    },
+    "entrypoints": []
+}
+```
+```ts
+// ./assets/bootstrap.ts
+import {
+  registerSvelteControllerComponents,
+  type SvelteModule,
+} from "vite-plugin-symfony/stimulus/helpers/svelte4";
+```
+
+
+
 ## from v7.x to v8.x
 
 If you are not using Stimulus or your Stimulus controllers are in the `./assets/controllers` directory you can update without changing anything.

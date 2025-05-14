@@ -25,6 +25,10 @@
       "import": "./dist/stimulus/helpers/svelte/render_controller.js",
       "require": "./dist/stimulus/helpers/svelte/render_controller.cjs"
     },
+    "./stimulus/helpers/svelte4/render_controller": {
+      "import": "./dist/stimulus/helpers/svelte4/render_controller.js",
+      "require": "./dist/stimulus/helpers/svelte4/render_controller.cjs"
+    },
     "./stimulus/helpers/vue": {
       "import": "./dist/stimulus/helpers/vue/index.js",
       "require": "./dist/stimulus/helpers/vue/index.cjs"
@@ -36,6 +40,10 @@
     "./stimulus/helpers/svelte": {
       "import": "./dist/stimulus/helpers/svelte/index.js",
       "require": "./dist/stimulus/helpers/svelte/index.cjs"
+    },
+    "./stimulus/helpers/svelte4": {
+      "import": "./dist/stimulus/helpers/svelte4/index.js",
+      "require": "./dist/stimulus/helpers/svelte4/index.cjs"
     },
     "./package.json": "./package.json"
   },

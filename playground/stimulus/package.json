@@ -47,7 +47,7 @@
     "intl-messageformat": "^10.7.14",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "svelte": "^5.19.9",
+    "svelte": "^5.30.0",
     "swup": "^3.1.1",
     "tom-select": "^2.4.2",
     "typed.js": "^2.1.0",

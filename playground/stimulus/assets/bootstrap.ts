@@ -16,13 +16,13 @@ import {
 } from "vite-plugin-symfony/stimulus/helpers/svelte";
 
 registerVueControllerComponents(
-  import.meta.glob<VueModule>("./vue/controllers/**/*.vue"),
+  import.meta.glob<VueModule>("./vue/controllers/**/*.vue")
 );
 registerReactControllerComponents(
-  import.meta.glob<ReactModule>("./react/controllers/**/*.[jt]s(x)?"),
+  import.meta.glob<ReactModule>("./react/controllers/**/*.[jt]s(x)?")
 );
 registerSvelteControllerComponents(
-  import.meta.glob<SvelteModule>("./svelte/controllers/**/*.svelte"),
+  import.meta.glob<SvelteModule>("./svelte/controllers/**/*.svelte")
 );
 
 const app = startStimulusApp();
@@ -34,6 +34,6 @@ registerControllers(
     {
       query: "?stimulus",
       eager: true,
-    },
-  ),
+    }
+  )
 );
