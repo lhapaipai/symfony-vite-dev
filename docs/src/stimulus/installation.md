@@ -8,10 +8,12 @@ Stimulus is a lightweight JavaScript framework that aims to facilitate the integ
 
 ```bash
 composer require symfony/stimulus-bundle
-
-# remove the webpack-compatible @symfony/stimulus-bridge
-npm rm @symfony/stimulus-bridge
 ```
+
+:::info
+When you add this bundle, the `@symfony/stimulus-bridge` npm package is automatically added as devDependency. This dependency is not used in our case because it is related to Webpack, so just ignore it. (There is no point in removing it because it will be added again in your next `composer install`.)
+:::
+
 
 ```js
 // vite.config.js
