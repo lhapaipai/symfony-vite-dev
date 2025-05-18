@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
-    "vite": "^6.1.0",
+    "vite": "catalog:",
     "vite-plugin-symfony": "workspace:^"
   }
 }

@@ -6,6 +6,9 @@ indent_size = 2
 [{composer.json,composer.lock,controllers.json}]
 indent_size = 4
 
+[pnpm-workspace.yaml]
+indent_size = 2
+
 [*.{yaml,yml}]
 indent_size = 4
 

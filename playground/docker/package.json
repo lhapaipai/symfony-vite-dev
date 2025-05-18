@@ -1,18 +1,18 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "type": "module",
-    "keywords": [],
-    "author": "Lhapaipai",
-    "license": "ISC",
-    "volta": {
-        "node": "20.9.0"
-    },
-    "dependencies": {
-        "vite": "^6.1.0",
-        "vite-plugin-symfony": "^7.1.0"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "20.9.0"
+  },
+  "dependencies": {
+    "vite": "catalog:",
+    "vite-plugin-symfony": "^7.1.0"
+  }
 }

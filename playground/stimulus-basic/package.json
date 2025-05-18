@@ -14,10 +14,10 @@
     "node": "20.9.0"
   },
   "devDependencies": {
-    "@hotwired/stimulus": "^3.2.2",
-    "@symfony/stimulus-bridge": "^4.0.0",
-    "@symfony/ux-toggle-password": "^2.24.0",
-    "vite": "^6.1.0",
+    "@hotwired/stimulus": "catalog:",
+    "@symfony/stimulus-bridge": "catalog:",
+    "@symfony/ux-toggle-password": "catalog:",
+    "vite": "catalog:",
     "vite-plugin-symfony": "workspace:^"
   },
   "dependencies": {
