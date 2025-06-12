@@ -103,7 +103,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         server: {
           watch: {
             ignored: userConfig.server?.watch?.ignored
-              ? []
+              ? userConfig.server.watch.ignored
               : ["**/vendor/**", glob.escapePath(root + "/var") + "/**", glob.escapePath(root + "/public") + "/**"],
           },
         },
