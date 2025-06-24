@@ -25,6 +25,7 @@ const generateStimulusPlugin = async (
   await plugin.configResolved({
     root: "/path/to/project",
   });
+  // @ts-ignore
   plugin.config(userConfig, envConfig);
 
   return plugin;

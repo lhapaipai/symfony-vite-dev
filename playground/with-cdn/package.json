@@ -11,7 +11,7 @@
   "author": "Lhapaipai",
   "license": "ISC",
   "volta": {
-    "node": "20.9.0"
+    "node": "22.14.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "catalog:",
