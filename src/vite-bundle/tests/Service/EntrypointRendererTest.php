@@ -89,7 +89,7 @@ class EntrypointRendererTest extends TestCase
     //     );
     // }
 
-    public function basicProvider()
+    public static function basicProvider()
     {
         return [
             [
