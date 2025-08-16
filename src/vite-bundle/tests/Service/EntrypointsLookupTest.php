@@ -90,7 +90,7 @@ class EntrypointsLookupTest extends TestCase
         );
     }
 
-    public function devfilesProvider()
+    public static function devfilesProvider()
     {
         return [
             ['app', [
@@ -123,7 +123,7 @@ class EntrypointsLookupTest extends TestCase
         $this->assertEquals($expectedFiles['preload'], $entrypointsLookupBasicDev->getJavascriptDependencies($entryName));
     }
 
-    public function buildfilesProvider()
+    public static function buildfilesProvider()
     {
         return [
             ['app', [
@@ -170,7 +170,7 @@ class EntrypointsLookupTest extends TestCase
         $this->assertEquals($expectedFiles['preload'], $entrypointsLookupBasicBuild->getJavascriptDependencies($entryName));
     }
 
-    public function buildLegacyProvider()
+    public static function buildLegacyProvider()
     {
         return [
             ['app', [

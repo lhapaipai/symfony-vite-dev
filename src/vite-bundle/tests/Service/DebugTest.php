@@ -27,7 +27,7 @@ class DebugTest extends TestCase
     /**
      * @return array<array{mixed, string}>
      */
-    public function scalarInputProvider(): array
+    public static function scalarInputProvider(): array
     {
         return [
             [true, 'true'],
@@ -49,7 +49,7 @@ class DebugTest extends TestCase
     /**
      * @return array<array{mixed, string}>
      */
-    public function mixedInputProvider(): array
+    public static function mixedInputProvider(): array
     {
         return [
             [null, '<i>null</i>'],
