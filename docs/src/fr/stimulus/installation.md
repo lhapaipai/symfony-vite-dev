@@ -146,7 +146,7 @@ const app = startStimulusApp();
 // some logic
 
 + if (import.meta.hot) {
-+   window.$$stimulusApp$$ = stimulusApp;
++   window.$$stimulusApp$$ = app;
 + }
 ```
 :::
