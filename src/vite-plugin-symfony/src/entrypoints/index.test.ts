@@ -18,6 +18,7 @@ import {
   circular1Js,
   circular2Js,
   viteUserConfigNoRoot,
+  modernPolyfills,
 } from "~tests/mocks";
 import { VitePluginSymfonyEntrypointsOptions } from "~/types";
 import { createLogger, Logger } from "vite";
@@ -342,6 +343,71 @@ describe("vitePluginSymfonyEntrypoints", () => {
               css: [],
               dynamic: [],
               js: ["/build/assets/polyfills-legacy-40963d34.js"],
+              legacy: false,
+              preload: [],
+            },
+          },
+          legacy: true,
+          metadatas: {},
+          version: ["test"],
+          viteServer: null,
+        },
+        null,
+        2,
+      ),
+      type: "asset",
+    });
+  });
+
+  it("generate correct legacy build entrypoints with modern polyfills", ({ expect }) => {
+    const legacyPluginInstance = plugin({ debug: true }) as any;
+    legacyPluginInstance.emitFile = vi.fn();
+    legacyPluginInstance.configResolved({
+      ...viteBaseConfig,
+      build: {
+        rollupOptions: {
+          input: {
+            welcome: "./assets/page/welcome/index.js",
+          },
+          output: [{ format: "system" }, { format: "es" }],
+        },
+      },
+    });
+
+    legacyPluginInstance.generateBundle({ format: "system" }, createBundleObject([welcomeLegacyJs, legacyPolyfills]));
+    legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs, modernPolyfills]));
+
+    expect(legacyPluginInstance.emitFile).toHaveBeenCalledWith({
+      fileName: ".vite/entrypoints.json",
+      source: JSON.stringify(
+        {
+          base: "/build/",
+          entryPoints: {
+            "welcome-legacy": {
+              css: [],
+              dynamic: [],
+              js: ["/build/assets/welcome-legacy-64979d13.js"],
+              legacy: false,
+              preload: [],
+            },
+            welcome: {
+              css: [],
+              dynamic: [],
+              js: ["/build/assets/welcome-1e67239d.js"],
+              legacy: "welcome-legacy",
+              preload: [],
+            },
+            "polyfills-legacy": {
+              css: [],
+              dynamic: [],
+              js: ["/build/assets/polyfills-legacy-40963d34.js"],
+              legacy: false,
+              preload: [],
+            },
+            "polyfills": {
+              css: [],
+              dynamic: [],
+              js: ["/build/assets/polyfills-Cj9hW7C2.js"],
               legacy: false,
               preload: [],
             },

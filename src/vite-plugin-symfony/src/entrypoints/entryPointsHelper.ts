@@ -64,11 +64,31 @@ export const getBuildEntryPoints = (generatedFiles: GeneratedFiles, viteConfig: 
       hasLegacyEntryPoint ? `${entryName}-legacy` : false,
     );
   }
+ 
+  /**
+   * legacy polyfills target browsers that don't support ESM at all.
+   * added as <script nomodule> tags for legacy browsers.
+   * @see https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#polyfills 
+   * */
+  const polyfills = getOutputPath("vite/legacy-polyfills-legacy")
 
-  if (hasLegacyEntryPoint && getOutputPath("vite/legacy-polyfills")) {
-    const fileInfos = generatedFiles[getOutputPath("vite/legacy-polyfills")!] ?? null;
+  if (hasLegacyEntryPoint && polyfills) {
+    const fileInfos = generatedFiles[polyfills];
     if (fileInfos) {
       entryPoints["polyfills-legacy"] = resolveBuildEntrypoint(fileInfos, generatedFiles, viteConfig, false);
+    }
+  }
+
+  /** 
+   * modern polyfills target browsers that support ESM but lack certain widely-available features.
+   * added as <script type="module"> tags in HTML.
+   * @see https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#modernpolyfills */
+  const modernPolyfills = getOutputPath("vite/legacy-polyfills")
+
+  if (modernPolyfills) {
+    const fileInfos = generatedFiles[modernPolyfills];
+    if(fileInfos) {
+      entryPoints["polyfills"] = resolveBuildEntrypoint(fileInfos, generatedFiles, viteConfig, false);
     }
   }
 

@@ -95,7 +95,7 @@ const cssModuleRE = new RegExp(`\\.module${CSS_LANGS_RE.source}`);
 const commonjsProxyRE = /\?commonjs-proxy/;
 const isCSSRequest = (request: string) => CSS_LANGS_RE.test(request);
 
-const polyfillId = "\0vite/legacy-polyfills";
+export const polyfillId = "\0vite/legacy-polyfills";
 
 export function resolveDevServerUrl(
   address: AddressInfo,
@@ -242,7 +242,15 @@ export const getInputRelPath = (
   }
 
   if ([polyfillId].indexOf(chunk.facadeModuleId) !== -1) {
-    return chunk.facadeModuleId.replace(/\0/g, "");
+    // modern polyfill chunk and legacy polyfill chunk uses same polyfillId
+    const baseInputRelPath =  chunk.facadeModuleId.replace(/\0/g, "")
+    if (options.format === 'system' && chunk.fileName.includes('-legacy')) {
+      // legacy polyfill 
+      return `${baseInputRelPath}-legacy`;  
+    } else {
+      // modern polyfill
+      return baseInputRelPath;  
+    }  
   }
 
   let inputRelPath = normalizePath(path.relative(config.root, chunk.facadeModuleId));

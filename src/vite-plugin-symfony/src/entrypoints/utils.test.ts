@@ -419,6 +419,34 @@ describe("getInputRelPath", () => {
       ),
     ).toBe("assets/page/welcome/index-legacy.js");
   });
+
+  it("generate correct polyfills path", () => {
+    expect(
+      getInputRelPath(
+        {
+          type: "chunk",
+          facadeModuleId: "\0vite/legacy-polyfills",
+          name: "polyfills",
+          fileName: "polyfills-legacy.js"
+        } as OutputChunk,
+        { format: "system" } as NormalizedOutputOptions,
+        viteBaseConfig
+      )
+    ).toBe("vite/legacy-polyfills-legacy")
+
+    expect(
+      getInputRelPath(
+        {
+          type: "chunk",
+          facadeModuleId: "\0vite/legacy-polyfills",
+          name: "polyfills",
+          fileName: "polyfills.js"
+        } as OutputChunk,
+        { format: "system" } as NormalizedOutputOptions,
+        viteBaseConfig
+      )
+    ).toBe("vite/legacy-polyfills")
+  })
 });
 
 describe("isAncestorDir", () => {
