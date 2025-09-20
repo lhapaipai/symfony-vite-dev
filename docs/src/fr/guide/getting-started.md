@@ -80,7 +80,9 @@ Dans le fichier de configuration de Vite, on définit le point d'entrée `app` d
 export default defineConfig({
   build: {
     rollupOptions: {
-      app: './path/to/app.js',
+      input: {
+        app: './path/to/app.js',
+      }
     },
   },
 })

@@ -15,6 +15,7 @@ export default defineConfig({
     vue(),
     legacy({
       targets: ["defaults", "not IE 11"],
+      modernPolyfills: true,
     }),
   ],
 
