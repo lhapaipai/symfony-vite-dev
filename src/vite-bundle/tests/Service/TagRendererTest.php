@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class TagRendererTest extends TestCase
 {
-    public function tag1Provider()
+    public static function tag1Provider()
     {
         return [
             [
@@ -47,7 +47,7 @@ class TagRendererTest extends TestCase
         $this->assertEquals($expectedString, $tagRenderer->generateTag($tag));
     }
 
-    public function scriptProvider()
+    public static function scriptProvider()
     {
         return [
             [
@@ -85,7 +85,7 @@ class TagRendererTest extends TestCase
         $this->assertEquals($expectedString, $tagRenderer->generateTag($tag), $message);
     }
 
-    public function linkStylesheetProvider()
+    public static function linkStylesheetProvider()
     {
         return [
             [
@@ -120,7 +120,7 @@ class TagRendererTest extends TestCase
         $this->assertEquals($expectedString, $tagRenderer->generateTag($tag), $message);
     }
 
-    public function linkPreloadProvider()
+    public static function linkPreloadProvider()
     {
         return [
             [
