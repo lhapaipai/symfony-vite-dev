@@ -58,6 +58,7 @@ import.meta.glob([
 ## Multiple asset strategies
 
 if you want to use the [Twig asset function](https://symfony.com/doc/current/reference/twig_reference.html#asset) to serve assets from Vite but you want to serve other assets that come from another source you can define multiple strategies.
+This is essential when you bundle assets copied into the `public/bundles` folder.
 
 ```yaml
 # config/packages/framework.yaml
