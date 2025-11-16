@@ -1,0 +1,6 @@
+#vite-asset-scss-img-4 {
+  /* Relative URL import in imported scss file is not rebased */
+  /* bug related https://github.com/lhapaipai/vite-bundle/issues/33 */
+  /* and : https://github.com/vitejs/vite/issues/12515 */
+  background-image: url(../../images/logo-qwik.svg);
+}

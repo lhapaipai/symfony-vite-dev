@@ -1,0 +1,24 @@
+pentatrion_vite:
+    # absolute_url: true
+
+    # preload: link-header
+    
+    script_attributes:
+        foo: bar
+        # you can define your attributes that you want to apply
+        # for all your script tags
+    link_attributes:
+        # you can define your attributes that you want to apply
+        # for all your link tags
+
+    throw_on_missing_entry: true
+
+when@prod:
+    pentatrion_vite:
+        cache: true
+
+framework:
+    assets:
+        packages:
+            vite:
+                version_strategy: 'Pentatrion\ViteBundle\Asset\ViteAssetVersionStrategy'
