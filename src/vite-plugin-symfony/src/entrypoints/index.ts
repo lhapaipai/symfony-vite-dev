@@ -81,7 +81,8 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
 
       const extraEnvVars = extractExtraEnvVars(mode, envDir, pluginOptions.exposedEnvVars, userConfig.define);
 
-      if (userConfig.build?.rollupOptions?.input instanceof Array) {
+      const input = userConfig.build?.rollupOptions?.input ?? userConfig.build?.rolldownOptions?.input;
+      if (input instanceof Array) {
         logger.error(colors.red("rollupOptions.input must be an Objet like {app: './assets/app.js'}"));
         process.exit(1);
       }
@@ -270,7 +271,7 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
       }
 
       outputCount++;
-      const output = viteConfig.build.rollupOptions?.output;
+      const output = viteConfig.build.rollupOptions?.output ?? (viteConfig.build as any).rolldownOptions?.output;
 
       // if we have multiple build passes output is an array of each pass.
       // else we have an object of this unique pass

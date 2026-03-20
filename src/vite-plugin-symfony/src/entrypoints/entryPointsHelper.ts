@@ -119,9 +119,10 @@ export const resolveBuildEntrypoint = (
 
       const importFileInfos = generatedFiles[importOutputRelPath];
       if (!importFileInfos) {
-        const isExternal = config.build.rollupOptions.external
+        const external = config.build.rollupOptions.external ?? (config.build as any).rolldownOptions?.external;
+        const isExternal = external
           ? resolveUserExternal(
-              config.build.rollupOptions.external,
+              external,
               importOutputRelPath, // use URL as id since id could not be resolved
               fileInfos.inputRelPath,
               false,

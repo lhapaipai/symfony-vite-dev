@@ -204,7 +204,8 @@ function generateHash(source: BinaryLike, alg: HashAlgorithm) {
 export const prepareRollupInputs = (config: ResolvedConfig): ParsedInputs => {
   const inputParsed: ParsedInputs = {};
 
-  for (const [entryName, inputRelPath] of Object.entries(config.build.rollupOptions.input ?? {})) {
+  const input = config.build.rollupOptions.input ?? (config.build as any).rolldownOptions?.input ?? {};
+  for (const [entryName, inputRelPath] of Object.entries(input)) {
     const entryAbsolutePath = normalizePath(resolve(config.root, inputRelPath));
 
     const extension = extname(inputRelPath);
@@ -244,19 +245,19 @@ export const getInputRelPath = (
   if ([polyfillId].indexOf(chunk.facadeModuleId) !== -1) {
     // modern polyfill chunk and legacy polyfill chunk uses same polyfillId
     const baseInputRelPath =  chunk.facadeModuleId.replace(/\0/g, "")
-    if (options.format === 'system' && chunk.fileName.includes('-legacy')) {
-      // legacy polyfill 
-      return `${baseInputRelPath}-legacy`;  
+    if (chunk.fileName.includes('-legacy')) {
+      // legacy polyfill
+      return `${baseInputRelPath}-legacy`;
     } else {
       // modern polyfill
-      return baseInputRelPath;  
-    }  
+      return baseInputRelPath;
+    }
   }
 
   let inputRelPath = normalizePath(path.relative(config.root, chunk.facadeModuleId));
 
-  /* when we generate legacy files, format === 'system'. after format is other value like 'es' */
-  if (options.format === "system" && !chunk.name.includes("-legacy")) {
+  /* when we generate legacy files, the chunk fileName contains '-legacy' */
+  if (chunk.fileName.includes("-legacy") && !chunk.name.includes("-legacy")) {
     inputRelPath = getLegacyName(inputRelPath);
   }
   return inputRelPath.replace(/\0/g, "");
