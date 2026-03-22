@@ -2,6 +2,11 @@ parameters:
 	level: max
 	paths:
 		- src
+	ignoreErrors:
+		-
+			identifier: class.notFound
+			message: '#NodeBuilder<.*ArrayNodeDefinition>#'
+			reportUnmatched: false
 
 includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
