@@ -14,7 +14,7 @@ import {
   trimSlashes,
 } from "./utils";
 import { resolvePluginEntrypointsOptions } from "./pluginOptions";
-import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rollup";
+import { OutputChunk, OutputAsset, NormalizedOutputOptions } from "rolldown";
 import {
   asyncDepChunk,
   indexCss,
@@ -27,7 +27,7 @@ import {
 } from "~tests/mocks";
 import { resolveConfig, type ResolvedConfig } from "vite";
 import { VitePluginSymfonyOptions } from "~/types";
-import type { RenderedChunk } from "rollup";
+import type { RenderedChunk } from "rolldown";
 
 const viteBaseConfig = {
   root: "/home/me/project-dir",
@@ -429,12 +429,12 @@ describe("getInputRelPath", () => {
           type: "chunk",
           facadeModuleId: "\0vite/legacy-polyfills",
           name: "polyfills",
-          fileName: "polyfills-legacy.js"
+          fileName: "polyfills-legacy.js",
         } as OutputChunk,
         { format: "es" } as NormalizedOutputOptions,
-        viteBaseConfig
-      )
-    ).toBe("vite/legacy-polyfills-legacy")
+        viteBaseConfig,
+      ),
+    ).toBe("vite/legacy-polyfills-legacy");
 
     expect(
       getInputRelPath(
@@ -442,13 +442,13 @@ describe("getInputRelPath", () => {
           type: "chunk",
           facadeModuleId: "\0vite/legacy-polyfills",
           name: "polyfills",
-          fileName: "polyfills.js"
+          fileName: "polyfills.js",
         } as OutputChunk,
         { format: "es" } as NormalizedOutputOptions,
-        viteBaseConfig
-      )
-    ).toBe("vite/legacy-polyfills")
-  })
+        viteBaseConfig,
+      ),
+    ).toBe("vite/legacy-polyfills");
+  });
 });
 
 describe("isAncestorDir", () => {

@@ -59,7 +59,6 @@ describe("stimulus index", () => {
     const returnValue = plugin.transform(
       `export default class controller extends Controller {}`,
       "/path/to/project/assets/controllers/welcome_controller.js",
-      {},
     );
     expect(returnValue).toMatchInlineSnapshot(`
       "export default class controller extends Controller {}
@@ -87,7 +86,6 @@ describe("stimulus index", () => {
     const returnValue = plugin.transform(
       `export default class controller extends Controller {}`,
       "/not/in/the/root/project/dir/assets/other.js",
-      {},
     );
     expect(returnValue).toBeNull();
   });

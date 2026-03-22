@@ -1,7 +1,7 @@
 import { describe, it, vi } from "vitest";
 
 import vitePluginSymfonyEntrypoints from "./index";
-import type { OutputChunk, OutputAsset } from "rollup";
+import type { OutputChunk, OutputAsset } from "rolldown";
 
 import {
   viteBaseConfig,
@@ -404,7 +404,7 @@ describe("vitePluginSymfonyEntrypoints", () => {
               legacy: false,
               preload: [],
             },
-            "polyfills": {
+            polyfills: {
               css: [],
               dynamic: [],
               js: ["/build/assets/polyfills-Cj9hW7C2.js"],

@@ -1,4 +1,4 @@
-import type { OutputChunk, OutputAsset } from "rollup";
+import type { OutputChunk, OutputAsset } from "rolldown";
 import type { ResolvedConfig, UserConfig } from "vite";
 import { ChunkMetadata } from "../src/types";
 
