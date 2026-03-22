@@ -9,7 +9,7 @@ import sirv from "sirv";
 
 import colors from "picocolors";
 
-import type { RenderedChunk, NormalizedOutputOptions, OutputBundle } from "rollup";
+import type { RenderedChunk, NormalizedOutputOptions, OutputBundle } from "rolldown";
 
 import { getDevEntryPoints, getBuildEntryPoints, getFilesMetadatas } from "./entryPointsHelper";
 import {

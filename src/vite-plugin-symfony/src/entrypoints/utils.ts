@@ -4,7 +4,7 @@ import path from "node:path";
 import type { AddressInfo } from "net";
 import { writeFileSync, rmSync, readdirSync } from "fs";
 import { join } from "path";
-import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions, ExternalOption } from "rollup";
+import type { RenderedChunk, OutputChunk, OutputAsset, NormalizedOutputOptions, ExternalOption } from "rolldown";
 import { resolve, extname, relative } from "path";
 import { DevServerUrl, FileInfos, ParsedInputs, HashAlgorithm, VitePluginSymfonyEntrypointsOptions } from "../types";
 import { BinaryLike, createHash } from "node:crypto";
@@ -204,7 +204,7 @@ function generateHash(source: BinaryLike, alg: HashAlgorithm) {
 export const prepareRollupInputs = (config: ResolvedConfig): ParsedInputs => {
   const inputParsed: ParsedInputs = {};
 
-  const input = config.build.rollupOptions.input ?? (config.build as any).rolldownOptions?.input ?? {};
+  const input = config.build.rollupOptions.input ?? config.build.rolldownOptions?.input ?? {};
   for (const [entryName, inputRelPath] of Object.entries(input)) {
     const entryAbsolutePath = normalizePath(resolve(config.root, inputRelPath));
 
@@ -244,8 +244,8 @@ export const getInputRelPath = (
 
   if ([polyfillId].indexOf(chunk.facadeModuleId) !== -1) {
     // modern polyfill chunk and legacy polyfill chunk uses same polyfillId
-    const baseInputRelPath =  chunk.facadeModuleId.replace(/\0/g, "")
-    if (chunk.fileName.includes('-legacy')) {
+    const baseInputRelPath = chunk.facadeModuleId.replace(/\0/g, "");
+    if (chunk.fileName.includes("-legacy")) {
       // legacy polyfill
       return `${baseInputRelPath}-legacy`;
     } else {

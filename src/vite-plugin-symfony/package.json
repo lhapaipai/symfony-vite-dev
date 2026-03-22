@@ -96,6 +96,7 @@
     "prettier": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "rolldown": "1.0.0-rc.10",
     "rollup": "^4.41.0",
     "svelte": "catalog:",
     "tsup": "^8.5.0",
