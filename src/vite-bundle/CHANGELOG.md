@@ -1,5 +1,10 @@
 # `pentatrion/vite-bundle` / `vite-plugin-symfony` Changelog
 
+## v8.2.4
+
+- Support vite 8.0.0 ([van-sprundel](https://github.com/van-sprundel))
+- Fix renderScripts/renderLinks returning string despite the toString option being set to false  ([atomicptr](https://github.com/atomicptr))
+
 ## v8.2.3
 
 - Add support for Symfony 8 ([@skmedix](https://github.com/skmedix))
