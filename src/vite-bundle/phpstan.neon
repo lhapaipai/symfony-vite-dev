@@ -2,6 +2,8 @@ parameters:
 	level: max
 	paths:
 		- src
+	ignoreErrors:
+		- '#Call to method \w+\(\) on an unknown class Symfony\\Component\\Config\\Definition\\Builder\\NodeBuilder#'
 
 includes:
     - vendor/phpstan/phpstan-symfony/extension.neon

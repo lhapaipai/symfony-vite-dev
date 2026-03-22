@@ -1,7 +1,10 @@
 includes:
-	- phpstan.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
 
 parameters:
+	level: max
+	paths:
+		- src
 	ignoreErrors:
 		- '#^PHPDoc type for property Pentatrion\\ViteBundle\\Service\\EntrypointsLookupCollection\:\:\$entrypointsLookupLocator contains generic type Symfony\\Component\\DependencyInjection\\ServiceLocator\<Pentatrion\\ViteBundle\\Service\\EntrypointsLookup\> but class Symfony\\Component\\DependencyInjection\\ServiceLocator is not generic\.$#'
 		- '#^PHPDoc tag @param for parameter \$entrypointsLookupLocator contains generic type Symfony\\Component\\DependencyInjection\\ServiceLocator\<Pentatrion\\ViteBundle\\Service\\EntrypointsLookup\> but class Symfony\\Component\\DependencyInjection\\ServiceLocator is not generic\.$#'
