@@ -120,7 +120,7 @@ class EntrypointRenderer implements ResetInterface
         $tagRenderer = $this->getTagRenderer($configName);
 
         if (!$entrypointsLookup->hasFile()) {
-            return '';
+            return $toString ? '' : [];
         }
 
         $useAbsoluteUrl = $this->shouldUseAbsoluteURL($options, $configName);
@@ -255,7 +255,7 @@ class EntrypointRenderer implements ResetInterface
         $tagRenderer = $this->getTagRenderer($configName);
 
         if (!$entrypointsLookup->hasFile()) {
-            return '';
+            return $toString ? '' : [];
         }
 
         $useAbsoluteUrl = $this->shouldUseAbsoluteURL($options, $configName);
