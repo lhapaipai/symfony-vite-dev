@@ -1,0 +1,25 @@
+{
+  "name": "vite-playground-legacy",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Lhapaipai",
+  "license": "ISC",
+  "volta": {
+    "node": "22.14.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^7.0.0",
+    "@vitejs/plugin-vue": "catalog:",
+    "vite": "^7.0.0",
+    "vite-plugin-symfony": "workspace:^"
+  },
+  "dependencies": {
+    "vue": "catalog:"
+  }
+}

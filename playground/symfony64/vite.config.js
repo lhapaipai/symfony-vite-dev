@@ -35,8 +35,10 @@ export default defineConfig({
         "theme": "./assets/theme.scss"
       },
       output: {
-        manualChunks: {
-          vue: ['vue']
+        manualChunks(id) {
+          if (id.includes('node_modules/vue/')) {
+            return 'vue';
+          }
         }
       }
     },

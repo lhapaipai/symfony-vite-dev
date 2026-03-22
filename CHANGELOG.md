@@ -1,5 +1,9 @@
 # `pentatrion/vite-bundle` / `vite-plugin-symfony` Changelog
 
+## next
+
+- Support vite 8.0.0 ([van-sprundel](https://github.com/van-sprundel))
+
 ## v8.2.3
 
 - Add support for Symfony 8 ([@skmedix](https://github.com/skmedix))

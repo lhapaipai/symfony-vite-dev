@@ -400,6 +400,7 @@ describe("getInputRelPath", () => {
         {
           type: "chunk",
           facadeModuleId: "/home/me/project-dir/assets/page/welcome/index.js",
+          fileName: "assets/welcome-1e67239d.js",
           name: "welcome",
         } as OutputChunk,
         { format: "es" } as NormalizedOutputOptions,
@@ -412,9 +413,10 @@ describe("getInputRelPath", () => {
         {
           type: "chunk",
           facadeModuleId: "/home/me/project-dir/assets/page/welcome/index.js",
+          fileName: "assets/welcome-legacy-64979d13.js",
           name: "welcome",
         } as OutputChunk,
-        { format: "system" } as NormalizedOutputOptions,
+        { format: "es" } as NormalizedOutputOptions,
         viteBaseConfig,
       ),
     ).toBe("assets/page/welcome/index-legacy.js");
@@ -429,7 +431,7 @@ describe("getInputRelPath", () => {
           name: "polyfills",
           fileName: "polyfills-legacy.js"
         } as OutputChunk,
-        { format: "system" } as NormalizedOutputOptions,
+        { format: "es" } as NormalizedOutputOptions,
         viteBaseConfig
       )
     ).toBe("vite/legacy-polyfills-legacy")
@@ -442,7 +444,7 @@ describe("getInputRelPath", () => {
           name: "polyfills",
           fileName: "polyfills.js"
         } as OutputChunk,
-        { format: "system" } as NormalizedOutputOptions,
+        { format: "es" } as NormalizedOutputOptions,
         viteBaseConfig
       )
     ).toBe("vite/legacy-polyfills")

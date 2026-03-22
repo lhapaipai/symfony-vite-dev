@@ -1,0 +1,42 @@
+{
+  "../../shared/theme/images/topography.svg": {
+    "file": "assets/topography-CIhdvSXX.svg",
+    "src": "../../shared/theme/images/topography.svg"
+  },
+  "assets/app.js": {
+    "file": "assets/app-Bbu83jU6.js",
+    "name": "app",
+    "src": "assets/app.js",
+    "isEntry": true
+  },
+  "assets/lib/async-dep.js": {
+    "file": "assets/async-dep-DuFoFX78.js",
+    "name": "async-dep",
+    "src": "assets/lib/async-dep.js",
+    "isDynamicEntry": true
+  },
+  "assets/page/imports/index.js": {
+    "file": "assets/pageImports-CXD-kLNL.js",
+    "name": "pageImports",
+    "src": "assets/page/imports/index.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "assets/lib/async-dep.js"
+    ]
+  },
+  "assets/page/welcome/index.js": {
+    "file": "assets/pageWelcome-DsxiH8yt.js",
+    "name": "pageWelcome",
+    "src": "assets/page/welcome/index.js",
+    "isEntry": true
+  },
+  "assets/theme.scss": {
+    "file": "assets/theme-Co-g5h0m.css",
+    "src": "assets/theme.scss",
+    "isEntry": true,
+    "name": "theme",
+    "names": [
+      "theme.css"
+    ]
+  }
+}

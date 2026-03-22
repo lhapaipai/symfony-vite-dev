@@ -1,0 +1,1 @@
+console.log("welcome.js !");function c(){return new Promise((e,o)=>{const s=Math.random()>.5;setTimeout(()=>{s?e("Success"):o(new Error("Error when fetchingData"))},1e3)})}c().then(e=>{console.log("Result :",e)}).catch(e=>{console.error("Error :",e.message)}).finally(()=>{console.log("End of fetch")});

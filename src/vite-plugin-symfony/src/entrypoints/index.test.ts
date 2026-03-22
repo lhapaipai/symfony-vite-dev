@@ -311,12 +311,12 @@ describe("vitePluginSymfonyEntrypoints", () => {
           input: {
             welcome: "./assets/page/welcome/index.js",
           },
-          output: [{ format: "system" }, { format: "es" }],
+          output: [{ format: "es" }, { format: "es" }],
         },
       },
     });
 
-    legacyPluginInstance.generateBundle({ format: "system" }, createBundleObject([welcomeLegacyJs, legacyPolyfills]));
+    legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeLegacyJs, legacyPolyfills]));
     legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs]));
 
     expect(legacyPluginInstance.emitFile).toHaveBeenCalledWith({
@@ -369,12 +369,12 @@ describe("vitePluginSymfonyEntrypoints", () => {
           input: {
             welcome: "./assets/page/welcome/index.js",
           },
-          output: [{ format: "system" }, { format: "es" }],
+          output: [{ format: "es" }, { format: "es" }],
         },
       },
     });
 
-    legacyPluginInstance.generateBundle({ format: "system" }, createBundleObject([welcomeLegacyJs, legacyPolyfills]));
+    legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeLegacyJs, legacyPolyfills]));
     legacyPluginInstance.generateBundle({ format: "es" }, createBundleObject([welcomeJs, modernPolyfills]));
 
     expect(legacyPluginInstance.emitFile).toHaveBeenCalledWith({

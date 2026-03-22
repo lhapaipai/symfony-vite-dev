@@ -155,6 +155,7 @@ class EntrypointRenderer implements ResetInterface
                     // normally only one js file
                     $tags[] = $tagRenderer->createScriptTag(
                         [
+                            'type' => 'module',
                             'crossorigin' => true,
                             'src' => $this->completeURL($url, $useAbsoluteUrl),
                         ],
