@@ -1,0 +1,3 @@
+proxy:
+  domains:
+    - legacy.symfony-vite
