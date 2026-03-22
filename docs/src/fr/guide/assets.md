@@ -79,3 +79,13 @@ framework:
 {# stratégie par défaut #}
 {{ asset('other-location/logo.svg')}}
 ```
+
+## Copie d'assets statiques
+
+Si vous copiez des assets statiques avec [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) ou [vite-plugin-static-copy](https://www.npmjs.com/package/vite-plugin-static-copy) ou d'autres plugins, et qu'ils ne sont pas référencés dans le manifest, définissez `pentatrion_vite.throw_on_missing_asset` à `false`
+```yaml
+# config/packages/pentatrion_vite.yaml
+
+pentatrion_vite:
+    throw_on_missing_asset: false
+```

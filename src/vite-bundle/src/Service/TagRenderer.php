@@ -173,9 +173,9 @@ class TagRenderer
             function ($key, $value) {
                 if (true === $value) {
                     return sprintf('%s', $key);
-                } else {
-                    return sprintf('%s="%s"', $key, htmlentities($value));
                 }
+
+                return sprintf('%s="%s"', $key, htmlentities($value));
             },
             array_keys($validAttributes),
             $validAttributes
