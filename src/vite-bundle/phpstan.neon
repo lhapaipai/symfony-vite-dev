@@ -3,7 +3,10 @@ parameters:
 	paths:
 		- src
 	ignoreErrors:
-		- '#Call to method \w+\(\) on an unknown class Symfony\\Component\\Config\\Definition\\Builder\\NodeBuilder#'
+		-
+			identifier: class.notFound
+			message: '#NodeBuilder<.*ArrayNodeDefinition>#'
+			reportUnmatched: false
 
 includes:
     - vendor/phpstan/phpstan-symfony/extension.neon

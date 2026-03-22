@@ -20,10 +20,23 @@ tests: ## run vite-bundle/vite-plugin-symfony tests
 	cd src/vite-bundle && ./bin/phpunit
 	cd src/vite-plugin-symfony && pnpm run test-run
 
+phpstan-83:
+	cd src/vite-bundle && \
+		rm -r vendor/ composer.lock && \
+		php8.3 /usr/local/bin/composer install && \
+		composer run phpstan-82
+
 phpstan-82:
 	cd src/vite-bundle && \
 		rm -r vendor/ composer.lock && \
 		php8.2 /usr/local/bin/composer install && \
+		composer run phpstan-82
+
+
+phpstan-81:
+	cd src/vite-bundle && \
+		rm -r vendor/ composer.lock && \
+		php8.1 /usr/local/bin/composer install && \
 		composer run phpstan-82
 
 phpstan-80:

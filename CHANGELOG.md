@@ -3,6 +3,7 @@
 ## next
 
 - Support vite 8.0.0 ([van-sprundel](https://github.com/van-sprundel))
+- Fix renderScripts/renderLinks returning string despite the toString option being set to false  ([atomicptr](https://github.com/atomicptr))
 
 ## v8.2.3
 

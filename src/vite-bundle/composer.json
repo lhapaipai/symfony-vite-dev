@@ -52,7 +52,9 @@
             "php8.3 vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --diff --dry-run --stop-on-violation --using-cache=no",
             "php8.3 vendor/bin/phpstan analyse --configuration=phpstan.neon"
         ],
+        "phpstan-83": "php8.3 vendor/bin/phpstan analyse --configuration=phpstan.neon",
         "phpstan-82": "php8.2 vendor/bin/phpstan analyse --configuration=phpstan.neon",
+        "phpstan-81": "php8.1 vendor/bin/phpstan analyse --configuration=phpstan.neon",
         "phpstan-80": "php8.0 vendor/bin/phpstan analyse --configuration=phpstan.php80.neon"
     }
 }
