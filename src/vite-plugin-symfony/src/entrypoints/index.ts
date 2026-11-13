@@ -145,6 +145,9 @@ export default function symfonyEntrypoints(pluginOptions: VitePluginSymfonyEntry
         // empty the buildDir and create an entrypoints.json file inside.
         if (viteConfig.env.DEV && !process.env.VITEST) {
           showDepreciationsWarnings(pluginOptions, logger);
+          logger.info(
+            `New projects: Symfony Reprise is the official Symfony integration for Vite. ${colors.cyan("https://symfony.com/packages/reprise")}`,
+          );
 
           const buildDir = resolve(viteConfig.root, viteConfig.build.outDir);
           const viteDir = resolve(buildDir, ".vite");

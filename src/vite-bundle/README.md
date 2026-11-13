@@ -13,6 +13,9 @@
 
 # ViteBundle : Symfony integration with Vite
 
+> [!TIP]
+> [Symfony Reprise](https://symfony.com/packages/reprise) is the official Symfony integration for Vite, and it is the recommended choice for new projects. If you already use this bundle, a [migration guide](https://symfony.com/bundles/reprise#migrating-from-pentatrion-vite-bundle) is available.
+
 > [!IMPORTANT]
 > This repository is a "subtree split": a read-only subset of that main repository [symfony-vite-dev](https://github.com/lhapaipai/symfony-vite-dev) which delivers to packagist only the necessary code.
 

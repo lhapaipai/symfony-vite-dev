@@ -34,7 +34,10 @@ hero:
     - theme: alt
       text: Migration v8
       link: /extra/migration
-  extra: ~
+  extra:
+    type: tip
+    title: Try Symfony Reprise
+    description: <a href="https://symfony.com/packages/reprise">Symfony Reprise</a> is the official Symfony integration for Vite, and it is the recommended choice for new projects. If you already use <code>pentatrion/vite-bundle</code> and <code>vite-plugin-symfony</code>, a <a href="https://symfony.com/bundles/reprise#migrating-from-pentatrion-vite-bundle">migration guide</a> is available.
 features:
   - icon: ⚡️
     title: Easy configuration

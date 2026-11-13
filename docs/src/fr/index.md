@@ -33,7 +33,10 @@ hero:
     - theme: alt
       text: Migration v8
       link: /extra/migration
-  extra: ~
+  extra:
+    type: tip
+    title: Découvrir Symfony Reprise
+    description: <a href="https://symfony.com/packages/reprise">Symfony Reprise</a> est l'intégration officielle de Vite pour Symfony, et elle est recommandée pour les nouveaux projets. Si vous utilisez déjà <code>pentatrion/vite-bundle</code> et <code>vite-plugin-symfony</code>, un <a href="https://symfony.com/bundles/reprise#migrating-from-pentatrion-vite-bundle">guide de migration</a> est disponible.
 features:
   - icon: ⚡️
     title: Configuration facile
