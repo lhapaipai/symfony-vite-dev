@@ -21,6 +21,7 @@ export interface Dependency {
 export interface Extra {
   title: string;
   description: string;
+  type?: 'tip' | 'warning';
 }
 
 const props = defineProps<{
@@ -84,7 +85,7 @@ const heroImageSlotExists = inject('hero-image-slot-exists') as Ref<boolean>;
       </div>
     </div>
     <div class="container extra" v-if="extra">
-      <div class="warning custom-block">
+      <div :class="[extra.type ?? 'warning', 'custom-block']">
         <p class="custom-block-title">{{ extra.title }}</p>
         <p v-html="extra.description"></p>
       </div>

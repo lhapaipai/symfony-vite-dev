@@ -15,6 +15,9 @@
 
 # Symfony Vite Development Repository
 
+> [!TIP]
+> [Symfony Reprise](https://symfony.com/packages/reprise) is the official Symfony integration for Vite, and it is the recommended choice for new projects. If you already use `pentatrion/vite-bundle` and `vite-plugin-symfony`, a [migration guide](https://symfony.com/bundles/reprise#migrating-from-pentatrion-vite-bundle) is available.
+
 In this repository you can contribute to `pentatrion/vite-bundle` and `vite-plugin-symfony`. You can find playgrounds for development.
 
 ## Installation
